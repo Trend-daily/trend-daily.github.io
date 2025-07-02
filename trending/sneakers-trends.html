@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://code.jquery.com/jquery-3.1.1.js">
+        </script>
+       
+  <title>Trending Fashion -Sneakers</title>
+  <link rel="stylesheet" href="../assets/style.css">
+    <script src="../assets/sneakers-trends.js"></script>
+    <script src="../assets/pagination.js"></script>
+    
+</head>
+<body>
+    <header id="header">
+        <h1><a href="../index.html">TrendDaily</a></h1>
+        <div id="cta">
+                 <!-- The menu button -->
+<div class="menu-btn" id="menu-btn">
+  <span class="line line-1"></span>
+  <span class="line line-2"></span>
+  <span class="line line-3"></span>
+</div>
+<div class="bigMenu">
+    <ul id="bigMenu">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../shop.html">Shop</a></li>
+     <li><a href="trends.html">Trending</a></li>
+  </ul>
+</div>
+        </div> 
+                
+        </header>
+        
+    <br><br><br><br><br>
+    
+     <nav aria-label="Main Navigation">  
+     
+         
+  <ul id="showmenu">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../about.html">About</a></li>
+    <li><a href="../shop.html">Shop</a></li>
+     <li><a href="trends.html">Trending</a></li>
+       </ul>
+</nav>
+
+  <h2 class="site-title">Sneakers </h2>
+  <!-- Search Bar -->
+  
+  <div id="searchBar">
+  <input type="text" id="searchInput" placeholder="Search fashion..." />
+  <button onclick="handleSearch()">Search</button>
+</div>
+
+  <script>
+    function handleSearch() {
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      if (query) {
+        window.location.href = `../search.html?q=${encodeURIComponent(query)}`;
+      }
+    }
+  </script><!-- Search Bar Ends-->
+  <div class="grid-container" id="categoryGrid"></div>
+
+<!-- Pagination -->
+<div class="pagination-wrapper">
+    <h4>Explore More Categories</h4><br>
+  <div class="pagination-buttons" id="paginationButtons">
+    <!-- Buttons will be inserted here by JS -->
+  </div>
+  <a href="#" id="toggleMore">More</a>
+</div>
+ 
+<!--  Quick links Installation  -->
+ <script type="module">
+  import { listen } from 'https://cdn.skypack.dev/quicklink';
+
+  listen(); 
+</script>
+</body>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-columns">
+      <!-- Useful Links -->
+      <div class="footer-section useful-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div class="footer-section social-section">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.pinterest.com/yourprofile" target="_blank" aria-label="Pinterest">
+            <img src="../icons/pinterest.svg" alt="Pinterest">
+          </a>
+          <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+            <img src="../icons/instagram.svg" alt="Instagram">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="copyright">
+      &copy; 2025 TrendDaily. All rights reserved.
+    </p>
+  </div>
+</footer>
+</html>

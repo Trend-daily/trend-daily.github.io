@@ -1,0 +1,124 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  background: #ff4081;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#searchResultsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #222;
+  margin: 10px;
+  padding: 15px;
+  width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.card h3 {
+  margin-top: 10px;
+}
+
+.card a button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+#searchBar {
+  display: flex;
+  justify-content: center; /* center the whole bar horizontally */
+  align-items: center;     /* align vertically (in case height varies) */
+  gap: 10px;               /* spacing between input and button */
+  margin-top: 20px;
+}
+
+#searchBar input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
+}
+
+#searchBar button {
+  padding: 10px 16px;
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.pagination-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.pagination-buttons button {
+  padding: 10px;
+  background-color: #030;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.pagination-buttons button a{
+    color: #fff;
+    text-decoration: none;
+}
+.pagination-buttons button:hover {
+  background-color:#cc9900;
+}
+
+.pagination-buttons .hidden {
+  display: none;
+}
+
+#toggleMore {
+  margin-top: 1rem;
+  color: #ffce75;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}

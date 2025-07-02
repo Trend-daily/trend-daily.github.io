@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://code.jquery.com/jquery-3.1.1.js">
+        </script>
+       
+  <title>TrendDaily Categories</title>
+  <link rel="stylesheet" href="style.css">
+    <script src="data.js"></script>
+</head>
+<body style="background:#fff;">
+    <header id="header">
+        <h1><a href="index.html">TrendDaily</a></h1>
+        <div id="cta">
+                 <!-- The menu button -->
+<div class="menu-btn" id="menu-btn">
+  <span class="line line-1"></span>
+  <span class="line line-2"></span>
+  <span class="line line-3"></span>
+</div>
+<div class="bigMenu">
+    <ul id="bigMenu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about-dukespot.html">About</a></li>
+    <li><a href="../updates/updates-for-dukespot.html">Updates</a></li>
+     <li><a href="../home/niche.html">Pages</a></li>
+     
+  </ul>
+</div>
+        </div> 
+                
+        </header>
+        
+    <br><br><br><br><br>
+    
+     <nav aria-label="Main Navigation">
+  <ul id="showmenu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about-dukespot.html">About</a></li>
+    <li><a href="../updates/updates-for-dukespot.html">Updates</a></li>
+     <li><a href="../home/niche.html">Pages</a></li>
+  </ul>
+</nav>
+
+  <h2 class="site-title">About TrendDaily</h2>  <!-- Search Bar -->
+  
+  <div id="searchBar">
+  <input type="text" id="searchInput" placeholder="Search fashion..." />
+  <button onclick="handleSearch()">Search</button>
+</div>
+
+  <script>
+    function handleSearch() {
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      if (query) {
+        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+      }
+    }
+  </script><!-- Search Bar Ends-->
+  <section id="about-trenddaily" class="intro-section">
+  <article>
+    <h2>Welcome to TrendDaily — Where Style Moves Fast and So Do We</h2>
+
+    <p>Hey there! We’re <strong>TrendDaily</strong>, your new go-to destination for fashion that actually keeps up with your lifestyle. We know how fast trends move — one minute it’s cargo pants, the next it’s oversized blazers. That’s why we created a site that not only tracks what’s hot in the fashion world but also makes it super easy for you to see, shop, and stay ahead of the curve.</p>
+<br>
+    <p>At TrendDaily, we don’t just post pretty outfits. We organize everything into clean, scrollable categories — from <strong>streetwear</strong> to <strong>Y2K</strong>, from <strong>sneakers</strong> to <strong>formal gowns</strong> — and let you decide what to explore. Want to know what’s trending? Click <em>Browse Trends</em>. Want to grab the look before it sells out? Hit <em>Shop Now</em> and you’re on your way via our affiliate partners.</p>
+<br>
+    <p>But we didn’t stop at clothes. We dive into all the layers that make a look pop. Expect fresh updates on:</p>
+    <br>
+    <ul>
+      <li><strong>Clothing Trends:</strong> From streetwear to couture, we spotlight what’s hot each day.</li>
+      <li><strong>Watches:</strong> Stay ahead of timeless and trendy wristwear that elevates your look.</li>
+      <li><strong>Hair Inspo:</strong> Sleek buns, bold braids, Y2K waves — we keep tabs on what’s trending.</li>
+      <li><strong>Accessories:</strong> Bags, sunglasses, earrings, belts — all the extras that complete the drip.</li>
+      <li><strong>Shoes:</strong> New sneaker drops, runway heels, cozy boots, and everything in between.</li>
+    </ul>
+<br>
+    <p>We update categories regularly, sometimes <em>daily</em>, so there’s always something new to see when you check in. Whether you’re on the hunt for inspo, shopping on the go, or planning your next photo dump fit — we’ve got your back.</p>
+<br>
+    <p>The site is light, fast, and addictive by design. We modeled TrendDaily loosely after Pinterest, so you can scroll through looks effortlessly. Everything is mobile-optimized because we know most of you are browsing from your phones (yeah, us too — guilty).</p>
+<br>
+    <p>What makes us different? We don’t try to sell you everything. We simply show you what’s trending, organize it beautifully, and give you a way to shop it through trusted partners. No clutter, no spammy product pushes — just real fashion discovery at your fingertips.</p>
+
+    <p>So whether you're building your wardrobe, planning an outfit, or just vibing through the latest looks — TrendDaily is your digital closet companion. We make fashion feel fresh, fun, and wearable. Every. Single. Day.</p>
+<br>
+    <p><strong>Let’s make fashion easier to follow — and even easier to wear.</strong><br>Welcome to <strong>TrendDaily</strong>.</p>
+  </article>
+
+  <hr style="margin: 3rem 0; border: 1px solid #444;">
+
+  <section id="meet-the-authors" class="authors-section">
+  <h2>Meet the Authors</h2>
+  <p>TrendDaily is powered by a small team of fashion-obsessed creators, writers, and digital trendwatchers who live and breathe style.</p>
+
+  <div class="author-grid">
+    <div class="author-card">
+      <img src="images/authors/clinton.jpg" alt="Clinton N." class="author-img">
+      <h3>Clinton N.</h3>
+      <p>Founder & Style Curator. Clinton built TrendDaily to help everyday people keep up with high-speed fashion. Loves minimalist fits, bold sneakers, and watching trends evolve in real time.</p>
+      <a href="mailto:clinton@example.com" class="contact-btn">Contact</a>
+    </div>
+
+    <div class="author-card">
+      <img src="images/authors/amaka.jpg" alt="Amaka Styles" class="author-img">
+      <h3>Amaka Styles</h3>
+      <p>Beauty & Hair Trends Editor. Amaka follows TikTok hair hacks like it’s a sport. She breaks down complex beauty trends and shows how to recreate them on a budget.</p>
+      <a href="mailto:amaka@example.com" class="contact-btn">Contact</a>
+    </div>
+
+    <div class="author-card">
+      <img src="images/authors/jay.jpg" alt="Jay Threads" class="author-img">
+      <h3>Jay Threads</h3>
+      <p>Streetwear Specialist. Jay lives in oversized tees and knows where every sneaker drop is coming from before it even hits social media. He keeps our streetwear categories 🔥.</p>
+      <a href="mailto:jay@example.com" class="contact-btn">Contact</a>
+    </div>
+  </div>
+</section>
+</section>
+
+  <div class="grid-container" id="categoryGrid"></div>
+
+<!--  Quick links Installation  -->
+ <script type="module">
+  import { listen } from 'https://cdn.skypack.dev/quicklink';
+
+  listen();
+</script>
+</body>
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-columns">
+      <!-- Useful Links -->
+      <div class="footer-section useful-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="/about.html">About Us</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div class="footer-section social-section">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.pinterest.com/yourprofile" target="_blank" aria-label="Pinterest">
+            <img src="icons/pinterest.svg" alt="Pinterest">
+          </a>
+          <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+            <img src="icons/instagram.svg" alt="Instagram">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="copyright">
+      &copy; 2025 TrendDaily. All rights reserved.
+    </p>
+  </div>
+</footer>
+</html>

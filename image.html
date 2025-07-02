@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Magnifier Demo</title>
+  <style>
+    
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #111;
+    }
+
+    .zoom-container {
+      position: relative;
+      overflow: hidden;
+      width: 300px;
+      height: 300px;
+    }
+
+    .zoom-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .magnifier {
+      position: absolute;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      pointer-events: none;
+      background-repeat: no-repeat;
+      background-size: 300% 300%;
+      display: none;
+      z-index: 10;
+    }
+  </style>
+
+</head>
+<body>
+
+
+<div class="zoom-container">
+  <img class="zoom-image" src="images/ft-img/streetwear-ftimg.jpg" alt="Zoom Image">
+  <div class="magnifier"></div>
+</div>
+
+  <script src="image.js">
+      
+  </script>
+
+</body>
+</html>

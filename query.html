@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://code.jquery.com/jquery-3.1.1.js">
+        </script>
+       
+  <title>TrendDaily Categories</title>
+  <link rel="stylesheet" href="search.css">
+</head>
+
+
+<!-- Secure Body -->
+<body>
+    
+   <header id="header">
+        <h1><a href="index.html">TrendDaily</a></h1>
+        <div id="cta">
+                 <!-- The menu button -->
+<div class="menu-btn" id="menu-btn">
+  <span class="line line-1"></span>
+  <span class="line line-2"></span>
+  <span class="line line-3"></span>
+</div>
+<div class="bigMenu">
+    <ul id="bigMenu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about-dukespot.html">About</a></li>
+    <li><a href="../updates/updates-for-dukespot.html">Updates</a></li>
+     <li><a href="../home/niche.html">Pages</a></li>
+     
+  </ul>
+</div>
+        </div> 
+                
+        </header>
+        
+    <br><br><br><br><br>
+    
+     <nav aria-label="Main Navigation">
+  <ul id="showmenu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about-dukespot.html">About</a></li>
+    <li><a href="../updates/updates-for-dukespot.html">Updates</a></li>
+     <li><a href="../home/niche.html">Pages</a></li>
+  </ul>
+</nav>
+  <div class="grid-container" id="categoryGrid"></div>
+
+
+  <h3>TrendDaily Fashion</h3>
+  <div id="searchBar">
+  <input type="text" id="searchInput" placeholder="Search fashion..." />
+  <button onclick="handleSearch()">Search</button>
+</div>
+  <script>
+    function handleSearch() {
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      if (query) {
+        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
