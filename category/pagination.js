@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     { label: "Trending Bags", link: "../trending/trending-bags.html" },
     { label: "Streetwear", link: "../trending/streetwear-trends.html" },
     { label: "Formal Wear", link: "../trending/formalwear-trends.html" },
-    { label: "Sneakers", link: "sneakers.html" },
+    { label: "Sneakers", link: "../trending/sneakers-trends.html" },
     { label: "5", link: "page5.html" },
     { label: "6", link: "page6.html" },
     { label: "7", link: "page7.html" },
@@ -65,5 +65,77 @@ document.addEventListener("DOMContentLoaded",()=>{
   // OPTIONAL: Add new button dynamically (example)
   // buttonsData.push({ label: "11", link: "page11.html" });
   // renderButtons();
+  
+  //script.js
+/* Menu button styling*/
+
+let isMenuVisible = false;
+ $("main, footer").on("click",()=>{
+     
+     if(isMenuVisible){
+  $("nav").slideUp(500)
+  $(".menu-btn").trigger("click")
+  
+  isMenuVisible = false;
+  }
+ })
+ $(".menu-btn").on("click",()=>{
+   
+ if(isMenuVisible){
+   $("nav").slideUp(500)
+   $("article, footer").css("opacity", "1")
+   $("article, footer").css("transition", ".5s")
+ 
+   isMenuVisible = false;
+ }
+ else{
+   $("nav").slideDown(500)
+   $("article, footer").css("opacity", "0.3")
+   $("article, footer").css("transition", ".5s")
+   isMenuVisible = true;
+ }
+ })  
+ 
+ 
+ // Get the menu button element
+    
+const menuBtn = document.getElementById('menu-btn');
+
+// Add an event listener to the menu button
+menuBtn.addEventListener('click', () => {
+  // Toggle the 'clicked' class on the menu button
+  menuBtn.classList.toggle('clicked');
+});
+/* Menu button styling end..*/
+
+/* Header Effect on Scroll*/
+
+window.addEventListener('scroll', function () {
+  const header = document.getElementById('header');
+  if (window.scrollY > 20) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+ })
+  
+  //blur image logic
+      
+  
+const fullImages = document.querySelectorAll(".full-image");
+
+  fullImages.forEach(img => {
+    const placeholder = img.previousElementSibling;
+    const highResSrc = img.getAttribute("data-src");
+
+    const preloadImg = new Image();
+    preloadImg.src = highResSrc;
+
+    preloadImg.onload = () => {
+      img.src = highResSrc;
+      img.style.opacity = "1";
+      placeholder.style.opacity = "0";
+    };
+  });
 
 })

@@ -1,20 +1,6 @@
 document.addEventListener("DOMContentLoaded",()=>{
 
-   /* const toggleLink = document.getElementById("toggleMore");
-  const hiddenButtons = document.querySelectorAll(".pagination-buttons .hidden");
-  let expanded = false;
-
-  toggleLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    expanded = !expanded;
-
-    hiddenButtons.forEach(btn => {
-      btn.style.display = expanded ? "inline-block" : "none";
-    });
-
-    toggleLink.textContent = expanded ? "Show Less" : "More";
-  });
-  */
+   
   // Array of pagination button data
   const buttonsData = [
     { label: "Trending Bags", link: "trending-bags.html" },
@@ -65,5 +51,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   // OPTIONAL: Add new button dynamically (example)
   // buttonsData.push({ label: "11", link: "page11.html" });
   // renderButtons();
+  
+  
+  
 
 })

@@ -23,23 +23,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const grid = document.getElementById("categoryGrid");
 
-  formalProducts.forEach((product, index) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
+formalProducts.forEach((product, index) => {
+  const card = document.createElement("div");
+  card.classList.add("card");
 
-    card.innerHTML = `
-      <div class="image-zoom-wrapper">
-        <img class="zoom-image" src="${product.image}" alt="${product.title}" />
-      </div>
-      <div class="card-body">
-        <h3 class="card-title">${product.title}</h3>
-        <p class="price">${product.price}</p>
-        <button onclick="window.location.href='${product.shopUrl}'">Shop Now</button>
-      </div>
-    `;
+  card.innerHTML = `
+    <div class="image-zoom-wrapper">
+      <div class="loader"></div>
+      <img class="zoom-image" src="${product.image}" alt="${product.title}" style="display: none;" />
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">${product.title}</h3>
+      <p class="price">${product.price}</p>
+      <button onclick="window.location.href='${product.shopUrl}'">Shop Now</button>
+    </div>
+  `;
 
-    grid.appendChild(card);
-  });
+  grid.appendChild(card);
+
+  const img = card.querySelector("img");
+  const loader = card.querySelector(".loader");
+
+  img.onload = () => {
+    loader.style.display = "none";
+    img.style.display = "block";
+  };
+});
 
   initZoomEffect(); // Initialize zoom for dynamically added images
 });
