@@ -9,7 +9,7 @@ const fashionCategories = [
     image: "../images/bag-images/dior-bag-1.jpg",
     blurImage: "../images/bag-images/dior-bag1-blur.jpg",
     trendsUrl: "#",
-  shopUrl: "#"
+  shopUrl: "../category/bags-shop.html"
   },
   {
     title: "Luis Vuitton",
@@ -17,7 +17,7 @@ const fashionCategories = [
     image: "../images/bag-images/luis-vuitton-bag-1.jpg",
     blurImage: "../images/luis-vuitton-bag-1-blur.jpg",
     trendsUrl: "#",
-    shopUrl: "#"
+    shopUrl: "../category/bags-shop.html"
       },
   {
     title: "Sleek BTS Bags",
@@ -25,7 +25,7 @@ const fashionCategories = [
     image: "../images/bag-images/luis-vuitton-bag-2.jpg",
     blurImage: "../images/bag-images/luis-vuitton-bag-2-blur.jpg",
         trendsUrl: "#",
-    shopUrl: "#"
+    shopUrl: "../category/bags-shop.html"
   },
   {
     title: "Black Bags",
@@ -33,7 +33,7 @@ const fashionCategories = [
     image: "../images/bag-images/black-bag-1.jpg",
     blurImage: "../images/bag-images/black-bag-1-blur.jpg",
         trendsUrl: "#",
-    shopUrl: "#"
+    shopUrl: "../category/bags-shop.html"
   },
   {
     title: "Small Purses",
@@ -41,7 +41,7 @@ const fashionCategories = [
     image: "../images/bag-images/small-bag-1.jpg",
     blurImage: "../images/ft-img/streetwear-blur.jpg",
         trendsUrl: "#",
-    shopUrl: "#"
+    shopUrl: "../category/bags-shop.html"
   },
   {
     title: "Luxury Bags",
@@ -49,7 +49,7 @@ const fashionCategories = [
     image: "../images/bag-images/luis-v-3.jpg",
     blurImage: "../images/bag-images/luis-v-3-blur.jpg",
         trendsUrl: "#",
-    shopUrl: "#"
+    shopUrl: "../category/bags-shop.html"
   },
   {
     title: "Black Bags",
@@ -57,7 +57,7 @@ const fashionCategories = [
     image: "../images/bag-images/black-bag-2.jpg",
     blurImage: "../images/streetwear-blur.jpg",
         trendsUrl: "#",
-    shopUrl: "#"
+    shopUrl: "../category/bags-shop.html"
   },
  {
     title: "Blue Bags",
@@ -65,7 +65,7 @@ const fashionCategories = [
     image: "../images/bag-images/lightbluebag.jpg",
     blurImage: "../images/bag-images/dior-bag-blur.jpg",
         trendsUrl: "#",
-    shopUrl: "#"
+    shopUrl: "../category/bags-shop.html"
   },
   {
     title: "Brown Bags",
@@ -73,7 +73,7 @@ const fashionCategories = [
     image: "../images/bag-images/brown-bag-2.jpg",
     blurImage: "../images/bag-images/luis-v-3-blur.jpg",
         trendsUrl: "#",
-    shopUrl: "#"
+    shopUrl: "../category/bags-shop.html"
   },
   
   // Add more categories here

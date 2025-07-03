@@ -184,7 +184,7 @@ nav{
       }
       .bigMenu a:hover{
       border-radius:10px ;
-       background:linear-gradient(35deg,#15e0ff,#15e0ff,#ff1569,#ff1569);
+       background:linear-gradient(35deg,#030,#030,#cc9900,#cc9900);;
       }
 
 
@@ -557,4 +557,83 @@ footer .copyright {
   .social-section .social-links {
     flex-wrap: wrap;
   }
+}
+
+/* Contact Form*/
+
+ /* Parent container */
+form#contact-form {
+  background: linear-gradient(35deg,#030,#030,#cc9900,#cc9900);
+  color: #fff;
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px 25px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Input and textarea */
+form#contact-form input,
+form#contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background-color: #fff;
+  color: #000;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+  resize: none;
+}
+
+/* Button */
+form#contact-form button#contactBtn {
+  margin-top: 10px;
+  padding: 12px 24px;
+  background-color: #030;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form#contact-form button#contactBtn:hover {
+  background-color: #e6b800;
+}
+
+/* Spinner styling */
+.spinner {
+  border: 2px solid transparent;
+  border-top: 2px solid #030;
+  border-right: 2px solid #030;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 0.6s linear infinite;
+  margin-right: 8px;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Message span */
+#form-message {
+  margin-top: 15px;
+  font-weight: bold;
+  display: none;
+  text-align: center;
 }

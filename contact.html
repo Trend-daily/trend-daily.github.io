@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | TrendDaily</title>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.9.0/validator.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.js">
+        </script>
+  <link rel="stylesheet" href="style.css">
+  <script src="data.js"></script>
+ 
+</head>
+<body>
+<header id="header">
+        <h1><a href="index.html">TrendDaily</a></h1>
+        <div id="cta">
+                 <!-- The menu button -->
+<div class="menu-btn" id="menu-btn">
+  <span class="line line-1"></span>
+  <span class="line line-2"></span>
+  <span class="line line-3"></span>
+</div>
+<div class="bigMenu">
+    <ul id="bigMenu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="category/all-categories.html">Shop</a></li>
+     <li><a href="contact.html">Contact</a></li>
+     
+  </ul>
+</div>
+        </div> 
+                
+        </header>
+        
+    <br><br><br><br><br>
+    
+     <nav aria-label="Main Navigation">
+  <ul id="showmenu">
+     <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="category/all-categories.html">Shop</a></li>
+     <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+<br><br>
+<center><h2>Welcome to Trenddaily Support</h2></center>
+  <div class="contact-container">
+    
+    <form id="contact-form">
+        <h2>Contact Us</h2>
+  <input type="email" id="email" name="email" placeholder="Your Email" required />
+  <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+
+  <button id="contactBtn" type="submit">
+    <span id="spinner" style="display:none;" class="spinner"></span>
+    <span id="ctxt">Contact</span>
+  </button>
+
+  <span id="form-message"></span>
+</form>
+  </div>
+<p>
+    Can't send message? please email us at <a href="mailto:trenddaily17@gmail.com"> Support </a>
+</p>
+<script>
+  emailjs.init("rqySEZhRgtZkk_uVp"); // Replace with your actual EmailJS Public Key
+
+  const form = document.getElementById("contact-form");
+  const btn = document.getElementById("contactBtn");
+  const spinner = document.getElementById("spinner");
+  const ctxt = document.getElementById("ctxt");
+  const messageSpan = document.getElementById("form-message");
+  const mail = document.getElementById("email");
+  const msg = document.getElementById("message");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // ✅ Validate email
+    if (!validator.isEmail(mail.value)) {
+      showMessage("Please enter a valid email address.", false);
+      return;
+    }
+
+    // ✅ Show loading spinner
+    btn.disabled = true;
+    spinner.style.display = "inline-block";
+    ctxt.style.display = "none";
+
+    // ✅ Your custom template parameters
+    const templateParams = {
+      myname: "Clinton",              // Optional extra field
+      name: mail.value,
+      message: msg.value
+    };
+
+    // ✅ Send using send()
+    emailjs.send("service_alk8kvm", "template_ql3bx4s", templateParams)
+      .then(() => {
+        showMessage("Message sent successfully!", true);
+        form.reset();
+      })
+      .catch((error) => {
+        showMessage("Failed to send message. Please try again.", false);
+        console.error("EmailJS error:", error);
+      })
+      .finally(() => {
+        btn.disabled = false;
+        spinner.style.display = "none";
+        ctxt.style.display = "inline-block";
+      });
+  });
+
+  function showMessage(text, success = true) {
+    messageSpan.textContent = text;
+    messageSpan.style.color = success ? "#030" : "red";
+    messageSpan.style.fontWeight = "bold";
+    messageSpan.style.display = "block";
+
+    setTimeout(() => {
+      messageSpan.style.display = "none";
+    }, 5000);
+  }
+</script>
+</section>
+<br>
+<hr>
+<!-- Authors Section-->
+  <section id="meet-the-authors" class="authors-section">
+  <h2>Meet the Authors</h2>
+  <br>
+  <p>TrendDaily is powered by a small team of fashion-obsessed creators, writers, and digital trendwatchers who live and breathe style.</p>
+
+  <div class="author-grid">
+    <div class="author-card">
+      <img src="images/authors/clinton.jpg" alt="Clinton N." class="author-img">
+      <h3>Clinton N.</h3>
+      <p>Founder & Style Curator. Clinton built TrendDaily to help everyday people keep up with high-speed fashion. Loves minimalist fits, bold sneakers, and watching trends evolve in real time.</p>
+      <a href="mailto:clinton@example.com" class="contact-btn">Contact</a>
+    </div>
+
+    <div class="author-card">
+      <img src="images/authors/amaka.jpg" alt="Amaka Styles" class="author-img">
+      <h3>Amaka Styles</h3>
+      <p>Beauty & Hair Trends Editor. Amaka follows TikTok hair hacks like it’s a sport. She breaks down complex beauty trends and shows how to recreate them on a budget.</p>
+      <a href="mailto:amaka@example.com" class="contact-btn">Contact</a>
+    </div>
+
+    <div class="author-card">
+      <img src="images/authors/jay.jpg" alt="Jay Threads" class="author-img">
+      <h3>Jay Threads</h3>
+      <p>Streetwear Specialist. Jay lives in oversized tees and knows where every sneaker drop is coming from before it even hits social media. He keeps our streetwear categories 🔥.</p>
+      <a href="mailto:jay@example.com" class="contact-btn">Contact</a>
+    </div>
+  </div>
+</section>
+</section>
+<br>
+<hr>
+<br>
+<center><h2>Check What Fits You</h2></center>
+  <div class="grid-container" id="categoryGrid"></div>
+
+<!--  Quick links Installation  -->
+ <script type="module">
+  import { listen } from 'https://cdn.skypack.dev/quicklink';
+
+  listen();
+</script>
+</body>
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-columns">
+      <!-- Useful Links -->
+      <div class="footer-section useful-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div class="footer-section social-section">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.pinterest.com/yourprofile" target="_blank" aria-label="Pinterest">
+            <img src="icons/pinterest.svg" alt="Pinterest">
+          </a>
+          <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+            <img src="icons/instagram.svg" alt="Instagram">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="copyright">
+      &copy; 2025 TrendDaily. All rights reserved.
+    </p>
+  </div>
+</footer>
+</html>
