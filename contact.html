@@ -3,15 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <!-- Fonts  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<!-- Fonts end -->
   <title>Contact Us | TrendDaily</title>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.9.0/validator.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://code.jquery.com/jquery-3.1.1.js">
         </script>
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=2"> 
   <script src="data.js"></script>
- 
+  <!-- <script src="contact.js"></script> -->
+  <script src="contact.js?v=168786532"></script>
+  <style>
+  
+      .hintro2{
+          background:linear-gradien(35deg, #cc9900, #030);
+          color: #fff;
+      }
+      .hintro2 a{
+          text-decoration:none;
+          color: yellow;
+      }
+  </style>
 </head>
 <body>
 <header id="header">
@@ -47,7 +69,11 @@
   </ul>
 </nav>
 <br><br>
-<center><h2>Welcome to Trenddaily Support</h2></center>
+<center>
+    <div class="hintro">
+        <h2>Welcome to Trenddaily Support</h2>
+    </div>
+    </center>
   <div class="contact-container">
     
     <form id="contact-form">
@@ -61,86 +87,27 @@
   </button>
 
   <span id="form-message"></span>
-</form>
-  </div>
-<p>
+  <br>
+  <p class="hintro2">
     Can't send message? please email us at <a href="mailto:trenddaily17@gmail.com"> Support </a>
 </p>
-<script>
-  emailjs.init("rqySEZhRgtZkk_uVp"); // Replace with your actual EmailJS Public Key
+</form>
+  </div>
 
-  const form = document.getElementById("contact-form");
-  const btn = document.getElementById("contactBtn");
-  const spinner = document.getElementById("spinner");
-  const ctxt = document.getElementById("ctxt");
-  const messageSpan = document.getElementById("form-message");
-  const mail = document.getElementById("email");
-  const msg = document.getElementById("message");
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    // ✅ Validate email
-    if (!validator.isEmail(mail.value)) {
-      showMessage("Please enter a valid email address.", false);
-      return;
-    }
-
-    // ✅ Show loading spinner
-    btn.disabled = true;
-    spinner.style.display = "inline-block";
-    ctxt.style.display = "none";
-
-    // ✅ Your custom template parameters
-    const templateParams = {
-      myname: "Clinton",              // Optional extra field
-      name: mail.value,
-      message: msg.value
-    };
-
-    // ✅ Send using send()
-    emailjs.send("service_alk8kvm", "template_ql3bx4s", templateParams)
-      .then(() => {
-        showMessage("Message sent successfully!", true);
-        form.reset();
-      })
-      .catch((error) => {
-        showMessage("Failed to send message. Please try again.", false);
-        console.error("EmailJS error:", error);
-      })
-      .finally(() => {
-        btn.disabled = false;
-        spinner.style.display = "none";
-        ctxt.style.display = "inline-block";
-      });
-  });
-
-  function showMessage(text, success = true) {
-    messageSpan.textContent = text;
-    messageSpan.style.color = success ? "#030" : "red";
-    messageSpan.style.fontWeight = "bold";
-    messageSpan.style.display = "block";
-
-    setTimeout(() => {
-      messageSpan.style.display = "none";
-    }, 5000);
-  }
-</script>
 </section>
 <br>
 <hr>
 <!-- Authors Section-->
   <section id="meet-the-authors" class="authors-section">
-  <h2>Meet the Authors</h2>
+  <h2 class="hintro">Meet the Authors</h2>
   <br>
-  <p>TrendDaily is powered by a small team of fashion-obsessed creators, writers, and digital trendwatchers who live and breathe style.</p>
 
   <div class="author-grid">
     <div class="author-card">
       <img src="images/authors/clinton.jpg" alt="Clinton N." class="author-img">
       <h3>Clinton N.</h3>
       <p>Founder & Style Curator. Clinton built TrendDaily to help everyday people keep up with high-speed fashion. Loves minimalist fits, bold sneakers, and watching trends evolve in real time.</p>
-      <a href="mailto:clinton@example.com" class="contact-btn">Contact</a>
+      <a href="mailto: nwezeakuclinton@gmail.com" class="contact-btn">Contact</a>
     </div>
 
     <div class="author-card">
@@ -162,7 +129,7 @@
 <br>
 <hr>
 <br>
-<center><h2>Check What Fits You</h2></center>
+<center><h2 class="hintro">Check What Fits You</h2></center>
   <div class="grid-container" id="categoryGrid"></div>
 
 <!--  Quick links Installation  -->
@@ -171,6 +138,7 @@
 
   listen();
 </script>
+
 </body>
 <!-- Footer -->
 <footer class="site-footer">
