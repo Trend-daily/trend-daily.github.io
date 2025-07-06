@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     { label: "Trending Bags", link: "trending-bags.html" },
     { label: "Streetwear", link: "streetwear-trends.html" },
     { label: "Formal Wear", link: "formalwear-trends.html" },
-    { label: "Sneakers", link: "sneakers.html" },
+    { label: "Sneakers", link: "sneakers-trends.html" },
     { label: "5", link: "page5.html" },
     { label: "6", link: "page6.html" },
     { label: "7", link: "page7.html" },

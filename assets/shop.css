@@ -1,48 +1,579 @@
-.card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-align: center;
-  padding: 1rem;
-  margin: 1rem;
-  max-width: 300px;
+/* HTML Behavior*/
+html{
+  scroll-behavior: smooth;
+}
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box ;
+}
+/* Possible Colors*/
+:root{
+    --jg:#98d146db;
+    --jb:#4babe2db;
+    --jf:#9a40ff;
+    --cs:#ff7e15;
+    --jc:#8e95aa;
+    --lb:#ff000a;
+    --blue: #6ae0ff;
+    --shade: rgb(26, 30, 38); 
+
+}
+body {
+ background: #fff;
+ font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+ 
+}
+/* For larger screens (min-width 768px and up) */
+@media (min-width: 768px) {
+  body {
+    background-image: url('../images/trenddaily.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+}
+h1 {
+  margin: 0;
+  left:0;
+  position:fixed;
+  left:0;
+  color: #fff;
+  max-width:fit-content;
+  font-family: cursive; background:linear-gradient(35deg,#ffd6cc,#ffd6cc,#cc9900,#cc9900);
+background-clip: text;
+text-fill-color: transparent;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+h2{
+    color: #fff;
+    background:linear-gradient(35deg,#ffd6cc,#ffd6cc,#cc9900,#cc9900);
+background-clip: text;
+text-fill-color: transparent;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+header{
+  font-family: "Chakra Petch", sans-serif;
+    background:#030;
+    backdrop-filter:blur(8px);
+    width:100%;
+    position: fixed;
+    padding:1.5rem;
+    display:flex;
+    border: none;
+    justify-content:flex-end;
+    /* box-shadow:3px 5px 5px none; */
+    box-shadow: 0 6px 12px none;
+    z-index: 2;
+}
+/* header scrolling style*/
+header.scrolled{
+    box-shadow: 0 6px 12px #000;
+}
+/* Menu Styling Start*/
+
+.menu-btn {
+cursor: pointer;
+display: inline-block;
+position: relative;
+width: 30px;
+height: 30px;
+}
+
+/* Style the lines */
+.line {
+background-color: #fff;
+height: 2px;
+width: 30px;
+display: block;
+margin: 5px 0;
+transition: all 0.3s ease-in-out;
+}
+
+/* Style the lines when the button is clicked (X shape) */
+.menu-btn.clicked .line-1 {
+transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-btn.clicked .line-2 {
+opacity: 0;
+}
+
+.menu-btn.clicked .line-3 {
+transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Navigation Menu Styles */
+.bigMenu{
+  display: none;
+}
+nav {
+background-color: #030;
+padding: 1em;
+width: 100%;
+text-align: center;
+border: none;
+display:none;
+z-index: 3;
+position: fixed;
+}
+
+nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: space-between;
+}
+
+nav li {
+margin-right: 20px;
+
+}
+
+nav a {
+color: #fff;
+text-decoration: none;
+transition: color 0.2s ease;
+padding: 3px;
+border-radius: 5px;
+ transition: all .7s;
+}
+nav a:hover{
+  background:linear-gradient(35deg,#030,#030,#cc9900,#cc9900);
+  color: #fff;
+}
+/*responsive nav bar*/
+@media(max-width:480px){
+  nav ul{
+      display: flex;
+      
+  }
+ nav li {
+margin-top: 20px;
+}
+
+}
+@media(min-width:768px){
+.bigMenu{
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+}
+nav{
+  display: none;
+}
+#menu-btn{
+  display: none;
+}
+  .bigMenu a{
+      color: #fff;
+      transition: color 0.2s ease;
+      margin: 10px;
+      text-decoration: none;
+      padding: 5px;
+      transition: all .7s;
+      
+      }
+      .bigMenu a:hover{
+      border-radius:10px ;
+       background:linear-gradient(35deg,#030,#030,#cc9900,#cc9900);
+      }
+
+
+  
+  #bigMenu{
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: space-between;
+  }
+}
+
+/* Menu Styling End*/
+.site-title {
+  text-align: center;
+  padding: 20px;
+  font-size: 2rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.card {
+  background:rgb(255,255,255,0.027);
+  backdrop-filter:blur(8px);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px black;
+  overflow: hidden;
+  transition: 0.3s ease;
 }
 
 .card img {
   width: 100%;
-  height: 350px;
-  object-fit: contain; /* Ensures the full dress fits */
-  background-color: #f7f7f7;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  height: 200px;
+  object-fit: cover;
+}
+/* blurry loaded images*/
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.placeholder {
+  filter: blur(20px);
+  transform: scale(1.1);
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+.full-image {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  z-index: 2;
+}
+/* blurry loaded beep animation*/
+@keyframes beep {
+  0%   { opacity: 0.8; }
+  50%  { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
+
+.placeholder {
+  filter: blur(20px);
+  transform: scale(1.1);
+  animation: beep 1s infinite;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+.card-body {
+  padding: 1rem;
+  text-align: center;
 }
 
 .card-title {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
 }
 
-.card-price {
-  color: #444;
-  margin-bottom: 1rem;
-  font-weight: 500;
+.card-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
 }
 
-.card button {
-  background-color: #f06428;
+.card-buttons button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+background:#cc9900;
+font-weight: bolder;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.card-buttons button:hover {
+  background: #030;
+}
+
+/* Search CSS Styles */
+
+#searchBar {
+  display: flex;
+  justify-content: center; /* center the whole bar horizontally */
+  align-items: center;     /* align vertically (in case height varies) */
+  gap: 10px;               /* spacing between input and button */
+  margin-top: 20px;
+}
+
+#searchBar input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  border-radius: 4px;
+  border: none;
+  font-size: 16px;
+}
+
+#searchBar button {
+  padding: 10px 16px;
+  background-color: #030;
   color: white;
   border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
+}
+/* Search Style Ends.... */
+
+
+/* Pagination */
+.pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.pagination-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.pagination-buttons button {
+  padding: 10px;
+  background-color: #030;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.pagination-buttons button a{
+    color: #fff;
+    text-decoration: none;
+}
+.pagination-buttons button:hover {
+  background-color:#cc9900;
+}
+
+.pagination-buttons .hidden {
+  display: none;
+}
+
+#toggleMore {
+  margin-top: 1rem;
+  color: #ffce75;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.site-footer {
+  background-color: #002600; /* deeper green for modern feel */
+  color: #fff;
+  padding: 2rem 1rem;
+  font-size: 14px;
+  border-top: 1px solid #333;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  gap: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.footer-section {
+  flex: 1 1 180px;
+  min-width: 140px;
+}
+
+.footer-section h4 {
+  font-size: 16px;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.useful-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.useful-links li {
+  margin: 0.5rem 0;
+}
+
+.useful-links a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.useful-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.social-section .social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social-links a {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.social-links img {
+  width: 26px;
+  height: 26px;
+  filter: brightness(0) invert(1);
+}
+
+.social-links a:hover {
+  transform: scale(1.15);
+}
+
+footer .copyright {
+  margin-top: 1.5rem;
+  font-size: 13px;
+  color: #bbb;
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #444;
+}
+
+/* Make it tidy on small screens */
+@media (max-width: 600px) {
+  .footer-columns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .social-section .social-links {
+    flex-wrap: wrap;
+  }
+}
+
+ 
+/* Grid container for the cards */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive 2-per-row */
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* Individual product card */
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Product image with smooth zoom effect */
+.card img {
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Zoom on hover */
+.card:hover img {
+  transform: scale(1.05);
+}
+
+/* Product title */
+.card-title {
+  font-size: 1.1rem;
   font-weight: 600;
+  margin-top: 0.5rem;
+  color: #222;
+}
+
+/* Price styling */
+.card-price {
+  color: #555;
+  margin: 0.4rem 0 1rem;
+  font-size: 1rem;
+}
+
+/* Shop Now button */
+.card button {
+  background-color: #cc9900;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .card button:hover {
-  background-color: #c14d1b;
+  background-color: #030;
+}
+
+/* Loading animation*/
+
+.image-zoom-wrapper {
+overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 350px;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zoom-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ccc;
+  border-top: 4px solid #111;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  position: absolute;
+  z-index: 1;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
