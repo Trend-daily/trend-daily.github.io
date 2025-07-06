@@ -27,17 +27,21 @@
         </script>
   <link rel="stylesheet" href="style.css?v=2"> 
   <script src="data.js"></script>
+  <script src="pagination.js"></script>
   <!-- <script src="contact.js"></script> -->
   <script src="contact.js?v=168786532"></script>
   <style>
   
       .hintro2{
-          background:linear-gradien(35deg, #cc9900, #030);
           color: #fff;
       }
       .hintro2 a{
           text-decoration:none;
           color: yellow;
+      }
+      .authors-section{
+          background:#030;
+          color:#fff;
       }
   </style>
 </head>
@@ -102,42 +106,46 @@
 
 </section>
 <br>
-<hr>
-<!-- Authors Section-->
-  <section id="meet-the-authors" class="authors-section">
-  <h2 class="hintro">Meet the Authors</h2>
+<section id="meet-the-authors" class="authors-section">
+<!-- Margin division -->
+<hr style="margin: 3rem 0; border: 1px solid #444;">
+
+  <h2>Meet the Founders</h2>
   <br>
+  <p>TrendDaily is powered by a small team of fashion-obsessed creators, writers, and digital trendwatchers who live and breathe style.</p>
 
   <div class="author-grid">
     <div class="author-card">
-      <img src="images/authors/clinton.jpg" alt="Clinton N." class="author-img">
+      <img src="images/founders/clinton.jpg" alt="Clinton N." class="author-img">
       <h3>Clinton N.</h3>
-      <p>Founder & Style Curator. Clinton built TrendDaily to help everyday people keep up with high-speed fashion. Loves minimalist fits, bold sneakers, and watching trends evolve in real time.</p>
-      <a href="mailto: nwezeakuclinton@gmail.com" class="contact-btn">Contact</a>
+      <p>Clinton built TrendDaily to help everyday people keep up with high-speed fashion. Loves minimalist fits, bold sneakers, and watching trends evolve in real time.</p>
+      <a href="mailto:nwezeakuclinton@gmail.com" class="contact-btn">Contact</a>
     </div>
 
     <div class="author-card">
-      <img src="images/authors/amaka.jpg" alt="Amaka Styles" class="author-img">
-      <h3>Amaka Styles</h3>
-      <p>Beauty & Hair Trends Editor. Amaka follows TikTok hair hacks like it’s a sport. She breaks down complex beauty trends and shows how to recreate them on a budget.</p>
-      <a href="mailto:amaka@example.com" class="contact-btn">Contact</a>
-    </div>
-
-    <div class="author-card">
-      <img src="images/authors/jay.jpg" alt="Jay Threads" class="author-img">
-      <h3>Jay Threads</h3>
-      <p>Streetwear Specialist. Jay lives in oversized tees and knows where every sneaker drop is coming from before it even hits social media. He keeps our streetwear categories 🔥.</p>
-      <a href="mailto:jay@example.com" class="contact-btn">Contact</a>
+      <img src="images/founders/donald.jpg" alt="Donald C." class="author-img">
+      <h3>Donald C</h3>
+      <p>
+Streetwear manager with an eye for trends and drops before they go viral. From oversized fits to must-have sneakers, Donald keeps our style game 🔥 and our content ahead of the curve.</p>
+      <a href="mailto:chiwuezedonald@gmail.com" class="contact-btn">Contact</a>
     </div>
   </div>
-</section>
-</section>
 <br>
 <hr>
+</section>
 <br>
 <center><h2 class="hintro">Check What Fits You</h2></center>
   <div class="grid-container" id="categoryGrid"></div>
-
+<br><br>
+<!-- Pagination -->
+<div class="pagination-wrapper">
+    <h4>Explore More Categories</h4><br>
+  <div class="pagination-buttons" id="paginationButtons">
+      
+    <!-- Buttons will be inserted here by JS -->
+  </div>
+  <a href="#" id="toggleMore">More</a>
+</div>
 <!--  Quick links Installation  -->
  <script type="module">
   import { listen } from 'https://cdn.skypack.dev/quicklink';

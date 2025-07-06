@@ -430,8 +430,9 @@ font-weight: bolder;
 .authors-section {
   margin-top: 4rem;
   text-align: center;
+  background:#030;
+          color:#fff;
 }
-
 .author-grid {
   display: flex;
   flex-wrap: wrap;

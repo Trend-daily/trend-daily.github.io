@@ -3,6 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Basic SEO -->
+<title>TrendDaily – Shop the Latest Fashion Trends Daily</title>
+<meta name="description" content="TrendDaily brings you the hottest fashion trends — shop the latest outfits, sneakers, accessories, and more in one click!">
+<meta name="keywords" content="fashion trends, TrendDaily, trending outfits, shop fashion online, streetwear, women's fashion, glam looks, formal wear">
+<meta name="author" content="TrendDaily Team">
+<meta name="language" content="en">
+<meta name="robots" content="index, follow">
+<!-- Canonical Tag -->
+<link rel="canonical" href="https://trenddaily.shop/">
+
    <!-- Social Media Meta Tags-->
   <meta property="og:title" content="Fashion Trends Daily!" />
 <meta property="og:description" content="trenddaily.shop brings you the hottest fashion trends — shop the latest outfits, sneakers, accessories, and more in one click!" />
@@ -25,6 +35,7 @@
   <title>TrendDaiy -Terms of Service</title>
   <link rel="stylesheet" href="style.css">
     <script src="data.js"></script>
+    <script src="pagination.js"></script>
     <style>
   .policy-section {
     max-width: 800px;
@@ -137,10 +148,10 @@
   <p>If you have any questions or concerns about these Terms, feel free to <a href="/contact.html">contact us</a>.</p> 
 </section>
 <br>
-  <hr style="margin: 3rem 0; border: 1px solid #444;">
 
   <section id="meet-the-authors" class="authors-section">
-  <h2>Meet the Authors</h2>
+      <br><br>
+  <h2>Meet the Founders</h2>
   <br>
   <p>TrendDaily is powered by a small team of fashion-obsessed creators, writers, and digital trendwatchers who live and breathe style.</p>
 
@@ -148,32 +159,34 @@
     <div class="author-card">
       <img src="images/authors/clinton.jpg" alt="Clinton N." class="author-img">
       <h3>Clinton N.</h3>
-      <p>Founder & Style Curator. Clinton built TrendDaily to help everyday people keep up with high-speed fashion. Loves minimalist fits, bold sneakers, and watching trends evolve in real time.</p>
-      <a href="mailto:clinton@example.com" class="contact-btn">Contact</a>
+      <p>Clinton built TrendDaily to help everyday people keep up with high-speed fashion. Loves minimalist fits, bold sneakers, and watching trends evolve in real time.</p>
+      <a href="mailto:nwezeakuclinton@gmail.com" class="contact-btn">Contact</a>
     </div>
 
     <div class="author-card">
-      <img src="images/authors/amaka.jpg" alt="Amaka Styles" class="author-img">
-      <h3>Amaka Styles</h3>
-      <p>Beauty & Hair Trends Editor. Amaka follows TikTok hair hacks like it’s a sport. She breaks down complex beauty trends and shows how to recreate them on a budget.</p>
-      <a href="mailto:amaka@example.com" class="contact-btn">Contact</a>
-    </div>
-
-    <div class="author-card">
-      <img src="images/authors/jay.jpg" alt="Jay Threads" class="author-img">
-      <h3>Jay Threads</h3>
-      <p>Streetwear Specialist. Jay lives in oversized tees and knows where every sneaker drop is coming from before it even hits social media. He keeps our streetwear categories 🔥.</p>
-      <a href="mailto:jay@example.com" class="contact-btn">Contact</a>
+      <img src="images/founders/donald.jpg" alt="Donald C." class="author-img">
+      <h3>Donald C</h3>
+      <p>
+Streetwear manager with an eye for trends and drops before they go viral. From oversized fits to must-have sneakers, Donald keeps our style game 🔥 and our content ahead of the curve.</p>
+      <a href="mailto:chiwuezedonald@gmail.com" class="contact-btn">Contact</a>
     </div>
   </div>
-</section>
+  <br><br>
 </section>
 <br>
-<hr>
 <br>
 <center><h2>Check What Fits You</h2></center>
   <div class="grid-container" id="categoryGrid"></div>
-
+<br><br>
+<!-- Pagination -->
+<div class="pagination-wrapper">
+    <h4>Explore More Categories</h4><br>
+  <div class="pagination-buttons" id="paginationButtons">
+      
+    <!-- Buttons will be inserted here by JS -->
+  </div>
+  <a href="#" id="toggleMore">More</a>
+</div>
 <!--  Quick links Installation  -->
  <script type="module">
   import { listen } from 'https://cdn.skypack.dev/quicklink';
