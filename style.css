@@ -19,11 +19,22 @@ html{
     --shade: rgb(26, 30, 38); 
 
 }
+
+
 body {
  background: #fff;
- font-family: "ABeeZee",sans-serif;
+ font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
  
 }
+
+@media (min-width: 768px) {
+      .hintro{
+          color:#fff;
+      }
+     }
 /* For larger screens (min-width 768px and up) */
 @media (min-width: 768px) {
   body {
@@ -33,7 +44,16 @@ body {
     background-attachment: fixed;
     background-position: center;
   }
+  .site-title{
+  color: #fff;
+  background: #030;
+  padding: 3px;
+  border-radius: 4px;
+  }
 }
+
+
+
 h1 {
   margin: 0;
   left:0;
@@ -41,7 +61,11 @@ h1 {
   left:0;
   color: #fff;
   max-width:fit-content;
-  font-family: cursive; background:linear-gradient(35deg,#ffd6cc,#ffd6cc,#cc9900,#cc9900);
+  font-family: "Bodoni Moda", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-style: italic; background:linear-gradient(35deg,#ffd6cc,#ffd6cc,#cc9900,#cc9900);
 background-clip: text;
 text-fill-color: transparent;
 -webkit-background-clip:text;
@@ -52,7 +76,6 @@ text-fill-color: transparent;
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.7;
-  font-family: 'Poppins', sans-serif;
   color: #000;
 }
 
@@ -62,7 +85,6 @@ text-fill-color: transparent;
   color: #000;
 }
 header{
-  font-family: "Chakra Petch", sans-serif;
     background:#030;
     backdrop-filter:blur(8px);
     width:100%;
@@ -204,6 +226,7 @@ justify-content: space-between;
   padding: 20px;
   font-size: 2rem;
 }
+
 
 .grid-container {
   display: grid;
