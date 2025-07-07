@@ -30,7 +30,6 @@ body {
 /* For larger screens (min-width 768px and up) */
 @media (min-width: 768px) {
   body {
-    background-image: url('../images/trenddaily.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -270,8 +269,6 @@ justify-content: space-between;
   transition: opacity 0.5s ease;
   z-index: 1;
 }
-
-
 
 .card-body {
   padding: 1rem;
