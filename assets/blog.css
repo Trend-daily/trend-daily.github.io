@@ -20,7 +20,8 @@ html{
 
 }
 body {
- background: #fff;
+ background: #030;
+ color: #fff;
  font-family: "Lora", serif;
   font-optical-sizing: auto;
   font-weight: 600;
@@ -55,11 +56,6 @@ text-fill-color: transparent;
 }
 h2{
     color: #fff;
-    background:linear-gradient(35deg,#ffd6cc,#ffd6cc,#cc9900,#cc9900);
-background-clip: text;
-text-fill-color: transparent;
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
 }
 header{
   font-family: "Chakra Petch", sans-serif;
@@ -349,7 +345,7 @@ font-weight: bolder;
 
 .pagination-buttons button {
   padding: 10px;
-  background-color: #030;
+  background-color: #cc9900;
   color: white;
   border: none;
   border-radius: 6px;
@@ -362,7 +358,7 @@ font-weight: bolder;
     text-decoration: none;
 }
 .pagination-buttons button:hover {
-  background-color:#cc9900;
+  background-color:#030;
 }
 
 .pagination-buttons .hidden {

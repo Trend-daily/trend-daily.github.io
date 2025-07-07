@@ -56,11 +56,6 @@ text-fill-color: transparent;
 }
 h2{
     color: #fff;
-    background:linear-gradient(35deg,#ffd6cc,#ffd6cc,#cc9900,#cc9900);
-background-clip: text;
-text-fill-color: transparent;
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
 }
 header{
   font-family: "Chakra Petch", sans-serif;
