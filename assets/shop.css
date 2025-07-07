@@ -44,7 +44,11 @@ h1 {
   left:0;
   color: #fff;
   max-width:fit-content;
-  font-family: cursive; background:linear-gradient(35deg,#ffd6cc,#ffd6cc,#cc9900,#cc9900);
+  font-family: "Bodoni Moda", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-style: italic; background:linear-gradient(35deg,#ffd6cc,#ffd6cc,#cc9900,#cc9900);
 background-clip: text;
 text-fill-color: transparent;
 -webkit-background-clip:text;
