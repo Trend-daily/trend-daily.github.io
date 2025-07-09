@@ -7,7 +7,7 @@ const allProducts = [
     image: "images/ft-img/streetwear-ftimg.jpg",
     blurImage: "images/ft-img/streetwear-blur.jpg",
     trendsUrl: "trending/streetwear-trends.html",
-  shopUrl: "#"
+  shopUrl: "category/streetwear-shop.html"
   },
   {
     title: "Formal Wear",
@@ -15,7 +15,7 @@ const allProducts = [
     image: "images/ft-img/formalwear-ftimg.jpg",
     blurImage: "images/ft-img/formalwear-blur.jpg",
     trendsUrl: "trending/formalwear-trends.html",
-    shopUrl: "#"
+    shopUrl: "category/formal-wear-shop.html"
       },
   {
     title: "Sneakers",
@@ -23,7 +23,7 @@ const allProducts = [
     image: "images/ft-img/sneakers-ftimg.jpg",
     blurImage: "images/ft-img/sneakers-blur.jpg",
         trendsUrl: "trending/sneakers-trends.html",
-    shopUrl: "#"
+    shopUrl: "category/sneakers-shop.html"
   },
   {
     title: "Trendy Bags",
@@ -31,7 +31,7 @@ const allProducts = [
     image: "images/ft-img/trendybags-ftimg.jpg",
     blurImage: "images/ft-img/trendybags-blur.jpg",
         trendsUrl: "trending/trending-bags.html",
-    shopUrl: "#"
+    shopUrl: "category/bags-shop.html"
   },
   {
     title: "Y2K Fashion",
@@ -39,287 +39,287 @@ const allProducts = [
     image: "images/ft-img/y2k.jpg",
     blurImage: "images/ft-img/streetwear-blur.jpg",
         trendsUrl: "trending/streetwear-trends.html",
-    shopUrl: "#"
+    shopUrl: "category/streetwear-shop.html"
   },
   {
     title: "Y2K Fashion",
     category: "Streetwear",
     image: "images/ft-img/y2k.jpg",
     blurImage: "images/ft-img/streetwear-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/streetwear-trends.html",
+    shopUrl: "category/streetwear-shop.html"
   },
   {
     title: "Y2K Fashion",
     category: "Streetwear",
     image: "images/ft-img/y2k.jpg",
     blurImage: "images/ft-img/streetwear-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/streetwear-trends.html",
+    shopUrl: "category/streetwear-shop.html"
   },
   {
     title: "Christian Dior",
     category:"Christian Dior Bags and Purses",
     image: "images/bag-images/dior-bag-1.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/trending-bags.html",
+  shopUrl: "category/bags-shop.html"
   },
   {
     title: "Luis Vuitton",
     category:"Luis Vuitton Bags and Purses",
     image: "images/bag-images/luis-vuitton-bag-1.jpg",
     blurImage: "images/luis-vuitton-bag-1-blur.jpg",
-    trendsUrl: "#",
-    shopUrl: "#"
+    trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
       },
   {
     title: "Sleek BTS Bags",
      category:"Luis Vuitton Bags BTS Bags and Purses",
     image: "images/bag-images/luis-vuitton-bag-2.jpg",
     blurImage: "images/bag-images/luis-vuitton-bag-2-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
   },
   {
     title: "Black Bags",
     category:"Luis Vuitton Bags BTS Bags Black Bags and Purses",
     image: "images/bag-images/black-bag-1.jpg",
     blurImage: "images/bag-images/black-bag-1-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
   },
   {
     title: "Small Purses",
     category: "Purses White Black",
     image: "images/bag-images/small-bag-1.jpg",
     blurImage: "images/ft-img/streetwear-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
   },
   {
     title: "Y2K Fashion",
     category: "Purses White Black",
     image: "images/bag-images/luis-v-3.jpg",
     blurImage: "images/bag-images/luis-v-3-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
   },
   {
     title: "Y2K Fashion",
     category: "Purses White Black",
     image: "images/y2k.jpg",
     blurImage: "images/streetwear-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
   },
   {
-    title: "Y2K Fashion",
+    title: "Luis Vuitton bags",
     category: "bags luis Vuitton bags purses",
     image: "images/bag-images/luis-v-3.jpg",
     blurImage: "images/bag-images/luis-v-3-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
   },
   {
     title: "Black Bags",
     category: "bags black bags luis vuitton bags",
     image: "images/bag-images/black-bag-2.jpg",
     blurImage: "images/streetwear-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
   },
  {
     title: "Blue Bags",
     category: "bags blue bags blue purses",
     image: "images/bag-images/lightbluebag.jpg",
     blurImage: "images/bag-images/dior-bag-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
   },
   {
     title: "Brown Bags",
     category: "Brown Bags cool bags women bags",
     image: "images/bag-images/brown-bag-2.jpg",
     blurImage: "images/bag-images/luis-v-3-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "#"
+        trendsUrl: "trending/trending-bags.html",
+    shopUrl: "category/bags-shop.html"
   },
   {
     title: "Brown wears",
     category: "Cargo pants brown cargo streetwear",
     image: "images/streetwear-images/browncargo.jpg",
     blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/streetwear-trends.html",
+  shopUrl: "category/streetwear-shop.html"
   },
 {
     title: "Jeans for Women",
     category: "Womens jeans women jeans",
     image: "images/streetwear-images/womensjeans.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/streetwear-trends.html",
+  shopUrl: "category/streetwear-shop.html"
   },
   {
     title: "Pink Wears",
     category: "Pink Wears Pink Clothes Top Pink Top Pink Jeans Pink Cargo",
     image: "images/streetwear-images/pinkwears.jpg",
     blurImage: "images/ft-img/streetwear-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/streetwear-trends.html",
+  shopUrl: "category/streetwear-shop.html"
   },
   {
     title: "Sky Blue Wears",
     category: "sky blue wears blue wears blue clothes",
     image: "images/streetwear-images/skybluewears.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/streetwear-trends.html",
+  shopUrl: "category/streetwear-shop.html"
   },
   {
     title: "Women\'s Style",
     category: "womens style clothes wears",
     image: "images/streetwear-images/womensstyle.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/streetwear-trends.html",
+  shopUrl: "category/streetwear-shop.html"
   },
   {
     title: "Men\'s Jeans",
     category: "Mens jeans jeans clothes wears",
     image: "images/streetwear-images/mensjeans.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/streetwear-trends.html",
+  shopUrl: "category/streetwear-shop.html"
   },
    {
     title: "Pink Sneakers",
     category: "sneakers pink sneakers canvas",
     image: "images/sneakers-images/pinksneakers.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "category/sneakers-shop.html",
+  shopUrl: "category/sneakers-shop.html"
   },
    {
     title: "Quality Sneakers",
     category: "sneakers pink sneakers canvas quality sneakers",
     image: "images/sneakers-images/sneakers-2.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/sneakers-trends.html",
+  shopUrl: "category/sneakers-shop.html"
   },
    {
     title: "Top Fashion Sneakers",
     category: "sneakers pink sneakers canvas fashion sneakers",
     image: "images/sneakers-images/sneakers-3.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/sneakers-trends.html",
+  shopUrl: "category/sneakers-shop.html"
   },
   {
     title: "Trending Sneakers",
     category: "sneakers pink sneakers canvas trending sneakers",
     image: "images/sneakers-images/sneakers-5.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/sneakers-trends.html",
+  shopUrl: "category/sneakers-shop.html"
   },
   {
     title: "Trending Sneakers",
     category: "sneakers blue sneakers canvas",
     image: "images/sneakers-images/sneakers-6.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/sneakers-trends.html",
+  shopUrl: "category/sneakers-shop.html"
   },
    {
     title: "Trending Sneakers",
     category: "sneakers brown sneakers trending canvas",
     image: "images/sneakers-images/sneakers-7.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/sneakers-trends.html",
+  shopUrl: "category/sneakers-shop.html"
   },
    {
     title: "Multi-colour Sneakers",
     category: "sneakers white and red sneakers white sneakers red sneakers canvas",
     image: "images/sneakers-images/whiteandredsneakers.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/sneakers-trends.html",
+  shopUrl: "category/sneakers-shop.html"
   },
    {
     title: "White Sneakers",
     category: "sneakers white sneakers canvas",
     image: "images/sneakers-images/whitesneakers.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/sneakers-trends.html",
+  shopUrl: "category/sneakers-shop.html"
   },
   {
     title: "White Sneakers",
     category: "sneakers white sneakers canvas",
     image: "images/sneakers-images/whitesneakers-2.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/sneakers-trends.html",
+  shopUrl: "category/sneakers-shop.html"
   },
   {
     title: "Black Gowns",
     category: "gowns black gowns women gowns",
     image: "images/formalwear-images/blackgowns-1.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/formalwear-trends.html",
+  shopUrl: "category/formal-wear-shop.html"
   },
    {
     title: "Trending Gowns",
     category: "gowns milk color gowns women gowns",
     image: "images/formalwear-images/gowns-1.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/formalwear-trends.html",
+  shopUrl: "category/formal-wear-shop.html"
   },
    {
     title: "Pink Suits",
     category: " mens suits pink",
     image: "images/formalwear-images/pinksuits-1.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/formalwear-trends.html",
+  shopUrl: "category/formal-wear-shop.html"
   },
    {
     title: "Red Suits",
     category: "Red suits men suits",
     image: "images/formalwear-images/redsuits-1.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/formalwear-trends.html",
+  shopUrl: "category/formal-wear-shop.html"
   },
   {
     title: "Women Corporate Wears",
     category: "Corporate wears women corporate elegant women corporate",
     image: "images/formalwear-images/womencorporate-2.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/formalwear-trends.html",
+  shopUrl: "category/formal-wear-shop.html"
   },
   {
     title: "Women Corporate Wears (Elegant)",
     category: "corporate wears women corporate elegant women corporate wears",
     image: "images/formalwear-images/womencorporate-3-1.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/formalwear-trends.html",
+  shopUrl: "category/formal-wear-shop.html"
   },
   {
     title: "Women Corporate Wears (Stylish)",
     category: "Corporate wears women corporate sexy stylish women corporate wears",
     image: "images/formalwear-images/womencorporate-3.jpg",
     blurImage: "images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "#"
+    trendsUrl: "trending/formalwear-trends.html",
+  shopUrl: "category/formal-wear-shop.html"
   },
   // Add more categories here
 ];

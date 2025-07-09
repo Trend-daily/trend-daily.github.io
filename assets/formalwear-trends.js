@@ -21,10 +21,10 @@ const fashionCategories = [
   },
    {
     title: "Pink Suits",
-    category: " mens suits pink",
-    image: "../images/formalwear-images/pinksuits-1.jpg",
+    category: " mens suits pink pretty pink suits women",
+    image: "../images/formalwear-images/pink-power-suit1.jpg",
     blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
+    trendsUrl: "../trending/pretty-pink-suits.html",
   shopUrl: "../category/formal-wear-shop.html"
   },
    {
