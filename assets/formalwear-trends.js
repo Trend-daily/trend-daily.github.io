@@ -8,7 +8,7 @@ const fashionCategories = [
     category: "gowns black gowns women gowns",
     image: "../images/formalwear-images/blackgowns-1.jpg",
     blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
+    trendsUrl: "womens-black-gowns.html",
   shopUrl: "../category/formal-wear-shop.html"
   },
    {
