@@ -588,3 +588,49 @@ footer .copyright {
   margin: 1.5rem auto;
   border-radius: 8px;
 }
+
+figcaption{
+    color: grey;
+    font-style:italic;
+}
+a{
+    color:#cc9900;
+}
+.blog-meta{
+    font-style: italic;
+}
+ol.custom-ol {
+  counter-reset: item;
+  list-style: none;
+  padding-left: 0;
+  margin: 1em 0;
+}
+
+ol.custom-ol li {
+  counter-increment: item;
+  margin: 1.2em 0;
+  padding-left: 2.2em;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+ol.custom-ol li::before {
+  content: counter(item) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #cc9900;
+}
+h3{
+    color: #cc9900;
+    font-size: 1.2rem;
+}
+h4{
+    color: #ffd6cc;
+}
+p{
+    margin: 10px;
+}
