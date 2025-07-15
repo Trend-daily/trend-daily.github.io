@@ -3,77 +3,60 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 // data.js
 const fashionCategories = [
-    {
-    title: "Pink Sneakers",
-    category: "sneakers pink sneakers canvas",
-    image: "../images/sneakers-images/pinksneakers.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/sneakers-shop.html"
-  },
-   {
-    title: "Quality Sneakers",
-    category: "sneakers pink sneakers canvas quality sneakers",
-    image: "../images/sneakers-images/sneakers-2.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/sneakers-shop.html"
-  },
-   {
-    title: "Top Fashion Sneakers",
-    category: "sneakers pink sneakers canvas fashion sneakers",
-    image: "../images/sneakers-images/sneakers-3.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/sneakers-shop.html"
+  {
+    title: "Streetwear",
+    image: "../images/ft-img/streetwear-ftimg.jpg",
+    blurImage: "../images/ft-img/streetwear-blur.jpg",
+    trendsUrl: "streetwear-trends.html",
+  shopUrl: "../category/streetwear-shop.html"
   },
   {
-    title: "Trending Sneakers",
-    category: "sneakers pink sneakers canvas trending sneakers",
-    image: "../images/sneakers-images/sneakers-5.jpg",
+    title: "Brown wears",
+    category: "Cargo pants brown cargo streetwear",
+    image: "../images/streetwear-images/browncargo.jpg",
     blurImage: "../images/bag-images/dior-bag1-blur.jpg",
     trendsUrl: "#",
-  shopUrl: "../category/sneakers-shop.html"
+  shopUrl: "../category/streetwear-shop.html"
+  },
+{
+    title: "Jeans for Women",
+    category: "Womens jeans women jeans",
+    image: "../images/streetwear-images/womensjeans.jpg",
+    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
+    trendsUrl: "#",
+  shopUrl: "../category/streetwear-shop.html"
   },
   {
-    title: "Trending Sneakers",
-    category: "sneakers blue sneakers canvas",
-    image: "../images/sneakers-images/sneakers-6.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
+    title: "Pink Wears",
+    category: "Pink Wears Pink Clothes Top Pink Top Pink Jeans Pink Cargo",
+    image: "../images/streetwear-images/pinkwears.jpg",
+    blurImage: "../images/ft-img/streetwear-blur.jpg",
     trendsUrl: "#",
-  shopUrl: "../category/sneakers-shop.html"
-  },
-   {
-    title: "Trending Sneakers",
-    category: "sneakers brown sneakers trending canvas",
-    image: "../images/sneakers-images/sneakers-7.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/sneakers-shop.html"
-  },
-   {
-    title: "Multi-colour Sneakers",
-    category: "sneakers white and red sneakers white sneakers red sneakers canvas",
-    image: "../images/sneakers-images/whiteandredsneakers.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/sneakers-shop.html"
-  },
-   {
-    title: "White Sneakers",
-    category: "sneakers white sneakers canvas",
-    image: "../images/sneakers-images/whitesneakers.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/sneakers-shop.html"
+  shopUrl: "../category/streetwear-shop.html"
   },
   {
-    title: "White Sneakers",
-    category: "sneakers white sneakers canvas",
-    image: "../images/sneakers-images/whitesneakers-2.jpg",
+    title: "Sky Blue Wears",
+    category: "sky blue wears blue wears blue clothes",
+    image: "../images/streetwear-images/skybluewears.jpg",
     blurImage: "../images/bag-images/dior-bag1-blur.jpg",
     trendsUrl: "#",
-  shopUrl: "../category/sneakers-shop.html"
+  shopUrl: "../category/streetwear-shop.html"
+  },
+  {
+    title: "Women\'s Style",
+    category: "womens style clothes wears",
+    image: "../images/streetwear-images/womensstyle.jpg",
+    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
+    trendsUrl: "#",
+  shopUrl: "../category/streetwear-shop.html"
+  },
+  {
+    title: "Men\'s Jeans",
+    category: "Mens jeans jeans clothes wears",
+    image: "../images/streetwear-images/mensjeans.jpg",
+    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
+    trendsUrl: "#",
+  shopUrl: "../category/streetwear-shop.html"
   },
   // Add more categories here
 ];
@@ -173,4 +156,5 @@ const fullImages = document.querySelectorAll(".full-image");
   });
   
   })
+  
   

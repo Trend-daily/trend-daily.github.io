@@ -1,66 +1,117 @@
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
+  const blogPosts = [
+    {
+      title: "Pretty in Pink Power Suits",
+      excerpt:
+        "Make a bold statement with our curated pink suit collection. Double-breasted elegance meets confident femininity in styles perfect for work and weekends.",
+      image: "../images/formalwear-images/pink-power-suit1.jpg",
+      readMore: "../trending/pretty-pink-suits.html",
+      shopLink: "../category/formal-wear-shop.html"
+    },
+    {
+      title: "Black Gowns: Elegant, Sexy, and Classy",
+      excerpt:
+        "Discover the timeless allure of women’s black gowns — flattering for all body types, perfect for every occasion, and always on trend.",
+      image: "../images/formalwear-images/blackgowns-1.jpg",
+      readMore: "../trending/womens-black-gowns.html",
+      shopLink: "../category/formal-wear-shop.html"
+    },
+    {
+      title: "Red Suits for Formal Events: Stylish not Loud",
+      excerpt:
+        "A red suit commands attention—but at a formal event, the key is sophistication, not shock value. Learn how to wear one with polish, not pizzazz, for weddings, galas, and black-tie affairs.",
+      image: "../images/formalwear-images/redsuits-1.jpg",
+      readMore: "../trending/red-suits.html",
+      shopLink: "../category/formal-wear-shop.html"
+    },
+    {
+      title: "From Desk to Dinner: 5 Transitional Work Outfits For Women",
+      excerpt:
+        "5 seamless work-to-evening outfit transitions with pro styling tips. Master desk-to-dinner dressing with blazers, wraps & monochrome looks.",
+      image: "../images/formalwear-images/womencorporate-2.jpg",
+      readMore: "../trending/desk-to-dinner-outfits.html",
+      shopLink: "../category/formal-wear-shop.html"
+    },
+    {
+  title: "5 Suits Every Man Needs: Build a Power Wardrobe That Never Quits",
+  excerpt: "The only 5 suits your professional wardrobe requires—from interview-ready navy to versatile charcoal. Expert styling tips for career success.",
+  image: "../images/formalwear-images/suit-collage.jpg",
+  readMore: "../trending/5-suits-every-man-needs.html",
+  shopLink: "../category/formal-wear-shop.html"
+},
     
+    // Add more posts as needed
+  ];
 
-// data.js
-const fashionCategories = [
-  {
-    title: "Black Gowns",
-    category: "gowns black gowns women gowns",
-    image: "../images/formalwear-images/blackgowns-1.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "womens-black-gowns.html",
-  shopUrl: "../category/formal-wear-shop.html"
-  },
-   {
-    title: "Trending Gowns",
-    category: "gowns milk color gowns women gowns",
-    image: "../images/formalwear-images/gowns-1.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/formal-wear-shop.html"
-  },
-   {
-    title: "Pink Suits",
-    category: " mens suits pink pretty pink suits women",
-    image: "../images/formalwear-images/pink-power-suit1.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "../trending/pretty-pink-suits.html",
-  shopUrl: "../category/formal-wear-shop.html"
-  },
-   {
-    title: "Red Suits",
-    category: "Red suits men suits",
-    image: "../images/formalwear-images/redsuits-1.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/formal-wear-shop.html"
-  },
-  {
-    title: "Women Corporate Wears",
-    category: "Corporate wears women corporate",
-    image: "../images/formalwear-images/womencorporate-2.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/formal-wear-shop.html"
-  },
-  {
-    title: "Women Corporate Wears (Elegant)",
-    category: "Corporate wears women corporate elegant",
-    image: "../images/formalwear-images/womencorporate-3-1.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/formal-wear-shop.html"
-  },
-  {
-    title: "Women Corporate Wears (Stylish)",
-    category: "Corporate wears women corporate stylish",
-    image: "../images/formalwear-images/womencorporate-3.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/formal-wear-shop.html"
-  },
-  // Add more categories here
-];
+  const grid = document.getElementById("categoryGrid");
+
+  blogPosts.forEach(post => {
+    const card = document.createElement("div");
+    card.className = "blog-card";
+
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "image-container";
+
+    const loader = document.createElement("div");
+    loader.className = "loader";
+
+    const img = document.createElement("img");
+    img.className = "blog-thumb";
+    img.src = post.image;
+    img.alt = post.title;
+
+    // Fade-in effect on image load
+    img.addEventListener("load", () => {
+      loader.style.display = "none";
+      img.style.display = "block";
+      img.classList.add("fade-in");
+    });
+
+    // In case image is cached
+    if (img.complete) {
+      loader.style.display = "none";
+      img.style.display = "block";
+      img.classList.add("fade-in");
+    }
+
+    imageContainer.appendChild(loader);
+    imageContainer.appendChild(img);
+
+    const content = document.createElement("div");
+    content.className = "blog-content";
+
+    const title = document.createElement("div");
+    title.className = "blog-title";
+    title.textContent = post.title;
+
+    const excerpt = document.createElement("p");
+    excerpt.className = "blog-excerpt";
+    excerpt.textContent = post.excerpt;
+
+    const buttons = document.createElement("div");
+    buttons.className = "blog-buttons";
+
+    const readMoreBtn = document.createElement("button");
+    readMoreBtn.textContent = "Read More";
+    readMoreBtn.onclick = () => window.location.href = post.readMore;
+
+    const shopBtn = document.createElement("button");
+    shopBtn.textContent = "Shop Now";
+    shopBtn.onclick = () => window.location.href = post.shopLink;
+
+    buttons.appendChild(readMoreBtn);
+    buttons.appendChild(shopBtn);
+
+    content.appendChild(title);
+    content.appendChild(excerpt);
+    content.appendChild(buttons);
+
+    card.appendChild(imageContainer);
+    card.appendChild(content);
+
+    grid.appendChild(card);
+  });
+
 //script.js
 /* Menu button styling*/
 
@@ -102,28 +153,7 @@ menuBtn.addEventListener('click', () => {
   menuBtn.classList.toggle('clicked');
 });
 /* Menu button styling end..*/
-const grid = document.getElementById("categoryGrid");
 
-fashionCategories.forEach(cat => {
-  const card = document.createElement("div");
-  card.classList.add("card");
-
-  card.innerHTML = `
-  <div class="image-wrapper">
-    <img class="placeholder" src="${cat.blurImage}" alt="${cat.title}" />
-    <img class="full-image" data-src="${cat.image}" alt="${cat.title}" />
-  </div>
-  <div class="card-body">
-    <h3 class="card-title">${cat.title}</h3>
-    <div class="card-buttons">
-      <button onclick="window.location.href='${cat.trendsUrl}'">Browse Trends</button>
-      <button onclick="window.location.href='${cat.shopUrl}'">Shop Now</button>
-    </div>
-  </div>
-`;
-
-  grid.appendChild(card);
-});
 
 
 /* Header Effect on Scroll*/

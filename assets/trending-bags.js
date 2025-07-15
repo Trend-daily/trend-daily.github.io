@@ -1,83 +1,93 @@
-document.addEventListener("DOMContentLoaded",()=>{
-    
+document.addEventListener("DOMContentLoaded", () => {
+  const blogPosts = [
+    {
+      title: "Pretty in Pink Power Suits",
+      excerpt:
+        "Make a bold statement with our curated pink suit collection. Double-breasted elegance meets confident femininity in styles perfect for work and weekends.",
+      image: "https://trenddaily.shop/images/formalwear-images/pink-power-suit1.jpg",
+      readMore: "trending/pretty-pink-suits.html",
+      shopLink: "shop.html"
+    },
+    {
+      title: "Black Gowns: Elegant, Sexy, and Classy",
+      excerpt:
+        "Discover the timeless allure of women’s black gowns — flattering for all body types, perfect for every occasion, and always on trend.",
+      image: "https://trenddaily.shop/images/formalwear-images/blackgowns-1.jpg",
+      readMore: "trending/black-gown-style.html",
+      shopLink: "shop.html"
+    },
+    // Add more posts as needed
+  ];
 
-// data.js
-const fashionCategories = [
-  {
-    title: "Christian Dior",
-    category: "bags",
-    image: "../images/bag-images/dior-bag-1.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/bags-shop.html"
-  },
-  {
-    title: "Luis Vuitton",
-    category: "bags",
-    image: "../images/bag-images/luis-vuitton-bag-1.jpg",
-    blurImage: "../images/luis-vuitton-bag-1-blur.jpg",
-    trendsUrl: "#",
-    shopUrl: "../category/bags-shop.html"
-      },
-  {
-    title: "Sleek BTS Bags",
-    category: "bags",
-    image: "../images/bag-images/luis-vuitton-bag-2.jpg",
-    blurImage: "../images/bag-images/luis-vuitton-bag-2-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "../category/bags-shop.html"
-  },
-  {
-    title: "Black Bags",
-    category: "bags",
-    image: "../images/bag-images/black-bag-1.jpg",
-    blurImage: "../images/bag-images/black-bag-1-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "../category/bags-shop.html"
-  },
-  {
-    title: "Small Purses",
-    category: "bags",
-    image: "../images/bag-images/small-bag-1.jpg",
-    blurImage: "../images/ft-img/streetwear-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "../category/bags-shop.html"
-  },
-  {
-    title: "Luxury Bags",
-    category: "bags",
-    image: "../images/bag-images/luis-v-3.jpg",
-    blurImage: "../images/bag-images/luis-v-3-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "../category/bags-shop.html"
-  },
-  {
-    title: "Black Bags",
-    category: "bags",
-    image: "../images/bag-images/black-bag-2.jpg",
-    blurImage: "../images/streetwear-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "../category/bags-shop.html"
-  },
- {
-    title: "Blue Bags",
-    category: "bags",
-    image: "../images/bag-images/lightbluebag.jpg",
-    blurImage: "../images/bag-images/dior-bag-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "../category/bags-shop.html"
-  },
-  {
-    title: "Brown Bags",
-    category: "Brown Bags",
-    image: "../images/bag-images/brown-bag-2.jpg",
-    blurImage: "../images/bag-images/luis-v-3-blur.jpg",
-        trendsUrl: "#",
-    shopUrl: "../category/bags-shop.html"
-  },
-  
-  // Add more categories here
-];
+  const grid = document.getElementById("categoryGrid");
+
+  blogPosts.forEach(post => {
+    const card = document.createElement("div");
+    card.className = "blog-card";
+
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "image-container";
+
+    const loader = document.createElement("div");
+    loader.className = "loader";
+
+    const img = document.createElement("img");
+    img.className = "blog-thumb";
+    img.src = post.image;
+    img.alt = post.title;
+
+    // Fade-in effect on image load
+    img.addEventListener("load", () => {
+      loader.style.display = "none";
+      img.style.display = "block";
+      img.classList.add("fade-in");
+    });
+
+    // In case image is cached
+    if (img.complete) {
+      loader.style.display = "none";
+      img.style.display = "block";
+      img.classList.add("fade-in");
+    }
+
+    imageContainer.appendChild(loader);
+    imageContainer.appendChild(img);
+
+    const content = document.createElement("div");
+    content.className = "blog-content";
+
+    const title = document.createElement("div");
+    title.className = "blog-title";
+    title.textContent = post.title;
+
+    const excerpt = document.createElement("p");
+    excerpt.className = "blog-excerpt";
+    excerpt.textContent = post.excerpt;
+
+    const buttons = document.createElement("div");
+    buttons.className = "blog-buttons";
+
+    const readMoreBtn = document.createElement("button");
+    readMoreBtn.textContent = "Read More";
+    readMoreBtn.onclick = () => window.location.href = post.readMore;
+
+    const shopBtn = document.createElement("button");
+    shopBtn.textContent = "Shop Now";
+    shopBtn.onclick = () => window.location.href = post.shopLink;
+
+    buttons.appendChild(readMoreBtn);
+    buttons.appendChild(shopBtn);
+
+    content.appendChild(title);
+    content.appendChild(excerpt);
+    content.appendChild(buttons);
+
+    card.appendChild(imageContainer);
+    card.appendChild(content);
+
+    grid.appendChild(card);
+  });
+
 //script.js
 /* Menu button styling*/
 
@@ -119,28 +129,7 @@ menuBtn.addEventListener('click', () => {
   menuBtn.classList.toggle('clicked');
 });
 /* Menu button styling end..*/
-const grid = document.getElementById("categoryGrid");
 
-fashionCategories.forEach(cat => {
-  const card = document.createElement("div");
-  card.classList.add("card");
-
-  card.innerHTML = `
-  <div class="image-wrapper">
-    <img class="placeholder" src="${cat.blurImage}" alt="${cat.title}" />
-    <img class="full-image" data-src="${cat.image}" alt="${cat.title}" />
-  </div>
-  <div class="card-body">
-    <h3 class="card-title">${cat.title}</h3>
-    <div class="card-buttons">
-      <button onclick="window.location.href='${cat.trendsUrl}'">Browse Trends</button>
-      <button onclick="window.location.href='${cat.shopUrl}'">Shop Now</button>
-    </div>
-  </div>
-`;
-
-  grid.appendChild(card);
-});
 
 
 /* Header Effect on Scroll*/

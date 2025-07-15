@@ -1,65 +1,105 @@
-document.addEventListener("DOMContentLoaded",()=>{
-    
-
-// data.js
-const fashionCategories = [
-  {
-    title: "Streetwear",
-    image: "../images/ft-img/streetwear-ftimg.jpg",
-    blurImage: "../images/ft-img/streetwear-blur.jpg",
-    trendsUrl: "streetwear-trends.html",
-  shopUrl: "../category/streetwear-shop.html"
-  },
-  {
-    title: "Brown wears",
-    category: "Cargo pants brown cargo streetwear",
-    image: "../images/streetwear-images/browncargo.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/streetwear-shop.html"
-  },
+document.addEventListener("DOMContentLoaded", () => {
+  const blogPosts = [
+    {
+  title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",
+  excerpt: "Cut through the hype with 7 wearable 2025 streetwear trends - from luxury gorpcore to anti-fit denim. Real-world styling tips + what to skip.",
+  image: "../images/streetwear-images/womensstyle.jpg",
+  readMore: "../trending/2025-streetwear-trends.html",
+  shopLink: "../category/streetwear-shop.html"
+},
 {
-    title: "Jeans for Women",
-    category: "Womens jeans women jeans",
-    image: "../images/streetwear-images/womensjeans.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/streetwear-shop.html"
-  },
-  {
-    title: "Pink Wears",
-    category: "Pink Wears Pink Clothes Top Pink Top Pink Jeans Pink Cargo",
-    image: "../images/streetwear-images/pinkwears.jpg",
-    blurImage: "../images/ft-img/streetwear-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/streetwear-shop.html"
-  },
-  {
-    title: "Sky Blue Wears",
-    category: "sky blue wears blue wears blue clothes",
-    image: "../images/streetwear-images/skybluewears.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/streetwear-shop.html"
-  },
-  {
-    title: "Women\'s Style",
-    category: "womens style clothes wears",
-    image: "../images/streetwear-images/womensstyle.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/streetwear-shop.html"
-  },
-  {
-    title: "Men\'s Jeans",
-    category: "Mens jeans jeans clothes wears",
-    image: "../images/streetwear-images/mensjeans.jpg",
-    blurImage: "../images/bag-images/dior-bag1-blur.jpg",
-    trendsUrl: "#",
-  shopUrl: "../category/streetwear-shop.html"
-  },
-  // Add more categories here
-];
+  title: "How to Wear Pink Jeans Without Looking Basic: 2025's Smartest Styling Hacks",
+  excerpt: "Master 5 sophisticated ways to style pink jeans with exact color formulas and texture combinations.",
+  image: "../images/streetwear-images/pinkwears.jpg",
+  readMore: "../trending/pink-jeans-outfits.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+{
+  title: "Baggy Jeans Are Back: How to Style Them Without Looking Sloppy",
+  excerpt: "Baggy jeans are trending hard in 2025 — here are 7 polished outfit combos that balance comfort and edge without looking messy.",
+  image: "../images/streetwear-images/baggy-jeans-hero.jpg",
+  readMore: "../trending/baggy-jeans-style-guide.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+{
+  title: "Skinny Jeans Aren’t Dead: 7 2025-Ready Ways to Style Them",
+  excerpt: "From streetwear to smart casual, these 7 outfit formulas prove skinny jeans are still fire in 2025 — without looking outdated.",
+  image: "../images/streetwear-images/skinny-jeans-hero.jpg",
+  readMore: "../trending/skinny-jeans-style-guide.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+    // Add more posts as needed
+  ];
+
+  const grid = document.getElementById("categoryGrid");
+
+  blogPosts.forEach(post => {
+    const card = document.createElement("div");
+    card.className = "blog-card";
+
+    const imageContainer = document.createElement("div");
+    imageContainer.className = "image-container";
+
+    const loader = document.createElement("div");
+    loader.className = "loader";
+
+    const img = document.createElement("img");
+    img.className = "blog-thumb";
+    img.src = post.image;
+    img.alt = post.title;
+
+    // Fade-in effect on image load
+    img.addEventListener("load", () => {
+      loader.style.display = "none";
+      img.style.display = "block";
+      img.classList.add("fade-in");
+    });
+
+    // In case image is cached
+    if (img.complete) {
+      loader.style.display = "none";
+      img.style.display = "block";
+      img.classList.add("fade-in");
+    }
+
+    imageContainer.appendChild(loader);
+    imageContainer.appendChild(img);
+
+    const content = document.createElement("div");
+    content.className = "blog-content";
+
+    const title = document.createElement("div");
+    title.className = "blog-title";
+    title.textContent = post.title;
+
+    const excerpt = document.createElement("p");
+    excerpt.className = "blog-excerpt";
+    excerpt.textContent = post.excerpt;
+
+    const buttons = document.createElement("div");
+    buttons.className = "blog-buttons";
+
+    const readMoreBtn = document.createElement("button");
+    readMoreBtn.textContent = "Read More";
+    readMoreBtn.onclick = () => window.location.href = post.readMore;
+
+    const shopBtn = document.createElement("button");
+    shopBtn.textContent = "Shop Now";
+    shopBtn.onclick = () => window.location.href = post.shopLink;
+
+    buttons.appendChild(readMoreBtn);
+    buttons.appendChild(shopBtn);
+
+    content.appendChild(title);
+    content.appendChild(excerpt);
+    content.appendChild(buttons);
+
+    card.appendChild(imageContainer);
+    card.appendChild(content);
+
+    grid.appendChild(card);
+  });
+
 //script.js
 /* Menu button styling*/
 
@@ -101,28 +141,7 @@ menuBtn.addEventListener('click', () => {
   menuBtn.classList.toggle('clicked');
 });
 /* Menu button styling end..*/
-const grid = document.getElementById("categoryGrid");
 
-fashionCategories.forEach(cat => {
-  const card = document.createElement("div");
-  card.classList.add("card");
-
-  card.innerHTML = `
-  <div class="image-wrapper">
-    <img class="placeholder" src="${cat.blurImage}" alt="${cat.title}" />
-    <img class="full-image" data-src="${cat.image}" alt="${cat.title}" />
-  </div>
-  <div class="card-body">
-    <h3 class="card-title">${cat.title}</h3>
-    <div class="card-buttons">
-      <button onclick="window.location.href='${cat.trendsUrl}'">Browse Trends</button>
-      <button onclick="window.location.href='${cat.shopUrl}'">Shop Now</button>
-    </div>
-  </div>
-`;
-
-  grid.appendChild(card);
-});
 
 
 /* Header Effect on Scroll*/
