@@ -28,6 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
   readMore: "../trending/skinny-jeans-style-guide.html",
   shopLink: "../category/streetwear-shop.html"
 },
+ {
+  title: "Why Powder Blue Is the New Neutral: A Fresh Take on Everyday Style in 2025",
+  excerpt: "Discover how powder blue became 2025’s softest streetwear essential—plus 8 ways to wear it like a modern neutral.",
+  image: "../images/streetwear-images/powder-blue-hero.jpg",
+  readMore: "../trending/powder-blue-style-guide.html",
+  shopLink: "../category/streetwear-shop.html"
+},
     // Add more posts as needed
   ];
 

@@ -744,3 +744,66 @@ p{
 .blog-buttons button:hover {
   background: #cc9900;
 }
+
+/* bigger screens*/
+@media screen and (min-width: 600px) {
+  body {
+    color: #fff;
+  }
+
+  .blog-post {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  .blog-post h2 {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .blog-post p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+
+  .blog-meta {
+    text-align: center;
+    font-size: 1rem;
+    color: #ccc;
+  }
+
+  .custom-ol {
+    text-align: left;
+    margin: 2rem auto;
+    padding-left: 1.5rem;
+    max-width: 700px;
+    color: #fff;
+  }
+
+  /* Center featured image */
+  .blog-ftimg {
+    display: block;
+    margin: 2rem auto;
+    max-width: 900px;
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  /* Keep your existing image-card styling, but center the container */
+  .image-card {
+    margin: 2rem auto;
+  }
+
+  figcaption {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 2rem;
+  }
+}

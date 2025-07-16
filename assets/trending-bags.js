@@ -1,21 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const blogPosts = [
     {
-      title: "Pretty in Pink Power Suits",
-      excerpt:
-        "Make a bold statement with our curated pink suit collection. Double-breasted elegance meets confident femininity in styles perfect for work and weekends.",
-      image: "https://trenddaily.shop/images/formalwear-images/pink-power-suit1.jpg",
-      readMore: "trending/pretty-pink-suits.html",
-      shopLink: "shop.html"
-    },
-    {
-      title: "Black Gowns: Elegant, Sexy, and Classy",
-      excerpt:
-        "Discover the timeless allure of women’s black gowns — flattering for all body types, perfect for every occasion, and always on trend.",
-      image: "https://trenddaily.shop/images/formalwear-images/blackgowns-1.jpg",
-      readMore: "trending/black-gown-style.html",
-      shopLink: "shop.html"
-    },
+  title: "How to Style a Black Tote Bag: 7 Elevated Outfit Ideas for 2025",
+  excerpt: "From streetwear to office-ready looks, discover 7 polished outfit formulas that prove the black tote is the ultimate fashion essential in 2025.",
+  image: "../images/bag-images/black-tote-hero.jpg",
+  readMore: "../trending/black-tote-bag-style.html",
+  shopLink: "../category/bags-shop.html"
+},
+{
+  title: "5 Streetwear Crossbody Looks That Actually Work for Guys",
+  excerpt: "Master the art of crossbody bag styling with 5 clean streetwear formulas guys can actually pull off in 2025.",
+  image: "../images/bag-images/crossbody-hero.jpg",
+  readMore: "../trending/5-streetwear-crossbody-looks-for-guys.html",
+  shopLink: "../category/bag-shop.html"
+},
     // Add more posts as needed
   ];
 

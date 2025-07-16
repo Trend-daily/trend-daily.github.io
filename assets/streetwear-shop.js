@@ -18,6 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
       price: "$150.00",
       shopUrl: "#"
     },
+    {
+  title: "Why Powder Blue Is the New Neutral: A Fresh Take on Everyday Style in 2025",
+  excerpt: "Discover how powder blue became 2025’s softest streetwear essential—plus 8 ways to wear it like a modern neutral.",
+  image: "../images/streetwear-images/powder-blue-hero.jpg",
+  readMore: "../trending/powder-blue-style-guide.html",
+  shopLink: "../category/streetwear-shop.html"
+},
     // Add more formal wear products here
   ];
 
