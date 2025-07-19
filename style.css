@@ -323,7 +323,7 @@ font-weight: bolder;
 
 /* From Uiverse.io by xueyuantan */ 
 .card-buttons button {
-padding:0.65rem 0.85rem ;
+padding:0.65rem 0.85rem;
   border: none;
 background:#cc9900;
 font-weight: bolder;
@@ -331,7 +331,7 @@ font-weight: bolder;
   cursor: pointer;
   transition: 0.2s ease;
  width: 9em;
- /* height: 3em; */
+ height: 3em;  
  border-radius: 30em;
  font-family: inherit;
  border: none;
@@ -345,7 +345,7 @@ font-weight: bolder;
 .card-buttons button::before{
     content: '';
  width: 0;
- height: 3em;
+ height: 3em; 
  border-radius: 30em;
  position: absolute;
  top: 0;
