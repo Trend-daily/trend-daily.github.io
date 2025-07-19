@@ -309,7 +309,8 @@ justify-content: space-between;
   margin-top: 1rem;
 }
 
-.card-buttons button {
+/* .card-buttons button {
+position: relative;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 8px;
@@ -318,11 +319,48 @@ font-weight: bolder;
   color: #fff;
   cursor: pointer;
   transition: 0.2s ease;
+} */
+
+/* From Uiverse.io by xueyuantan */ 
+.card-buttons button {
+padding:0.65rem 0.85rem ;
+  border: none;
+background:#cc9900;
+font-weight: bolder;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+ width: 9em;
+ /* height: 3em; */
+ border-radius: 30em;
+ font-family: inherit;
+ border: none;
+ position: relative;
+ overflow: hidden;
+ z-index: 1;
 }
 
-.card-buttons button:hover {
-  background: #030;
+
+
+.card-buttons button::before{
+    content: '';
+ width: 0;
+ height: 3em;
+ border-radius: 30em;
+ position: absolute;
+ top: 0;
+ left: 0;
+ background-image: linear-gradient(to right, #030 0%, #030 100%);
+ transition: .5s ease;
+ display: block;
+ z-index: -1;
 }
+
+.card-buttons button:hover::before {
+ width: 9em;
+}
+ 
+
 
 /* Search CSS Styles */
 
