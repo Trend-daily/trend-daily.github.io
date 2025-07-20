@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const blogPosts = [
-  // Hide preloader after everything is fully loaded
+   // Hide preloader after everything is fully loaded
 const preloader = document.getElementById('preloader');
     preloader.style.opacity = '0';
     preloader.style.transition = 'opacity 0.4s ease';
@@ -8,8 +7,8 @@ const preloader = document.getElementById('preloader');
     setTimeout(() => {
       preloader.style.display = 'none';
     }, 400); // Allow fade out before removing
-    
-    {
+  const blogPosts = [
+      {
       title: "Pretty in Pink Power Suits",
       excerpt:
         "Make a bold statement with our curated pink suit collection. Double-breasted elegance meets confident femininity in styles perfect for work and weekends.",
