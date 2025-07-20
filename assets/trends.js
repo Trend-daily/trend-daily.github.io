@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const blogPosts = [
-    {
+   {
   title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",
   excerpt: "Cut through the hype with 7 wearable 2025 streetwear trends - from luxury gorpcore to anti-fit denim. Real-world styling tips + what to skip.",
   image: "../images/streetwear-images/womensstyle.jpg",
@@ -34,6 +34,59 @@ document.addEventListener("DOMContentLoaded", () => {
   image: "../images/streetwear-images/powder-blue-hero.jpg",
   readMore: "../trending/powder-blue-style-guide.html",
   shopLink: "../category/streetwear-shop.html"
+},
+    {
+  title: "How to Style a Black Tote Bag: 7 Elevated Outfit Ideas for 2025",
+  excerpt: "From streetwear to office-ready looks, discover 7 polished outfit formulas that prove the black tote is the ultimate fashion essential in 2025.",
+  image: "../images/bag-images/black-tote-hero.jpg",
+  readMore: "../trending/black-tote-bag-style.html",
+  shopLink: "../category/bags-shop.html"
+},
+{
+  title: "5 Streetwear Crossbody Looks That Actually Work for Guys",
+  excerpt: "Master the art of crossbody bag styling with 5 clean streetwear formulas guys can actually pull off in 2025.",
+  image: "../images/bag-images/crossbody-hero.jpg",
+  readMore: "../trending/5-streetwear-crossbody-looks-for-guys.html",
+  shopLink: "../category/bags-shop.html"
+},
+ {
+      title: "Pretty in Pink Power Suits",
+      excerpt:
+        "Make a bold statement with our curated pink suit collection. Double-breasted elegance meets confident femininity in styles perfect for work and weekends.",
+      image: "../images/formalwear-images/pink-power-suit1.jpg",
+      readMore: "../trending/pretty-pink-suits.html",
+      shopLink: "../category/formal-wear-shop.html"
+    },
+    {
+      title: "Black Gowns: Elegant, Sexy, and Classy",
+      excerpt:
+        "Discover the timeless allure of women’s black gowns — flattering for all body types, perfect for every occasion, and always on trend.",
+      image: "../images/formalwear-images/blackgowns-1.jpg",
+      readMore: "../trending/womens-black-gowns.html",
+      shopLink: "../category/formal-wear-shop.html"
+    },
+    {
+      title: "Red Suits for Formal Events: Stylish not Loud",
+      excerpt:
+        "A red suit commands attention—but at a formal event, the key is sophistication, not shock value. Learn how to wear one with polish, not pizzazz, for weddings, galas, and black-tie affairs.",
+      image: "../images/formalwear-images/redsuits-1.jpg",
+      readMore: "../trending/red-suits.html",
+      shopLink: "../category/formal-wear-shop.html"
+    },
+    {
+      title: "From Desk to Dinner: 5 Transitional Work Outfits For Women",
+      excerpt:
+        "5 seamless work-to-evening outfit transitions with pro styling tips. Master desk-to-dinner dressing with blazers, wraps & monochrome looks.",
+      image: "../images/formalwear-images/womencorporate-2.jpg",
+      readMore: "../trending/desk-to-dinner-outfits.html",
+      shopLink: "../category/formal-wear-shop.html"
+    },
+    {
+  title: "5 Suits Every Man Needs: Build a Power Wardrobe That Never Quits",
+  excerpt: "The only 5 suits your professional wardrobe requires—from interview-ready navy to versatile charcoal. Expert styling tips for career success.",
+  image: "../images/formalwear-images/suit-collage.jpg",
+  readMore: "../trending/5-suits-every-man-needs.html",
+  shopLink: "../category/formal-wear-shop.html"
 },
     // Add more posts as needed
   ];
@@ -181,6 +234,7 @@ const fullImages = document.querySelectorAll(".full-image");
     };
   });
   
+  
   })
   
   // Hide preloader after everything is fully loaded
@@ -193,3 +247,4 @@ const fullImages = document.querySelectorAll(".full-image");
       preloader.style.display = 'none';
     }, 400); // Allow fade out before removing
   });
+  

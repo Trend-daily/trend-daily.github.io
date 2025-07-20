@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const blogPosts = [
+  
     {
   title: "How to Style a Black Tote Bag: 7 Elevated Outfit Ideas for 2025",
   excerpt: "From streetwear to office-ready looks, discover 7 polished outfit formulas that prove the black tote is the ultimate fashion essential in 2025.",
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   excerpt: "Master the art of crossbody bag styling with 5 clean streetwear formulas guys can actually pull off in 2025.",
   image: "../images/bag-images/crossbody-hero.jpg",
   readMore: "../trending/5-streetwear-crossbody-looks-for-guys.html",
-  shopLink: "../category/bag-shop.html"
+  shopLink: "../category/bags-shop.html"
 },
     // Add more posts as needed
   ];
@@ -162,4 +163,14 @@ const fullImages = document.querySelectorAll(".full-image");
   
   })
   
+  // Hide preloader after everything is fully loaded
+  window.addEventListener('load', function () {
+    const preloader = document.getElementById('preloader');
+    preloader.style.opacity = '0';
+    preloader.style.transition = 'opacity 0.4s ease';
+    
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 400); // Allow fade out before removing
+  });
   

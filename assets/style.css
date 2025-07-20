@@ -19,6 +19,35 @@ html{
     --shade: rgb(26, 30, 38); 
 
 }
+/* Preloader styles */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white; /* fallback background */
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Trenddaily-inspired spinner */
+.loader {
+  border: 5px solid #030;
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* Preloader Styles Ends */
 body {
  background: #fff;
  font-family: "Lora", serif;
