@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Hide preloader after everything is fully loaded
+const preloader = document.getElementById('preloader');
+    preloader.style.opacity = '0';
+    preloader.style.transition = 'opacity 0.4s ease';
+    
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 400); // Allow fade out before removing
+    
+    
   const blogPosts = [
     {
   title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",
@@ -183,13 +193,4 @@ const fullImages = document.querySelectorAll(".full-image");
   
   })
   
-  // Hide preloader after everything is fully loaded
-  window.addEventListener('load', function () {
-    const preloader = document.getElementById('preloader');
-    preloader.style.opacity = '0';
-    preloader.style.transition = 'opacity 0.4s ease';
-    
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 400); // Allow fade out before removing
-  });
+ 

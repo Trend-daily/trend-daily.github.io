@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded",()=>{
+    // Hide preloader after everything is fully loaded
+const preloader = document.getElementById('preloader');
+    preloader.style.opacity = '0';
+    preloader.style.transition = 'opacity 0.4s ease';
     
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 400); // Allow fade out before removing
 
 // data.js
 const fashionCategories = [
@@ -130,16 +137,5 @@ const fullImages = document.querySelectorAll(".full-image");
   // Lazy loading using IntersectionObserver
   
   })
-  
-  // Hide preloader after everything is fully loaded
-  window.addEventListener('load', function () {
-    const preloader = document.getElementById('preloader');
-    preloader.style.opacity = '0';
-    preloader.style.transition = 'opacity 0.4s ease';
-    
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 400); // Allow fade out before removing
-  });
   
   
