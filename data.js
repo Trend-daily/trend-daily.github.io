@@ -88,7 +88,7 @@ fashionCategories.forEach(cat => {
   <div class="card-body">
     <h3 class="card-title">${cat.title}</h3>
     <div class="card-buttons">
-      <button onclick="window.location.href='${cat.trendsUrl}'">Browse Trends</button>
+      <button onclick="window.location.href='${cat.trendsUrl}'">Trending</button>
       <button onclick="window.location.href='${cat.shopUrl}'">Shop Now</button>
     </div>
   </div>
@@ -130,5 +130,16 @@ const fullImages = document.querySelectorAll(".full-image");
   // Lazy loading using IntersectionObserver
   
   })
+  
+  // Hide preloader after everything is fully loaded
+  window.addEventListener('load', function () {
+    const preloader = document.getElementById('preloader');
+    preloader.style.opacity = '0';
+    preloader.style.transition = 'opacity 0.4s ease';
+    
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 400); // Allow fade out before removing
+  });
   
   
