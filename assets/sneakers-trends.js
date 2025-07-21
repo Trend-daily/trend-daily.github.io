@@ -9,40 +9,13 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
   const blogPosts = [
     {
-  title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",
-  excerpt: "Cut through the hype with 7 wearable 2025 streetwear trends - from luxury gorpcore to anti-fit denim. Real-world styling tips + what to skip.",
-  image: "../images/streetwear-images/womensstyle.jpg",
-  readMore: "../trending/2025-streetwear-trends.html",
-  shopLink: "../category/streetwear-shop.html"
+  title: "How to Style White Sneakers in 2025",
+  excerpt: "Wondering how to wear white sneakers without looking basic? These 7 fresh outfit ideas show you exactly how to style white sneakers in 2025 with ease.",
+  image: "../images/sneakers-images/white-sneakers-hero.jpg",
+  readMore: "../trending/how-to-style-white-sneakers-2025.html",
+  shopLink: "../category/sneakers-shop.html"
 },
-{
-  title: "How to Wear Pink Jeans Without Looking Basic: 2025's Smartest Styling Hacks",
-  excerpt: "Master 5 sophisticated ways to style pink jeans with exact color formulas and texture combinations.",
-  image: "../images/streetwear-images/pinkwears.jpg",
-  readMore: "../trending/pink-jeans-outfits.html",
-  shopLink: "../category/streetwear-shop.html"
-},
-{
-  title: "Baggy Jeans Are Back: How to Style Them Without Looking Sloppy",
-  excerpt: "Baggy jeans are trending hard in 2025 — here are 7 polished outfit combos that balance comfort and edge without looking messy.",
-  image: "../images/streetwear-images/baggy-jeans-hero.jpg",
-  readMore: "../trending/baggy-jeans-style-guide.html",
-  shopLink: "../category/streetwear-shop.html"
-},
-{
-  title: "Skinny Jeans Aren’t Dead: 7 2025-Ready Ways to Style Them",
-  excerpt: "From streetwear to smart casual, these 7 outfit formulas prove skinny jeans are still fire in 2025 — without looking outdated.",
-  image: "../images/streetwear-images/skinny-jeans-hero.jpg",
-  readMore: "../trending/skinny-jeans-style-guide.html",
-  shopLink: "../category/streetwear-shop.html"
-},
- {
-  title: "Why Powder Blue Is the New Neutral: A Fresh Take on Everyday Style in 2025",
-  excerpt: "Discover how powder blue became 2025’s softest streetwear essential—plus 8 ways to wear it like a modern neutral.",
-  image: "../images/streetwear-images/powder-blue-hero.jpg",
-  readMore: "../trending/powder-blue-style-guide.html",
-  shopLink: "../category/streetwear-shop.html"
-},
+
     // Add more posts as needed
   ];
 

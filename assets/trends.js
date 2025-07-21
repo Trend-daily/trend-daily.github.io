@@ -10,6 +10,13 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "How to Style White Sneakers in 2025",
+  excerpt: "Wondering how to wear white sneakers without looking basic? These 7 fresh outfit ideas show you exactly how to style white sneakers in 2025 with ease.",
+  image: "../images/sneakers-images/white-sneakers-hero.jpg",
+  readMore: "../trending/how-to-style-white-sneakers-2025.html",
+  shopLink: "../category/sneakers-shop.html"
+},
+   {
   title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",
   excerpt: "Cut through the hype with 7 wearable 2025 streetwear trends - from luxury gorpcore to anti-fit denim. Real-world styling tips + what to skip.",
   image: "../images/streetwear-images/womensstyle.jpg",
