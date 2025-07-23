@@ -480,8 +480,24 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const grid = document.getElementById("categoryGrid2");
+  
+/* Search for trending posts start */
+ const header2 = document.getElementById("resultHeader2");
 
-  blogPosts.forEach(post => {
+  const blogMatch = blogPosts.filter(blog =>
+    blog.title.toLowerCase().includes(query) ||
+    blog.excerpt.toLowerCase().includes(query)
+  );
+
+  if (blogMatch.length === 0) {
+    header2.innerText = `No Trending Posts results found for "${query}"`;
+  } else {
+    header2.innerText = `Trending Posts Results for "${query}"`;
+ }
+  
+  /* Search For Trending Posts End */
+  
+  blogMatch.forEach(post => {
     const card = document.createElement("div");
     card.className = "blog-card";
 
@@ -549,11 +565,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
  /* Trending posts end */
  
- /* Search for trending posts start */
  
- 
-  
-  /* Search For Trending Posts End */
   
   /* Menu button styling*/
 
