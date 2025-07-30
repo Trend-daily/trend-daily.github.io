@@ -40,6 +40,86 @@ const fashionCategories = [
   },
   // Add more categories here
 ];
+
+//Carousel JS
+const products = [
+      { 
+      title: 'Low Rise Striped Pants (For Women)', price: '$45.00', 
+      img: 'images/streetwear-images/low-rise-striped-pants-for-women.jpg',
+      shop: 'https://amzn.to/4fc31bE'
+      
+      },
+      { 
+      title: 'Lentta Womens Athletic Sleeveless Mini Dress with Built-in Shorts', 
+      price: '$47.98', 
+      img: 'images/streetwear-images/trenddaily-female3.jpg',
+      shop:'https://amzn.to/45ccStq'
+      },
+      { 
+      title: '3 Piece Tuxedo for Men Slim Fit Suit for Men Wedding Homecoming Tux Blazer Vest Pants with Bow Tie', 
+      price: '$75.99', 
+      img: 'images/formalwear-images/red-tuxedo.jpg',
+      shop:'https://amzn.to/4ofrlxp'
+       },
+      {
+      title: 'Womens Tank Tops Summer T Shirts Sleeveless Casual Loose Tunic Blouses',
+      price: '$11.00', 
+      img: 'images/streetwear-images/trenddaily-female2.jpg',
+      shop:'https://amzn.to/4l3nlgC'
+      },
+      { 
+       title: 'Joomra Whitin Men\'s Supportive Running Shoes Cushioned Athletic Sneakers', 
+       price: '$39.99',
+       img: 'images/sneakers-images/red-running-sneakers.jpg',
+       shop:'https://amzn.to/4fd5Idf'
+        },
+    ];
+
+    const carousel = document.getElementById('carousel');
+    const cardWidth = 270; // including margin
+    let currentIndex = 0;
+
+    // Dynamically render cards
+    function renderCards() {
+      products.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'card-pr';
+        card.innerHTML = `
+          <img src="${product.img}" alt="${product.title}">
+          <div class="info">
+            <div class="title">${product.title}</div>
+            <div class="price">${product.price}</div>
+            <button onclick="window.location.href='${product.shop}'">Shop Now</button>
+          </div>
+        `;
+        carousel.appendChild(card);
+      });
+    }
+
+    // Scroll carousel
+    function scrollCarousel(direction) {
+      currentIndex = (currentIndex + direction + products.length) % products.length;
+      const scrollX = currentIndex * cardWidth;
+      carousel.scrollTo({ left: scrollX, behavior: 'smooth' });
+    }
+
+    // Auto slide every 4 seconds
+    setInterval(() => {
+      scrollCarousel(1);
+    }, 4000);
+
+    // Event listeners
+    document.getElementById('prevBtn').addEventListener('click', () => scrollCarousel(-1));
+    document.getElementById('nextBtn').addEventListener('click', () => scrollCarousel(1));
+
+    // Initialize
+    renderCards();
+    scrollCarousel(0); // center first card
+    
+    //Carousel JS Ends
+    
+    
+    
 //script.js
 /* Menu button styling*/
 

@@ -21,12 +21,9 @@ document.addEventListener("DOMContentLoaded",()=>{
     { label: "Streetwear", link: "../trending/streetwear-trends.html" },
     { label: "Formal Wear", link: "../trending/formalwear-trends.html" },
     { label: "Sneakers", link: "../trending/sneakers-trends.html" },
-    { label: "5", link: "page5.html" },
-    { label: "6", link: "page6.html" },
-    { label: "7", link: "page7.html" },
-    { label: "8", link: "page8.html" },
-    { label: "9", link: "page9.html" },
-    { label: "10", link: "page10.html" }
+    { label: "Trends", link: "../trending/trends.html" },
+    { label: "Shop", link: "all-categories.html" },
+   
   ];
 
   const paginationContainer = document.getElementById("paginationButtons");

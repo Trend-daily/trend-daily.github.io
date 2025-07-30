@@ -123,7 +123,7 @@ header{
     justify-content:flex-end;
     /* box-shadow:3px 5px 5px none; */
     box-shadow: 0 6px 12px none;
-    z-index: 2;
+    z-index: 100;
 }
 /* header scrolling style*/
 header.scrolled{
@@ -329,6 +329,7 @@ justify-content: space-between;
 .card-title {
   font-size: 1.2rem;
   margin: 0.5rem 0;
+  color: #030;
 }
 
 .card-buttons {
@@ -900,3 +901,95 @@ form#contact-form button#contactBtn:hover {
     margin-bottom: 2rem;
   }
 }
+
+
+/* Carousel Styling*/
+ .carousel-container {
+      position: relative;
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+      overflow: hidden;
+    }
+    .carousel-wrapper {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      scroll-snap-type: x mandatory;
+    }
+    .carousel-wrapper::-webkit-scrollbar { display: none; }
+    .card-pr {
+      flex: 0 0 auto;
+      width: 250px;
+      margin: 0 10px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px #000;
+      text-align: center;
+      overflow: hidden;
+      scroll-snap-align: center;
+      transition: transform 0.3s;
+    }
+    .card-pr img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-pr .info {
+      padding: 10px;
+    }
+    .card-pr .title {
+      font-size: 1.1rem;
+      margin: 8px 0;
+      color: #333;
+    }
+    .card-pr .price {
+      font-size: 1rem;
+      color: #888;
+      margin-bottom: 12px;
+    }
+    .card-pr button {
+      background-color: #cc9900;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .nav-btn-pr {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 5px 15px;
+      border-radius: 50%;
+      z-index: 10;
+    }
+    .nav-left-pr { left: -10px; }
+    .nav-right-pr { right: -10px; }
+    
+    @media (min-width: 768px) {
+      .card-pr { 
+      width: 180px;
+      background:#fff;
+  backdrop-filter:blur(8px);
+  border-radius: 12px;
+  box-shadow: 0 6px 12px black;
+  overflow: hidden;
+  transition: 0.3s ease;
+       }
+       .card-pr .title{
+          color: #030;
+       }
+       .card-pr .price{
+          color: #fff;
+       }
+      
+    }

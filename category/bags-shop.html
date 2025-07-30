@@ -54,8 +54,23 @@
        
   <title>Trending Fashion -Shop for Bags</title>
   <link rel="stylesheet" href="../assets/shop.css">
-    <script src="../assets/all-categories.js"></script>
+    <script src="../assets/bags-shop.js"></script>
     <script src="../category/pagination.js"></script>
+
+<style>
+    .card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+
 </head>
 <body>
     <header id="header">
@@ -112,6 +127,7 @@
   <div class="loader"></div>
 </div>
   <div class="grid-container" id="categoryGrid"></div>
+<div id="loader-sentinel"></div>
 <!-- Pagination -->
 <div class="pagination-wrapper">
     <h4>Explore More Categories</h4><br>

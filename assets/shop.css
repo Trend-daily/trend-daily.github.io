@@ -508,14 +508,14 @@ footer .copyright {
   }
 }
 
- 
+
 /* Grid container for the cards */
-.grid-container {
+ .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive 2-per-row */
   gap: 1.5rem;
   padding: 2rem;
-}
+} 
 
 /* Individual product card */
 .card {
@@ -527,6 +527,7 @@ footer .copyright {
   transition: transform 0.3s ease;
   cursor: pointer;
 }
+
 
 /* Product image with smooth zoom effect */
 .card img {
