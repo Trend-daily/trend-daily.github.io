@@ -564,8 +564,181 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.appendChild(card);
   });
  /* Trending posts end */
+ /* Shop Products */
+ const formalProducts = [
+   {
+      title: "BagSmart Tote Bag For Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag1.jpg",
+      price: "$16.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Black Tote Bag (BagSmart) for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag2.jpg",
+      price:`<s>$48.99</s> ` + "$16.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Leather Laptop Bag for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag3.jpg",
+      price: `<s>$33.99</s> ` + "$26.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Sleek Portable Black Tote (Women)",
+      image: "images/bag-images/trenddaily-female-black-tote-bag4.jpg",
+      price: `<s>$28.99</s> ` + "$19.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Montana West Tote Bag For Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag5.jpg",
+      price: `<s>$18.99</s> ` + "$16.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Lovevook Black Tote Bag For Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag6.jpg",
+      price: `<s>$48.99</s> ` + "$24.79",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Black Leather Laptop Bag for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag7.jpg",
+      price:`<s>$48.99</s> ` + "$26.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Genuine Leather Tote Bag",
+      image: "images/bag-images/trenddaily-female-black-tote-bag8.jpg",
+      price: `<s>$28.99</s> ` + "$26.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Marc Jacobs Tote Bag for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag9.jpg",
+      price: `<s>$28.99</s> ` + "$16.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Leather Tote bag Formal(For Women)",
+      image: "images/bag-images/trenddaily-female-black-tote-bag10.jpg",
+      price: `<s>$28.99</s> ` + "$16.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Genuine Leather Black Tote Bag for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag11.jpg",
+      price: `<s>$28.99</s> ` + "$26.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Tote Bags For Women Canvas with Mini Purse",
+      image: "images/bag-images/trenddaily-female-black-tote-bag12.jpg",
+      price: `<s>$23.99</s> ` + "$19.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Leather Black Tote for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag13.jpg",
+      price: `<s>$48.99</s> ` + "$26.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Black Tote bag For Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag14.jpg",
+      price: `<s>$48.99</s> ` + "$26.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Black Tote bag (Leather for Women)",
+      image: "images/bag-images/trenddaily-female-black-tote-bag15.jpg",
+      price:`<s>$28.99</s> ` + "$26.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Black Tote bag (Leather) for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag16.jpg",
+      price: `<s>$28.99</s> ` + "$26.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "TOP Design Heavy Duty Canvas Tote Bag for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag17.jpg",
+      price: `<s>$48.99</s> ` + "$22.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Pink Nishell Travel Puffy Tote bag (best for Travelling)",
+      image: "images/bag-images/trenddaily-female-black-tote-bag18.jpg",
+      price: `<s>$51.99</s> ` + "$36.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Top Design Puffer Tote Bag (For Women)",
+      image: "images/bag-images/trenddaily-female-black-tote-bag19.jpg",
+      price: `<s>$28.99</s> ` + "$23.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "BagSmart Tote Bag for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag20.jpg",
+      price: `<s>$28.99</s> ` + "$22.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+     {
+      title: "Black Canvas Tote Bag for Women",
+      image: "images/bag-images/trenddaily-female-black-tote-bag21.jpg",
+      price: `<s>$28.99</s> ` + "$26.99",
+      shopUrl: "https://amzn.to/3U56lf2"
+    },
+    
+  ];
+ /* Products on Search */
  
+ const header3 = document.getElementById("resultHeader3");
+
+  const shopMatch = formalProducts.filter(prod_res =>
+    prod_res.title.toLowerCase().includes(query) ||
+    prod_res.price.toLowerCase().includes(query)
+  );
+
+  if (blogMatch.length === 0) {
+    header3.innerText = `No Products results found for "${query}"`;
+  } else {
+    header3.innerText = `Products Results for "${query}"`;
+ }
  
+ const grid3 = document.getElementById("categoryGrid3");
+
+  formalProducts.forEach((prod, index) => {
+    const card = document.createElement("div");
+    card.classList.add("card3");
+
+    card.innerHTML = `
+      <div class="image-zoom-wrapper">
+        <div class="loader3"></div>
+        <img class="zoom-image" src="${prod.image}" alt="${prod.title}" style="display: none;" />
+      </div>
+      <div class="card3-body">
+        <h3 class="card3-title">${prod.title}</h3>
+        <p class="price">${prod.price}</p>
+        <button onclick="window.location.href='${prod.shopUrl}'">Shop Now</button>
+      </div>
+    `;
+
+    grid.appendChild(card);
+
+    const img = card.querySelector("img");
+    const loader = card.querySelector(".loader3");
+
+    img.onload = () => {
+      loader.style.display = "none";
+      img.style.display = "block";
+    };
+  });
+ 
+ /* Products on Search End */
   
   /* Menu button styling*/
 
