@@ -25,7 +25,7 @@ const fashionCategories = [
     shopUrl: "category/formal-wear-shop.html"
       },
   {
-    title: "Sneakers",
+    title: "Footwear",
     image: "images/ft-img/sneakers-ftimg.jpg",
     blurImage: "images/ft-img/sneakers-blur.jpg",
         trendsUrl: "trending/sneakers-trends.html",

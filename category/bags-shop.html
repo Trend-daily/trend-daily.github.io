@@ -57,18 +57,6 @@
     <script src="../assets/bags-shop.js"></script>
     <script src="../category/pagination.js"></script>
 
-<style>
-    .card {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.card.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-</style>
 
 
 </head>
@@ -106,6 +94,14 @@
      <li><a href="../contact.html">Contact</a></li>  </ul>
 </nav>
 
+<!-- Disclaimer Bar -->
+  <div class="disclaimer-bar">
+    <div class="disclaimer-text">
+      ⚠️ This site may earn commission from affiliate links. Prices may vary across platforms. Stay informed.
+    </div>
+  </div>
+  <!-- Disclaimer Bar Ends-->
+
   <h2 class="site-title">Shop Different Styles!</h2>
   <!-- Search Bar -->
   
@@ -122,6 +118,44 @@
       }
     }
   </script>
+   <!-- Filters  -->
+   <div id="loadingOverlay">
+  <div class="spinner"></div>
+</div>
+  
+   <a href="#filter" class="filter-btn" id="filter-Btn">Filter</a>  
+  
+<div class="filters" id="filter">
+  <div class="filter-group">
+    <label>Category:</label>
+    <label><input type="checkbox" name="category" value="tote-bags"> Tote Bags</label>
+    <label><input type="checkbox" name="category" value="crossbody-bags"> Crossbody Bags</label>
+    <label><input type="checkbox" name="category" value="clutch-bags"> Clutch Bags</label>
+     <label><input type="checkbox" name="category" value="backpacks"> Backpacks</label>
+  </div>
+
+  <div class="filter-group">
+    <label>Gender:</label>
+    <label><input type="checkbox" name="gender" value="male"> Male</label>
+    <label><input type="checkbox" name="gender" value="female"> Female</label>
+    <label><input type="checkbox" name="gender" value="unisex"> Unisex</label>
+  </div>
+
+  <div class="filter-group">
+    <label>Price Range:</label>
+    <input type="number" id="minPrice" placeholder="Min $">
+    <input type="number" id="maxPrice" placeholder="Max $">
+  </div>
+
+  <div class="filter-group buttons">
+    <label>&nbsp;</label>
+    <button id="filterBtn">Filter</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+</div>
+ 
+  
+  <!-- Filters End -->
   <!-- Preloader -->
 <div id="preloader">
   <div class="loader"></div>

@@ -32,9 +32,9 @@
   <script src="https://code.jquery.com/jquery-3.1.1.js">
         </script>
        
-  <title>Trending Fashion -Shop for Sneakers</title>
+  <title>Trending Fashion -Shop for Footwear</title>
   <link rel="stylesheet" href="../assets/shop.css">
-    <script src="../assets/all-categories.js"></script>
+    <script src="../assets/sneakers-shop.js"></script>
     <script src="../category/pagination.js"></script>
 </head>
 <body>
@@ -71,6 +71,14 @@
      <li><a href="../contact.html">Contact</a></li>  </ul>
 </nav>
 
+<!-- Disclaimer Bar -->
+  <div class="disclaimer-bar">
+    <div class="disclaimer-text">
+      ⚠️ This site may earn commission from affiliate links. Prices may vary across platforms. Stay informed.
+    </div>
+  </div>
+  <!-- Disclaimer Bar Ends-->
+
   <h2 class="site-title">Shop Different Styles!</h2>
   <!-- Search Bar -->
   
@@ -87,11 +95,51 @@
       }
     }
   </script>
+  
+  <!-- Filters  -->
+  
+   <a href="#filter" class="filter-btn" id="filter-Btn">Filter</a>
+
+<div class="filters" id="filter">
+  <div class="filter-group">
+    <label>Category:</label>
+    <label><input type="checkbox" name="category" value="sneakers"> Sneakers</label>
+    <label><input type="checkbox" name="category" value="corporate-shoes"> Corporate</label>
+    <label><input type="checkbox" name="category" value="boots"> Boots</label>
+     <label><input type="checkbox" name="category" value="heels"> Heels</label>
+      <label><input type="checkbox" name="category" value="flats"> Flats</label>
+  </div>
+
+  <div class="filter-group">
+    <label>Gender:</label>
+    <label><input type="checkbox" name="gender" value="male"> Male</label>
+    <label><input type="checkbox" name="gender" value="female"> Female</label>
+    <label><input type="checkbox" name="gender" value="unisex"> Unisex</label>
+  </div>
+
+  <div class="filter-group">
+    <label>Price Range:</label>
+    <input type="number" id="minPrice" placeholder="Min $">
+    <input type="number" id="maxPrice" placeholder="Max $">
+  </div>
+
+  <div class="filter-group buttons">
+    <label>&nbsp;</label>
+    <button id="filterBtn">Filter</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+</div>
+ 
+  
+  <!-- Filters End -->
   <!-- Preloader -->
 <div id="preloader">
   <div class="loader"></div>
 </div>
   <div class="grid-container" id="categoryGrid"></div>
+  <div id="loadingOverlay">
+  <div class="spinner"></div>
+</div>
 <!-- Pagination -->
 <div class="pagination-wrapper">
     <h4>Explore More Categories</h4><br>
