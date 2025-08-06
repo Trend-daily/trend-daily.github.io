@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Primary Meta SEO Tags -->
+<meta name="title" content="TrendDaily — Because Mid isn't an Option">
+<meta name="description" content="TrendDaily is your go-to destination for trending fashion, viral fits, and affiliate shopping made simple. Discover daily style updates and shop the looks in real-time.">
+
+<!-- Keywords (optional but helpful) -->
+<meta name="keywords" content="fashion trends, trending outfits, viral fashion, affiliate shopping, daily fashion updates, style inspiration, shop the look">
+
+<!-- Author -->
+<meta name="author" content="TrendDaily Team">
+
+<!-- Language -->
+<meta http-equiv="Content-Language" content="en">
+
+<!-- Robots -->
+<meta name="robots" content="index, follow">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://trenddaily.shop/">
+  <!-- Meta SEO tags end -->
+  
+  <!-- Social Media Meta Tags-->
+  <meta property="og:title" content="Fashion Trends Daily!" />
+<meta property="og:description" content="trenddaily.shop brings you the hottest fashion trends — shop the latest outfits, sneakers, accessories, and more in one click!" />
+<meta property="og:image" content="https://trenddaily.shop/images/banner.jpg" />
+<meta property="og:url" content="https://trenddaily.shop" />
+<meta property="og:type" content="website" />
+  <!-- Fonts  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<!-- Fonts end -->
+
+<!-- Favicons for ROOT files -->
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+<link rel="manifest" href="icons/site.webmanifest">
+<link rel="shortcut icon" href="icons/favicon.ico">
+<meta name="theme-color" content="#030">
+<!-- Favicons end-->
+  <script src="https://code.jquery.com/jquery-3.1.1.js">
+        </script>
+       
+  <title>TrendDaily — Because Mid Isn’t an Option.</title>
+  <link rel="stylesheet" href="style.css">
+    <script src="pagination.js"></script>
+    <style>
+        @media (min-width: 600px) {
+        .card-title{
+            color:#fff;
+        }
+        
+       }
+       
+       .nfcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+  text-align: center;
+  
+}
+
+.nfcon img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.nfcon-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #cc9900;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.nfcon-btn:hover {
+  background-color: #030;
+}
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            // Hide preloader after everything is fully loaded
+const preloader = document.getElementById('preloader');
+    preloader.style.opacity = '0';
+    preloader.style.transition = 'opacity 0.4s ease';
+    
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 400); // Allow fade out before removing
+        
+        //script.js
+/* Menu button styling*/
+
+let isMenuVisible = false;
+ $("main, footer").on("click",()=>{
+     
+     if(isMenuVisible){
+  $("nav").slideUp(500)
+  $(".menu-btn").trigger("click")
+  
+  isMenuVisible = false;
+  }
+ })
+ $(".menu-btn").on("click",()=>{
+   
+ if(isMenuVisible){
+   $("nav").slideUp(500)
+   $("article, footer").css("opacity", "1")
+   $("article, footer").css("transition", ".5s")
+ 
+   isMenuVisible = false;
+ }
+ else{
+   $("nav").slideDown(500)
+   $("article, footer").css("opacity", "0.3")
+   $("article, footer").css("transition", ".5s")
+   isMenuVisible = true;
+ }
+ })  
+ 
+ 
+ // Get the menu button element
+    
+const menuBtn = document.getElementById('menu-btn');
+
+// Add an event listener to the menu button
+menuBtn.addEventListener('click', () => {
+  // Toggle the 'clicked' class on the menu button
+  menuBtn.classList.toggle('clicked');
+});
+/* Menu button styling end..*/
+
+/* Header Effect on Scroll*/
+
+window.addEventListener('scroll', function () {
+  const header = document.getElementById('header');
+  if (window.scrollY > 20) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+ })
+
+})
+    </script>
+</head>
+<body style="background-color: #f9f9f9;">
+    <header id="header">
+        <h1><a href="index.html">TrendDaily</a></h1>
+        <div id="cta">
+                 <!-- The menu button -->
+<div class="menu-btn" id="menu-btn">
+  <span class="line line-1"></span>
+  <span class="line line-2"></span>
+  <span class="line line-3"></span>
+</div>
+<div class="bigMenu">
+    <ul id="bigMenu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="category/all-categories.html">Shop</a></li>
+     <li><a href="contact.html">Contact</a></li>
+     
+  </ul>
+</div>
+        </div> 
+                
+        </header>
+        
+    <br><br><br><br><br>
+    
+     <nav aria-label="Main Navigation">
+  <ul id="showmenu">
+     <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="category/all-categories.html">Shop</a></li>
+     <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+  <h2 class="site-title">Page Not Found</h2>
+  
+  <!-- Search Bar -->
+  
+  <div id="searchBar">
+  <input type="text" id="searchInput" placeholder="Search fashion..." />
+  <button onclick="handleSearch()">Search</button>
+</div>
+
+  <script>
+    function handleSearch() {
+      const query = document.getElementById("searchInput").value.trim().toLowerCase();
+      if (query) {
+        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+      }
+    }
+  </script>
+  <!-- Search Bar Ends-->
+  
+  <div class="nfcon">
+      <img src="images/404.jpg" alt="404 image">
+      <a class="nfcon-btn" href="index.html"> Return Home?</a>
+  </div>
+  
+  <!-- Preloader -->
+<div id="preloader">
+  <div class="loader"></div>
+</div>
+
+
+
+  
+
+
+
+<br><br>
+<!-- Pagination -->
+<div class="pagination-wrapper">
+    <h4>Explore More Categories</h4><br>
+  <div class="pagination-buttons" id="paginationButtons">
+      
+    <!-- Buttons will be inserted here by JS -->
+  </div>
+  <a href="#" id="toggleMore">More</a>
+</div>
+<!--  Quick links Installation  -->
+ <script type="module">
+  import { listen } from 'https://cdn.skypack.dev/quicklink';
+
+  listen();
+</script>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-columns">
+      <!-- Useful Links -->
+      <div class="footer-section useful-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+
+       <!-- Social Media -->
+      <div class="footer-section social-section">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://pin.it/5xthsE5nx" target="_blank" aria-label="Pinterest">
+            <img src="icons/pinterest.svg" alt="Pinterest">
+          </a>
+          <a href="https://www.instagram.com/fitnface_daily?igsh=YzljYTk1ODg3Zg==" target="_blank" aria-label="Instagram">
+            <img src="icons/instagram.svg" alt="Instagram">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="copyright">
+      &copy; 2025 TrendDaily. All rights reserved.
+    </p>
+  </div>
+</footer>
+</html>
