@@ -1546,7 +1546,7 @@ observer.observe(target);
 function renderProducts(list) {
     grid.innerHTML = '';
     if (list.length === 0) {
-      grid.innerHTML = '<p>No products match your filters. Click Reset.</p>';
+      grid.innerHTML = '<p class="filterMessage">No products match your filters. Click Reset.</p>';
       return;
     }
     list.forEach(product => {
