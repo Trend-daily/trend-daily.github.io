@@ -811,30 +811,8 @@ const preloader = document.getElementById('preloader');
     
     // Add more formal wear products here
   ];
+   
   
-   /* Filter pop up */
-  
-  const target = document.getElementById('filter');
-  const button = document.getElementById("filter-Btn");
-
-  const observer2 = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        button.classList.remove("visible");
-      } else {
-        button.classList.add("visible");
-      }
-    });
-  }, {
-    root: null,
-    threshold: 0
-    
-  });
-observer2.observe(target);
-  
-  
-  /* Filter pop up ends */
-
   // ===== BATCH VARIABLES =====
   let productIndex = 0;
   const batchSize = 20;
