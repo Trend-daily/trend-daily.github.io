@@ -1,19 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Hide preloader after everything is fully loaded
-const preloader = document.getElementById('preloader');
-    preloader.style.opacity = '0';
-    preloader.style.transition = 'opacity 0.4s ease';
-    
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 400); // Allow fade out before removing
-    //Product Filters
-    const filterBtn = document.getElementById('filterBtn');
+  const preloader = document.getElementById('preloader');
+  preloader.style.opacity = '0';
+  preloader.style.transition = 'opacity 0.4s ease';
+  setTimeout(() => { preloader.style.display = 'none'; }, 400);
+
+  const filterBtn = document.getElementById('filterBtn');
   const resetBtn = document.getElementById('resetBtn');
   const grid = document.getElementById("categoryGrid");
   const loadingOverlay = document.getElementById('loadingOverlay');
-  
-  
+
   const formalProducts = [
      {
       title: "BagSmart Tote Bag For Women",
@@ -812,7 +807,7 @@ const preloader = document.getElementById('preloader');
     // Add more formal wear products here
   ];
   
-   /* Filter pop up */
+  /* Filter pop up */
   
   const target = document.getElementById('filter');
   const button = document.getElementById("filter-Btn");
@@ -1011,3 +1006,10 @@ function initZoomEffect() {
   }
 }
 
+
+
+
+
+
+
+   

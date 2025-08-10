@@ -42,6 +42,8 @@ const preloader = document.getElementById('preloader');
     // Add more formal wear products here
   ];
   
+   
+  
 /* Render products */
 function renderProducts(list) {
     grid.innerHTML = '';
