@@ -1,0 +1,347 @@
+body {
+    
+}
+:root {
+  --green: #030;
+  --gold: #cc9900;
+  --light: #fdf5e6;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; color: var(--light); background: var(--green); overflow-x: hidden; }
+
+/* ===== HEADER ===== */
+
+
+h1 {
+  margin: 0;
+  left:0;
+  position:fixed;
+  left:0;
+  color: #fff;
+  max-width:fit-content;
+  font-family: "Bodoni Moda", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-style: italic; background:linear-gradient(35deg,#ffd6cc,#ffd6cc,#cc9900,#cc9900);
+background-clip: text;
+text-fill-color: transparent;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+header{
+    background:#030;
+    backdrop-filter:blur(8px);
+    width:100%;
+    position: fixed;
+    padding:1.5rem;
+    display:flex;
+    border: none;
+    justify-content:flex-end;
+    /* box-shadow:3px 5px 5px none; */
+    box-shadow: 0 6px 12px none;
+    z-index: 100;
+}
+/* header scrolling style*/
+header.scrolled{
+    box-shadow: 0 6px 12px #000;
+}
+/* Menu Styling Start*/
+
+.menu-btn {
+cursor: pointer;
+display: inline-block;
+position: relative;
+width: 30px;
+height: 30px;
+}
+
+/* Style the lines */
+.line {
+background-color: #fff;
+height: 2px;
+width: 30px;
+display: block;
+margin: 5px 0;
+transition: all 0.3s ease-in-out;
+}
+
+/* Style the lines when the button is clicked (X shape) */
+.menu-btn.clicked .line-1 {
+transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-btn.clicked .line-2 {
+opacity: 0;
+}
+
+.menu-btn.clicked .line-3 {
+transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Navigation Menu Styles */
+.bigMenu{
+  display: none;
+}
+nav {
+background-color: #030;
+padding: 1em;
+width: 100%;
+text-align: center;
+border: none;
+display:none;
+z-index: 3;
+position: fixed;
+}
+
+nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: space-between;
+}
+
+nav li {
+margin-right: 20px;
+
+}
+
+nav a {
+color: #fff;
+text-decoration: none;
+transition: color 0.2s ease;
+padding: 3px;
+border-radius: 5px;
+ transition: all .7s;
+}
+nav a:hover{
+  background:linear-gradient(35deg,#030,#030,#cc9900,#cc9900);
+  color: #fff;
+}
+/*responsive nav bar*/
+@media(max-width:480px){
+  nav ul{
+      display: flex;
+      
+  }
+ nav li {
+margin-top: 20px;
+}
+
+}
+@media(min-width:768px){
+.bigMenu{
+  display: flex;
+}
+nav{
+  display: none;
+}
+#menu-btn{
+  display: none;
+}
+  .bigMenu a{
+      color: #fff;
+      transition: color 0.2s ease;
+      margin: 10px;
+      text-decoration: none;
+      padding: 5px;
+      transition: all .7s;
+      
+      }
+      .bigMenu a:hover{
+      border-radius:10px ;
+       background:linear-gradient(35deg,#030,#030,#cc9900,#cc9900);;
+      }
+
+
+  
+  #bigMenu{
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+justify-content: space-between;
+  }
+}
+
+/* Menu Styling End*/
+
+/* ===== HERO ===== */
+.hero {
+  height: 100vh;
+  background: url('images/collagee.jpg') center/cover no-repeat;
+  position: relative; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding-top: 60px;
+}
+.clipped {
+    font-weight:900;
+    font-size: clamp(48px, 18vw, 220px); /* responsive */
+    line-height:0.9;
+    letter-spacing: -2px;
+    /* background image to show through the text */
+    background-image: url('images/collage22.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    -webkit-background-clip: text; /* for WebKit-based browsers */
+    background-clip: text; /* for Firefox */
+    -webkit-text-fill-color: #fff; /* Safari/Chrome */
+    color: #fff;
+    display:inline-block;
+    padding: 0 6px;
+    /* subtle stroke (optional) to help letter edges on some backgrounds */
+    text-shadow: 0 0 0.5px rgba(0,0,0,0.3);
+  }
+  /* ======= CTA Button Start ======== */
+  
+  .animated-button {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 0 0 2px #fff;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: #fff;
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .arr-1 {
+  right: 16px;
+}
+
+.animated-button .arr-2 {
+  left: -25%;
+}
+
+.animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #cc9900;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #212121;
+  border-radius: 12px;
+}
+
+.animated-button:hover .arr-1 {
+  right: -25%;
+}
+
+.animated-button:hover .arr-2 {
+  left: 16px;
+}
+
+.animated-button:hover .text {
+  transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+  fill: #212121;
+}
+
+.animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px #0303;
+}
+
+.animated-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}
+
+/* ======== CTA Button End ======== */
+
+.hero::after {
+  content: ""; position: absolute; inset: 0; background: rgba(3,48,3,0.4);
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-title { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 1rem;
+text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.65);
+ }
+
+  
+
+.hero-subtitle { font-size: 1.2rem; color: var(--light); margin-bottom: 3rem; }
+.scroll-indicator span {
+  display: block; width: 2px; height: 30px; background: var(--gold);
+  animation: scrollAnim 1.2s infinite;
+}
+@keyframes scrollAnim {
+  0%,100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(10px); opacity: 1; }
+}
+
+/* ===== LOOKBOOK ===== */
+.lookbook { background: var(--green); padding: 4rem 0; }
+.lookbook-container { display: flex; gap: 1rem; overflow-x: auto; padding: 0 3%; }
+.lookbook-item {
+  min-width: 300px; height: 450px; background-size: cover; background-position: center;
+  position: relative; flex-shrink: 0;
+}
+.shop-btn {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); border: none; padding: 0.5rem 1rem; color: var(--green); cursor: pointer;
+}
+.shop-btn:hover { background: var(--light); }
+
+
+/* ===== STORY BLOCK ===== */
+.story { display: flex; flex-wrap: wrap; background: var(--green); padding: 4rem 3%; gap: 2rem; }
+.story-left img { max-width: 100%; display: block; }
+.story-right { flex: 1; min-width: 250px; }
+.story-right h2 { font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 1rem; }
+.story-right p { color: var(--light); }
+
+/* ===== UGC GRID ===== */
+.ugc { padding: 4rem 3%; background: var(--green); text-align: center; }
+.ugc h2 { font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 2rem; }
+.ugc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.ugc-grid img { width: 100%; display: block; }
+
+/* ===== CTA ===== */
+.cta { background: var(--gold); text-align: center; padding: 4rem 3%; }
+.cta h2 { font-family: 'Playfair Display', serif; color: var(--green); margin-bottom: 2rem; }
+.cta-btn {
+  background: var(--green); color: var(--gold); border: none; padding: 0.8rem 2rem;
+  font-size: 1rem; cursor: pointer;
+}
+.cta-btn:hover { background: var(--light); color: var(--green); }
+
+/* ===== FOOTER ===== */
+.footer { background: var(--green); color: var(--light); text-align: center; padding: 2rem 3%; }
+.footer-logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.5rem; margin-bottom: 1rem; }
+.footer-socials a { color: var(--light); margin: 0 0.5rem; text-decoration: none; }
+.footer-socials a:hover { color: var(--gold); }
