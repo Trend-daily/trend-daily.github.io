@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        <section id="stats-section" style="background:#fff;padding:60px 20px;">
+  <div class="stats-container">
+    
+    <!-- Left Side: Pinterest Stats -->
+    <div class="stats-left">
+      <h2>Our Pinterest Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📌</div>
+          <h3 class="count" data-target="3600000">0</h3>
+          <p>Impressions</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👀</div>
+          <h3 class="count" data-target="32000">0</h3>
+          <p>Views</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💾</div>
+          <h3 class="count" data-target="8500">0</h3>
+          <p>Saves</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💬</div>
+          <h3 class="count" data-target="1200">0</h3>
+          <p>Engagements</p>
+        </div>
+      </div>
+      <div class="cta-strip">
+        <p>Get a <strong>Free 7-Day Pinterest SEO</strong> boost!</p>
+        <button>Start Now</button>
+      </div>
+    </div>
+
+    <!-- Right Side: Google SEO Promo -->
+    <div class="stats-right">
+      <h2>Boost Your Fashion Site with Google SEO</h2>
+      <p>We’re offering a <strong>Free SEO Audit</strong> for fashion websites. Discover hidden opportunities to rank higher and attract more customers.</p>
+      <div class="seo-mockup">
+        <div class="search-bar">🔍 Fashion SEO Audit</div>
+        <div class="search-result">Trenddaily - Boost Your Fashion Brand's Google Rankings</div>
+        <div class="search-result">Free SEO Audit - Limited Time Offer</div>
+      </div>
+      <button class="ping-btn">Get Free Audit</button>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+    align-items: center;
+  }
+  .stats-left, .stats-right {
+    flex: 1;
+    min-width: 300px;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap: 20px;
+    margin: 20px 0;
+  }
+  .stat-card {
+    background: #cc9900;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  .stat-card:hover { transform: translateY(-5px); }
+  .stat-icon { font-size: 2rem; margin-bottom: 10px; }
+  .stat-card h3 { font-size: 1.8rem; margin: 0; }
+  .cta-strip {
+    margin-top: 20px;
+    background: #ff4d4d;
+    padding: 15px;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cta-strip button {
+    background: white;
+    color: #030;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .stats-right p { margin: 10px 0 20px; }
+  .seo-mockup {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    transform: rotate(-1deg);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  .search-bar {
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .search-result {
+    background: white;
+    padding: 6px;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 0.9rem;
+  }
+  .ping-btn {
+    background: #030;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+  }
+  .ping-btn::after {
+    content: "";
+    position: absolute;
+    border: 2px solid #cc9900;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    animation: ping 2s infinite;
+  }
+  @keyframes ping {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+</style>
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Count-up animation
+  function animateCountUp(el) {
+    let target = +el.getAttribute('data-target');
+    let count = { val: 0 };
+    gsap.to(count, {
+      val: target,
+      duration: 2,
+      ease: "power1.out",
+      onUpdate: () => { el.textContent = Math.floor(count.val).toLocaleString(); }
+    });
+  }
+
+  ScrollTrigger.batch(".stat-card", {
+    start: "top 80%",
+    once: true,
+    onEnter: (batch) => {
+      batch.forEach(card => {
+        animateCountUp(card.querySelector('.count'));
+        gsap.from(card, { opacity: 0, y: 40, duration: 0.5, delay: 0.1 });
+      });
+    }
+  });
+
+  // Slide-in for right side
+  gsap.from(".stats-right", {
+    scrollTrigger: {
+      trigger: ".stats-right",
+      start: "top 85%",
+      once: true
+    },
+    opacity: 0,
+    x: 80,
+    duration: 1
+  });
+</script>
+    </body>
+</html>

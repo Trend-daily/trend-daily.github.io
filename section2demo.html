@@ -1,0 +1,201 @@
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
+  body {
+    font-family: sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+
+  section {
+    padding: 50px;
+  }
+
+  .lookbook-grid {
+  column-count: 2; /* Number of columns */
+  column-gap: 20px;
+  opacity: 0;
+}
+
+.lookbook-grid img {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+  break-inside: avoid; /* Prevents image split across columns */
+}
+  .swiper {
+    width: 100%;
+    height: 350px;
+    display: none; /* hidden until animation is done */
+  }
+
+  .swiper-slide {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .swiper-slide img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-info {
+    padding: 10px;
+  }
+
+  .card-info h4 {
+    margin: 5px 0;
+    color: #333;
+  }
+
+  .card-info button {
+    background: #004aad;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .card-info button:hover {
+    background: #003080;
+  }
+</style>
+
+<section style="background:#004aad;color:white;display:flex;align-items:center;justify-content:center;min-height:100vh;">
+  <h1>Hero Section</h1>
+</section>
+
+<section id="lookbook">
+  <div class="lookbook-grid">
+    <img src="https://trenddaily.shop/images/banner.jpg" />
+    <img src="https://trenddaily.shop/images/banner.jpg" />
+    <img src="https://trenddaily.shop/images/banner.jpg" />
+    <img src="https://trenddaily.shop/images/banner.jpg" />
+    <img src="https://trenddaily.shop/images/banner.jpg" class="last-image" />
+  </div>
+
+  <!-- Swiper Carousel -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="https://picsum.photos/300/200?1" />
+        <div class="card-info">
+          <h4>$45.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://picsum.photos/300/200?2" />
+        <div class="card-info">
+          <h4>$55.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://picsum.photos/300/200?3" />
+        <div class="card-info">
+          <h4>$65.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://picsum.photos/300/200?4" />
+        <div class="card-info">
+          <h4>$75.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="https://picsum.photos/300/200?5" />
+        <div class="card-info">
+          <h4>$85.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#eee;padding:50px;">
+  <h2>Next Section</h2>
+  <p>More content here...</p>
+</section>
+
+<!-- ===== GSAP + Swiper JS installation Start ===== -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- ===== GSAP + Swiper JS installation Ends ===== -->
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Fade in grid images when lookbook section enters
+  gsap.to(".lookbook-grid", {
+    opacity: 1,
+    duration: 1,
+    scrollTrigger: {
+      trigger: "#lookbook",
+      start: "top 70%"
+    }
+  });
+
+  // Trigger the carousel animation when last image is in view
+  let animationPlayed = false;
+
+  ScrollTrigger.create({
+    trigger: ".last-image",
+    start: "top 80%", // start before it's fully in view
+    once: true, // only once
+    onEnter: () => {
+      if (animationPlayed) return;
+      animationPlayed = true;
+
+      gsap.to(".lookbook-grid img", {
+        scale: 0.8,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.8,
+        onComplete: () => {
+          document.querySelector(".lookbook-grid").style.display = "none";
+          document.querySelector(".swiper").style.display = "block";
+
+          // Fade in carousel
+          gsap.from(".swiper-slide", {
+            opacity: 0,
+            y: 50,
+            stagger: 0.15,
+            duration: 0.6
+          });
+
+          // Initialize Swiper
+          new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            breakpoints:  {
+                768: {slidesPerView:2},
+                1024: {slidesPerView:3},
+                1440: {slidesPerView:4},
+                
+            },
+            loop: true,
+            autoplay: { delay: 3000 },
+            pagination: { el: ".swiper-pagination", clickable: true },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev"
+            }
+          });
+        }
+      });
+    }
+  });
+</script>

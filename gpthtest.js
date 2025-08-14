@@ -1,66 +1,47 @@
-document.addEventListener('DOMContentLoaded',()=>{
-/* ==== preloader start. ===== */
-const preloader = document.getElementById('preloader');
-    preloader.style.opacity = '0';
-    preloader.style.transition = 'opacity 0.4s ease';
-    
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 400); // Allow fade out before removing
-    /* ===== preloader ends ====== */
-    // Parallax effect for hero
-$(document).on('mousemove', function(e) {
-  let moveX = (e.pageX / $(window).width() - 0.5) * 20;
-  let moveY = (e.pageY / $(window).height() - 0.5) * 20;
-  $('.hero').css('background-position', `${50 + moveX}% ${50 + moveY}%`);
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-/* Menu button styling*/
+  /* ==== Preloader ==== */
+  const preloader = document.getElementById('preloader');
+  preloader.style.opacity = '0';
+  preloader.style.transition = 'opacity 0.4s ease';
+  setTimeout(() => { preloader.style.display = 'none'; }, 400);
 
-let isMenuVisible = false;
- $("main, footer").on("click",()=>{
-     
-     if(isMenuVisible){
-  $("nav").slideUp(500)
-  $(".menu-btn").trigger("click")
-  
-  isMenuVisible = false;
-  }
- })
- $(".menu-btn").on("click",()=>{
-   
- if(isMenuVisible){
-   $("nav").slideUp(500)
-   $("article, footer").css("opacity", "1")
-   $("article, footer").css("transition", ".5s")
- 
-   isMenuVisible = false;
- }
- else{
-   $("nav").slideDown(500)
-   $("article, footer").css("opacity", "0.3")
-   $("article, footer").css("transition", ".5s")
-   isMenuVisible = true;
- }
- })  
- 
- 
- // Get the menu button element
-    
-const menuBtn = document.getElementById('menu-btn');
+  /* ==== Parallax Effect for Hero ==== */
+  $(document).on('mousemove', function (e) {
+    let moveX = (e.pageX / $(window).width() - 0.5) * 20;
+    let moveY = (e.pageY / $(window).height() - 0.5) * 20;
+    $('.hero').css('background-position', `${50 + moveX}% ${50 + moveY}%`);
+  });
 
-// Add an event listener to the menu button
-menuBtn.addEventListener('click', () => {
-  // Toggle the 'clicked' class on the menu button
-  menuBtn.classList.toggle('clicked');
-});
-/* Menu button styling end..*/
+  /* ==== Menu Toggle ==== */
+  let isMenuVisible = false;
+  $("main, footer").on("click", () => {
+    if (isMenuVisible) {
+      $("nav").slideUp(500);
+      $(".menu-btn").trigger("click");
+      isMenuVisible = false;
+    }
+  });
 
-/* ======= Section 2 (Lookbook Script) Start =======*/
+  $(".menu-btn").on("click", () => {
+    if (isMenuVisible) {
+      $("nav").slideUp(500);
+      $("article, footer").css({ "opacity": "1", "transition": ".5s" });
+      isMenuVisible = false;
+    } else {
+      $("nav").slideDown(500);
+      $("article, footer").css({ "opacity": "0.3", "transition": ".5s" });
+      isMenuVisible = true;
+    }
+  });
 
-gsap.registerPlugin(ScrollTrigger);
+  document.getElementById('menu-btn').addEventListener('click', (e) => {
+    e.target.classList.toggle('clicked');
+  });
 
-  // Fade in grid images when lookbook section enters
+  /* ==== Section 2: Lookbook Animation ==== */
+  gsap.registerPlugin(ScrollTrigger);
+
   gsap.to(".lookbook-grid", {
     opacity: 1,
     duration: 1,
@@ -70,13 +51,11 @@ gsap.registerPlugin(ScrollTrigger);
     }
   });
 
-  // Trigger the carousel animation when last image is in view
   let animationPlayed = false;
-
   ScrollTrigger.create({
     trigger: ".last-image",
-    start: "top bottom", // start before it's fully in view
-    once: true, // only once
+    start: "top bottom",
+    once: true,
     onEnter: () => {
       if (animationPlayed) return;
       animationPlayed = true;
@@ -90,7 +69,6 @@ gsap.registerPlugin(ScrollTrigger);
           document.querySelector(".lookbook-grid").style.display = "none";
           document.querySelector(".swiper").style.display = "block";
 
-          // Fade in carousel
           gsap.from(".swiper-slide", {
             opacity: 0,
             y: 50,
@@ -98,35 +76,26 @@ gsap.registerPlugin(ScrollTrigger);
             duration: 0.6
           });
 
-          // Initialize Swiper
           new Swiper(".mySwiper", {
             slidesPerView: 1,
             spaceBetween: 20,
-            breakpoints:  {
-                768: {slidesPerView:2},
-                1024: {slidesPerView:3},
-                1440: {slidesPerView:4},
-                
+            breakpoints: {
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+              1440: { slidesPerView: 4 }
             },
             loop: true,
             autoplay: { delay: 2000 },
             pagination: { el: ".swiper-pagination", clickable: true },
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev"
-            }
+            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
           });
         }
       });
     }
   });
-  
-  /* ===== Section 2 (Lookbook Script) Ends =====*/
-  
-  
- /* ====== Section 3 about-contact section ====== */
- 
- emailjs.init("rqySEZhRgtZkk_uVp"); // Replace with your actual EmailJS Public Key
+
+  /* ==== Section 3: About & Contact ==== */
+  emailjs.init("rqySEZhRgtZkk_uVp");
 
   const form = document.getElementById("contact-form");
   const btn = document.getElementById("contactBtn");
@@ -139,33 +108,24 @@ gsap.registerPlugin(ScrollTrigger);
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // ✅ Validate email
     if (!validator.isEmail(mail.value)) {
       showMessage("Please enter a valid email address.", false);
       return;
     }
- // ✅ Show loading spinner
+
     btn.disabled = true;
     spinner.style.display = "inline-block";
     ctxt.style.display = "none";
-  
-    // ✅ Your custom template parameters
-    const templateParams = {
-      myname: "Clinton",              // Optional extra field
-      name: mail.value,
-      message: msg.value
-    };
 
-    // ✅ Send using send()
+    const templateParams = { myname: "Clinton", name: mail.value, message: msg.value };
+
     emailjs.send("service_alk8kvm", "template_ql3bx4s", templateParams)
       .then(() => {
-      
         showMessage("Message sent successfully!", true);
         form.reset();
       })
-      .catch((error) => {
+      .catch(() => {
         showMessage("Failed to send message. Please try again.", false);
-        console.error("EmailJS error:", error);
       })
       .finally(() => {
         btn.disabled = false;
@@ -179,16 +139,10 @@ gsap.registerPlugin(ScrollTrigger);
     messageSpan.style.color = success ? "#030" : "red";
     messageSpan.style.fontWeight = "bold";
     messageSpan.style.display = "block";
-
-    setTimeout(() => {
-      messageSpan.style.display = "none";
-    }, 5000);
+    setTimeout(() => { messageSpan.style.display = "none"; }, 5000);
   }
-  
-  /* ====== Section 3 about-contact ends ====== */
-  
-  /*==== Section 4 Performance Metrics Start ====*/
-  // Count-up animation
+
+  /* ==== Section 4: Performance Metrics ==== */
   function animateCountUp(el) {
     let target = +el.getAttribute('data-target');
     let count = { val: 0 };
@@ -211,7 +165,6 @@ gsap.registerPlugin(ScrollTrigger);
     }
   });
 
-  // Slide-in for right side
   gsap.from(".stats-right", {
     scrollTrigger: {
       trigger: ".stats-right",
@@ -222,10 +175,8 @@ gsap.registerPlugin(ScrollTrigger);
     x: 80,
     duration: 1
   });
- 
 
-  /*==== Section 4 Performance Metrics end ====*/
-})
+});
 
 /* ==== Ensure ScrollTrigger recalculates after images/fonts load ==== */
 window.addEventListener("load", () => {

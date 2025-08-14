@@ -5,10 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fashion Landing Page</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- ==== Swiper CSS Installation ==== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+ <!-- ==== Swiper CSS Installation end ==== -->
   <link rel="stylesheet" href="htest.css">
-  <script src="htest.js"></script>
+  <script src="gpthtest.js"></script>
+   <!-- ==== jQuery Installation ==== -->
     <script src="https://code.jquery.com/jquery-3.1.1.js">
         </script>
+         <!-- ==== jQuery Installation end ==== -->
+   <!-- EmailJS and Validator Installation  -->
+   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.9.0/validator.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <!-- EmailJS and Validator Installation end  -->
 </head>
 <body>
 
@@ -55,7 +65,7 @@
 <div class="scroll-indicator"></div>
       <div class="scroll-indicator"><span></span>
       </div>   
-       <!-- ======= CTA Button End ======== -->
+       <!-- ======= CTA Button Start======== -->
        <center><button class="animated-button">
   <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
     <path
@@ -75,62 +85,251 @@
       </div>
    
   </section>
-
+<br><br>
   <!-- ===== LOOKBOOK SECTION ===== -->
-  <section class="lookbook">
-    <div class="lookbook-container">
-      <div class="lookbook-item" style="background-image:url('https://trenddaily.shop/images/streetwear-images/trenddaily-female-streetwear2.jpg')">
-        <button class="shop-btn">Shop The Look</button>
-      </div>
-      <div class="lookbook-item" style="background-image:url('https://trenddaily.shop/images/streetwear-images/trenddaily-female-streetwear2.jpg')">
-        <button class="shop-btn">Shop Look</button>
-      </div>
-      <div class="lookbook-item" style="background-image:url('https://trenddaily.shop/images/streetwear-images/trenddaily-female-streetwear2.jpg')">
-        <button class="shop-btn">Shop Look</button>
-      </div>
-    </div>
-  </section>
+  <center><h2>Check out Our Catalog!</h2></center>
+  <section id="lookbook">
+  <div class="lookbook-grid">
+    <img src="images/streetwear-images/trenddaily-female-streetwear3.jpg" />
+    <img src="images/formalwear-images/trenddaily-womens-suit1.jpg" />
+    <img src="images/streetwear-images/trenddaily-male-2-piece-set1.jpg" />
+    <img src="images/streetwear-images/trenddaily-male-2-piece-set3.jpg" />
+    <img src="images/streetwear-images/trenddaily-male-jeans12.jpg" />
+   
+  </div>
+  <div class="last-image" style="color: transparent;">Start animation</div>
 
-  <!-- ===== STORY BLOCK ===== -->
-  <section class="story">
-    <div class="story-left">
-      <img src="https://via.placeholder.com/800x600?text=Runway+Clip" alt="Runway Clip">
+  <!-- Swiper Carousel -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-female-streetwear3.jpg" />
+        <div class="card-info">
+            <h4>Women 2-piece sets</h4>
+          <h4>$45.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+       <div class="swiper-slide">
+        <img src="images/formalwear-images/trenddaily-womens-suit1.jpg" />
+        <div class="card-info">
+            <h4>Women Suits</h4>
+          <h4>$45.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-2-piece-set1.jpg" />
+        <div class="card-info">
+          <h4>Men 2-piece sets</h4>
+          <h4>$55.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-2-piece-set3.jpg" />
+        <div class="card-info">
+            <h4>Men 2-piece sets</h4>
+          <h4>$65.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-2-piece-set5.jpg" />
+        <div class="card-info">
+            <h4>Men 2-piece sets</h4>
+          <h4>$75.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-jeans12.jpg" />
+        <div class="card-info">
+            <h4>Jeans for Men</h4>
+          <h4>$75.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-jeans1.jpg" />
+        <div class="card-info">
+            <h4>Jeans for Men</h4>
+          <h4>$75.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-female-streetwear1.jpg" />
+        <div class="card-info">
+            <h4>Women 2-piece sets</h4>
+          <h4>$85.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
     </div>
-    <div class="story-right">
-      <h2>Our Story</h2>
-      <p>From the ateliers of Paris to the streets of New York, our designs carry the whispers of timeless elegance and modern sophistication. Each piece is crafted with precision, passion, and purpose.</p>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== UGC GRID ===== -->
-  <section class="ugc">
-    <h2>Spotted in Fashionista</h2>
-    <div class="ugc-grid">
-      <img src="https://trenddaily.shop/images/streetwear-images/trenddaily-female-streetwear3.jpg" alt="">
-      <img src="https://trenddaily.shop/images/streetwear-images/trenddaily-female-streetwear3.jpg" alt="">
-      <img src="https://trenddaily.shop/images/streetwear-images/trenddaily-female-streetwear2.jpg" alt="">
-      <img src="https://trenddaily.shop/images/streetwear-images/trenddaily-female-streetwear2.jpg" alt="">
+<!-- ======= LookBook Section Ends ======= -->
+
+<!-- ======= About Contact Section Start ======== -->
+<section class="about-contact-section">
+  <!-- About -->
+  <div class="about-section">
+    <img src="images/banner.jpg" alt="Trenddaily Logo">
+    <h2>About Trenddaily</h2>
+    <p>
+      TrendDaily is your go-to destination for fast, fresh fashion inspiration — from clothing and shoes to accessories, hair trends, and watches. We curate the latest styles into simple, scrollable categories, updated daily and optimized for mobile, so you can explore what’s trending and shop through trusted partners without the clutter. Think of it as your digital closet companion, making fashion easy to follow and effortless to wear.
+</p>
+
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <h3>Contact Us</h3>
+    <form id ="contact-form">
+      <input type="text" placeholder="Your Name" required>
+       <input type="email" id="email" name="email" placeholder="Your Email" required />
+      <textarea id="message" name="message" rows="4" placeholder="Your Message"></textarea>
+      <button id="contactBtn" type="submit">
+           <!-- From Uiverse.io by david-mohseni --> 
+<div class="spinner" id="spinner">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <div class="bar4"></div>
+    <div class="bar5"></div>
+    <div class="bar6"></div>
+    <div class="bar7"></div>
+    <div class="bar8"></div>
+    <div class="bar9"></div>
+    <div class="bar10"></div>
+    <div class="bar11"></div>
+    <div class="bar12"></div>
+</div>
+  <span id="ctxt">Send</span>
+      </button>
+      <span id="form-message"></span>
+       <br>
+  <p class="hintro2">
+    Can't send message? please email us at <a href="mailto:trenddaily17@gmail.com"> Support </a>
+</p>
+    </form>
+  </div>
+</section>
+<!-- ===== live contact section ======= -->
+
+<!-- ======== About Contact Section Ends ========-->
+
+  <!-- ===== Performance Metrics Start ===== -->
+  <section id="stats-section" style="background:#030;padding:60px 20px;">
+  <div class="stats-container">
+    
+    <!-- Left Side: Pinterest Stats -->
+    <div class="stats-left">
+      <h2>Our Pinterest Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📌</div>
+          <h3 class="count" data-target="3600000">0</h3>
+          <p>Impressions</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👀</div>
+          <h3 class="count" data-target="32000">0</h3>
+          <p>Views</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💾</div>
+          <h3 class="count" data-target="8500">0</h3>
+          <p>Saves</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💬</div>
+          <h3 class="count" data-target="1200">0</h3>
+          <p>Engagements</p>
+        </div>
+      </div>
+      <div class="cta-strip">
+        <p>Get a <strong>Free 7-Day Pinterest SEO</strong> boost!</p>
+        <button>Start Now</button>
+      </div>
     </div>
-  </section>
+
+    <!-- Right Side: Google SEO Promo -->
+    <div class="stats-right">
+      <h2>Boost Your Fashion Site with Google SEO</h2>
+      <p>We’re offering a <strong>Free SEO Audit</strong> for fashion websites. Discover hidden opportunities to rank higher and attract more customers.</p>
+      <div class="seo-mockup">
+        <div class="search-bar">🔍 Fashion SEO Audit</div>
+        <div class="search-result">Trenddaily - Boost Your Fashion Brand's Google Rankings</div>
+        <div class="search-result">Free SEO Audit - Limited Time Offer</div>
+      </div>
+      <button class="ping-btn">Get Free Audit</button>
+    </div>
+
+  </div>
+</section>
+
+  
+  <!-- ===== Performance Metrics End ===== -->
+ 
 
   <!-- ===== STATEMENT CTA ===== -->
   <section class="cta">
     <h2>This Season. Your Story. Your Look.</h2>
     <button class="cta-btn">Shop Now</button>
   </section>
+<!-- Preloader -->
+<div id="preloader">
+  <div class="loader"></div>
+</div>
+<!-- ===== Preloader End ===== -->
 
   <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer-logo">Trenddaily</div>
-    <div class="footer-socials">
-      <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
-      <a href="#">Twitter</a>
-    </div>
-    <p>&copy; 2025 Fashionista. All rights reserved.</p>
-  </footer>
+  <!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-columns">
+      <!-- Useful Links -->
+      <div class="footer-section useful-links">
+        <h4>Useful Links</h4>
+        <ul>
+          <li><a href="../about.html">About Us</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
 
+       <!-- Social Media -->
+      <div class="footer-section social-section">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://pin.it/5xthsE5nx" target="_blank" aria-label="Pinterest">
+            <img src="icons/pinterest.svg" alt="Pinterest">
+          </a>
+          <a href="https://www.instagram.com/fitnface_daily?igsh=YzljYTk1ODg3Zg==" target="_blank" aria-label="Instagram">
+            <img src="icons/instagram.svg" alt="Instagram">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <p class="copyright">
+      &copy; 2025 TrendDaily. All rights reserved.
+    </p>
+  </div>
+</footer>
+ 
+ <!-- ===== Footer Ends ===== -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="script.js"></script>
+  
+  <!-- ===== GSAP + Swiper JS installation Start ===== -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- ===== GSAP + Swiper JS installation Ends ===== -->
 </body>
 </html>
