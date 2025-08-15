@@ -1,5 +1,5 @@
-body {
-    
+html{
+  scroll-behavior: smooth;
 }
 :root {
   --green: #030;
@@ -8,7 +8,13 @@ body {
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Lato', sans-serif; color: var(--light); background: var(--green); overflow-x: hidden; }
+body { 
+font-family: 'Lato', sans-serif;
+ color: var(--light); 
+ background: var(--green); 
+ overflow-x: hidden;
+ 
+  }
 
 /* Preloader styles */
 #preloader {
@@ -188,6 +194,7 @@ nav{
 
   
   #bigMenu{
+  font-size: 1.5rem;
 list-style: none;
 margin: 0;
 padding: 0;
@@ -325,9 +332,14 @@ text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.65);
   
 
 .hero-subtitle { font-size: 1.2rem; color: var(--light); margin-bottom: 3rem; }
-.scroll-indicator span {
-  display: block; width: 2px; height: 30px; background: var(--gold);
+.scroll-indicator{
+  display: block;
   animation: scrollAnim 1.2s infinite;
+  font-size: 2.5rem;
+}
+.scroll-indicator a{
+    text-decoration: none;
+    color: #fff;
 }
 @keyframes scrollAnim {
   0%,100% { transform: translateY(0); opacity: 0.4; }

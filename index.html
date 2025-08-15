@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- Primary Meta SEO Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+   <!-- Primary Meta SEO Tags -->
 <meta name="title" content="TrendDaily — Because Mid isn't an Option">
 <meta name="description" content="TrendDaily is your go-to destination for trending fashion, viral fits, and affiliate shopping made simple. Discover daily style updates and shop the looks in real-time.">
 
@@ -48,23 +49,27 @@
 <link rel="shortcut icon" href="icons/favicon.ico">
 <meta name="theme-color" content="#030">
 <!-- Favicons end-->
-  <script src="https://code.jquery.com/jquery-3.1.1.js">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- ==== Swiper CSS Installation ==== -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+ <!-- ==== Swiper CSS Installation end ==== -->
+  <link rel="stylesheet" href="htest.css">
+  <script src="htest.js"></script>
+   <!-- ==== jQuery Installation ==== -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js">
         </script>
-       
-  <title>TrendDaily — Because Mid Isn’t an Option.</title>
-  <link rel="stylesheet" href="style.css">
-    <script src="data.js"></script>
-    <script src="pagination.js"></script>
-    <style>
-        @media (min-width: 768px) {
-        .card-title{
-            color:#fff;
-        }
-       }
-    </style>
+         <!-- ==== jQuery Installation end ==== -->
+   <!-- EmailJS and Validator Installation  -->
+   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.9.0/validator.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <!-- EmailJS and Validator Installation end  -->
+   <title>TrendDaily — Because Mid Isn’t an Option</title>
 </head>
 <body>
-    <header id="header">
+
+  <!-- ===== HEADER ===== -->
+  <header id="header">
         <h1><a href="index.html">TrendDaily</a></h1>
         <div id="cta">
                  <!-- The menu button -->
@@ -97,62 +102,239 @@
   </ul>
 </nav>
 
-  <h2 class="site-title">Explore Fashion Categories</h2>
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2 class="hero-title clipped">The New Season<br> Has Arrived</h2>
+      <p class="hero-subtitle">Elevate Your Style with Our Latest Collection</p>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<div class="scroll-indicator"></div>
+      
+       <!-- ======= CTA Button Start======== -->
+       <center><button onclick="window.location.href = 'category/all-categories.html'" class="animated-button">
+         
+  <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+    ></path>
+  </svg>
+  <span class="text">Shop the looks</span>
+  <span class="circle"></span>
+  <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+    ></path>
+  </svg>
   
-  <!-- Search Bar -->
   
-  <div id="searchBar">
-  <input type="text" id="searchInput" placeholder="Search fashion..." />
-  <button onclick="handleSearch()">Search</button>
-</div>
+</button>
+</center>
+<!-- ======= CTA Button End ======== -->
+ <center>
+ <div class="scroll-indicator"><a href="#">&#8595;</a>
+      </div>  
+      </center> 
+      </div>
+   
+  </section>
+<br><br>
+  <!-- ===== LOOKBOOK SECTION ===== -->
+  <center><h2>Check out Our Catalog!</h2></center>
+  <section id="lookbook">
+  <div class="lookbook-grid">
+ 
+  </div>
+  <div class="last-image" style="color: transparent;">Start animation</div>
 
-  <script>
-    function handleSearch() {
-      const query = document.getElementById("searchInput").value.trim().toLowerCase();
-      if (query) {
-        window.location.href = `search.html?q=${encodeURIComponent(query)}`;
-      }
-    }
-  </script>
-  <!-- Search Bar Ends-->
+  <!-- Swiper Carousel -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-female-streetwear3.jpg" />
+        <div class="card-info">
+            <h4>Women 2-piece sets</h4>
+          <h4>$21.00</h4>
+          <button onclick="window.location.href = https://amzn.to/44WLpgx">Shop Now</button>
+        </div>
+      </div>
+       <div class="swiper-slide">
+        <img src="images/formalwear-images/trenddaily-womens-suit1.jpg" />
+        <div class="card-info">
+            <h4>Women Suits</h4>
+          <h4>$45.00</h4>
+          <button onclick="window.location.href = https://amzn.to/3UbfT8s">Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-2-piece-set1.jpg" />
+        <div class="card-info">
+          <h4>Men 2-piece sets</h4>
+          <h4>$22.00</h4>
+          <button onclick="window.location.href = https://amzn.to/4lYtz2Q">Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-2-piece-set3.jpg" />
+        <div class="card-info">
+            <h4>Men 2-piece sets</h4>
+          <h4>$20.00</h4>
+          <button onclick="window.location.href = https://amzn.to/4lYtz2Q">Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-2-piece-set5.jpg" />
+        <div class="card-info">
+            <h4>Men 2-piece sets</h4>
+          <h4>$16.00</h4>
+          <button onclick="window.location.href = https://amzn.to/4lYtz2Q">Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-jeans12.jpg" />
+        <div class="card-info">
+            <h4>Jeans for Men</h4>
+          <h4>$35.00</h4>
+          <button onclick="window.location.href = https://amzn.to/3JeNlIH">Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-male-jeans1.jpg" />
+        <div class="card-info">
+            <h4>Jeans for Men</h4>
+          <h4>$35.00</h4>
+          <button onclick="window.location.href = https://amzn.to/3JeNlIH">Shop Now</button>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <img src="images/streetwear-images/trenddaily-female-streetwear1.jpg" />
+        <div class="card-info">
+            <h4>Women 2-piece sets</h4>
+          <h4>$15.00</h4>
+          <button>Shop Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= LookBook Section Ends ======= -->
+
+<!-- ======= About Contact Section Start ======== -->
+<section class="about-contact-section">
+  <!-- About -->
+  <div class="about-section">
+    <img src="images/banner.jpg" alt="Trenddaily Logo">
+    <h2>About Trenddaily</h2>
+    <p>
+      TrendDaily is your go-to destination for fast, fresh fashion inspiration — from clothing and shoes to accessories, hair trends, and watches. We curate the latest styles into simple, scrollable categories, updated daily and optimized for mobile, so you can explore what’s trending and shop through trusted partners without the clutter. Think of it as your digital closet companion, making fashion easy to follow and effortless to wear.
+</p>
+
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <h3>Contact Us</h3>
+    <form id ="contact-form">
+      <input type="text" placeholder="Your Name" required>
+       <input type="email" id="email" name="email" placeholder="Your Email" required />
+      <textarea id="message" name="message" rows="4" placeholder="Your Message"></textarea>
+      <button id="contactBtn" type="submit">
+           <!-- From Uiverse.io by david-mohseni --> 
+<div class="spinner" id="spinner">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <div class="bar4"></div>
+    <div class="bar5"></div>
+    <div class="bar6"></div>
+    <div class="bar7"></div>
+    <div class="bar8"></div>
+    <div class="bar9"></div>
+    <div class="bar10"></div>
+    <div class="bar11"></div>
+    <div class="bar12"></div>
+</div>
+  <span id="ctxt">Send</span>
+      </button>
+      <span id="form-message"></span>
+       <br>
+  <p class="hintro2">
+    Can't send message? please email us at <a href="mailto:trenddaily17@gmail.com"> Support </a>
+</p>
+    </form>
+  </div>
+</section>
+<!-- ===== live contact section ======= -->
+
+<!-- ======== About Contact Section Ends ========-->
+
+  <!-- ===== Performance Metrics Start ===== -->
+  <section id="stats-section" style="background:#030;padding:60px 20px;">
+  <div class="stats-container">
+    
+    <!-- Left Side: Pinterest Stats -->
+    <div class="stats-left">
+      <h2>Our Pinterest Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📌</div>
+          <h3 class="count" data-target="3600000">0</h3>
+          <p>Monthly Views</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👀</div>
+          <h3 class="count" data-target="2500000">0</h3>
+          <p>Audience</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💾</div>
+          <h3 class="count" data-target="14000">0</h3>
+          <p>Saves</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💬</div>
+          <h3 class="count" data-target="129000">0</h3>
+          <p>Engagements</p>
+        </div>
+      </div>
+      <div class="cta-strip">
+        <p>Get a <strong>Free 7-Day Pinterest SEO</strong> boost!</p>
+        <button onclick="window.location.href='contact.html'">Start Now</button>
+      </div>
+    </div>
+
+    <!-- Right Side: Google SEO Promo -->
+    <div class="stats-right">
+      <h2>Boost Your Fashion Site with Google SEO</h2>
+      <p>We’re offering a <strong>Free SEO Audit</strong> for fashion websites. Discover hidden opportunities to rank higher and attract more customers.</p>
+      <div class="seo-mockup">
+        <div class="search-bar">🔍 Fashion SEO Audit</div>
+        <div class="search-result">Trenddaily - Boost Your Fashion Brand's Google Rankings</div>
+        <div class="search-result">Free SEO Audit - Limited Time Offer</div>
+      </div>
+      <button class="ping-btn" onclick="window.location.href='contact.html'">Get Free Audit</button>
+    </div>
+
+  </div>
+</section>
+
   
-  <!-- Preloader -->
+  <!-- ===== Performance Metrics End ===== -->
+ 
+
+  <!-- ===== STATEMENT CTA ===== -->
+  <section class="cta">
+    <h2>This Season. Your Story. Your Look.</h2>
+    <button class="cta-btn" onclick="window.location.href='category/all-categories.html'">Shop Now</button>
+  </section>
+<!-- Preloader -->
 <div id="preloader">
   <div class="loader"></div>
 </div>
+<!-- ===== Preloader End ===== -->
 
-
-<!-- Container -->
-  <div class="grid-container" id="categoryGrid"></div>
-  
-  
-<!-- Carousel Container-->
-<h2 class="site-title">Shop Trending Looks Straightaway!</h2>
- <div class="carousel-container">
-    <button class="nav-btn-pr nav-left-pr" id="prevBtn">&#8249;</button>
-    <div class="carousel-wrapper" id="carousel"></div>
-    <button class="nav-btn-pr nav-right-pr" id="nextBtn">&#8250;</button>
-  </div>
-<!-- Carousel Container Ends-->
-
-
-<br><br>
-<!-- Pagination -->
-<div class="pagination-wrapper">
-    <h4>Explore More Categories</h4><br>
-  <div class="pagination-buttons" id="paginationButtons">
-      
-    <!-- Buttons will be inserted here by JS -->
-  </div>
-  <a href="#" id="toggleMore">More</a>
-</div>
-<!--  Quick links Installation  -->
- <script type="module">
-  import { listen } from 'https://cdn.skypack.dev/quicklink';
-
-  listen();
-</script>
-
+  <!-- ===== FOOTER ===== -->
+  <!-- Footer -->
 <footer class="site-footer">
   <div class="footer-content">
     <div class="footer-columns">
@@ -186,4 +368,15 @@
     </p>
   </div>
 </footer>
+ 
+ <!-- ===== Footer Ends ===== -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
+  
+  <!-- ===== GSAP + Swiper JS installation Start ===== -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- ===== GSAP + Swiper JS installation Ends ===== -->
+</body>
 </html>

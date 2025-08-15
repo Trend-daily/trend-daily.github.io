@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   function showMessage(text, success = true) {
     messageSpan.textContent = text;
-    messageSpan.style.color = success ? "#fff" : "red";
+    messageSpan.style.color = success ? "#030" : "red";
     messageSpan.style.fontWeight = "bold";
     messageSpan.style.display = "block";
 

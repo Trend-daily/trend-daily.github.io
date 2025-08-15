@@ -1,132 +1,97 @@
-document.addEventListener('DOMContentLoaded',()=>{
-/* ==== preloader start. ===== */
-const preloader = document.getElementById('preloader');
-    preloader.style.opacity = '0';
-    preloader.style.transition = 'opacity 0.4s ease';
-    
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 400); // Allow fade out before removing
-    /* ===== preloader ends ====== */
-    // Parallax effect for hero
-$(document).on('mousemove', function(e) {
-  let moveX = (e.pageX / $(window).width() - 0.5) * 20;
-  let moveY = (e.pageY / $(window).height() - 0.5) * 20;
-  $('.hero').css('background-position', `${50 + moveX}% ${50 + moveY}%`);
-});
+document.addEventListener('DOMContentLoaded', () => {
+  /* Header Effect on Scroll*/
 
-/* Menu button styling*/
-
-let isMenuVisible = false;
- $("main, footer").on("click",()=>{
-     
-     if(isMenuVisible){
-  $("nav").slideUp(500)
-  $(".menu-btn").trigger("click")
-  
-  isMenuVisible = false;
+window.addEventListener('scroll', function () {
+  const header = document.getElementById('header');
+  if (window.scrollY > 20) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
   }
  })
- $(".menu-btn").on("click",()=>{
-   
- if(isMenuVisible){
-   $("nav").slideUp(500)
-   $("article, footer").css("opacity", "1")
-   $("article, footer").css("transition", ".5s")
  
-   isMenuVisible = false;
- }
- else{
-   $("nav").slideDown(500)
-   $("article, footer").css("opacity", "0.3")
-   $("article, footer").css("transition", ".5s")
-   isMenuVisible = true;
- }
- })  
- 
- 
- // Get the menu button element
-    
-const menuBtn = document.getElementById('menu-btn');
+  /* ==== preloader start. ===== */
+  const preloader = document.getElementById('preloader');
+  preloader.style.opacity = '0';
+  preloader.style.transition = 'opacity 0.4s ease';
 
-// Add an event listener to the menu button
-menuBtn.addEventListener('click', () => {
-  // Toggle the 'clicked' class on the menu button
-  menuBtn.classList.toggle('clicked');
-});
-/* Menu button styling end..*/
+  setTimeout(() => {
+    preloader.style.display = 'none';
+  }, 400);
+  /* ===== preloader ends ====== */
 
-/* ======= Section 2 (Lookbook Script) Start =======*/
+  // Parallax effect for hero
+  $(document).on('mousemove', function (e) {
+    let moveX = (e.pageX / $(window).width() - 0.5) * 20;
+    let moveY = (e.pageY / $(window).height() - 0.5) * 20;
+    $('.hero').css('background-position', `${50 + moveX}% ${50 + moveY}%`);
+  });
 
-gsap.registerPlugin(ScrollTrigger);
+  /* Menu button styling*/
+  let isMenuVisible = false;
+  $("main, footer").on("click", () => {
+    if (isMenuVisible) {
+      $("nav").slideUp(500);
+      $(".menu-btn").trigger("click");
+      isMenuVisible = false;
+    }
+  });
 
-  // Fade in grid images when lookbook section enters
-  gsap.to(".lookbook-grid", {
-    opacity: 1,
+  $(".menu-btn").on("click", () => {
+    if (isMenuVisible) {
+      $("nav").slideUp(500);
+      $("article, footer").css({ opacity: "1", transition: ".5s" });
+      isMenuVisible = false;
+    } else {
+      $("nav").slideDown(500);
+      $("article, footer").css({ opacity: "0.3", transition: ".5s" });
+      isMenuVisible = true;
+    }
+  });
+
+  const menuBtn = document.getElementById('menu-btn');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('clicked');
+  });
+  /* Menu button styling end..*/
+
+  /* ======= Section 2 (Lookbook Script) Start =======*/
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Fade in carousel when lookbook enters
+  document.querySelector(".swiper").style.display = "block";
+  gsap.from(".swiper-slide", {
+    opacity: 0,
+    y: 50,
     duration: 1,
     scrollTrigger: {
       trigger: "#lookbook",
-      start: "top bottom"
+      start: "top 80%",
+      once: true
     }
   });
 
-  // Trigger the carousel animation when last image is in view
-  let animationPlayed = false;
-
-  ScrollTrigger.create({
-    trigger: ".last-image",
-    start: "top bottom", // start before it's fully in view
-    once: true, // only once
-    onEnter: () => {
-      if (animationPlayed) return;
-      animationPlayed = true;
-
-      gsap.to(".lookbook-grid img", {
-        scale: 0.8,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        onComplete: () => {
-          document.querySelector(".lookbook-grid").style.display = "none";
-          document.querySelector(".swiper").style.display = "block";
-
-          // Fade in carousel
-          gsap.from(".swiper-slide", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.15,
-            duration: 0.6
-          });
-
-          // Initialize Swiper
-          new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            breakpoints:  {
-                768: {slidesPerView:2},
-                1024: {slidesPerView:3},
-                1440: {slidesPerView:4},
-                
-            },
-            loop: true,
-            autoplay: { delay: 2000 },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            navigation: {
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev"
-            }
-          });
-        }
-      });
+  // Initialize Swiper immediately
+  new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+      1440: { slidesPerView: 4 },
+    },
+    loop: true,
+    autoplay: { delay: 2000 },
+    pagination: { el: ".swiper-pagination", clickable: true },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
     }
   });
-  
-  /* ===== Section 2 (Lookbook Script) Ends =====*/
-  
-  
- /* ====== Section 3 about-contact section ====== */
- 
- emailjs.init("rqySEZhRgtZkk_uVp"); // Replace with your actual EmailJS Public Key
+  /* ===== Section 2 Ends =====*/
+
+  /* ====== Section 3 about-contact section ====== */
+  emailjs.init("rqySEZhRgtZkk_uVp");
 
   const form = document.getElementById("contact-form");
   const btn = document.getElementById("contactBtn");
@@ -139,27 +104,23 @@ gsap.registerPlugin(ScrollTrigger);
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // ✅ Validate email
     if (!validator.isEmail(mail.value)) {
       showMessage("Please enter a valid email address.", false);
       return;
     }
- // ✅ Show loading spinner
+
     btn.disabled = true;
     spinner.style.display = "inline-block";
     ctxt.style.display = "none";
-  
-    // ✅ Your custom template parameters
+
     const templateParams = {
-      myname: "Clinton",              // Optional extra field
+      myname: "Clinton",
       name: mail.value,
       message: msg.value
     };
 
-    // ✅ Send using send()
     emailjs.send("service_alk8kvm", "template_ql3bx4s", templateParams)
       .then(() => {
-      
         showMessage("Message sent successfully!", true);
         form.reset();
       })
@@ -184,11 +145,9 @@ gsap.registerPlugin(ScrollTrigger);
       messageSpan.style.display = "none";
     }, 5000);
   }
-  
   /* ====== Section 3 about-contact ends ====== */
-  
+
   /*==== Section 4 Performance Metrics Start ====*/
-  // Count-up animation
   function animateCountUp(el) {
     let target = +el.getAttribute('data-target');
     let count = { val: 0 };
@@ -201,7 +160,7 @@ gsap.registerPlugin(ScrollTrigger);
   }
 
   ScrollTrigger.batch(".stat-card", {
-    start: "top bottom",
+    start: "top 80%",
     once: true,
     onEnter: (batch) => {
       batch.forEach(card => {
@@ -211,23 +170,15 @@ gsap.registerPlugin(ScrollTrigger);
     }
   });
 
-  // Slide-in for right side
+  // Fade-in for right side (no slide)
   gsap.from(".stats-right", {
     scrollTrigger: {
       trigger: ".stats-right",
-      start: "top bottom",
+      start: "top 85%",
       once: true
     },
     opacity: 0,
-    x: 80,
     duration: 1
   });
- 
-
   /*==== Section 4 Performance Metrics end ====*/
-})
-
-/* ==== Ensure ScrollTrigger recalculates after images/fonts load ==== */
-window.addEventListener("load", () => {
-  ScrollTrigger.refresh();
 });

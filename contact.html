@@ -60,16 +60,203 @@
   <script src="contact.js?v=168786532"></script>
   <style>
   
-      .hintro2{
-          color: #fff;
-      }
-      .hintro2 a{
+    .contact-section {
+    flex: 1 1 300px;
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .contact-section h3 {
+    margin-bottom: 15px;
+    color: #030;
+  }
+
+  .contact-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .contact-section input,
+  .contact-section textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  .contact-section button {
+    background: #030;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .contact-section button:hover {
+    background: #cc9900;
+  }
+  
+  /* send button start */
+  .button {
+  font-family: inherit;
+  font-size: 20px;
+  background: royalblue;
+  color: white;
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.button span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+.button svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.button:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+.button:hover span {
+  transform: translateX(5em);
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
+}
+
+/* send button ends*/
+  #formMessage{
+      color: #ff3;
+  }
+  /* Spinner styling */
+/* From Uiverse.io by david-mohseni */ 
+.spinner {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: none;
+}
+
+.spinner div {
+  width: 8%;
+  height: 24%;
+  background: rgb(128, 128, 128);
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  opacity: 0;
+  border-radius: 50px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  animation: fade458 1s linear infinite;
+}
+
+@keyframes fade458 {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.25;
+  }
+}
+
+.spinner .bar1 {
+  transform: rotate(0deg) translate(0, -130%);
+  animation-delay: 0s;
+}
+
+.spinner .bar2 {
+  transform: rotate(30deg) translate(0, -130%);
+  animation-delay: -1.1s;
+}
+
+.spinner .bar3 {
+  transform: rotate(60deg) translate(0, -130%);
+  animation-delay: -1s;
+}
+
+.spinner .bar4 {
+  transform: rotate(90deg) translate(0, -130%);
+  animation-delay: -0.9s;
+}
+
+.spinner .bar5 {
+  transform: rotate(120deg) translate(0, -130%);
+  animation-delay: -0.8s;
+}
+
+.spinner .bar6 {
+  transform: rotate(150deg) translate(0, -130%);
+  animation-delay: -0.7s;
+}
+
+.spinner .bar7 {
+  transform: rotate(180deg) translate(0, -130%);
+  animation-delay: -0.6s;
+}
+
+.spinner .bar8 {
+  transform: rotate(210deg) translate(0, -130%);
+  animation-delay: -0.5s;
+}
+
+.spinner .bar9 {
+  transform: rotate(240deg) translate(0, -130%);
+  animation-delay: -0.4s;
+}
+
+.spinner .bar10 {
+  transform: rotate(270deg) translate(0, -130%);
+  animation-delay: -0.3s;
+}
+
+.spinner .bar11 {
+  transform: rotate(300deg) translate(0, -130%);
+  animation-delay: -0.2s;
+}
+
+.spinner .bar12 {
+  transform: rotate(330deg) translate(0, -130%);
+  animation-delay: -0.1s;
+}
+
+.hintro2{
+    color:#000
+}
+.hintro2 a{
           text-decoration:none;
-          color: yellow;
-      }
-      .authors-section{
-          background:#030;
-          color:#fff;
+          color: #030;
       }
   </style>
 </head>
@@ -108,28 +295,36 @@
 </nav>
 <br><br>
 <center>
-    <div class="hintro">
-        <h2>Welcome to Trenddaily Support</h2>
-    </div>
-    </center>
-  <div class="contact-container">
-    
-    <form id="contact-form">
-        <h2>Contact Us</h2>
-  <input type="email" id="email" name="email" placeholder="Your Email" required />
-  <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-
-  <button id="contactBtn" type="submit">
-    <span id="spinner" style="display:none;" class="spinner"></span>
-    <span id="ctxt">Contact</span>
-  </button>
-
-  <span id="form-message"></span>
-  <br>
+    <div class="contact-section">
+    <h3>Contact Us</h3>
+    <form id ="contact-form">
+      <input type="text" placeholder="Your Name" required>
+       <input type="email" id="email" name="email" placeholder="Your Email" required />
+      <textarea id="message" name="message" rows="4" placeholder="Your Message"></textarea>
+      <button id="contactBtn" type="submit">
+           <!-- From Uiverse.io by david-mohseni --> 
+<div class="spinner" id="spinner">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <div class="bar4"></div>
+    <div class="bar5"></div>
+    <div class="bar6"></div>
+    <div class="bar7"></div>
+    <div class="bar8"></div>
+    <div class="bar9"></div>
+    <div class="bar10"></div>
+    <div class="bar11"></div>
+    <div class="bar12"></div>
+</div>
+  <span id="ctxt">Send</span>
+      </button>
+      <span id="form-message"></span>
+       <br>
   <p class="hintro2">
     Can't send message? please email us at <a href="mailto:trenddaily17@gmail.com"> Support </a>
 </p>
-</form>
+    </form>
   </div>
 
 </section>

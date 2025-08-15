@@ -1,19 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
+  /* Header Effect on Scroll*/
 
-  /* ==== Preloader ==== */
+window.addEventListener('scroll', function () {
+  const header = document.getElementById('header');
+  if (window.scrollY > 20) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+ })
+ 
+  /* ==== preloader start. ===== */
   const preloader = document.getElementById('preloader');
   preloader.style.opacity = '0';
   preloader.style.transition = 'opacity 0.4s ease';
-  setTimeout(() => { preloader.style.display = 'none'; }, 400);
 
-  /* ==== Parallax Effect for Hero ==== */
+  setTimeout(() => {
+    preloader.style.display = 'none';
+  }, 400);
+  /* ===== preloader ends ====== */
+
+  // Parallax effect for hero
   $(document).on('mousemove', function (e) {
     let moveX = (e.pageX / $(window).width() - 0.5) * 20;
     let moveY = (e.pageY / $(window).height() - 0.5) * 20;
     $('.hero').css('background-position', `${50 + moveX}% ${50 + moveY}%`);
   });
 
-  /* ==== Menu Toggle ==== */
+  /* Menu button styling*/
   let isMenuVisible = false;
   $("main, footer").on("click", () => {
     if (isMenuVisible) {
@@ -26,75 +40,57 @@ document.addEventListener('DOMContentLoaded', () => {
   $(".menu-btn").on("click", () => {
     if (isMenuVisible) {
       $("nav").slideUp(500);
-      $("article, footer").css({ "opacity": "1", "transition": ".5s" });
+      $("article, footer").css({ opacity: "1", transition: ".5s" });
       isMenuVisible = false;
     } else {
       $("nav").slideDown(500);
-      $("article, footer").css({ "opacity": "0.3", "transition": ".5s" });
+      $("article, footer").css({ opacity: "0.3", transition: ".5s" });
       isMenuVisible = true;
     }
   });
 
-  document.getElementById('menu-btn').addEventListener('click', (e) => {
-    e.target.classList.toggle('clicked');
+  const menuBtn = document.getElementById('menu-btn');
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('clicked');
   });
+  /* Menu button styling end..*/
 
-  /* ==== Section 2: Lookbook Animation ==== */
+  /* ======= Section 2 (Lookbook Script) Start =======*/
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.to(".lookbook-grid", {
-    opacity: 1,
+  // Fade in carousel when lookbook enters
+  document.querySelector(".swiper").style.display = "block";
+  gsap.from(".swiper-slide", {
+    opacity: 0,
+    y: 50,
     duration: 1,
     scrollTrigger: {
       trigger: "#lookbook",
-      start: "top bottom"
+      start: "top 80%",
+      once: true
     }
   });
 
-  let animationPlayed = false;
-  ScrollTrigger.create({
-    trigger: ".last-image",
-    start: "top bottom",
-    once: true,
-    onEnter: () => {
-      if (animationPlayed) return;
-      animationPlayed = true;
-
-      gsap.to(".lookbook-grid img", {
-        scale: 0.8,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        onComplete: () => {
-          document.querySelector(".lookbook-grid").style.display = "none";
-          document.querySelector(".swiper").style.display = "block";
-
-          gsap.from(".swiper-slide", {
-            opacity: 0,
-            y: 50,
-            stagger: 0.15,
-            duration: 0.6
-          });
-
-          new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            breakpoints: {
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-              1440: { slidesPerView: 4 }
-            },
-            loop: true,
-            autoplay: { delay: 2000 },
-            pagination: { el: ".swiper-pagination", clickable: true },
-            navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
-          });
-        }
-      });
+  // Initialize Swiper immediately
+  new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+      1440: { slidesPerView: 4 },
+    },
+    loop: true,
+    autoplay: { delay: 2000 },
+    pagination: { el: ".swiper-pagination", clickable: true },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
     }
   });
+  /* ===== Section 2 Ends =====*/
 
-  /* ==== Section 3: About & Contact ==== */
+  /* ====== Section 3 about-contact section ====== */
   emailjs.init("rqySEZhRgtZkk_uVp");
 
   const form = document.getElementById("contact-form");
@@ -117,15 +113,20 @@ document.addEventListener('DOMContentLoaded', () => {
     spinner.style.display = "inline-block";
     ctxt.style.display = "none";
 
-    const templateParams = { myname: "Clinton", name: mail.value, message: msg.value };
+    const templateParams = {
+      myname: "Clinton",
+      name: mail.value,
+      message: msg.value
+    };
 
     emailjs.send("service_alk8kvm", "template_ql3bx4s", templateParams)
       .then(() => {
         showMessage("Message sent successfully!", true);
         form.reset();
       })
-      .catch(() => {
+      .catch((error) => {
         showMessage("Failed to send message. Please try again.", false);
+        console.error("EmailJS error:", error);
       })
       .finally(() => {
         btn.disabled = false;
@@ -139,10 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
     messageSpan.style.color = success ? "#030" : "red";
     messageSpan.style.fontWeight = "bold";
     messageSpan.style.display = "block";
-    setTimeout(() => { messageSpan.style.display = "none"; }, 5000);
-  }
 
-  /* ==== Section 4: Performance Metrics ==== */
+    setTimeout(() => {
+      messageSpan.style.display = "none";
+    }, 5000);
+  }
+  /* ====== Section 3 about-contact ends ====== */
+
+  /*==== Section 4 Performance Metrics Start ====*/
   function animateCountUp(el) {
     let target = +el.getAttribute('data-target');
     let count = { val: 0 };
@@ -155,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   ScrollTrigger.batch(".stat-card", {
-    start: "top bottom",
+    start: "top 80%",
     once: true,
     onEnter: (batch) => {
       batch.forEach(card => {
@@ -165,20 +170,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Fade-in for right side (no slide)
   gsap.from(".stats-right", {
     scrollTrigger: {
       trigger: ".stats-right",
-      start: "top bottom",
+      start: "top 85%",
       once: true
     },
     opacity: 0,
-    x: 80,
     duration: 1
   });
-
-});
-
-/* ==== Ensure ScrollTrigger recalculates after images/fonts load ==== */
-window.addEventListener("load", () => {
-  ScrollTrigger.refresh();
+  /*==== Section 4 Performance Metrics end ====*/
 });
