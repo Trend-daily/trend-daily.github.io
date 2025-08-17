@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     { label: "Formal Wear", link: "formalwear-trends.html" },
     { label: "Sneakers", link: "sneakers-trends.html" },
     { label: "Trending", link: "../trending/trends.html" },
+     { label: "Shop", link: "../category/all-categories.html" },
   ];
 
   const paginationContainer = document.getElementById("paginationButtons");
