@@ -45,6 +45,13 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/powder-blue-style-guide.html",
   shopLink: "../category/streetwear-shop.html"
 },
+{
+  title: "10 Chic 2-Piece Outfits Every Woman Should Try in 2025",
+  excerpt: "Step up your style game in 2025 with 10 chic 2-piece outfits every woman should own. From casual streetwear to classy sets, these looks are unmissable.",
+  image: "../images/streetwear-images/2piece-outfits-ft.jpg",
+  readMore: "../trending/10-chic-2piece-outfits-women-2025.html",
+  shopLink: "../category/streetwear-shop.html"
+},
     // Add more posts as needed
   ];
 
