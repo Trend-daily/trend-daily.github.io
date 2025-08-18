@@ -111,6 +111,14 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/best-ways-to-style-female-tote-bag-casually.html",
   shopLink: "../category/bags-shop.html"
 },
+{
+  title: "The 2025 Suit Capsule: 5 Must-Own Suits for Every Man",
+  excerpt: "Want to stand out in 2025? These are the 5 suits every man must own this year—timeless fits that guarantee sharp style for work, weddings, and beyond.",
+  image: "../images/formalwear-images/mens_five_suits-ft.jpg",
+  readMore: "../trending/top-5-suits-every-man-should-own-2025.html",
+  shopLink: "../category/formal-wear-shop.html"
+},
+    
     // Add more posts as needed
   ];
 
