@@ -125,6 +125,13 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/10-chic-2piece-outfits-women-2025.html",
   shopLink: "../category/streetwear-shop.html"
 },
+{
+  title: "15 Chic 2-Piece Crochet Outfits for Women in 2025",
+  excerpt: "15 trendy women’s 2-piece crochet outfit ideas, from casual sets to chic vacation looks. Perfect style inspo for your next fashion upgrade!",
+  image: "../images/streetwear-images/2-piece-crotchet-ft.jpg",
+  readMore: "../trending/15-stunning-2-piece-crochet-outfits-for-women-2025.html",
+  shopLink: "../category/streetwear-shop.html"
+},
     // Add more posts as needed
   ];
 
