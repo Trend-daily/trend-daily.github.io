@@ -59,6 +59,13 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/15-stunning-2-piece-crochet-outfits-for-women-2025.html",
   shopLink: "../category/streetwear-shop.html"
 },
+{
+  title: "15 Stylish 2-Piece Crochet Outfits for Men in 2025",
+  excerpt: "Discover 15 stylish 2-piece crochet outfits for men in 2025, perfect for festivals, beach trips, and upscale events. From relaxed co-ords to tailored sets, find versatile looks with styling tips to elevate your wardrobe. Pin your favorites!",
+  image: "../images/streetwear-images/2-piece-mcrotchet-ft.jpg",
+  readMore: "../trending/15-stylish-2-piece-crochet-outfits-for-men-2025.html",
+  shopLink: "../category/streetwear-shop.html"
+},
     // Add more posts as needed
   ];
 
