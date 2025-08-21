@@ -785,7 +785,6 @@ p{
     max-width: 900px;
     margin: 0 auto;
     padding: 3rem 2rem;
-    text-align: center;
     color: #fff;
   }
 
@@ -835,5 +834,25 @@ p{
     font-size: 0.9rem;
     color: #aaa;
     margin-bottom: 2rem;
+  }
+}
+
+/* Image wrap  */
+
+.img-wrap {
+  display: grid;
+  grid-template-columns: 1fr; /* default: single column on small screens */
+  gap: 20px; /* spacing between cards */
+}
+
+@media (min-width: 768px) {
+  .img-wrap {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on larger screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  .img-wrap {
+    grid-template-columns: repeat(4, 1fr); /* 4 cards per row on desktops */
   }
 }
