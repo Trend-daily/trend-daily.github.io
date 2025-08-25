@@ -35,73 +35,96 @@ const preloader = document.getElementById('preloader');
   ];
 
   const grid = document.getElementById("categoryGrid");
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
 
-  blogPosts.forEach(post => {
-    const card = document.createElement("div");
-    card.className = "blog-card";
+  let postsPerLoad = 20;  // initial batch size
+  let loadIncrement = 5; // posts per "Load More"
+  let currentIndex = 0;
 
-    const imageContainer = document.createElement("div");
-    imageContainer.className = "image-container";
+  // Reusable render function
+  function renderPosts(start, end) {
+    const slice = blogPosts.slice(start, end);
+    slice.forEach(post => {
+      const card = document.createElement("div");
+      card.className = "blog-card";
 
-    const loader = document.createElement("div");
-    loader.className = "loader";
+      const imageContainer = document.createElement("div");
+      imageContainer.className = "image-container";
 
-    const img = document.createElement("img");
-    img.className = "blog-thumb";
-    img.src = post.image;
-    img.alt = post.title;
+      const loader = document.createElement("div");
+      loader.className = "loader";
 
-    // Fade-in effect on image load
-    img.addEventListener("load", () => {
-      loader.style.display = "none";
-      img.style.display = "block";
-      img.classList.add("fade-in");
+      const img = document.createElement("img");
+      img.className = "blog-thumb";
+      img.src = post.image;
+      img.alt = post.title;
+
+      // Fade-in effect
+      img.addEventListener("load", () => {
+        loader.style.display = "none";
+        img.style.display = "block";
+        img.classList.add("fade-in");
+      });
+
+      if (img.complete) {
+        loader.style.display = "none";
+        img.style.display = "block";
+        img.classList.add("fade-in");
+      }
+
+      imageContainer.appendChild(loader);
+      imageContainer.appendChild(img);
+
+      const content = document.createElement("div");
+      content.className = "blog-content";
+
+      const title = document.createElement("div");
+      title.className = "blog-title";
+      title.textContent = post.title;
+
+      const excerpt = document.createElement("p");
+      excerpt.className = "blog-excerpt";
+      excerpt.textContent = post.excerpt;
+
+      const buttons = document.createElement("div");
+      buttons.className = "blog-buttons";
+
+      const readMoreBtn = document.createElement("button");
+      readMoreBtn.textContent = "Read More";
+      readMoreBtn.onclick = () => window.location.href = post.readMore;
+
+      const shopBtn = document.createElement("button");
+      shopBtn.textContent = "Shop Now";
+      shopBtn.onclick = () => window.location.href = post.shopLink;
+
+      buttons.appendChild(readMoreBtn);
+      buttons.appendChild(shopBtn);
+
+      content.appendChild(title);
+      content.appendChild(excerpt);
+      content.appendChild(buttons);
+
+      card.appendChild(imageContainer);
+      card.appendChild(content);
+
+      grid.appendChild(card);
     });
+  }
 
-    // In case image is cached
-    if (img.complete) {
-      loader.style.display = "none";
-      img.style.display = "block";
-      img.classList.add("fade-in");
+  // Initial render
+  renderPosts(currentIndex, currentIndex + postsPerLoad);
+  currentIndex += postsPerLoad;
+
+  // Load more posts on button click
+  loadMoreBtn.addEventListener("click", () => {
+    renderPosts(currentIndex, currentIndex + loadIncrement);
+    currentIndex += loadIncrement;
+
+    if (currentIndex >= blogPosts.length) {
+      loadMoreBtn.style.display = "none"; // hide button when done
     }
-
-    imageContainer.appendChild(loader);
-    imageContainer.appendChild(img);
-
-    const content = document.createElement("div");
-    content.className = "blog-content";
-
-    const title = document.createElement("div");
-    title.className = "blog-title";
-    title.textContent = post.title;
-
-    const excerpt = document.createElement("p");
-    excerpt.className = "blog-excerpt";
-    excerpt.textContent = post.excerpt;
-
-    const buttons = document.createElement("div");
-    buttons.className = "blog-buttons";
-
-    const readMoreBtn = document.createElement("button");
-    readMoreBtn.textContent = "Read More";
-    readMoreBtn.onclick = () => window.location.href = post.readMore;
-
-    const shopBtn = document.createElement("button");
-    shopBtn.textContent = "Shop Now";
-    shopBtn.onclick = () => window.location.href = post.shopLink;
-
-    buttons.appendChild(readMoreBtn);
-    buttons.appendChild(shopBtn);
-
-    content.appendChild(title);
-    content.appendChild(excerpt);
-    content.appendChild(buttons);
-
-    card.appendChild(imageContainer);
-    card.appendChild(content);
-
-    grid.appendChild(card);
   });
+
 
 //script.js
 /* Menu button styling*/

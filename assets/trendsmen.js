@@ -8,36 +8,12 @@ const preloader = document.getElementById('preloader');
       preloader.style.display = 'none';
     }, 400); // Allow fade out before removing
   const blogPosts = [
-      {
-      title: "Pretty in Pink Power Suits",
-      excerpt:
-        "Make a bold statement with our curated pink suit collection. Double-breasted elegance meets confident femininity in styles perfect for work and weekends.",
-      image: "../images/formalwear-images/pink-power-suit1.jpg",
-      readMore: "../trending/pretty-pink-suits.html",
-      shopLink: "../category/formal-wear-shop.html"
-    },
-    {
-      title: "Black Gowns: Elegant, Sexy, and Classy",
-      excerpt:
-        "Discover the timeless allure of women’s black gowns — flattering for all body types, perfect for every occasion, and always on trend.",
-      image: "../images/formalwear-images/blackgowns-1.jpg",
-      readMore: "../trending/womens-black-gowns.html",
-      shopLink: "../category/formal-wear-shop.html"
-    },
     {
       title: "Red Suits for Formal Events: Stylish not Loud",
       excerpt:
         "A red suit commands attention—but at a formal event, the key is sophistication, not shock value. Learn how to wear one with polish, not pizzazz, for weddings, galas, and black-tie affairs.",
       image: "../images/formalwear-images/redsuits-1.jpg",
       readMore: "../trending/red-suits.html",
-      shopLink: "../category/formal-wear-shop.html"
-    },
-    {
-      title: "From Desk to Dinner: 5 Transitional Work Outfits For Women",
-      excerpt:
-        "5 seamless work-to-evening outfit transitions with pro styling tips. Master desk-to-dinner dressing with blazers, wraps & monochrome looks.",
-      image: "../images/formalwear-images/womencorporate-2.jpg",
-      readMore: "../trending/desk-to-dinner-outfits.html",
       shopLink: "../category/formal-wear-shop.html"
     },
     {
@@ -54,7 +30,27 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/top-5-suits-every-man-should-own-2025.html",
   shopLink: "../category/formal-wear-shop.html"
 },
-    
+{
+  title: "Baggy Jeans Are Back: How to Style Them Without Looking Sloppy",
+  excerpt: "Baggy jeans are trending hard in 2025 — here are 7 polished outfit combos that balance comfort and edge without looking messy.",
+  image: "../images/streetwear-images/baggy-jeans-hero.jpg",
+  readMore: "../trending/baggy-jeans-style-guide.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+{
+  title: "Skinny Jeans Aren’t Dead: 7 2025-Ready Ways to Style Them",
+  excerpt: "From streetwear to smart casual, these 7 outfit formulas prove skinny jeans are still fire in 2025 — without looking outdated.",
+  image: "../images/streetwear-images/skinny-jeans-hero.jpg",
+  readMore: "../trending/skinny-jeans-style-guide.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+{
+  title: "15 Stylish 2-Piece Crochet Outfits for Men in 2025",
+  excerpt: "Discover 15 stylish 2-piece crochet outfits for men in 2025, perfect for festivals, beach trips, and upscale events. From relaxed co-ords to tailored sets, find versatile looks with styling tips to elevate your wardrobe. Pin your favorites!",
+  image: "../images/streetwear-images/2-piece-mcrotchet-ft.jpg",
+  readMore: "../trending/15-stylish-2-piece-crochet-outfits-for-men-2025.html",
+  shopLink: "../category/streetwear-shop.html"
+},
     // Add more posts as needed
   ];
 
@@ -225,5 +221,6 @@ const fullImages = document.querySelectorAll(".full-image");
   });
   
   })
+  
   
   

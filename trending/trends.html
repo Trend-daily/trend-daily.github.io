@@ -54,7 +54,7 @@
        
   <title>Trending Fashion</title>
   <link rel="stylesheet" href="../assets/style.css">
-  <script src="../assets/trends.js"></script>
+  <script src="../assets/trendswomen.js"></script>
   <script src="../assets/pagination.js"></script>
 </head>
 <body>
@@ -99,7 +99,15 @@
   <input type="text" id="searchInput" placeholder="Search fashion..." />
   <button onclick="handleSearch()">Search</button>
 </div>
-
+<!-- Pagination -->
+<div class="pagination-wrapper">
+    <h4>Explore More Categories</h4><br>
+  <div class="pagination-buttons" id="paginationButtons">
+      
+    <!-- Buttons will be inserted here by JS -->
+  </div>
+  <a href="#" id="toggleMore">More</a>
+</div>
 
   <script>
     function handleSearch() {
@@ -114,6 +122,7 @@
   <div class="loader"></div>
 </div>
   <div class="grid-container" id="categoryGrid"></div>
+  <button id="loadMoreBtn" class="loadMoreBtn">Load more</button>
 <!-- Pagination -->
 <div class="pagination-wrapper">
     <h4>Explore More Categories</h4><br>

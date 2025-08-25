@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-   // Hide preloader after everything is fully loaded
+  // Hide preloader after everything is fully loaded
 const preloader = document.getElementById('preloader');
     preloader.style.opacity = '0';
     preloader.style.transition = 'opacity 0.4s ease';
@@ -7,8 +7,37 @@ const preloader = document.getElementById('preloader');
     setTimeout(() => {
       preloader.style.display = 'none';
     }, 400); // Allow fade out before removing
+    
   const blogPosts = [
-      {
+   {
+  title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",
+  excerpt: "Cut through the hype with 7 wearable 2025 streetwear trends - from luxury gorpcore to anti-fit denim. Real-world styling tips + what to skip.",
+  image: "../images/streetwear-images/womensstyle.jpg",
+  readMore: "../trending/2025-streetwear-trends.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+{
+  title: "How to Wear Pink Jeans Without Looking Basic: 2025's Smartest Styling Hacks",
+  excerpt: "Master 5 sophisticated ways to style pink jeans with exact color formulas and texture combinations.",
+  image: "../images/streetwear-images/pinkwears.jpg",
+  readMore: "../trending/pink-jeans-outfits.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+ {
+  title: "Why Powder Blue Is the New Neutral: A Fresh Take on Everyday Style in 2025",
+  excerpt: "Discover how powder blue became 2025’s softest streetwear essential—plus 8 ways to wear it like a modern neutral.",
+  image: "../images/streetwear-images/powder-blue-hero.jpg",
+  readMore: "../trending/powder-blue-style-guide.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+    {
+  title: "How to Style a Black Tote Bag: 7 Elevated Outfit Ideas for 2025",
+  excerpt: "From streetwear to office-ready looks, discover 7 polished outfit formulas that prove the black tote is the ultimate fashion essential in 2025.",
+  image: "../images/bag-images/black-tote-hero.jpg",
+  readMore: "../trending/black-tote-bag-style.html",
+  shopLink: "../category/bags-shop.html"
+},
+ {
       title: "Pretty in Pink Power Suits",
       excerpt:
         "Make a bold statement with our curated pink suit collection. Double-breasted elegance meets confident femininity in styles perfect for work and weekends.",
@@ -25,14 +54,6 @@ const preloader = document.getElementById('preloader');
       shopLink: "../category/formal-wear-shop.html"
     },
     {
-      title: "Red Suits for Formal Events: Stylish not Loud",
-      excerpt:
-        "A red suit commands attention—but at a formal event, the key is sophistication, not shock value. Learn how to wear one with polish, not pizzazz, for weddings, galas, and black-tie affairs.",
-      image: "../images/formalwear-images/redsuits-1.jpg",
-      readMore: "../trending/red-suits.html",
-      shopLink: "../category/formal-wear-shop.html"
-    },
-    {
       title: "From Desk to Dinner: 5 Transitional Work Outfits For Women",
       excerpt:
         "5 seamless work-to-evening outfit transitions with pro styling tips. Master desk-to-dinner dressing with blazers, wraps & monochrome looks.",
@@ -40,21 +61,35 @@ const preloader = document.getElementById('preloader');
       readMore: "../trending/desk-to-dinner-outfits.html",
       shopLink: "../category/formal-wear-shop.html"
     },
+{
+  title: "8 of the Best ways to style a female tote bag casually",
+  excerpt: "Explore 8 casual ways to style tote bags. Learn how to rock a black tote bag with everyday outfits and shop the best tote bag looks today.",
+  image: "../images/bag-images/female_tote_bag_ft.jpg",
+  readMore: "../trending/best-ways-to-style-female-tote-bag-casually.html",
+  shopLink: "../category/bags-shop.html"
+},
     {
-  title: "5 Suits Every Man Needs: Build a Power Wardrobe That Never Quits",
-  excerpt: "The only 5 suits your professional wardrobe requires—from interview-ready navy to versatile charcoal. Expert styling tips for career success.",
-  image: "../images/formalwear-images/suit-collage.jpg",
-  readMore: "../trending/5-suits-every-man-needs.html",
-  shopLink: "../category/formal-wear-shop.html"
+  title: "10 Chic 2-Piece Outfits Every Woman Should Try in 2025",
+  excerpt: "Step up your style game in 2025 with 10 chic 2-piece outfits every woman should own. From casual streetwear to classy sets, these looks are unmissable.",
+  image: "../images/streetwear-images/2piece-outfits-ft.jpg",
+  readMore: "../trending/10-chic-2piece-outfits-women-2025.html",
+  shopLink: "../category/streetwear-shop.html"
 },
-   {
-  title: "The 2025 Suit Capsule: 5 Must-Own Suits for Every Man",
-  excerpt: "Want to stand out in 2025? These are the 5 suits every man must own this year—timeless fits that guarantee sharp style for work, weddings, and beyond.",
-  image: "../images/formalwear-images/mens_five_suits-ft.jpg",
-  readMore: "../trending/top-5-suits-every-man-should-own-2025.html",
-  shopLink: "../category/formal-wear-shop.html"
+{
+  title: "15 Chic 2-Piece Crochet Outfits for Women in 2025",
+  excerpt: "15 trendy women’s 2-piece crochet outfit ideas, from casual sets to chic vacation looks. Perfect style inspo for your next fashion upgrade!",
+  image: "../images/streetwear-images/2-piece-crotchet-ft.jpg",
+  readMore: "../trending/15-stunning-2-piece-crochet-outfits-for-women-2025.html",
+  shopLink: "../category/streetwear-shop.html"
 },
-    
+{
+  title: "10 Ways to Rock Ankara Short Gowns Without Looking Like Everyone Else at the Party",
+  excerpt: "Discover 10 stylish ways to rock Ankara short gowns without blending into the crowd. From bold prints to chic accessories, explore unique outfit ideas and fashion inspo that turn heads at any party!",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/IMG-20250825-WA0000.jpg",
+  readMore: "https://trenddaily.shop/trending/ankara-gowns-style",
+  shopLink: "../category/streetwear-shop.html"
+},
+
     // Add more posts as needed
   ];
 
@@ -223,6 +258,7 @@ const fullImages = document.querySelectorAll(".full-image");
       placeholder.style.opacity = "0";
     };
   });
+  
   
   })
   

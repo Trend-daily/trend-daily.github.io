@@ -702,3 +702,28 @@ footer .copyright {
 .blog-buttons button:hover {
   background: #cc9900;
 }
+
+/* =====Load More Button Style =====*/
+.loadMoreBtn {
+  display: block;
+  margin: 2rem auto;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background: #030;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.loadMoreBtn:hover {
+  background: #cc9900;
+}
+
+.loadMoreBtn:disabled {
+  background: #aaa;
+  color: grey;
+  cursor: not-allowed;
+}
