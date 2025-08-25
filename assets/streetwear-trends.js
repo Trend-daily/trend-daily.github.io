@@ -66,6 +66,14 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/15-stylish-2-piece-crochet-outfits-for-men-2025.html",
   shopLink: "../category/streetwear-shop.html"
 },
+{
+  title: "10 Ways to Rock Ankara Short Gowns Without Looking Like Everyone Else at the Party",
+  excerpt: "Discover 10 stylish ways to rock Ankara short gowns without blending into the crowd. From bold prints to chic accessories, explore unique outfit ideas and fashion inspo that turn heads at any party!",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/IMG-20250825-WA0000.jpg",
+  readMore: "https://trenddaily.shop/trending/ankara-gowns-style",
+  shopLink: "../category/streetwear-shop.html"
+},
+
     // Add more posts as needed
   ];
 
