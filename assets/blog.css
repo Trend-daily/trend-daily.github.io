@@ -779,7 +779,7 @@ p{
 }
 
 /* bigger screens*/
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 300px) {
   body {
    color: #fff;
   }

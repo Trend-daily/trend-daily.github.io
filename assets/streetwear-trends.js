@@ -10,6 +10,44 @@ const preloader = document.getElementById('preloader');
     
     
   const blogPosts = [
+  {
+  title: "10 Bob Hairstyle Trends to Make You Stand Out in 2025",
+  excerpt: "Bob hairstyles really do make an impression, sleek, simple yet very classy. Here are the best ways you can style them to match your fit and Stand out when you enter room, make that killer impression.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/bh-sft.jpg",
+  readMore: "https://trenddaily.shop/bob-hairstyles",
+  shopLink: "../category/streetwear-shop.html"
+},
+{
+  title: "10 Ways to Rock Ankara Short Gowns Without Looking Like Everyone Else at the Party",
+  excerpt: "Discover 10 stylish ways to rock Ankara short gowns without blending into the crowd. From bold prints to chic accessories, explore unique outfit ideas and fashion inspo that turn heads at any party!",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/IMG-20250825-WA0000.jpg",
+  readMore: "https://trenddaily.shop/trending/ankara-gowns-style",
+  shopLink: "../category/streetwear-shop.html"
+},
+{
+  title: "15 Stylish 2-Piece Crochet Outfits for Men in 2025",
+  excerpt: "Discover 15 stylish 2-piece crochet outfits for men in 2025, perfect for festivals, beach trips, and upscale events. From relaxed co-ords to tailored sets, find versatile looks with styling tips to elevate your wardrobe. Pin your favorites!",
+  image: "../images/streetwear-images/2-piece-mcrotchet-ft.jpg",
+  readMore: "../trending/15-stylish-2-piece-crochet-outfits-for-men-2025.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+{
+  title: "15 Chic 2-Piece Crochet Outfits for Women in 2025",
+  excerpt: "15 trendy women’s 2-piece crochet outfit ideas, from casual sets to chic vacation looks. Perfect style inspo for your next fashion upgrade!",
+  image: "../images/streetwear-images/2-piece-crotchet-ft.jpg",
+  readMore: "../trending/15-stunning-2-piece-crochet-outfits-for-women-2025.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+{
+  title: "10 Chic 2-Piece Outfits Every Woman Should Try in 2025",
+  excerpt: "Step up your style game in 2025 with 10 chic 2-piece outfits every woman should own. From casual streetwear to classy sets, these looks are unmissable.",
+  image: "../images/streetwear-images/2piece-outfits-ft.jpg",
+  readMore: "../trending/10-chic-2piece-outfits-women-2025.html",
+  shopLink: "../category/streetwear-shop.html"
+},
+
+
+
     {
   title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",
   excerpt: "Cut through the hype with 7 wearable 2025 streetwear trends - from luxury gorpcore to anti-fit denim. Real-world styling tips + what to skip.",
@@ -45,35 +83,9 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/powder-blue-style-guide.html",
   shopLink: "../category/streetwear-shop.html"
 },
-{
-  title: "10 Chic 2-Piece Outfits Every Woman Should Try in 2025",
-  excerpt: "Step up your style game in 2025 with 10 chic 2-piece outfits every woman should own. From casual streetwear to classy sets, these looks are unmissable.",
-  image: "../images/streetwear-images/2piece-outfits-ft.jpg",
-  readMore: "../trending/10-chic-2piece-outfits-women-2025.html",
-  shopLink: "../category/streetwear-shop.html"
-},
-{
-  title: "15 Chic 2-Piece Crochet Outfits for Women in 2025",
-  excerpt: "15 trendy women’s 2-piece crochet outfit ideas, from casual sets to chic vacation looks. Perfect style inspo for your next fashion upgrade!",
-  image: "../images/streetwear-images/2-piece-crotchet-ft.jpg",
-  readMore: "../trending/15-stunning-2-piece-crochet-outfits-for-women-2025.html",
-  shopLink: "../category/streetwear-shop.html"
-},
-{
-  title: "15 Stylish 2-Piece Crochet Outfits for Men in 2025",
-  excerpt: "Discover 15 stylish 2-piece crochet outfits for men in 2025, perfect for festivals, beach trips, and upscale events. From relaxed co-ords to tailored sets, find versatile looks with styling tips to elevate your wardrobe. Pin your favorites!",
-  image: "../images/streetwear-images/2-piece-mcrotchet-ft.jpg",
-  readMore: "../trending/15-stylish-2-piece-crochet-outfits-for-men-2025.html",
-  shopLink: "../category/streetwear-shop.html"
-},
-{
-  title: "10 Ways to Rock Ankara Short Gowns Without Looking Like Everyone Else at the Party",
-  excerpt: "Discover 10 stylish ways to rock Ankara short gowns without blending into the crowd. From bold prints to chic accessories, explore unique outfit ideas and fashion inspo that turn heads at any party!",
-  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/IMG-20250825-WA0000.jpg",
-  readMore: "https://trenddaily.shop/trending/ankara-gowns-style",
-  shopLink: "../category/streetwear-shop.html"
-},
 
+
+  
     // Add more posts as needed
   ];
 
