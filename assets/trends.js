@@ -9,14 +9,21 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
-   {
+{
+  title: "10 Ways to Rock Ankara Short Gowns Without Looking Like Everyone Else at the Party",
+  excerpt: "Discover 10 stylish ways to rock Ankara short gowns without blending into the crowd. From bold prints to chic accessories, explore unique outfit ideas and fashion inspo that turn heads at any party!",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/IMG-20250825-WA0000.jpg",
+  readMore: "https://trenddaily.shop/trending/ankara-gowns-style",
+  shopLink: "../category/streetwear-shop.html"
+},
+ {
   title: "How to Style White Sneakers in 2025",
   excerpt: "Wondering how to wear white sneakers without looking basic? These 7 fresh outfit ideas show you exactly how to style white sneakers in 2025 with ease.",
   image: "../images/sneakers-images/white-sneakers-hero.jpg",
   readMore: "../trending/how-to-style-white-sneakers-2025.html",
   shopLink: "../category/sneakers-shop.html"
 },
-   {
+{
   title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",
   excerpt: "Cut through the hype with 7 wearable 2025 streetwear trends - from luxury gorpcore to anti-fit denim. Real-world styling tips + what to skip.",
   image: "../images/streetwear-images/womensstyle.jpg",
@@ -51,7 +58,7 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/powder-blue-style-guide.html",
   shopLink: "../category/streetwear-shop.html"
 },
-    {
+ {
   title: "How to Style a Black Tote Bag: 7 Elevated Outfit Ideas for 2025",
   excerpt: "From streetwear to office-ready looks, discover 7 polished outfit formulas that prove the black tote is the ultimate fashion essential in 2025.",
   image: "../images/bag-images/black-tote-hero.jpg",
@@ -73,7 +80,7 @@ const preloader = document.getElementById('preloader');
       readMore: "../trending/pretty-pink-suits.html",
       shopLink: "../category/formal-wear-shop.html"
     },
-    {
+      {
       title: "Black Gowns: Elegant, Sexy, and Classy",
       excerpt:
         "Discover the timeless allure of women’s black gowns — flattering for all body types, perfect for every occasion, and always on trend.",
@@ -81,7 +88,7 @@ const preloader = document.getElementById('preloader');
       readMore: "../trending/womens-black-gowns.html",
       shopLink: "../category/formal-wear-shop.html"
     },
-    {
+     {
       title: "Red Suits for Formal Events: Stylish not Loud",
       excerpt:
         "A red suit commands attention—but at a formal event, the key is sophistication, not shock value. Learn how to wear one with polish, not pizzazz, for weddings, galas, and black-tie affairs.",
@@ -89,7 +96,7 @@ const preloader = document.getElementById('preloader');
       readMore: "../trending/red-suits.html",
       shopLink: "../category/formal-wear-shop.html"
     },
-    {
+     {
       title: "From Desk to Dinner: 5 Transitional Work Outfits For Women",
       excerpt:
         "5 seamless work-to-evening outfit transitions with pro styling tips. Master desk-to-dinner dressing with blazers, wraps & monochrome looks.",
@@ -118,7 +125,7 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/top-5-suits-every-man-should-own-2025.html",
   shopLink: "../category/formal-wear-shop.html"
 },
-    {
+ {
   title: "10 Chic 2-Piece Outfits Every Woman Should Try in 2025",
   excerpt: "Step up your style game in 2025 with 10 chic 2-piece outfits every woman should own. From casual streetwear to classy sets, these looks are unmissable.",
   image: "../images/streetwear-images/2piece-outfits-ft.jpg",
@@ -139,14 +146,6 @@ const preloader = document.getElementById('preloader');
   readMore: "../trending/15-stylish-2-piece-crochet-outfits-for-men-2025.html",
   shopLink: "../category/streetwear-shop.html"
 },
-{
-  title: "10 Ways to Rock Ankara Short Gowns Without Looking Like Everyone Else at the Party",
-  excerpt: "Discover 10 stylish ways to rock Ankara short gowns without blending into the crowd. From bold prints to chic accessories, explore unique outfit ideas and fashion inspo that turn heads at any party!",
-  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/IMG-20250825-WA0000.jpg",
-  readMore: "https://trenddaily.shop/trending/ankara-gowns-style",
-  shopLink: "../category/streetwear-shop.html"
-},
-
     // Add more posts as needed
   ];
 
