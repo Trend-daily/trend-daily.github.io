@@ -14,7 +14,7 @@ const preloader = document.getElementById('preloader');
   title: "10 Bob Hairstyle Trends to Make You Stand Out in 2025",
   excerpt: "Bob hairstyles really do make an impression, sleek, simple yet very classy. Here are the best ways you can style them to match your fit and Stand out when you enter room, make that killer impression.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/bh-sft.jpg",
-  readMore: "https://trenddaily.shop/bob-hairstyles",
+  readMore: "https://trenddaily.shop/trending/bob-hairstyles",
   shopLink: "../category/streetwear-shop.html"
 },
 {
