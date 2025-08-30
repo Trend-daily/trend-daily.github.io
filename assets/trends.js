@@ -9,6 +9,13 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+   {
+  title: "40 Best Nail Inspos You Should Try in 2025",
+  excerpt: "Check out the hottest, trending, Nail Inspos this season! spice up your looks, look sleek not mid. Ready to make the big impression?",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/nl-ift.jpg",
+  readMore: "https://trenddaily.shop/trending/nail-inspos",
+  shopLink: "../category/streetwear-shop.html"
+},
   {
   title: "10 Bob Hairstyle Trends to Make You Stand Out in 2025",
   excerpt: "Bob hairstyles really do make an impression, sleek, simple yet very classy. Here are the best ways you can style them to match your fit and Stand out when you enter room, make that killer impression.",
