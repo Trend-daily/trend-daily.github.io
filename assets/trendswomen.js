@@ -10,6 +10,13 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
   {
+  title: "Women Hairstyles That Make You Look Younger Instantly!",
+  excerpt: "Want to look 10 years younger? here are some women hairstyles that atleast won't make you look soo old. Every Woman deserves a glow and sparkle!",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/wh-sft.jpg",
+  readMore: "https://trenddaily.shop/trending/women-hairstyles",
+  shopLink: "../category/streetwear-shop.html"
+},
+  {
   title: "40 Best Nail Inspos You Should Try in 2025",
   excerpt: "Check out the hottest, trending, Nail Inspos this season! spice up your looks, look sleek not mid. Ready to make the big impression?",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/nl-ift.jpg",
