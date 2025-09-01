@@ -10,6 +10,14 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
   {
+  title: "44 Cozy Fall Ombre Acrylic Nail Ideas to Match Your Seasonal Wardrobe",
+  excerpt: "Check these 44 Cozy Fall Ombre Acrylic Nail Ideas to Match Your Seasonal Wardrobe, from fall nail ideas to absolute glitter, elevate your glow!",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/oa-nft.jpg",
+  readMore: "https://trenddaily.shop/td925/44-ombre-acrylic-nail-ideas",
+  shopLink: "../category/streetwear-shop.html"
+},
+  
+  {
   title: "Curly Hair Queens: Defining Cuts and Styles for Every Curl Type",
   excerpt: "Discover the best haircuts and styles for every curl type in our guide for curly hair queens. From loose waves to tight coils, learn how to embrace and define your natural curls beautifully",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/cl-sft.jpg",
