@@ -10,6 +10,13 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
   {
+  title: "Curly Hair Queens: Defining Cuts and Styles for Every Curl Type",
+  excerpt: "Discover the best haircuts and styles for every curl type in our guide for curly hair queens. From loose waves to tight coils, learn how to embrace and define your natural curls beautifully",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/cl-sft.jpg",
+  readMore: "https://trenddaily.shop/trending/curly-women-hairstyles",
+  shopLink: "../category/streetwear-shop.html"
+},
+  {
   title: "Women Hairstyles That Make You Look Younger Instantly!",
   excerpt: "Want to look 10 years younger? here are some women hairstyles that atleast won't make you look soo old. Every Woman deserves a glow and sparkle!",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/wh-sft.jpg",
