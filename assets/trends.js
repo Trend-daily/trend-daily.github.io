@@ -10,6 +10,13 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
   {
+  title: "40 Best Pixie Cut Styles to Spice Up Your Look!",
+  excerpt: "Pixie cuts aren’t just hairstyles—they’re power moves. Explore 40 edgy, elegant, and fearless pixie styles to transform your look instantly.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/px-cft.jpg",
+  readMore: "https://trenddaily.shop/td925/best-pixie-cut-styles",
+  shopLink: "../category/streetwear-shop.html"
+},
+  {
   title: "44 Cozy Fall Ombre Acrylic Nail Ideas to Match Your Seasonal Wardrobe",
   excerpt: "Check these 44 Cozy Fall Ombre Acrylic Nail Ideas to Match Your Seasonal Wardrobe, from fall nail ideas to absolute glitter, elevate your glow!",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/oa-nft.jpg",
