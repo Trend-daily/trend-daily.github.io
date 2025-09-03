@@ -9,6 +9,13 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+   {
+  title: "24 Back to School Braided Hairstyles for Women",
+  excerpt: "From chic boxer braids to protective Ghana braids, explore 24 stylish back-to-school braided hairstyles that blend elegance, ease, and all-day confidence.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/bt-bft.jpg",
+  readMore: "https://trenddaily.shop/td925/24-back-to-school-braids",
+  shopLink: "../category/streetwear-shop.html"
+},
   {
   title: "40 Best Pixie Cut Styles to Spice Up Your Look!",
   excerpt: "Pixie cuts aren’t just hairstyles—they’re power moves. Explore 40 edgy, elegant, and fearless pixie styles to transform your look instantly.",
