@@ -10,6 +10,13 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "28 Winter Outfit Ideas for Women That Look Expensive (But Are Totally Affordable)",
+  excerpt: "Upgrade your cold-weather wardrobe with 28 winter outfit ideas that look luxe but cost less. From chic coats to cozy knitwear, discover affordable styles that make you look expensive all season long.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/wt-wft.jpg",
+  readMore: "https://trenddaily.shop/td925/28-winter-outfit-ideas-for-women",
+  shopLink: "../category/streetwear-shop.html"
+},
+   {
   title: "24 Back to School Braided Hairstyles for Women",
   excerpt: "From chic boxer braids to protective Ghana braids, explore 24 stylish back-to-school braided hairstyles that blend elegance, ease, and all-day confidence.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/bt-bft.jpg",
