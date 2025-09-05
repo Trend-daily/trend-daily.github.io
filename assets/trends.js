@@ -10,6 +10,13 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "10 Cozy and Chic Winter Hair Braid Styles for Women to Keep You Warm and Stylish",
+  excerpt: "Stay warm and stylish this season with 10 cozy winter braid hairstyles. From elegant crown braids to chic low buns, discover protective styles that fight frizz and look effortlessly chic.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/wb-sft.jpg",
+  readMore: "https://trenddaily.shop/td925/chic-winter-braid-styles",
+  shopLink: "../category/streetwear-shop.html"
+},
+   {
   title: "Autumn Capsule Wardrobe for Women: Essentials You Need",
   excerpt: "Build the perfect autumn capsule wardrobe with 28 timeless essentials. From chic trench coats to cozy knitwear, discover versatile fall outfits that look polished and effortless every day.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/ac-wft.jpg",
