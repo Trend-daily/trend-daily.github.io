@@ -10,6 +10,13 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "Autumn Capsule Wardrobe for Women: Essentials You Need",
+  excerpt: "Build the perfect autumn capsule wardrobe with 28 timeless essentials. From chic trench coats to cozy knitwear, discover versatile fall outfits that look polished and effortless every day.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/ac-wft.jpg",
+  readMore: "https://trenddaily.shop/td925/autumn-capsule-wardrobe-for-women",
+  shopLink: "../category/streetwear-shop.html"
+},
+   {
   title: "28 Winter Outfit Ideas for Women That Look Expensive (But Are Totally Affordable)",
   excerpt: "Upgrade your cold-weather wardrobe with 28 winter outfit ideas that look luxe but cost less. From chic coats to cozy knitwear, discover affordable styles that make you look expensive all season long.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/wt-wft.jpg",
