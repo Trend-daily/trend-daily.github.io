@@ -8,6 +8,13 @@ const preloader = document.getElementById('preloader');
       preloader.style.display = 'none';
     }, 400); // Allow fade out before removing
   const blogPosts = [
+  {
+  title: "Best Winter Hair Care Tips for Braided Hairstyles",
+  excerpt: "Protect your braids this winter with expert hair care tips. Learn how to prevent dryness, frizz, and breakage while keeping your braided hairstyles healthy and stylish in cold weather.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/whc.jpg",
+  readMore: "https://trenddaily.shop/td925/winter-hair-care-tips",
+  shopLink: "../category/streetwear-shop.html"
+},
     {
       title: "Red Suits for Formal Events: Stylish not Loud",
       excerpt:

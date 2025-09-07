@@ -10,6 +10,13 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
   {
+  title: "Best Winter Hair Care Tips for Braided Hairstyles",
+  excerpt: "Protect your braids this winter with expert hair care tips. Learn how to prevent dryness, frizz, and breakage while keeping your braided hairstyles healthy and stylish in cold weather.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/whc.jpg",
+  readMore: "https://trenddaily.shop/td925/winter-hair-care-tips",
+  shopLink: "../category/streetwear-shop.html"
+},
+  {
   title: "Winter Hair Braid Ideas That Pair Perfectly with Beanies and Scarves",
   excerpt: "Discover winter hair braid ideas that pair perfectly with beanies and scarves. From low side braids to double Dutch styles, find chic, practical braids to beat hat hair this season.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/wbi-bsft.jpg",
