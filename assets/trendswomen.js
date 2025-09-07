@@ -10,6 +10,13 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
   {
+  title: "Winter Hair Braid Ideas That Pair Perfectly with Beanies and Scarves",
+  excerpt: "Discover winter hair braid ideas that pair perfectly with beanies and scarves. From low side braids to double Dutch styles, find chic, practical braids to beat hat hair this season.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/wbi-bsft.jpg",
+  readMore: "https://trenddaily.shop/td925/winter-braid-ideas",
+  shopLink: "../category/streetwear-shop.html"
+},
+  {
   title: "10 Cozy and Chic Winter Hair Braid Styles for Women to Keep You Warm and Stylish",
   excerpt: "Stay warm and stylish this season with 10 cozy winter braid hairstyles. From elegant crown braids to chic low buns, discover protective styles that fight frizz and look effortlessly chic.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/wb-sft.jpg",
