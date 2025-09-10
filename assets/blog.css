@@ -748,6 +748,12 @@ p{
   color: #000;
 }
 
+.blog-date{
+    font-size: 0.95rem;
+  color: #030;
+  line-height: 1.4;
+}
+
 .blog-excerpt {
   font-size: 0.95rem;
   color: #555;

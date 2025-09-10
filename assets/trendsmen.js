@@ -10,35 +10,40 @@ const preloader = document.getElementById('preloader');
   const blogPosts = [
   {
   title: "Best Winter Hair Care Tips for Braided Hairstyles",
+  date: "7 Sep 2025",
   excerpt: "Protect your braids this winter with expert hair care tips. Learn how to prevent dryness, frizz, and breakage while keeping your braided hairstyles healthy and stylish in cold weather.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/whc.jpg",
   readMore: "https://trenddaily.shop/td925/winter-hair-care-tips",
   shopLink: "../category/streetwear-shop.html"
 },
-    {
-      title: "Red Suits for Formal Events: Stylish not Loud",
-      excerpt:
-        "A red suit commands attention—but at a formal event, the key is sophistication, not shock value. Learn how to wear one with polish, not pizzazz, for weddings, galas, and black-tie affairs.",
-      image: "../images/formalwear-images/redsuits-1.jpg",
-      readMore: "../trending/red-suits.html",
-      shopLink: "../category/formal-wear-shop.html"
-    },
-    {
-  title: "5 Suits Every Man Needs: Build a Power Wardrobe That Never Quits",
-  excerpt: "The only 5 suits your professional wardrobe requires—from interview-ready navy to versatile charcoal. Expert styling tips for career success.",
-  image: "../images/formalwear-images/suit-collage.jpg",
-  readMore: "../trending/5-suits-every-man-needs.html",
-  shopLink: "../category/formal-wear-shop.html"
+{
+  title: "15 Stylish 2-Piece Crochet Outfits for Men in 2025",
+  date: "19 Aug 2025",
+  excerpt: "Discover 15 stylish 2-piece crochet outfits for men in 2025, perfect for festivals, beach trips, and upscale events. From relaxed co-ords to tailored sets, find versatile looks with styling tips to elevate your wardrobe. Pin your favorites!",
+  image: "../images/streetwear-images/2-piece-mcrotchet-ft.jpg",
+  readMore: "../trending/15-stylish-2-piece-crochet-outfits-for-men-2025.html",
+  shopLink: "../category/streetwear-shop.html"
 },
-   {
+ {
   title: "The 2025 Suit Capsule: 5 Must-Own Suits for Every Man",
+  date: "18 Aug 2025",
   excerpt: "Want to stand out in 2025? These are the 5 suits every man must own this year—timeless fits that guarantee sharp style for work, weddings, and beyond.",
   image: "../images/formalwear-images/mens_five_suits-ft.jpg",
   readMore: "../trending/top-5-suits-every-man-should-own-2025.html",
   shopLink: "../category/formal-wear-shop.html"
 },
+    {
+  title: "5 Suits Every Man Needs: Build a Power Wardrobe That Never Quits",
+  date: "15 July 2025",
+  excerpt: "The only 5 suits your professional wardrobe requires—from interview-ready navy to versatile charcoal. Expert styling tips for career success.",
+  image: "../images/formalwear-images/suit-collage.jpg",
+  readMore: "../trending/5-suits-every-man-needs.html",
+  shopLink: "../category/formal-wear-shop.html"
+},
+  
 {
   title: "Baggy Jeans Are Back: How to Style Them Without Looking Sloppy",
+  date: "15 July 2025",
   excerpt: "Baggy jeans are trending hard in 2025 — here are 7 polished outfit combos that balance comfort and edge without looking messy.",
   image: "../images/streetwear-images/baggy-jeans-hero.jpg",
   readMore: "../trending/baggy-jeans-style-guide.html",
@@ -46,18 +51,21 @@ const preloader = document.getElementById('preloader');
 },
 {
   title: "Skinny Jeans Aren’t Dead: 7 2025-Ready Ways to Style Them",
+  date: "15 July 2025",
   excerpt: "From streetwear to smart casual, these 7 outfit formulas prove skinny jeans are still fire in 2025 — without looking outdated.",
   image: "../images/streetwear-images/skinny-jeans-hero.jpg",
   readMore: "../trending/skinny-jeans-style-guide.html",
   shopLink: "../category/streetwear-shop.html"
 },
 {
-  title: "15 Stylish 2-Piece Crochet Outfits for Men in 2025",
-  excerpt: "Discover 15 stylish 2-piece crochet outfits for men in 2025, perfect for festivals, beach trips, and upscale events. From relaxed co-ords to tailored sets, find versatile looks with styling tips to elevate your wardrobe. Pin your favorites!",
-  image: "../images/streetwear-images/2-piece-mcrotchet-ft.jpg",
-  readMore: "../trending/15-stylish-2-piece-crochet-outfits-for-men-2025.html",
-  shopLink: "../category/streetwear-shop.html"
-},
+      title: "Red Suits for Formal Events: Stylish not Loud",
+      date: "14 July 2025",
+      excerpt:
+        "A red suit commands attention—but at a formal event, the key is sophistication, not shock value. Learn how to wear one with polish, not pizzazz, for weddings, galas, and black-tie affairs.",
+      image: "../images/formalwear-images/redsuits-1.jpg",
+      readMore: "../trending/red-suits.html",
+      shopLink: "../category/formal-wear-shop.html"
+    },
     // Add more posts as needed
   ];
 
@@ -108,6 +116,10 @@ const preloader = document.getElementById('preloader');
       const title = document.createElement("div");
       title.className = "blog-title";
       title.textContent = post.title;
+      
+      const date = document.createElement("span");
+      date.className = "blog-date";
+      date.textContent = post.date;
 
       const excerpt = document.createElement("p");
       excerpt.className = "blog-excerpt";
@@ -128,6 +140,7 @@ const preloader = document.getElementById('preloader');
       buttons.appendChild(shopBtn);
 
       content.appendChild(title);
+      content.appendChild(date);
       content.appendChild(excerpt);
       content.appendChild(buttons);
 
