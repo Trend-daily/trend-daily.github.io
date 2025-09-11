@@ -9,6 +9,14 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+   {
+  title: "Autumn Date Night Outfits for Women That Will Impress",
+  date: "11 Sep 2025",
+  excerpt: "Take a look at the best autumn date night outfits for women that blend comfort, style, and confidence. From chic blazers to cozy knits, romantic dresses, and polished classics, find the perfect fall look to impress on any occasion.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/ado-wft.jpg",
+  readMore: "https://trenddaily.shop/td925/autumn-date-night-outfits",
+  shopLink: "../category/streetwear-shop.html"
+},
   {
   title: "20 Chic Autumn Outfits for Women to Try This Season",
   date: "10 Sep 2025",
