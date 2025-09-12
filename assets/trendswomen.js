@@ -20,7 +20,7 @@ const preloader = document.getElementById('preloader');
   {
   title: "28 Halloween Nail Art Designs You Can Do At Home",
   date: "12 Sep 2025",
-  excerpt: "Description",
+  excerpt: "Discover 28 spooky yet stylish Halloween nail designs you can DIY at home — from creepy classics to playful pumpkins and chic gothic vibes.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/hn-aft.jpg",
   readMore: "https://trenddaily.shop/td925/halloween-nail-art",
   shopLink: "../category/streetwear-shop.html"
