@@ -9,6 +9,30 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+   {
+  title: "32 Spooky Yet Cute Halloween Hairstyles To Try This Year",
+  date: "12 Sep 2025",
+  excerpt: "Get inspired with 32 spooky yet cute Halloween hairstyles for 2025. Easy Halloween hair ideas you can recreate at home without stress.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/hal-hft.jpg",
+  readMore: "https://trenddaily.shop/td925/halloween-women-hairstyles",
+  shopLink: "../category/streetwear-shop.html"
+},
+  {
+  title: "28 Halloween Nail Art Designs You Can Do At Home",
+  date: "12 Sep 2025",
+  excerpt: "Discover 28 spooky yet stylish Halloween nail designs you can DIY at home — from creepy classics to playful pumpkins and chic gothic vibes.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/hn-aft.jpg",
+  readMore: "https://trenddaily.shop/td925/halloween-nail-art",
+  shopLink: "../category/streetwear-shop.html"
+},
+   {
+  title: "15 Last-Minute Halloween Costume Ideas for Women (No Sewing Required)",
+  date: "12 Sep 2025",
+  excerpt: "Here are some nice, creative last minute ideas for halloween costumes that you could put on and still steal the show!",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/hci-wft.jpg",
+  readMore: "https://trenddaily.shop/td925/halloween-costume-ideas-women",
+  shopLink: "../category/streetwear-shop.html"
+},
     {
   title: "Autumn Date Night Outfits for Women That Will Impress",
   date: "11 Sep 2025",

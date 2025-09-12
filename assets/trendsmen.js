@@ -7,7 +7,7 @@ const preloader = document.getElementById('preloader');
     setTimeout(() => {
       preloader.style.display = 'none';
     }, 400); // Allow fade out before removing
-  const blogPosts = [
+  const blogPosts = [ 
   {
   title: "Best Winter Hair Care Tips for Braided Hairstyles",
   date: "7 Sep 2025",

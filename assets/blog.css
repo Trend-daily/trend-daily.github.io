@@ -873,7 +873,8 @@ p{
   font-size: 1rem;
   font-weight: 500;
   color: #fff;
-  background: #030;
+  background: #cc9900;
+  border-radius: 5px;
   border: none;
   cursor: pointer;
   transition: background 0.3s ease;
@@ -888,4 +889,8 @@ p{
   background: #aaa;
   color: grey;
   cursor: not-allowed;
+}
+
+.emmet em{
+    color: #ff3;
 }
