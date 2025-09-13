@@ -568,10 +568,12 @@ footer .copyright {
       .blog-post ul {
   padding-left: 1.5rem;
   list-style-type: disc;
+  color: #fff;
 }
 
 .blog-post li {
   margin-bottom: 0.75rem;
+  color: #fff;
 }
 /*.blog-img {
   width: 70%;
@@ -646,6 +648,7 @@ ol.custom-ol li {
   position: relative;
   font-size: 1rem;
   line-height: 1.6;
+  color: #fff;
 }
 
 ol.custom-ol li::before {
