@@ -8,6 +8,14 @@ const preloader = document.getElementById('preloader');
       preloader.style.display = 'none';
     }, 400); // Allow fade out before removing
   const blogPosts = [ 
+   {
+  title: "48 Of The Best DIY Halloween Makeup Ideas You Must Try This Season!",
+  date: "14 Sep 2025",
+  excerpt: "Discover 48 of the best DIY Halloween makeup ideas that are fun, spooky, and totally achievable. From creepy classics to glam-ghoul looks, get inspired to create unforgettable Halloween makeup this season—no sewing or pro skills required.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/hm-ift.jpg",
+  readMore: "https://trenddaily.shop/td925/halloween-makeup-ideas",
+  shopLink: "../category/streetwear-shop.html"
+},
   {
   title: "Best Winter Hair Care Tips for Braided Hairstyles",
   date: "7 Sep 2025",
