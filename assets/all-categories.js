@@ -15,28 +15,28 @@ const fashionCategories = [
     image: "../images/ft-img/streetwear-ftimg.jpg",
     blurImage: "../images/ft-img/streetwear-blur.jpg",
     trendsUrl: "../trending/streetwear-trends.html",
-  shopUrl: "streetwear-shop.html"
+  shopUrl: "../trending/streetwear-trends.html"
   },
   {
     title: "Formal Wear",
     image: "../images/ft-img/formalwear-ftimg.jpg",
     blurImage: "../images/ft-img/formalwear-blur.jpg",
     trendsUrl: "../trending/formalwear-trends.html",
-    shopUrl: "formal-wear-shop.html"
+    shopUrl: "../trending/formalwear-trends.html"
       },
   {
     title: "Footwear",
     image: "../images/ft-img/sneakers-ftimg.jpg",
     blurImage: "../images/ft-img/sneakers-blur.jpg",
     trendsUrl: "../trending/sneakers-trends.html",    
-    shopUrl: "sneakers-shop.html"
+    shopUrl: "../trending/sneakers-trends.html"
   },
   {
     title: "Trendy Bags",
     image: "../images/ft-img/trendybags-ftimg.jpg",
     blurImage: "../images/ft-img/trendybags-blur.jpg",
         trendsUrl: "../trending/trending-bags.html",
-    shopUrl: "bags-shop.html"
+    shopUrl: "../trending/trending-bags.html"
   },
   // Add more categories here
 ];
