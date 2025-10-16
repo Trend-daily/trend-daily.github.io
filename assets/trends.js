@@ -10,6 +10,14 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "12 Chic November Wedding Color Palettes You’ll Fall in Love With",
+  date: "16 Oct 2025",
+  excerpt: "Find your perfect autumn inspiration with these 12 elegant November wedding color palettes. From rich burgundy to warm neutrals, create a timeless and romantic celebration.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nwcft.webp",
+  readMore: "https://trenddaily.shop/td1025/12-november-wedding-color-palettes",
+  shopLink: "../category/all-categories.html"
+},
+   {
   title: "10 Cozy November Baby Shower Themes Everyone Will Adore",
   date: "16 Oct 2025",
   excerpt: "Celebrate your little one's arrival with these charming November baby shower themes. From rustic harvest gatherings to woodland wonderlands, find the perfect cozy and seasonal inspiration.",
