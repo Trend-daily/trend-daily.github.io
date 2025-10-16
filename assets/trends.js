@@ -10,12 +10,44 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "10 Cozy November Baby Shower Themes Everyone Will Adore",
+  date: "16 Oct 2025",
+  excerpt: "Celebrate your little one's arrival with these charming November baby shower themes. From rustic harvest gatherings to woodland wonderlands, find the perfect cozy and seasonal inspiration.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/bstft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-november-baby-shower-themes",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "10 Creative Baby Shower Guest Outfits Perfect for a Chilly November Day",
+  date: "16 Oct 2025",
+  excerpt: "Discover 10 stylish and cozy baby shower guest outfits perfect for a chilly November day. From layered looks to warm accessories, find inspiration for a chic, comfortable celebration.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nboft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-november-baby-shower-guest-outfits",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "10 Adorable Baby Shower Decor Ideas for November Moms",
+  date: "16 Oct 2025",
+  excerpt: "10 charming baby shower decor ideas for November moms, featuring cozy fall themes and festive touches to celebrate your little one’s arrival!",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/bs-ift.webp",
+  readMore: "https://trenddaily.shop/td1025/10-best-baby-shower-decor-ideas",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "12 Ways to Style Your Feed with a November Aesthetic Touch",
+  date: "16 Oct 2025",
+  excerpt: "Discover 12 November aesthetic feed ideas to elevate your social media! Cozy, seasonal vibes for stunning posts. 🍂✨ #AestheticInspo #NovemberVibes",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nfi-ft.jpg",
+  readMore: "https://trenddaily.shop/td1025/12-november-aesthetic-feed",
+  shopLink: "../category/all-categories.html"
+},
+   {
   title: "48 Of The Best DIY Halloween Makeup Ideas You Must Try This Season!",
   date: "14 Sep 2025",
   excerpt: "Discover 48 of the best DIY Halloween makeup ideas that are fun, spooky, and totally achievable. From creepy classics to glam-ghoul looks, get inspired to create unforgettable Halloween makeup this season—no sewing or pro skills required.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/hm-ift.jpg",
   readMore: "https://trenddaily.shop/td925/halloween-makeup-ideas",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
    {
   title: "32 Spooky Yet Cute Halloween Hairstyles To Try This Year",
@@ -23,7 +55,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Get inspired with 32 spooky yet cute Halloween hairstyles for 2025. Easy Halloween hair ideas you can recreate at home without stress.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/hal-hft.jpg",
   readMore: "https://trenddaily.shop/td925/halloween-women-hairstyles",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
   {
   title: "28 Halloween Nail Art Designs You Can Do At Home",
@@ -31,7 +63,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Discover 28 spooky yet stylish Halloween nail designs you can DIY at home — from creepy classics to playful pumpkins and chic gothic vibes.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/hn-aft.jpg",
   readMore: "https://trenddaily.shop/td925/halloween-nail-art",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
    {
   title: "15 Last-Minute Halloween Costume Ideas for Women (No Sewing Required)",
@@ -39,7 +71,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Here are some nice, creative last minute ideas for halloween costumes that you could put on and still steal the show!",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/hci-wft.jpg",
   readMore: "https://trenddaily.shop/td925/halloween-costume-ideas-women",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
     {
   title: "Autumn Date Night Outfits for Women That Will Impress",
@@ -47,7 +79,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Take a look at the best autumn date night outfits for women that blend comfort, style, and confidence. From chic blazers to cozy knits, romantic dresses, and polished classics, find the perfect fall look to impress on any occasion.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/ado-wft.jpg",
   readMore: "https://trenddaily.shop/td925/autumn-date-night-outfits",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
   {
   title: "20 Chic Autumn Outfits for Women to Try This Season",
@@ -55,7 +87,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Discover 20 chic autumn outfits for women that blend comfort, layering, and timeless style. From cozy knits to smart casual office looks, get inspired to upgrade your fall wardrobe with effortless seasonal pairings.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/ca-oft.jpg",
   readMore: "https://trenddaily.shop/td925/20-chic-autumn-outfits",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
   {
   title: "Best Winter Hair Care Tips for Braided Hairstyles",
@@ -63,7 +95,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Protect your braids this winter with expert hair care tips. Learn how to prevent dryness, frizz, and breakage while keeping your braided hairstyles healthy and stylish in cold weather.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/whc.jpg",
   readMore: "https://trenddaily.shop/td925/winter-hair-care-tips",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
    {
   title: "Winter Hair Braid Ideas That Pair Perfectly with Beanies and Scarves",
@@ -71,7 +103,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Discover winter hair braid ideas that pair perfectly with beanies and scarves. From low side braids to double Dutch styles, find chic, practical braids to beat hat hair this season.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/wbi-bsft.jpg",
   readMore: "https://trenddaily.shop/td925/winter-braid-ideas",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
    {
   title: "10 Cozy and Chic Winter Hair Braid Styles for Women to Keep You Warm and Stylish",
@@ -79,7 +111,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Stay warm and stylish this season with 10 cozy winter braid hairstyles. From elegant crown braids to chic low buns, discover protective styles that fight frizz and look effortlessly chic.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/wb-sft.jpg",
   readMore: "https://trenddaily.shop/td925/chic-winter-braid-styles",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
    {
   title: "Autumn Capsule Wardrobe for Women: Essentials You Need",
@@ -87,7 +119,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Build the perfect autumn capsule wardrobe with 28 timeless essentials. From chic trench coats to cozy knitwear, discover versatile fall outfits that look polished and effortless every day.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/ac-wft.jpg",
   readMore: "https://trenddaily.shop/td925/autumn-capsule-wardrobe-for-women",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
    {
   title: "28 Winter Outfit Ideas for Women That Look Expensive (But Are Totally Affordable)",
@@ -95,7 +127,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Upgrade your cold-weather wardrobe with 28 winter outfit ideas that look luxe but cost less. From chic coats to cozy knitwear, discover affordable styles that make you look expensive all season long.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/wt-wft.jpg",
   readMore: "https://trenddaily.shop/td925/28-winter-outfit-ideas-for-women",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
    {
   title: "24 Back to School Braided Hairstyles for Women",
@@ -103,7 +135,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "From chic boxer braids to protective Ghana braids, explore 24 stylish back-to-school braided hairstyles that blend elegance, ease, and all-day confidence.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/bt-bft.jpg",
   readMore: "https://trenddaily.shop/td925/24-back-to-school-braids",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
   {
   title: "40 Best Pixie Cut Styles to Spice Up Your Look!",
@@ -111,7 +143,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Pixie cuts aren’t just hairstyles—they’re power moves. Explore 40 edgy, elegant, and fearless pixie styles to transform your look instantly.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/px-cft.jpg",
   readMore: "https://trenddaily.shop/td925/best-pixie-cut-styles",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
   {
   title: "44 Cozy Fall Ombre Acrylic Nail Ideas to Match Your Seasonal Wardrobe",
@@ -119,7 +151,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Check these 44 Cozy Fall Ombre Acrylic Nail Ideas to Match Your Seasonal Wardrobe, from fall nail ideas to absolute glitter, elevate your glow!",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/oa-nft.jpg",
   readMore: "https://trenddaily.shop/td925/44-ombre-acrylic-nail-ideas",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
   {
   title: "Curly Hair Queens: Defining Cuts and Styles for Every Curl Type",
@@ -127,7 +159,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Discover the best haircuts and styles for every curl type in our guide for curly hair queens. From loose waves to tight coils, learn how to embrace and define your natural curls beautifully",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td925/cl-sft.jpg",
   readMore: "https://trenddaily.shop/td925/curly-women-hairstyles",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
     {
   title: "Women Hairstyles That Make You Look Younger Instantly!",
@@ -135,7 +167,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Want to look 10 years younger? here are some women hairstyles that atleast won't make you look soo old. Every Woman deserves a glow and sparkle!",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/wh-sft.jpg",
   readMore: "https://trenddaily.shop/trending/women-hairstyles",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
    {
   title: "40 Best Nail Inspos You Should Try in 2025",
@@ -143,7 +175,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Check out the hottest, trending, Nail Inspos this season! spice up your looks, look sleek not mid. Ready to make the big impression?",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/nl-ift.jpg",
   readMore: "https://trenddaily.shop/trending/nail-inspos",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
   {
   title: "10 Bob Hairstyle Trends to Make You Stand Out in 2025",
@@ -151,7 +183,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Bob hairstyles really do make an impression, sleek, simple yet very classy. Here are the best ways you can style them to match your fit and Stand out when you enter room, make that killer impression.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/bh-sft.jpg",
   readMore: "https://trenddaily.shop/trending/bob-hairstyles",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
   
 {
@@ -160,7 +192,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Discover 10 stylish ways to rock Ankara short gowns without blending into the crowd. From bold prints to chic accessories, explore unique outfit ideas and fashion inspo that turn heads at any party!",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td825/IMG-20250825-WA0000.jpg",
   readMore: "https://trenddaily.shop/trending/ankara-gowns-style",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "15 Stylish 2-Piece Crochet Outfits for Men in 2025",
@@ -168,7 +200,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Discover 15 stylish 2-piece crochet outfits for men in 2025, perfect for festivals, beach trips, and upscale events. From relaxed co-ords to tailored sets, find versatile looks with styling tips to elevate your wardrobe. Pin your favorites!",
   image: "../images/streetwear-images/2-piece-mcrotchet-ft.jpg",
   readMore: "../trending/15-stylish-2-piece-crochet-outfits-for-men-2025.html",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "15 Chic 2-Piece Crochet Outfits for Women in 2025",
@@ -176,7 +208,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "15 trendy women’s 2-piece crochet outfit ideas, from casual sets to chic vacation looks. Perfect style inspo for your next fashion upgrade!",
   image: "../images/streetwear-images/2-piece-crotchet-ft.jpg",
   readMore: "../trending/15-stunning-2-piece-crochet-outfits-for-women-2025.html",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "10 Chic 2-Piece Outfits Every Woman Should Try in 2025",
@@ -184,7 +216,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Step up your style game in 2025 with 10 chic 2-piece outfits every woman should own. From casual streetwear to classy sets, these looks are unmissable.",
   image: "../images/streetwear-images/2piece-outfits-ft.jpg",
   readMore: "../trending/10-chic-2piece-outfits-women-2025.html",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
  {
   title: "How to Style White Sneakers in 2025",
@@ -200,7 +232,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Cut through the hype with 7 wearable 2025 streetwear trends - from luxury gorpcore to anti-fit denim. Real-world styling tips + what to skip.",
   image: "../images/streetwear-images/womensstyle.jpg",
   readMore: "../trending/2025-streetwear-trends.html",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "How to Wear Pink Jeans Without Looking Basic: 2025's Smartest Styling Hacks",
@@ -208,7 +240,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Master 5 sophisticated ways to style pink jeans with exact color formulas and texture combinations.",
   image: "../images/streetwear-images/pinkwears.jpg",
   readMore: "../trending/pink-jeans-outfits.html",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "Baggy Jeans Are Back: How to Style Them Without Looking Sloppy",
@@ -216,7 +248,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Baggy jeans are trending hard in 2025 — here are 7 polished outfit combos that balance comfort and edge without looking messy.",
   image: "../images/streetwear-images/baggy-jeans-hero.jpg",
   readMore: "../trending/baggy-jeans-style-guide.html",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "Skinny Jeans Aren’t Dead: 7 2025-Ready Ways to Style Them",
@@ -224,7 +256,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "From streetwear to smart casual, these 7 outfit formulas prove skinny jeans are still fire in 2025 — without looking outdated.",
   image: "../images/streetwear-images/skinny-jeans-hero.jpg",
   readMore: "../trending/skinny-jeans-style-guide.html",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
  {
   title: "Why Powder Blue Is the New Neutral: A Fresh Take on Everyday Style in 2025",
@@ -232,7 +264,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Discover how powder blue became 2025’s softest streetwear essential—plus 8 ways to wear it like a modern neutral.",
   image: "../images/streetwear-images/powder-blue-hero.jpg",
   readMore: "../trending/powder-blue-style-guide.html",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
  {
   title: "How to Style a Black Tote Bag: 7 Elevated Outfit Ideas for 2025",
@@ -316,7 +348,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Cut through the hype with 7 wearable 2025 streetwear trends - from luxury gorpcore to anti-fit denim. Real-world styling tips + what to skip.",
   image: "../images/streetwear-images/womensstyle.jpg",
   readMore: "../trending/2025-streetwear-trends.html",
-  shopLink: "../category/streetwear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 
 
