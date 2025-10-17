@@ -10,11 +10,51 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "15 Adorable November Baby Shower Aesthetic Ideas for Pinterest Lovers",
+  date: "17 Oct 2025",
+  excerpt: "Plan a picture-perfect November baby shower with these 15 adorable aesthetic ideas, featuring cozy fall vibes, seasonal colors, and Pinterest-worthy details for a memorable celebration.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/bsaft.webp",
+  readMore: "https://trenddaily.shop/td1025/15-november-baby-shower-aesthetics",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "7 Elegant November Wedding Guest Looks for Women That Outshine the Season",
+  date: "17 Oct 2025",
+  excerpt: "Elevate your style with these 7 elegant November wedding guest looks for women, featuring rich fall hues, luxurious fabrics, and chic designs to shine all season long.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nwgft.webp",
+  readMore: "https://trenddaily.shop/td1025/7-november-wedding-guest-looks-women",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Stunning November Wedding Themes For A Dreamy Fall Ceremony",
+  date: "17 Oct 2025",
+  excerpt: "Transform your November wedding into a dreamy fall ceremony with these 10 stunning themes, featuring rich autumn hues, cozy textures, and enchanting seasonal details.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nwtft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-november-wedding-themes",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "13 Stunning November Wedding Ideas for a Perfect Celebration",
+  date: "17 Oct 2025",
+  excerpt: "Plan a breathtaking November wedding with these 13 stunning ideas, blending seasonal charm, elegant décor, and cozy details for an unforgettable celebration.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nwift.webp",
+  readMore: "https://trenddaily.shop/td1025/13-november-wedding-ideas",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 November Wedding Décor Ideas for a Rustic Autumn Vibe",
+  date: "17 Oct 2025",
+  excerpt: "Create a cozy, rustic autumn atmosphere with these 10 November wedding décor ideas, featuring warm colors, natural elements, and seasonal touches for a memorable celebration.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nwdft.webp",
+  readMore: "https://trenddaily.shop/td1025/12-november-wedding-color-palettes",
+  shopLink: "../category/all-categories.html"
+},
+   {
   title: "12 Chic November Wedding Color Palettes You’ll Fall in Love With",
   date: "16 Oct 2025",
   excerpt: "Find your perfect autumn inspiration with these 12 elegant November wedding color palettes. From rich burgundy to warm neutrals, create a timeless and romantic celebration.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nwcft.webp",
-  readMore: "https://trenddaily.shop/td1025/12-november-wedding-color-palettes",
+  readMore: "https://trenddaily.shop/td1025/10-november-wedding-decor-ideas",
   shopLink: "../category/all-categories.html"
 },
    {
