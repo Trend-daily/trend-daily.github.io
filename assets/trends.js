@@ -10,6 +10,22 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "10 Almond-Shaped Nail Ideas Perfect for November",
+  date: "22 Oct 2025",
+  excerpt: "Explore 10 stunning almond-shaped nail ideas perfect for November! From cozy fall hues to festive designs, these trendy manicures will elevate your autumn style with elegance and flair..",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/alnift.webp",
+  readMore: "https://trenddaily.shop/td1025/10-almond-nail-ideas",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Fun Matching Outfit Ideas for Friends and Lovers",
+  date: "22 Oct 2025",
+  excerpt: "Discover 10 fun and stylish matching outfit ideas perfect for friends and couples! From casual twinning looks to coordinated date-night styles, get inspired to showcase your bond with these trendy, easy-to-pull-off outfits..",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/molft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-matching-outfits-lovers",
+  shopLink: "../category/all-categories.html"
+},
+   {
   title: "15 Adorable November Baby Shower Aesthetic Ideas for Pinterest Lovers",
   date: "17 Oct 2025",
   excerpt: "Plan a picture-perfect November baby shower with these 15 adorable aesthetic ideas, featuring cozy fall vibes, seasonal colors, and Pinterest-worthy details for a memorable celebration.",
