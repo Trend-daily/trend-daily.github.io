@@ -10,6 +10,14 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "10 Matching Outfit Ideas for Besties Who Love Aesthetic Looks",
+  date: "22 Oct 2025",
+  excerpt: "Discover 10 stylish matching outfit ideas for besties who adore aesthetic looks! From cozy streetwear to chic boho vibes, find perfect coordinated styles to slay together.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/mibft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-matching-outfit-ideas-besties",
+  shopLink: "../category/all-categories.html"
+},
+   {
   title: "10 Autumn-Inspired Nail Colors for the Perfect Fall Aesthetic",
   date: "22 Oct 2025",
   excerpt: "Discover 10 stunning autumn-inspired nail colors to elevate your fall aesthetic. From rich burgundies to warm neutrals, find the perfect shades for cozy, seasonal vibes...",
