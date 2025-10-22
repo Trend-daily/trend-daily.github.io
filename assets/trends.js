@@ -13,7 +13,7 @@ const preloader = document.getElementById('preloader');
   title: "10 Autumn-Inspired Nail Colors for the Perfect Fall Aesthetic",
   date: "22 Oct 2025",
   excerpt: "Discover 10 stunning autumn-inspired nail colors to elevate your fall aesthetic. From rich burgundies to warm neutrals, find the perfect shades for cozy, seasonal vibes...",
-  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/ancift.webp",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/ancft.webp",
   readMore: "https://trenddaily.shop/td1025/10-autumn-nail-colors",
   shopLink: "../category/all-categories.html"
 },
