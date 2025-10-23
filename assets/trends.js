@@ -9,6 +9,14 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+  {
+  title: "10 Elegant Almond Nails to Match Every November Outfit",
+  date: "23 Oct 2025",
+  excerpt: "Discover 10 stunning almond nail designs to complement any outfit! From chic neutrals to bold patterns, find the perfect nail inspo for every style and occasion..",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/alfoft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-almond-nails-for-every-outfit",
+  shopLink: "../category/all-categories.html"
+},
    {
   title: "10 Matching Outfit Ideas for Besties Who Love Aesthetic Looks",
   date: "22 Oct 2025",
