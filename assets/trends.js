@@ -9,6 +9,14 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+  {
+  title: "10 Minimalist November Nail Looks for Everyday Glam",
+  date: "23 Oct 2025",
+  excerpt: "Check out these 10 chic and minimalist November nail looks! From cozy neutrals to subtle seasonal designs, these simple yet stylish manicures are perfect for embracing fall's elegance..",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nnlft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-minimalist-november-nail-looks",
+  shopLink: "../category/all-categories.html"
+},
    {
   title: "8 Stylish Ways to Wear a Fringe Jacket This Season",
   date: "23 Oct 2025",
