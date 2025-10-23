@@ -9,6 +9,30 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+   {
+  title: "8 Stylish Ways to Wear a Fringe Jacket This Season",
+  date: "23 Oct 2025",
+  excerpt: "8 stylish ways to rock a fringe jacket this season. From boho-chic to urban edge, find bold outfit ideas to elevate your wardrobe with this trendy statement piece..",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/fjsft.webp",
+  readMore: "https://trenddaily.shop/td1025/8-fringe-jacket-styles",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "10 Boho Fringe Jacket Outfit Ideas That Turn Heads",
+  date: "23 Oct 2025",
+  excerpt: "10 boho fringe jacket outfit ideas that steal the spotlight. From festival-ready looks to chic street style, get inspired with these bold, free-spirited ensembles.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/bojft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-boho-fringe-jacket-outfit-ideas",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Fisherman Aesthetic Outfits That Feel Coastal and Cozy",
+  date: "23 Oct 2025",
+  excerpt: "10 cozy and casual fisherman aesthetic outfits perfect for laid-back style. From chunky knits to rugged boots, find inspiration for effortless coastal vibes.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/fimoft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-fisherman-aesthetic-outfits",
+  shopLink: "../category/all-categories.html"
+},
   {
   title: "10 Elegant Almond Nails to Match Every November Outfit",
   date: "23 Oct 2025",
