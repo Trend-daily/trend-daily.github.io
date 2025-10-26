@@ -9,6 +9,14 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+   {
+  title: "10 Cozy November Birthday Party Themes Everyone Will Love",
+  date: "26 Oct 2025",
+  excerpt: "Discover 10 cozy November birthday party themes that everyone will love! From rustic harvest vibes to warm, festive ideas, create unforgettable celebrations with these unique, seasonal party themes.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nbdtft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-november-birthday-party-themes",
+  shopLink: "../category/all-categories.html"
+},
   {
   title: "10 Minimalist November Nail Looks for Everyday Glam",
   date: "23 Oct 2025",
