@@ -10,6 +10,46 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "10 Thanksgiving Outfit Ideas That Balance Cozy and Cute",
+  date: "27 Oct 2025",
+  excerpt: "Discover 10 Thanksgiving outfit ideas that perfectly blend cozy comfort with cute style. From chunky knits to plaid skirts, get inspired for a festive, effortless holiday look!.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/tgoift.webp",
+  readMore: "https://trenddaily.shop/td1025/10-thanksgiving-outfit-ideas",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "8 Couple Outfit Ideas That Nail the “Seeing Double” Trend",
+  date: "27 Oct 2025",
+  excerpt: "Double the style, twice the spark! Dive into 8 swoon-worthy couple outfit ideas that master the “seeing double” trend—think mirrored magic, playful twinning, and romance dialed up to eleven.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/coimft.webp",
+  readMore: "https://trenddaily.shop/td1025/8-couple-outfit-ideas-m",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "9 Glam Outfit Ideas for an Unforgettable November Birthday",
+  date: "27 Oct 2025",
+  excerpt: "Celebrate your November birthday in style with 9 glamorous outfit ideas! From shimmering sequins to velvet elegance, discover looks that blend fall vibes with party flair for an unforgettable night.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/ngloft.webp",
+  readMore: "https://trenddaily.shop/td1025/9-november-glam-outfit-ideas",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "8 Cozy-Chic November Birthday Looks You’ll Love Wearing",
+  date: "27 Oct 2025",
+  excerpt: "Steal the spotlight with 8 cozy-chic November birthday outfits! From plush knits to elegant layers, these stylish looks blend warmth and wow for your special day.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nbdlft.webp",
+  readMore: "https://trenddaily.shop/td1025/8-november-birthday-looks",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Birthday Outfit Ideas That Slay for a November Celebration",
+  date: "27 Oct 2025",
+  excerpt: "Unleash your November birthday vibe with 10 jaw-dropping outfit ideas! From sultry velvet to sparkling sequins, these seasonal stunners will make your celebration iconic.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nbdoft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-november-birthday-outfit-ideas",
+  shopLink: "../category/all-categories.html"
+},
+   {
   title: "10 Cozy November Birthday Party Themes Everyone Will Love",
   date: "26 Oct 2025",
   excerpt: "Discover 10 cozy November birthday party themes that everyone will love! From rustic harvest vibes to warm, festive ideas, create unforgettable celebrations with these unique, seasonal party themes.",
