@@ -9,6 +9,86 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+    {
+  title: "12 Boho Fringe Looks That Bring Festival Energy to Fall",
+  date: "28 Oct 2025",
+  excerpt: "Channel festival vibes into fall with 12 boho fringe looks—suede jackets, layered scarves, and tassel details that add playful movement to cozy autumn outfits.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/bhflft.webp",
+  readMore: "https://trenddaily.shop/td1025/12-boho-fringe-looks",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "10 Ways to Style the Moto-Boho Trend Without Overdoing It",
+  date: "28 Oct 2025",
+  excerpt: "Master the moto-boho trend with 10 understated styling tips that blend rugged leather jackets with flowy bohemian layers—effortless, balanced, and never over-the-top.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/smbhft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-ways-to-style-moto-boho-trend",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "9 Boho-Meets-Leather Styles for an Effortless Chic Look",
+  date: "28 Oct 2025",
+  excerpt: "Discover 9 boho-meets-leather outfits that fuse free-spirited fringe with edgy leather for effortless chic style—perfect for festivals, city strolls, or everyday cool.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/bmlsft.webp",
+  readMore: "https://trenddaily.shop/td1025/9-boho-meets-leather-styles",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Moto-Boho Outfit Ideas That Blend Edge and Freedom",
+  date: "28 Oct 2025",
+  excerpt: "Unleash your inner rebel with 10 moto-boho outfit ideas blending edgy leather, studs, and chains with flowing bohemian lace, fringe, and earthy vibes—perfect for effortless, free-spirited style this fall.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/mbhoft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-moto-boho-outfits",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "8 Fall Nail Designs You’ll Want to Screenshot Immediately",
+  date: "28 Oct 2025",
+  excerpt: "Screenshot-worthy fall nails alert! Dive into 8 trending designs featuring warm spice shades, elegant tortoiseshell patterns, glossy mocha dips, and playful pumpkin accents—perfect for instant inspo and your next salon visit.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/fndft.webp",
+  readMore: "https://trenddaily.shop/td1025/8-fall-nail-designs-sc",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "12 Fall Nail Ideas That Are Trending Right Now",
+  date: "28 Oct 2025",
+  excerpt: "Discover 12 must-try fall nail ideas that are dominating trends this season! From rich jewel tones and cozy plaids to chic chrome accents and minimalist designs, get inspired with these stunning, Instagram-worthy manicures perfect for autumn.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/tfnft.webp",
+  readMore: "https://trenddaily.shop/td1025/12-trending-fall-nails",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "10 Cozy Nail Designs Perfect for November",
+  date: "28 Oct 2025",
+  excerpt: "Explore 10 cozy nail designs tailored for November—think rich mocha swirls, soft sweater textures, matte burgundy accents, and golden leaf details to keep your manicure warm and autumn-ready.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nndsft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-november-nail-designs",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "15 November Nail Ideas That Capture Fall Vibes",
+  date: "28 Oct 2025",
+  excerpt: "Discover 15 stunning November nail ideas that embody cozy fall vibes—from warm spice tones and plaid patterns to glittering leaves and matte pumpkins. Perfect inspo for your autumn manicure!",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/nnidft.webp",
+  readMore: "https://trenddaily.shop/td1025/15-november-nail-ideas",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "7 Cozy Thanksgiving Styles for Every Type of Gathering",
+  date: "28 Oct 2025",
+  excerpt: "Explore 7 cozy Thanksgiving styles tailored to every gathering—from intimate family dinners to grand festive feasts. Uncover warm textures, ambient lighting, and effortless decor ideas that blend rustic charm with modern elegance for a holiday that's as inviting as it is unforgettable.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/tgosft.webp",
+  readMore: "https://trenddaily.shop/td1025/7-thanksgiving-outfit-styles",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "10 Aesthetic Thanksgiving Table Decor Ideas",
+  date: "28 Oct 2025",
+  excerpt: "Enchant your Thanksgiving feast with 10 spellbinding aesthetic table decor visions—where golden harvest whispers meet velvet midnight elegance, flickering candlelit alchemy, and wildflower poetry bloom on every plate. Steal these ethereal DIY secrets to conjure a tablescape so breathtaking, your guests will savor the magic long after the pie is gone.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/tgdift.webp",
+  readMore: "https://trenddaily.shop/td1025/10-thanksgiving-decor-ideas",
+  shopLink: "../category/all-categories.html"
+},
    {
   title: "10 Thanksgiving Outfit Ideas That Balance Cozy and Cute",
   date: "27 Oct 2025",
