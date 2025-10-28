@@ -607,7 +607,7 @@ const preloader = document.getElementById('preloader');
   const loadMoreBtn = document.getElementById("loadMoreBtn");
 
   let postsPerLoad = 20;  // initial batch size
-  let loadIncrement = 5; // posts per "Load More"
+  let loadIncrement = 4; // posts per "Load More"
   let currentIndex = 0;
 
   // Reusable render function
