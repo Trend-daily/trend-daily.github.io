@@ -9,6 +9,14 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+  {
+  title: "7 Ways to Style Your Fringe Jacket for Everyday Wear",
+  date: "29 Oct 2025",
+  excerpt: "Explore 7 versatile ways to style your fringe jacket for effortless everyday looks! From casual denim pairings to chic office outfits, elevate your wardrobe with boho flair and timeless tips.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/wsfft.webp",
+  readMore: "https://trenddaily.shop/td1025/7-ways-to-style-fringe-jacket",
+  shopLink: "../category/all-categories.html"
+},
     {
   title: "12 Boho Fringe Looks That Bring Festival Energy to Fall",
   date: "28 Oct 2025",
