@@ -55,40 +55,7 @@ window.addEventListener('scroll', function () {
   });
   /* Menu button styling end..*/
 
-  /* ======= Section 2 (Lookbook Script) Start =======*/
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Fade in carousel when lookbook enters
-  document.querySelector(".swiper").style.display = "block";
-  gsap.from(".swiper-slide", {
-    opacity: 0,
-    y: 50,
-    duration: 1,
-    scrollTrigger: {
-      trigger: "#lookbook",
-      start: "top 80%",
-      once: true
-    }
-  });
-
-  // Initialize Swiper immediately
-  new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    breakpoints: {
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-      1440: { slidesPerView: 4 },
-    },
-    loop: true,
-    autoplay: { delay: 2000 },
-    pagination: { el: ".swiper-pagination", clickable: true },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    }
-  });
-  /* ===== Section 2 Ends =====*/
+  
 
   /* ====== Section 3 about-contact section ====== */
   emailjs.init("rqySEZhRgtZkk_uVp");

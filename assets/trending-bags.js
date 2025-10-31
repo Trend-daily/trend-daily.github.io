@@ -15,21 +15,21 @@ const preloader = document.getElementById('preloader');
   excerpt: "From streetwear to office-ready looks, discover 7 polished outfit formulas that prove the black tote is the ultimate fashion essential in 2025.",
   image: "../images/bag-images/black-tote-hero.jpg",
   readMore: "../trending/black-tote-bag-style.html",
-  shopLink: "../category/bags-shop.html"
+  shopLink: "#"
 },
 {
   title: "5 Streetwear Crossbody Looks That Actually Work for Guys",
   excerpt: "Master the art of crossbody bag styling with 5 clean streetwear formulas guys can actually pull off in 2025.",
   image: "../images/bag-images/crossbody-hero.jpg",
   readMore: "../trending/5-streetwear-crossbody-looks-for-guys.html",
-  shopLink: "../category/bags-shop.html"
+  shopLink: "#"
 },
 {
   title: "8 of the Best ways to style a female tote bag casually",
   excerpt: "Explore 8 casual ways to style tote bags. Learn how to rock a black tote bag with everyday outfits and shop the best tote bag looks today.",
   image: "../images/bag-images/female_tote_bag_ft.jpg",
   readMore: "../trending/best-ways-to-style-female-tote-bag-casually.html",
-  shopLink: "../category/bags-shop.html"
+  shopLink: "#"
 },
     // Add more posts as needed
   ];

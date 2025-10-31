@@ -14,7 +14,7 @@ const preloader = document.getElementById('preloader');
         "Make a bold statement with our curated pink suit collection. Double-breasted elegance meets confident femininity in styles perfect for work and weekends.",
       image: "../images/formalwear-images/pink-power-suit1.jpg",
       readMore: "../trending/pretty-pink-suits.html",
-      shopLink: "../category/formal-wear-shop.html"
+      shopLink: "#"
     },
     {
       title: "Black Gowns: Elegant, Sexy, and Classy",
@@ -22,7 +22,7 @@ const preloader = document.getElementById('preloader');
         "Discover the timeless allure of women’s black gowns — flattering for all body types, perfect for every occasion, and always on trend.",
       image: "../images/formalwear-images/blackgowns-1.jpg",
       readMore: "../trending/womens-black-gowns.html",
-      shopLink: "../category/formal-wear-shop.html"
+      shopLink: "#"
     },
     {
       title: "Red Suits for Formal Events: Stylish not Loud",
@@ -30,7 +30,7 @@ const preloader = document.getElementById('preloader');
         "A red suit commands attention—but at a formal event, the key is sophistication, not shock value. Learn how to wear one with polish, not pizzazz, for weddings, galas, and black-tie affairs.",
       image: "../images/formalwear-images/redsuits-1.jpg",
       readMore: "../trending/red-suits.html",
-      shopLink: "../category/formal-wear-shop.html"
+      shopLink: "#"
     },
     {
       title: "From Desk to Dinner: 5 Transitional Work Outfits For Women",
@@ -38,21 +38,21 @@ const preloader = document.getElementById('preloader');
         "5 seamless work-to-evening outfit transitions with pro styling tips. Master desk-to-dinner dressing with blazers, wraps & monochrome looks.",
       image: "../images/formalwear-images/womencorporate-2.jpg",
       readMore: "../trending/desk-to-dinner-outfits.html",
-      shopLink: "../category/formal-wear-shop.html"
+      shopLink: "#"
     },
     {
   title: "5 Suits Every Man Needs: Build a Power Wardrobe That Never Quits",
   excerpt: "The only 5 suits your professional wardrobe requires—from interview-ready navy to versatile charcoal. Expert styling tips for career success.",
   image: "../images/formalwear-images/suit-collage.jpg",
   readMore: "../trending/5-suits-every-man-needs.html",
-  shopLink: "../category/formal-wear-shop.html"
+  shopLink: "#"
 },
    {
   title: "The 2025 Suit Capsule: 5 Must-Own Suits for Every Man",
   excerpt: "Want to stand out in 2025? These are the 5 suits every man must own this year—timeless fits that guarantee sharp style for work, weddings, and beyond.",
   image: "../images/formalwear-images/mens_five_suits-ft.jpg",
   readMore: "../trending/top-5-suits-every-man-should-own-2025.html",
-  shopLink: "../category/formal-wear-shop.html"
+  shopLink: "#"
 },
     
     // Add more posts as needed

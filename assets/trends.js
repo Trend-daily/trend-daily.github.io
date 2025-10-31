@@ -480,7 +480,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Wondering how to wear white sneakers without looking basic? These 7 fresh outfit ideas show you exactly how to style white sneakers in 2025 with ease.",
   image: "../images/sneakers-images/white-sneakers-hero.jpg",
   readMore: "../trending/how-to-style-white-sneakers-2025.html",
-  shopLink: "../category/sneakers-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",
@@ -528,7 +528,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "From streetwear to office-ready looks, discover 7 polished outfit formulas that prove the black tote is the ultimate fashion essential in 2025.",
   image: "../images/bag-images/black-tote-hero.jpg",
   readMore: "../trending/black-tote-bag-style.html",
-  shopLink: "../category/bags-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "5 Streetwear Crossbody Looks That Actually Work for Guys",
@@ -536,7 +536,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Master the art of crossbody bag styling with 5 clean streetwear formulas guys can actually pull off in 2025.",
   image: "../images/bag-images/crossbody-hero.jpg",
   readMore: "../trending/5-streetwear-crossbody-looks-for-guys.html",
-  shopLink: "../category/bags-shop.html"
+  shopLink: "../category/all-categories.html"
 },
  {
       title: "Pretty in Pink Power Suits",
@@ -545,7 +545,7 @@ const preloader = document.getElementById('preloader');
         "Make a bold statement with our curated pink suit collection. Double-breasted elegance meets confident femininity in styles perfect for work and weekends.",
       image: "../images/formalwear-images/pink-power-suit1.jpg",
       readMore: "../trending/pretty-pink-suits.html",
-      shopLink: "../category/formal-wear-shop.html"
+      shopLink: "../category/all-categories.html"
     },
       {
       title: "Black Gowns: Elegant, Sexy, and Classy",
@@ -554,7 +554,7 @@ const preloader = document.getElementById('preloader');
         "Discover the timeless allure of women’s black gowns — flattering for all body types, perfect for every occasion, and always on trend.",
       image: "../images/formalwear-images/blackgowns-1.jpg",
       readMore: "../trending/womens-black-gowns.html",
-      shopLink: "../category/formal-wear-shop.html"
+      shopLink: "../category/all-categories.html"
     },
      {
       title: "Red Suits for Formal Events: Stylish not Loud",
@@ -563,7 +563,7 @@ const preloader = document.getElementById('preloader');
         "A red suit commands attention—but at a formal event, the key is sophistication, not shock value. Learn how to wear one with polish, not pizzazz, for weddings, galas, and black-tie affairs.",
       image: "../images/formalwear-images/redsuits-1.jpg",
       readMore: "../trending/red-suits.html",
-      shopLink: "../category/formal-wear-shop.html"
+      shopLink: "../category/all-categories.html"
     },
      {
       title: "From Desk to Dinner: 5 Transitional Work Outfits For Women",
@@ -572,7 +572,7 @@ const preloader = document.getElementById('preloader');
         "5 seamless work-to-evening outfit transitions with pro styling tips. Master desk-to-dinner dressing with blazers, wraps & monochrome looks.",
       image: "../images/formalwear-images/womencorporate-2.jpg",
       readMore: "../trending/desk-to-dinner-outfits.html",
-      shopLink: "../category/formal-wear-shop.html"
+      shopLink: "../category/all-categories.html"
     },
     {
   title: "5 Suits Every Man Needs: Build a Power Wardrobe That Never Quits",
@@ -580,7 +580,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "The only 5 suits your professional wardrobe requires—from interview-ready navy to versatile charcoal. Expert styling tips for career success.",
   image: "../images/formalwear-images/suit-collage.jpg",
   readMore: "../trending/5-suits-every-man-needs.html",
-  shopLink: "../category/formal-wear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "8 of the Best ways to style a female tote bag casually",
@@ -588,7 +588,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Explore 8 casual ways to style tote bags. Learn how to rock a black tote bag with everyday outfits and shop the best tote bag looks today.",
   image: "../images/bag-images/female_tote_bag_ft.jpg",
   readMore: "../trending/best-ways-to-style-female-tote-bag-casually.html",
-  shopLink: "../category/bags-shop.html"
+  shopLink: "../category/all-categories.html"
 },
 {
   title: "The 2025 Suit Capsule: 5 Must-Own Suits for Every Man",
@@ -596,7 +596,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Want to stand out in 2025? These are the 5 suits every man must own this year—timeless fits that guarantee sharp style for work, weddings, and beyond.",
   image: "../images/formalwear-images/mens_five_suits-ft.jpg",
   readMore: "../trending/top-5-suits-every-man-should-own-2025.html",
-  shopLink: "../category/formal-wear-shop.html"
+  shopLink: "../category/all-categories.html"
 },
   {
   title: "2025 Streetwear Trends That Actually Matter (No Hypebeast Nonsense)",

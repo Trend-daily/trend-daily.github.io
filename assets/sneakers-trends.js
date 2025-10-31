@@ -13,7 +13,7 @@ const preloader = document.getElementById('preloader');
   excerpt: "Wondering how to wear white sneakers without looking basic? These 7 fresh outfit ideas show you exactly how to style white sneakers in 2025 with ease.",
   image: "../images/sneakers-images/white-sneakers-hero.jpg",
   readMore: "../trending/how-to-style-white-sneakers-2025.html",
-  shopLink: "../category/sneakers-shop.html"
+  shopLink: "#"
 },
 
     // Add more posts as needed

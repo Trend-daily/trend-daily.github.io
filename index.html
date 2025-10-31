@@ -54,7 +54,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
  <!-- ==== Swiper CSS Installation end ==== -->
   <link rel="stylesheet" href="htest.css">
+ <!--   <link rel="stylesheet" href="assets/blog.css"> -->
   <script src="htest.js"></script>
+  <script src="assets/trends.js"></script>
    <!-- ==== jQuery Installation ==== -->
     <script src="https://code.jquery.com/jquery-3.1.1.js">
         </script>
@@ -119,7 +121,7 @@
   <!-- ===== HERO SECTION ===== -->
   <section class="hero">
     <div class="hero-content">
-      <h2 class="hero-title clipped">The New Season<br> Has Arrived</h2>
+      <h2 class="hero-title clipped">The Autumn Style Era</h2>
       <p class="hero-subtitle">Elevate Your Style with Our Latest Collection</p>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <div class="scroll-indicator"></div>
@@ -174,84 +176,10 @@
   </section>
 <br><br>
   <!-- ===== LOOKBOOK SECTION ===== -->
-  <center><h2>Check out Our Catalog!</h2></center>
-  <section id="lookbook">
-  <div class="lookbook-grid">
+  <center><h2 style="font-size:30pt;">Check out What's Trending!</h2></center>
  
-  </div>
-  <div class="last-image" style="color: transparent;">Start animation</div>
-
-  <!-- Swiper Carousel -->
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="images/streetwear-images/trenddaily-female-streetwear3.jpg" />
-        <div class="card-info">
-            <h4>Women 2-piece sets</h4>
-          <h4>$21.00</h4>
-          <button onclick="window.location.href = https://amzn.to/44WLpgx">Shop Now</button>
-        </div>
-      </div>
-       <div class="swiper-slide">
-        <img src="images/formalwear-images/trenddaily-womens-suit1.jpg" />
-        <div class="card-info">
-            <h4>Women Suits</h4>
-          <h4>$45.00</h4>
-          <button onclick="window.location.href = https://amzn.to/3UbfT8s">Shop Now</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <img src="images/streetwear-images/trenddaily-male-2-piece-set1.jpg" />
-        <div class="card-info">
-          <h4>Men 2-piece sets</h4>
-          <h4>$22.00</h4>
-          <button onclick="window.location.href = https://amzn.to/4lYtz2Q">Shop Now</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <img src="images/streetwear-images/trenddaily-male-2-piece-set3.jpg" />
-        <div class="card-info">
-            <h4>Men 2-piece sets</h4>
-          <h4>$20.00</h4>
-          <button onclick="window.location.href = https://amzn.to/4lYtz2Q">Shop Now</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <img src="images/streetwear-images/trenddaily-male-2-piece-set5.jpg" />
-        <div class="card-info">
-            <h4>Men 2-piece sets</h4>
-          <h4>$16.00</h4>
-          <button onclick="window.location.href = https://amzn.to/4lYtz2Q">Shop Now</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <img src="images/streetwear-images/trenddaily-male-jeans12.jpg" />
-        <div class="card-info">
-            <h4>Jeans for Men</h4>
-          <h4>$35.00</h4>
-          <button onclick="window.location.href = https://amzn.to/3JeNlIH">Shop Now</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <img src="images/streetwear-images/trenddaily-male-jeans1.jpg" />
-        <div class="card-info">
-            <h4>Jeans for Men</h4>
-          <h4>$35.00</h4>
-          <button onclick="window.location.href = https://amzn.to/3JeNlIH">Shop Now</button>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <img src="images/streetwear-images/trenddaily-female-streetwear1.jpg" />
-        <div class="card-info">
-            <h4>Women 2-piece sets</h4>
-          <h4>$15.00</h4>
-          <button>Shop Now</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+  <div class="grid-container" id="categoryGrid"></div>
+<button id="loadMoreBtn" class="loadMoreBtn">Load more</button>
 <!-- ======= LookBook Section Ends ======= -->
 
 <!-- ======= About Contact Section Start ======== -->

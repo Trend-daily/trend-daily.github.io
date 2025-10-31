@@ -10,34 +10,7 @@ const preloader = document.getElementById('preloader');
 
 // data.js
 const fashionCategories = [
-  {
-    title: "Streetwear",
-    image: "images/ft-img/streetwear-ftimg.jpg",
-    blurImage: "images/ft-img/streetwear-blur.jpg",
-    trendsUrl: "trending/streetwear-trends.html",
-  shopUrl: "category/streetwear-shop.html"
-  },
-  {
-    title: "Formal Wear",
-    image: "images/ft-img/formalwear-ftimg.jpg",
-    blurImage: "images/ft-img/formalwear-blur.jpg",
-    trendsUrl: "trending/formalwear-trends.html",
-    shopUrl: "category/formal-wear-shop.html"
-      },
-  {
-    title: "Footwear",
-    image: "images/ft-img/sneakers-ftimg.jpg",
-    blurImage: "images/ft-img/sneakers-blur.jpg",
-        trendsUrl: "trending/sneakers-trends.html",
-    shopUrl: "category/sneakers-shop.html"
-  },
-  {
-    title: "Trendy Bags",
-    image: "images/ft-img/trendybags-ftimg.jpg",
-    blurImage: "images/ft-img/trendybags-blur.jpg",
-        trendsUrl: "trending/trending-bags.html",
-    shopUrl: "category/bags-shop.html"
-  },
+ 
   // Add more categories here
 ];
 
@@ -96,27 +69,7 @@ const products = [
       });
     }
 
-    // Scroll carousel
-    function scrollCarousel(direction) {
-      currentIndex = (currentIndex + direction + products.length) % products.length;
-      const scrollX = currentIndex * cardWidth;
-      carousel.scrollTo({ left: scrollX, behavior: 'smooth' });
-    }
-
-    // Auto slide every 4 seconds
-    setInterval(() => {
-      scrollCarousel(1);
-    }, 4000);
-
-    // Event listeners
-    document.getElementById('prevBtn').addEventListener('click', () => scrollCarousel(-1));
-    document.getElementById('nextBtn').addEventListener('click', () => scrollCarousel(1));
-
-    // Initialize
-    renderCards();
-    scrollCarousel(0); // center first card
-    
-    //Carousel JS Ends
+  
     
     
     
