@@ -9,6 +9,30 @@ const preloader = document.getElementById('preloader');
     }, 400); // Allow fade out before removing
     
   const blogPosts = [
+   {
+  title: "9 Pinterest Hair Care Routines That Actually Work in Winter",
+  date: "3 Nov 2025",
+  excerpt: "Discover 9 proven Pinterest hair care routines designed for winter. Get real tips for battling dryness and frizz to keep your hair healthy and shiny all season long.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/phcrft.webp",
+  readMore: "https://trenddaily.shop/td1025/9-pinterest-hair-care-routines",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Ways to Protect Your Hair from Winter Dryness",
+  date: "3 Nov 2025",
+  excerpt: "Dryness and static got you down? here are 10 Ways to Protect Your Hair from Winter Dryness. Learn quick, DIY masks and oils you can make at home to revive your hair.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/whcrft.webp",
+  readMore: "https://trenddaily.shop/td1025/10-winter-hair-protection",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "8 Easy Winter Hair Treatments You Can Try at Home",
+  date: "3 Nov 2025",
+  excerpt: "Winter wreaking havoc on your hair? Restore moisture and shine with these 8 simple at-home hair treatments. Easy recipes with natural ingredients for soft, manageable hair.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1025/whtrft.webp",
+  readMore: "https://trenddaily.shop/td1025/8-winter-hair-treatments",
+  shopLink: "../category/all-categories.html"
+},
   {
   title: "7 Ways to Style Your Fringe Jacket for Everyday Wear",
   date: "29 Oct 2025",
