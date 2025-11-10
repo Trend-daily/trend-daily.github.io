@@ -10,6 +10,238 @@ const preloader = document.getElementById('preloader');
     
   const blogPosts = [
    {
+  title: "15 Holiday Outfit Ideas That Define December Fashion",
+  date: "8 Nov 2025",
+  excerpt: "15 December 2025 holiday outfit ideas blending cozy chic, festive sparkle, boho lace, and warm layers—perfect for parties, dinners, and winter celebrations.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/holoft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-holiday-outfit-ideas-december.html",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 December Fashion Trends That Give the Chic Vibe",
+  date: "7 Nov 2025",
+  excerpt: "Discover 10 December 2025 fashion trends that deliver effortless chic—cozy layers, boho lace, warm neutrals, and festive sparkle for winter elegance.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/dftrft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-december-fashion-trends.html",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Festive Holiday Party Looks You’ll Want to Try",
+  date: "7 Nov 2025",
+  excerpt: "Get inspired with 10 festive holiday party looks for December 2025—featuring metallics, velvet, bold reds, and sustainable sparkle to shine at every soirée.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/fhplft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-festive-holiday-party-looks.html",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "25 Gift Ideas for Fashion Lovers This December",
+  date: "7 Nov 2025",
+  excerpt: "Unwrap 25 dazzling gift ideas for fashion lovers this December—think shimmering coastal-chic treasures, sculptural statement pieces, and eco-luxe must-haves that ignite 2025’s boldest trends.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/giflft.webp",
+  readMore: "https://trenddaily.shop/td1125/25-gift-ideas-for-lovers.html",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Cozy Winter Outfit Ideas for Everyday Chic",
+  date: "7 Nov 2025",
+  excerpt: "Discover 10 cozy winter outfit ideas blending soft knits, layered textures, and effortless chic—perfect for staying warm and stylish during everyday cold-weather adventures in 2025.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/cwofft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-cozy-winter-outfit-ideas.html",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "20 Cozy Home Décor Trends for a Stylish Holiday",
+  date: "7 Nov 2025",
+  excerpt: "Discover 20 cozy home décor trends for 2025, blending natural textures, warm earth tones, and timeless holiday accents to create inviting, stylish spaces perfect for festive gatherings and serene winter evenings.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/chdtrft.webp",
+  readMore: "https://trenddaily.shop/td1125/20-cozy-home-decor-trends.html",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "15 Statement Winter Coats That Steal the Spotlight",
+  date: "6 Nov 2025",
+  excerpt: "Turn heads this winter with 15 statement coats that command attention—bold colors, dramatic silhouettes, luxe textures, and standout details for instant spotlight-stealing outerwear.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/swcft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-minimalist-holiday-outfits",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "10 Minimalist Holiday Outfits That Still Feel Luxe",
+  date: "6 Nov 2025",
+  excerpt: "Elevate simplicity with 10 minimalist holiday outfits that exude luxury—clean lines, premium fabrics, and subtle sparkle for effortless elegance at every festive gathering.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/mhoft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-minimalist-holiday-outfits",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "25 Winter Capsule Wardrobe Essentials for Women This Fall",
+  date: "6 Nov 2025",
+  excerpt: "Build a chic, versatile winter wardrobe with 25 essential pieces for women: timeless coats, cozy knits, tailored pants, and seasonal staples that mix effortlessly for fall-to-winter style.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/wcwft.webp",
+  readMore: "https://trenddaily.shop/td1125/25-winter-capsule-wardrobe",
+  shopLink: "../category/all-categories.html"
+},
+    {
+  title: "20 Christmas Outfit Ideas for Brunch, Parties, and More",
+  date: "6 Nov 2025",
+  excerpt: "Discover 20 festive Christmas outfit ideas for every occasion—from cozy brunch layers and sparkling party dresses to chic family gatherings and holiday outings, blending comfort, glamour, and seasonal style.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/cmidft.webp",
+  readMore: "https://trenddaily.shop/td1125/20-christmas-outfit-ideas",
+  shopLink: "../category/all-categories.html"
+},
+    {
+  title: "15 Holiday Gift Ideas for Trendy Women",
+  date: "6 Nov 2025",
+  excerpt: "Unwrap joy with 15 curated holiday gift ideas for trendy women: from sustainable fashion finds and tech-savvy beauty gadgets to personalized jewelry and cozy luxe essentials that scream style and sparkle.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/hgiwft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-holiday-gift-ideas-women",
+  shopLink: "../category/all-categories.html"
+},
+    {
+  title: "10 Winter Street Style Looks That Rule Pinterest",
+  date: "6 Nov 2025",
+  excerpt: "Discover 10 Pinterest-dominating winter street style looks, from oversized coats and chunky knits to bold boots and layered accessories—effortless cold-weather fashion that rules the season.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/wsslft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-winter-street-style-looks",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Holiday Accessories to Elevate Any Outfit",
+  date: "6 Nov 2025",
+  excerpt: "Discover 10 must-have holiday accessories that instantly elevate any outfit—from sparkling statement earrings to luxurious velvet clutches—for effortless festive glamour.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/holacft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-holiday-accessories",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "15 Gift Ideas for Fashion Bloggers and Creatives",
+  date: "5 Nov 2025",
+  excerpt: "Discover 15 perfect gift ideas for fashion bloggers and creatives, from ring lights and prime lenses to design tools and styling essentials—thoughtful picks to inspire content and elevate their craft.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/hdtrft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-gift-ideas-fashion-bloggers",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Winter Aesthetic Outfit Ideas You’ll Love",
+  date: "5 Nov 2025",
+  excerpt: "Explore 10 dreamy winter aesthetic outfit ideas, from cozy knits and plaid layers to snowy whites and velvet accents—perfect for channeling seasonal charm all December long..",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/waoft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-winter-aesthetic-outfits",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Holiday Dresses That Are Pinterest-Perfect",
+  date: "5 Nov 2025",
+  excerpt: "Explore 10 Pinterest-perfect holiday dresses, from shimmering velvet minis to elegant satin midis—ideal for festive parties, family photos, and sparkling seasonal moments.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/hpdft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-holiday-pinterest-dresses",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "20 Cozy Loungewear Trends for December Nights",
+  date: "5 Nov 2025",
+  excerpt: "Discover 20 cozy loungewear trends for December nights, from plush cashmere hoodies to sustainable fleece sets—perfect for fireside hygge and effortless holiday comfort.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/clwtft.webp",
+  readMore: "https://trenddaily.shop/td1125/20-cozy-loungewear-trends",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "25 Festive Home Décor Themes to Try This Year",
+  date: "4 Nov 2025",
+  excerpt: "25 festive home décor themes that hijack the season: midnight pine forests dripping with matte black baubles, candy-cane minimalism in porcelain stripes, gilded Art Deco evergreens, and neon Nordic cabins—each room a mood board come alive.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/hdtft.webp",
+  readMore: "https://trenddaily.shop/td1125/25-festive-home-decor-themes",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Winter Outfit Combinations You Can Copy Instantly",
+  date: "4 Nov 2025",
+  excerpt: "Pinterest’s holiday glow-up: 15 outfits that pin themselves—emerald velvet wrapped like a gift, tinsel-trimmed blazers catching every flash, crimson silk slipping over candlelit skin, and faux-fur collars framing midnight smiles, ready for your board before the party ends",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/pnwoft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-pinterest-worthy-outfits",
+  shopLink: "../category/all-categories.html"
+},
+    {
+  title: "15 Pinterest-Worthy Holiday Outfit Inspirations",
+  date: "4 Nov 2025",
+  excerpt: "Pinterest’s holiday glow-up: 15 outfits that pin themselves—emerald velvet wrapped like a gift, tinsel-trimmed blazers catching every flash, crimson silk slipping over candlelit skin, and faux-fur collars framing midnight smiles, ready for your board before the party ends",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/pnwoft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-pinterest-worthy-outfits",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Winter Sweater Styles That Look Unique",
+  date: "4 Nov 2025",
+  excerpt: "10 winter sweater styles that refuse to blend in: cable knits twisted into armor, color-blocked storms of mohair, cropped cardigans laced like corsets, and oversized tunics trailing fringe—each a quiet rebellion against ordinary layers.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/wssuft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-winter-sweater-styles-unique",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "10 Fashionable Holiday Gifts for Her ",
+  date: "4 Nov 2025",
+  excerpt: "10 fashionable holiday gifts for her that blend luxury and whimsy—think pearl-embellished hair clips, butter-soft leather gloves, silk sleep masks in champagne hues, and crystal-studded phone cases that make every unwrap a style upgrade.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/fghft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-fashionable-gifts-for-her",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "15 Winter Date Night Outfit Ideas For Women That Wow",
+  date: "4 Nov 2025",
+  excerpt: "15 winter date-night outfits for women: velvet that clings like midnight, cashmere that whispers against skin, sequins catching every flicker of light, leather gleaming under streetlamps—each look engineered to make the night forget the cold.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/wdnoft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-winter-date-night-outfits",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "15 Holiday Party Outfit Ideas for Every Style",
+  date: "4 Nov 2025",
+  excerpt: "15 holiday party outfit ideas for every style that sparkle with personality—think boho velvet maxi dresses, grunge plaid suits, minimalist satin slips, and retro sequin minis that let you shine from cozy gatherings to rooftop soirées.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/hpoift.webp",
+  readMore: "https://trenddaily.shop/td1125/15-holiday-party-outfit-ideas",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "15 Gift Ideas for Stylish Men",
+  date: "4 Nov 2025",
+  excerpt: "15 gift ideas for stylish men that fuse function and flair—think Italian leather weekender bags, minimalist gold signet rings, cashmere beanies in muted earth tones, and sleek wireless earbuds that elevate every look.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/gismft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-gift-ideas-for-stylish-men",
+  shopLink: "../category/all-categories.html"
+},
+  {
+  title: "10 Elegant Holiday Outfit Ideas for Formal Events",
+  date: "4 Nov 2025",
+  excerpt: "10 elegant holiday outfit ideas for formal events that radiate timeless glamour—think silk slip gowns in jewel tones, tailored tuxedo jumpsuits, and crystal-embellished capes that turn every entrance into a red-carpet moment.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/eofft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-elegant-outfits-formal-events",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "15 Pinterest-Inspired Winter Streetwear Looks",
+  date: "4 Nov 2025",
+  excerpt: "15 Pinterest-inspired winter streetwear looks that fuse cozy layers with urban edge—think oversized puffer coats, chunky knit beanies, and combat boots layered over bold cargo pants for effortless cold-weather swagger.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/pslft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-pinterest-streetwear-looks",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "10 Chic Outfit Ideas for Office Holiday Parties",
+  date: "4 Nov 2025",
+  excerpt: "10 chic office holiday party outfits that strike the perfect balance of festive sparkle and boardroom polish—think velvet blazers, sequin midi skirts, and statement heels that whisper celebration without shouting.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/copoft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-winter-scarf-styling",
+  shopLink: "../category/all-categories.html"
+},
+   {
+  title: "15 Winter Scarf Styling Ideas That Feel Fresh",
+  date: "4 Nov 2025",
+  excerpt: "Discover 15 fresh winter scarf styling ideas that transform cozy essentials into bold statements—think asymmetrical drapes, belted silhouettes, and unexpected color clashes for instant outfit elevation.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/copoft.webp",
+  readMore: "https://trenddaily.shop/td1125/15-winter-scarf-styling",
+  shopLink: "../category/all-categories.html"
+},
+   {
   title: "9 Pinterest Hair Care Routines That Actually Work in Winter",
   date: "3 Nov 2025",
   excerpt: "Discover 9 proven Pinterest hair care routines designed for winter. Get real tips for battling dryness and frizz to keep your hair healthy and shiny all season long.",
