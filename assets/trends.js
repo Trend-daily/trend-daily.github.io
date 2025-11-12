@@ -156,9 +156,9 @@ const preloader = document.getElementById('preloader');
   {
   title: "10 Winter Outfit Combinations You Can Copy Instantly",
   date: "4 Nov 2025",
-  excerpt: "Pinterest’s holiday glow-up: 15 outfits that pin themselves—emerald velvet wrapped like a gift, tinsel-trimmed blazers catching every flash, crimson silk slipping over candlelit skin, and faux-fur collars framing midnight smiles, ready for your board before the party ends",
-  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/pnwoft.webp",
-  readMore: "https://trenddaily.shop/td1125/15-pinterest-worthy-outfits",
+  excerpt: "Steal these 10 winter outfits in one click: puffer + pleated midi, turtleneck tucked into vinyl, shearling jacket over slip dress, chunky knit with leather leggings—snap, layer, done, and suddenly the street’s your runway.",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/wocoft.webp",
+  readMore: "https://trenddaily.shop/td1125/10-winter-outfit-combo.html",
   shopLink: "../category/all-categories.html"
 },
     {
@@ -230,14 +230,14 @@ const preloader = document.getElementById('preloader');
   date: "4 Nov 2025",
   excerpt: "10 chic office holiday party outfits that strike the perfect balance of festive sparkle and boardroom polish—think velvet blazers, sequin midi skirts, and statement heels that whisper celebration without shouting.",
   image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/copoft.webp",
-  readMore: "https://trenddaily.shop/td1125/15-winter-scarf-styling",
+  readMore: "https://trenddaily.shop/td1125/10-chic-office-party-outfits",
   shopLink: "../category/all-categories.html"
 },
    {
   title: "15 Winter Scarf Styling Ideas That Feel Fresh",
   date: "4 Nov 2025",
   excerpt: "Discover 15 fresh winter scarf styling ideas that transform cozy essentials into bold statements—think asymmetrical drapes, belted silhouettes, and unexpected color clashes for instant outfit elevation.",
-  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/copoft.webp",
+  image: "https://cdn.jsdelivr.net/gh/Trend-daily/fbi@main/td1125/wssft.webp",
   readMore: "https://trenddaily.shop/td1125/15-winter-scarf-styling",
   shopLink: "../category/all-categories.html"
 },
