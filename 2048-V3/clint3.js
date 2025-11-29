@@ -1,0 +1,482 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+  // =============================================
+  // 2048 EVOLVED — LEVEL SYSTEM + HARD MODE (FIXED & FINAL)
+  // By Clinton Nwezeaku — Now with Super-Easy / Normal / Hard
+  // =============================================
+
+  const GRID_SIZE = 4;
+  const grid = document.getElementById('grid');
+  const scoreEl = document.getElementById('score');
+  const bestEl = document.getElementById('best');
+
+  const gemSwitcher = document.getElementById('gem-switcher');
+  const gemGrider = document.getElementById('gem-grider');
+  const gemBomb = document.getElementById('gem-bomb');
+
+  const gemStatus = document.createElement('div');
+  gemStatus.id = 'gem-status';
+  gemStatus.style.cssText = 'color:#00ffff; margin:15px 0; font-size:1.1rem; min-height:24px; opacity:0; transition:opacity 0.3s; text-align:center;';
+  document.querySelector('.gems-panel').after(gemStatus);
+
+  // ==================== LEVEL SYSTEM ====================
+  const LEVELS = {
+    'super-easy': { name: 'Super-Easy', gems: Infinity, drops: true,  attacks: false },
+    'normal':     { name: 'Normal',     gems: 3,        drops: false, attacks: false },
+    'hard':       { name: 'Hard',       gems: 3,        drops: false, attacks: true,  chance: 0.15, time: 10000 }
+  };
+
+  let currentLevel = localStorage.getItem('2048-level') || 'super-easy';
+  let level = LEVELS[currentLevel];
+
+  // Level display
+  const levelDisplay = document.createElement('div');
+  levelDisplay.id = 'level-display';
+  levelDisplay.innerHTML = `Level: <span style="color:#00ffff;font-weight:bold;">${level.name}</span>`;
+  levelDisplay.style.cssText = 'margin:10px 0; font-size:1.3rem; color:#aaa;';
+  document.querySelector('.header')?.appendChild(levelDisplay);
+
+  // Expose for menu later
+  window.setLevel = (lvl) => {
+    if (!LEVELS[lvl]) return;
+    currentLevel = lvl;
+    level = LEVELS[lvl];
+    localStorage.setItem('2048-level', lvl);
+    levelDisplay.innerHTML = `Level: <span style="color:#00ffff;font-weight:bold;">${level.name}</span>`;
+    initGame();
+  };
+
+  // ==================== GAME STATE ====================
+  let matrix = [];
+  let score = 0;
+  let best = parseInt(localStorage.getItem('best2048') || '0');
+  bestEl.textContent = best;
+
+  let gems = { switcher: 0, grider: 0, bomb: 0 };
+  let activeGem = null;
+  let selectedCell = null;
+  let wrongMovePenalty = false;
+  let previousMatrix = [];
+
+  // Hard mode attack
+  let doomedCell = null;
+  let attackTimer = null;
+
+  initGame();
+
+  // ==================== CORE FUNCTIONS ====================
+  function initGame() {
+    matrix = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(0));
+    score = 0;
+    scoreEl.textContent = 0;
+    gems = {
+      switcher: level.gems === Infinity ? Infinity : level.gems,
+      grider:   level.gems === Infinity ? Infinity : level.gems,
+      bomb:     level.gems === Infinity ? Infinity : level.gems
+    };
+    activeGem = null;
+    selectedCell = null;
+    wrongMovePenalty = false;
+    doomedCell = null;
+    clearAttack();
+    gemStatus.textContent = '';
+    gemStatus.style.opacity = '0';
+    previousMatrix = [];
+    createTiles();
+    spawnTile();
+    spawnTile();
+    render();
+  }
+
+  function createTiles() {
+    grid.innerHTML = '';
+    for (let i = 0; i < 16; i++) {
+      const tile = document.createElement('div');
+      tile.classList.add('tile');
+      tile.dataset.index = i;
+      grid.appendChild(tile);
+    }
+  }
+
+  function spawnTile() {
+    const empty = getEmptyCells();
+    if (!empty.length) return false;
+    const pos = empty[Math.floor(Math.random() * empty.length)];
+    matrix[pos.r][pos.c] = Math.random() < 0.9 ? 2 : 4;
+    playSound('spawn');
+    return true;
+  }
+
+  function getEmptyCells() {
+    const list = [];
+    for (let r = 0; r < GRID_SIZE; r++)
+      for (let c = 0; c < GRID_SIZE; c++)
+        if (matrix[r][c] === 0) list.push({r, c});
+    return list;
+  }
+
+  function render() {
+    const tiles = grid.children;
+    for (let i = 0; i < 16; i++) {
+      const r = Math.floor(i / 4), c = i % 4;
+      const val = matrix[r][c];
+      const prev = previousMatrix[r]?.[c] || 0;
+      const tile = tiles[i];
+
+      tile.textContent = val || '';
+      tile.className = 'tile';
+
+      if (val) {
+        if (val === 1) tile.classList.add('tile-1');
+        else tile.classList.add(`tile-${val}`);
+        if (prev === 0 && val !== 0) tile.classList.add('new');
+        if (val === prev * 2 || (val === 2 && prev === 1)) tile.classList.add('merge');
+      }
+
+      if (selectedCell?.r === r && selectedCell?.c === c) tile.classList.add('selected');
+      if (doomedCell?.r === r && doomedCell?.c === c) tile.classList.add('doomed');
+    }
+    updateGemsUI();
+    setTimeout(() => previousMatrix = matrix.map(r => [...r]), 300);
+  }
+
+  function updateGemsUI() {
+    ['switcher', 'grider', 'bomb'].forEach(type => {
+      const el = document.getElementById(`gem-${type}`);
+      const countEl = el.querySelector('.gem-count');
+      const count = gems[type] === Infinity ? '∞' : gems[type];
+      countEl.textContent = count;
+      el.classList.toggle('has-count', gems[type] > 0 || gems[type] === Infinity);
+      el.classList.toggle('dim', gems[type] === 0 && activeGem !== type);
+      el.classList.toggle('active', activeGem === type);
+    });
+  }
+
+  // ==================== GEM SYSTEM ====================
+  ['switcher', 'grider', 'bomb'].forEach(type => {
+    document.getElementById(`gem-${type}`).addEventListener('click', () => {
+      if (gems[type] === 0 && activeGem !== type) return;
+      activeGem === type ? deactivateGem() : activateGem(type);
+    });
+  });
+
+  function activateGem(type) {
+    activeGem = type;
+    selectedCell = null;
+    gemStatus.textContent = `${type.toUpperCase()} ACTIVATED — Tap grid`;
+    gemStatus.style.opacity = '1';
+    render();
+    playSound('gem-activate');
+  }
+
+  function deactivateGem() {
+    activeGem = null;
+    selectedCell = null;
+    gemStatus.style.opacity = '0';
+    render();
+  }
+
+  // Effects
+  function triggerGriderEffect(el) {
+    const fx = document.createElement('div');
+    fx.className = 'grider-effect';
+    el.style.position = 'relative';
+    el.appendChild(fx);
+    setTimeout(() => fx.remove(), 600);
+  }
+
+  function triggerBombShockwave() {
+    const wave = document.createElement('div');
+    wave.className = 'bomb-shockwave';
+    document.body.appendChild(wave);
+    setTimeout(() => wave.remove(), 800);
+  }
+
+  grid.addEventListener('click', e => {
+    if (!e.target.classList.contains('tile')) return;
+    const i = Array.from(grid.children).indexOf(e.target);
+    const r = Math.floor(i / 4), c = i % 4;
+
+    if (activeGem === 'switcher') {
+      if (!selectedCell) selectedCell = {r,c};
+      else if (selectedCell.r === r && selectedCell.c === c) selectedCell = null;
+      else {
+        [matrix[selectedCell.r][selectedCell.c], matrix[r][c]] = [matrix[r][c], matrix[selectedCell.r][selectedCell.c]];
+        if (gems.switcher !== Infinity) gems.switcher--;
+        cancelDoomed();
+        deactivateGem();
+        playSound('swap');
+      }
+    }
+    else if (activeGem === 'grider' && matrix[r][c] !== 0) {
+      matrix[r][c] = 0;
+      triggerGriderEffect(e.target);
+      if (gems.grider !== Infinity) gems.grider--;
+      cancelDoomed();
+      deactivateGem();
+      playSound('destroy');
+    }
+    else if (activeGem === 'bomb') {
+      for (let i = 0; i < 4; i++) matrix[r][i] = 0;
+      triggerBombShockwave();
+      if (gems.bomb !== Infinity) gems.bomb--;
+      cancelDoomed();
+      deactivateGem();
+      playSound('bomb');
+    }
+    render();
+  });
+
+  // ==================== MOVEMENT ====================
+  function operateRow(row, rev = false) {
+    let a = rev ? row.slice().reverse() : row.slice();
+    a = a.filter(x => x);
+    let gain = 0;
+    for (let i = 0; i < a.length-1; i++) {
+      if (a[i] === a[i+1] && a[i] !== 1) {
+        a[i] *= 2; gain += a[i]; a[i+1] = 0; i++;
+      }
+    }
+    a = a.filter(x => x);
+    while (a.length < 4) a.push(0);
+    if (rev) a.reverse();
+    const changed = !row.every((v,j) => v === a[j]);
+    return { newRow: a, changed, gain };
+  }
+
+  function transpose(m) { return m[0].map((_,i) => m.map(r => r[i])); }
+
+  function move(dir) {
+    if (activeGem) return;
+    previousMatrix = matrix.map(r => [...r]);
+    let moved = false, gain = 0;
+    const old = matrix.map(r => [...r]);
+
+    if (dir === 'left' || dir === 'right') {
+      for (let r = 0; r < 4; r++) {
+        const res = operateRow(matrix[r], dir === 'right');
+        matrix[r] = res.newRow;
+        if (res.changed) moved = true;
+        gain += res.gain;
+      }
+    } else {
+      matrix = transpose(matrix);
+      for (let r = 0; r < 4; r++) {
+        const res = operateRow(matrix[r], dir === 'down');
+        matrix[r] = res.newRow;
+        if (res.changed) moved = true;
+        gain += res.gain;
+      }
+      matrix = transpose(matrix);
+    }
+
+    const changed = !matrix.flat().every((v,i) => v === old.flat()[i]);
+
+    if (moved && changed) {
+      score += gain; scoreEl.textContent = score;
+      if (score > best) { best = score; bestEl.textContent = best; localStorage.setItem('best2048', best); playSound('highscore'); }
+      spawnTile();
+      if (level.drops) trySpawnGem();
+      if (level.attacks) setTimeout(maybeAttack, 600);
+      checkWin();
+    } else if (changed && !wrongMovePenalty) {
+      spawnPenaltyOne(); wrongMovePenalty = true; playSound('penalty');
+    } else wrongMovePenalty = false;
+
+    render();
+    if (!moved && getEmptyCells().length === 0 && !canMerge()) gameOver();
+  }
+
+  // ==================== HARD MODE ATTACKS ====================
+  function maybeAttack() {
+    if (doomedCell || Math.random() > level.chance) return;
+    const high = [];
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 256) high.push({r,c});
+    if (!high.length) return;
+    doomedCell = high[Math.floor(Math.random()*high.length)];
+    render();
+    startAttackTimer();
+  }
+
+  function startAttackTimer() {
+    const timer = document.createElement('div');
+    timer.className = 'attack-timer';
+    timer.innerHTML = '<div class="timer-ring"></div><div class="timer-text">10</div>';
+    document.body.appendChild(timer);
+    let sec = 10;
+    attackTimer = setInterval(() => {
+      sec--;
+      timer.querySelector('.timer-text').textContent = sec;
+      
+      
+      if (sec <= 0) { clearAttack(); executeAttack(); }
+    }, 1000);
+  }
+
+  function cancelDoomed() {
+    if (!doomedCell) return;
+    doomedCell = null;
+    clearAttack();
+    render();
+  }
+
+  function clearAttack() {
+    clearInterval(attackTimer);
+    document.querySelector('.attack-timer')?.remove();
+  }
+
+/* ===== This is to execute attack Punishment =====*/
+  
+function executeAttack() {
+  if (!doomedCell) return;
+
+  const r = doomedCell.r;
+  const c = doomedCell.c;
+  const tileValue = matrix[r][c];
+
+  // If player saved it OR it was already empty → no penalty!
+  if (tileValue === 0) {
+    doomedCell = null;
+    render();
+    playSound('win'); // Small victory sound
+    return;
+  }
+
+  // BRUTAL PUNISHMENT: Lose 10× the tile value
+  const penalty = tileValue * 10;
+  score = Math.max(0, score - penalty);
+  scoreEl.textContent = score;
+
+  // Remove the tile
+  matrix[r][c] = 0;
+
+  // DYNAMIC FLYING PENALTY TEXT
+  const penaltyText = document.createElement('div');
+  penaltyText.textContent = `-${penalty}`;
+  penaltyText.style.cssText = `
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 6rem;
+    font-weight: bold;
+    color: #ff0044;
+    text-shadow: 0 0 30px #ff0044;
+    z-index: 9999;
+    animation: flyUp 1.2s forwards;
+    pointer-events: none;
+  `;
+  document.body.appendChild(penaltyText);
+  setTimeout(() => penaltyText.remove(), 1200);
+
+  // Reset attack
+  doomedCell = null;
+  render();
+  playSound('penalty');
+}
+
+
+/* ===== Execute Attack End =====*/
+  function spawnPenaltyOne() {
+    const e = getEmptyCells();
+    if (!e.length) return;
+    const p = e[Math.floor(Math.random()*e.length)];
+    matrix[p.r][p.c] = 1;
+  }
+
+  // ==================== GEM DROP ====================
+  function trySpawnGem() {
+    if (Math.random() < 0.18) {
+      const r = Math.random()*100;
+      const type = r < 40 ? 'switcher' : r < 79 ? 'grider' : 'bomb';
+      gems[type] = gems[type] === Infinity ? Infinity : gems[type] + 1;
+      animateGemDrop(type);
+      playSound('gem');
+      render();
+    }
+  }
+
+  function animateGemDrop(type) {
+    const emoji = { switcher:'Swap', grider:'Destroy', bomb:'Bomb' }[type];
+    const color = { switcher:'#00ffaa', grider:'#ff6600', bomb:'#ff2e63' }[type];
+    const drop = document.createElement('div');
+    drop.className = 'gem-drop';
+    drop.textContent = emoji;
+    drop.style.color = color;
+    drop.style.left = '50%'; drop.style.top = '50%';
+    drop.style.transform = 'translate(-50%,-50%)';
+    document.body.appendChild(drop);
+    setTimeout(() => {
+      const t = document.getElementById(`gem-${type}`).getBoundingClientRect();
+      drop.style.left = t.left + t.width/2 + 'px';
+      drop.style.top = t.top + t.height/2 + 'px';
+      drop.style.fontSize = '2rem';
+    }, 50);
+    setTimeout(() => drop.remove(), 900);
+  }
+
+  // ==================== INPUT ====================
+  document.addEventListener('keydown', e => {
+    const map = { ArrowLeft:'left', ArrowRight:'right', ArrowUp:'up', ArrowDown:'down' };
+    if (map[e.key]) { e.preventDefault(); move(map[e.key]); }
+  });
+
+  let tx = 0, ty = 0;
+  grid.addEventListener('touchstart', e => { if(activeGem) return; e.preventDefault(); tx=e.touches[0].clientX; ty=e.touches[0].clientY; }, {passive:false});
+  grid.addEventListener('touchend', e => {
+    if(activeGem || !tx) return;
+    e.preventDefault();
+    const dx = e.changedTouches[0].clientX - tx;
+    const dy = e.changedTouches[0].clientY - ty;
+    if(Math.max(Math.abs(dx),Math.abs(dy))>50){
+      if(Math.abs(dx)>Math.abs(dy)) move(dx>0?'right':'left');
+      else move(dy>0?'down':'up');
+    }
+    tx=ty=0;
+  });
+
+  // ==================== WIN / LOSE ====================
+  function checkWin() { if(matrix.flat().some(v=>v>=2048)) playSound('win'); }
+  function canMerge() {
+    for(let r=0;r<4;r++) for(let c=0;c<4;c++) {
+      const v = matrix[r][c];
+      if((c<3&&v===matrix[r][c+1])||(r<3&&v===matrix[r+1][c])) return true;
+    }
+    return false;
+  }
+
+  function gameOver() {
+    playSound('gameover');
+    setTimeout(() => {
+      const ov = document.createElement('div');
+      ov.className = 'overlay';
+      ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#00ffff;font-size:2rem;z-index:9999;';
+      ov.innerHTML = `<h2 style="font-size:5rem;">GAME OVER</h2><p>Score: ${score}</p><button onclick="location.reload()" style="margin:30px;padding:15px 50px;background:#00ffff;color:#000;font-size:1.5rem;border-radius:50px;">RESTART</button>`;
+      document.body.appendChild(ov);
+    }, 500);
+  }
+
+  // ==================== SOUND ====================
+  function playSound(t) {
+    const s = {
+      spawn:'sounds/spawn.mp3', gem:'sounds/gem.mp3', 'gem-activate':'sounds/activate.mp3',
+      swap:'sounds/swap.wav', destroy:'sounds/destroy.mp3', bomb:'sounds/bomb.mp3',
+      penalty:'sounds/penalty.mp3', highscore:'sounds/highscore.mp3',
+      win:'sounds/win.mp3', gameover:'sounds/gameover.mp3', select:'sounds/select.mp3'
+    };
+    if(s[t]) new Audio(s[t]).play().catch(()=>{});
+  }
+  
+// ——— DIFFICULTY MENU LOGIC ———
+document.querySelectorAll('.diff-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const level = btn.dataset.level;
+    window.setLevel(level); // This calls the function from your game
+  });
+});
+
+// Auto-highlight current level on load
+document.querySelector(`.diff-btn[data-level="${currentLevel}"]`)?.classList.add('active');   
+});

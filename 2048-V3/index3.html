@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2048 — The Evolved Grid</title>
+<link rel="stylesheet" href="style3.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- CINEMATIC INTRO -->
+  <div id="intro-screen" class="screen active">
+    <div class="intro-content">
+      <h1 class="glow-title">THE GRID</h1>
+      <p class="glow-subtitle">E V O L V E</p>
+      <p class="intro-text">Every move rewrites reality</p>
+      <button id="enter-grid" class="neon-btn">ENTER THE GRID</button>
+      <p class="hint">Click or press SPACE</p>
+    </div>
+  </div>
+
+  <!-- LEVEL SELECTION SCREEN -->
+  <div id="level-select" class="screen">
+    <div class="level-content">
+      <h2 class="glow-title">CHOOSE YOUR PATH</h2>
+      <div class="level-buttons">
+        <button class="level-btn" data-level="super-easy">
+          <span>SUPER-EASY</span>
+          <small>Infinite Power</small>
+        </button>
+        <button class="level-btn" data-level="normal">
+          <span>NORMAL</span>
+          <small>3 Gems Only</small>
+        </button>
+        <button class="level-btn" data-level="hard">
+          <span>HARD</span>
+          <small>The Grid Fights Back</small>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN GAME SCREEN -->
+  <div id="game-screen" class="screen">
+
+    <!-- HAMBURGER MENU -->
+    <button id="hamburger" class="hamburger">Menu</button>
+    <div id="menu-overlay" class="menu-overlay">
+      <div class="menu">
+        <h2>GRID CONTROL</h2>
+        <button class="menu-btn restart">RESTART GAME</button>
+        <button class="menu-btn change-level">CHANGE DIFFICULTY</button>
+        <button class="menu-btn close-menu">CLOSE</button>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <div class="top-bar">
+      <div class="header">
+        <h1>THE GRID</h1>
+        <div class="subtitle">E V O L V E</div>
+      </div>
+      <div id="level-display">Level: <span>Super-Easy</span></div>
+    </div>
+
+    <!-- SCOREBOARD -->
+    <div class="scoreboard">
+      <div class="score-box">
+        <h3>SCORE</h3>
+        <div class="value" id="score">0</div>
+      </div>
+      <div class="score-box">
+        <h3>BEST THIS LEVEL</h3>
+        <div class="value" id="best">0</div>
+      </div>
+    </div>
+
+    <!-- GEMS -->
+    <div class="gems-panel">
+      <div class="gem dim" id="gem-switcher">
+        <div>Swap</div>
+        <div class="gem-label">SWITCHER</div>
+        <div class="gem-count">0</div>
+      </div>
+      <div class="gem dim" id="gem-grider">
+        <div>Destroy</div>
+        <div class="gem-label">GRIDER</div>
+        <div class="gem-count">0</div>
+      </div>
+      <div class="gem dim" id="gem-bomb">
+        <div>Bomb</div>
+        <div class="gem-label">BOMB</div>
+        <div class="gem-count">0</div>
+      </div>
+    </div>
+
+    <div id="gem-status"></div>
+
+    <div class="grid-container">
+      <div id="grid"></div>
+    </div>
+  </div>
+
+<script src="clint5.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2048 — The Evolved Grid</title>
+<link rel="stylesheet" href="style2.css">
+<script src="clint5.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- NEON HEADER WITH DIFFICULTY MENU -->
+  <div class="top-bar">
+    <div class="header">
+      <h1>THE GRID</h1>
+      <div class="subtitle">E V O L V E</div>
+    </div>
+
+    <!-- DIFFICULTY MENU -->
+    <div class="difficulty-menu">
+      <button class="diff-btn active" data-level="super-easy">SUPER-EASY</button>
+      <button class="diff-btn" data-level="normal">NORMAL</button>
+      <button class="diff-btn" data-level="hard">HARD</button>
+    </div>
+
+    <!-- Level Display (auto-updated by JS) -->
+    <div id="level-display2"></div>  </div>
+
+  <div class="scoreboard">
+    <div class="score-box">
+      <h3>SCORE</h3>
+      <div class="value" id="score">0</div>
+    </div>
+    <div class="score-box">
+      <h3>BEST</h3>
+      <div class="value" id="best">0</div>
+    </div>
+  </div>
+
+  <div class="gems-panel">
+    <div class="gem dim" id="gem-switcher">
+      <div class="gem-label">SWITCHER</div>
+      <div class="gem-count">0</div>
+    </div>
+    <div class="gem dim" id="gem-grider">
+     
+      <div class="gem-label">GRIDER</div>
+      <div class="gem-count">0</div>
+    </div>
+    <div class="gem dim" id="gem-bomb">
+      <div class="gem-label">BOMB</div>
+      <div class="gem-count">0</div>
+    </div>
+  </div>
+
+  <div id="gem-status"></div>
+
+  <div class="grid-container">
+    <div id="grid"></div>
+  </div>
+
+</body>
+</html>

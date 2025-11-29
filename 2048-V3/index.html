@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2048 — The Evolved Grid</title>
+<link rel="stylesheet" href="style2.css">
+<script src="clint2.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>THE GRID</h1>
+    <div class="subtitle">E V O L V E</div>
+  </div>
+
+  <div class="scoreboard">
+    <div class="score-box">
+      <h3>SCORE</h3>
+      <div class="value" id="score">0</div>
+    </div>
+    <div class="score-box">
+      <h3>BEST</h3>
+      <div class="value" id="best">0</div>
+    </div>
+  </div>
+
+  <div class="gems-panel">
+    <div class="gem dim" id="gem-switcher">
+      <div></div>
+      <div class="gem-label">SWITCHER</div>
+      <div class="gem-count">0</div>
+    </div>
+    <div class="gem dim" id="gem-grider">
+      <div></div>
+      <div class="gem-label">GRIDER</div>
+      <div class="gem-count">0</div>
+    </div>
+    <div class="gem dim" id="gem-bomb">
+      <div></div>
+      <div class="gem-label">BOMB</div>
+      <div class="gem-count">0</div>
+    </div>
+  </div>
+  <div id="gem-status" style="color:#00ffff; margin:10px; font-size:1.1rem; height:20px;"></div>
+
+  <div class="grid-container">
+    <div id="grid">
+      <!-- 16 tiles will be injected by JS -->
+    </div>
+  </div>
+
+</body>
+</html>
