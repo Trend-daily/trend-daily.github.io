@@ -606,28 +606,27 @@ document.getElementById('google-signin')?.addEventListener('click', () => {
 });
  */
  
- document.getElementById('google-signin')?.addEventListener('click', () => {
+ // GOOGLE SIGN IN — FINAL, PERFECT, BULLETPROOF VERSION
+document.getElementById('google-signin')?.addEventListener('click', () => {
   const provider = new GoogleAuthProvider();
-  
-  // Mobile = redirect, Desktop = popup
-  if (navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
-    signInWithRedirect(auth, provider);
-  } else {
-    signInWithPopup(auth, provider);
-  }
-});
 
-// Handle redirect result (MUST HAVE)
-getRedirectResult(auth)
-  .then((result) => {
-    if (result?.user) {
-      console.log("Signed in (redirect):", result.user.displayName);
-    }
-  })
-  .catch((error) => {
-    console.log("Redirect error:", error);
-  });
-  
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      console.log("Signed in as:", result.user.displayName);
+      // Optional: show success message
+      // alert("Welcome, " + result.user.displayName + "!");
+    })
+    .catch((error) => {
+      if (error.code === 'auth/popup-blocked') {
+        alert("Popup blocked! Please allow popups for this site and try again.");
+      } else if (error.code === 'auth/cancelled-popup-request') {
+        // User closed popup too fast — ignore
+      } else {
+        alert("Login failed: " + error.message);
+        console.error("Login error:", error);
+      }
+    });
+});
   
   
   
