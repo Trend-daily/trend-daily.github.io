@@ -1,7 +1,15 @@
 body {
-    
+  margin: 0;
+  padding: 0;                  
+  background: var(--bg);  
+  color: var(--text);
+  font-family: 'Orbitron', 'Courier New', monospace;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: radial-gradient(circle at top left, #16213e 0%, var(--bg) 60%); 
 }
-
 :root {
     --bg: #0d0d1a;
     --card: #1a1a2e;
@@ -12,24 +20,139 @@ body {
     --green: #39ff14;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+ *{
+  padding:0;
+  margin:0;
+  box-sizing:border-box ;
+}
   
   /* ============ Menu Styling ============*/
   
-  /* TOP BAR — MENU + TITLE */
-.top-bar {
-  text-align: center;
-  margin: 20px 0 10px;
-  position: relative;
-}
+   /* HEADER */
+  .header {
+    position: fixed;
+    top: -20px;
+    width: 100%;
+    height: 70px;
+    background: rgba(10,10,30,0.9);
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 0 20px;  */
+    padding: 1.5rem; 
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+  .logo { font-size: 2.2rem; background: linear-gradient(90deg, #00ffff, #ff00ff); -webkit-background-clip: text; color: transparent; }
+  .level-info { font-size: 1.1rem; color: var(--accent); }
 
-.difficulty-menu {
-  margin: 20px 0 10px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
+  /* HAMBURGER BUTTON */
+  #hamburger {
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-size: 1.8rem;
+    padding: 8px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  #hamburger:hover { background: var(--accent); color: black; }
+
+  /* MENU OVERLAY */
+  .menu-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,20,0.98);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+    z-index: 9999;
+  }
+  .menu-overlay.active { opacity: 1; pointer-events: all; }
+
+  .menu {
+    background: var(--card);
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    border: 3px solid var(--accent);
+    padding: 30px 20px; 
+    text-align: center;
+    box-shadow: 0 0 80px var(--accent);
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .menu h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* USER INFO */
+  .user-info {
+    background: rgba(0,255,255,0.1);
+    padding: 15px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border: 1px solid var(--accent);
+  }
+  .signin-btn {
+    background: var(--accent);
+    color: black;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  /* DIFFICULTY LIST */
+  .difficulty-list {
+    margin: 30px 0;
+  }
+  .diff-item {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .diff-item.active {
+    border-color: var(--accent);
+    background: rgba(0,255,255,0.15);
+    box-shadow: 0 0 30px var(--accent);
+  }
+  .diff-item:hover { transform: translateY(-5px); }
+
+  .menu-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    border-radius: 15px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .menu-btn:hover {
+    background: var(--accent);
+    color: black;
+  }
+  
+  
 
 .diff-btn {
   padding: 12px 20px;
@@ -89,18 +212,7 @@ body {
 }
 
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Orbitron', 'Courier New', monospace;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background: radial-gradient(circle at top left, #16213e 0%, var(--bg) 60%);
-  }
-
+  
   .header {
     margin: 20px 0 30px;
     text-align: center;
@@ -521,160 +633,3 @@ body {
 }
   
  
-/* SCREENS SYSTEM */
-.screen {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.8s ease;
-  z-index: 999;
-}
-.screen.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* INTRO SCREEN */
-#intro-screen {
-  background: radial-gradient(circle at center, #001122 0%, #000000 100%);
-}
-.intro-content {
-  text-align: center;
-  animation: pulse 4s infinite;
-}
-.glow-title {
-  font-size: 6rem;
-  background: linear-gradient(45deg, #00ffff, #ff00ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 60px #00ffff;
-}
-.glow-subtitle {
-  font-size: 2rem;
-  color: #00ffff;
-  margin: 20px 0;
-}
-.intro-text {
-  color: #aaa;
-  font-size: 1.2rem;
-  margin: 30px 0;
-}
-.neon-btn {
-  padding: 20px 60px;
-  font-size: 1.8rem;
-  background: transparent;
-  border: 3px solid #00ffff;
-  color: #00ffff;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 0 40px #00ffff;
-  transition: all 0.4s;
-}
-.neon-btn:hover {
-  background: #00ffff;
-  color: black;
-  box-shadow: 0 0 80px #00ffff;
-}
-
-/* LEVEL SELECT */
-#level-select {
-  background: #000011;
-}
-.level-content h2 {
-  font-size: 4rem;
-  color: #00ffff;
-  text-shadow: 0 0 40px #00ffff;
-  margin-bottom: 60px;
-}
-.level-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-.level-btn {
-  padding: 25px 50px;
-  background: transparent;
-  border: 3px solid #333;
-  color: #888;
-  font-size: 2rem;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.5s;
-  position: relative;
-  overflow: hidden;
-}
-.level-btn:hover {
-  border-color: #00ffff;
-  color: #00ffff;
-  box-shadow: 0 0 50px #00ffff;
-  transform: scale(1.05);
-}
-.level-btn:active {
-  background: #00ffff;
-  color: black;
-}
-
-/* HAMBURGER MENU */
-.hamburger {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
-  background: rgba(0,255,255,0.2);
-  border: 2px solid #00ffff;
-  color: #00ffff;
-  padding: 10px 15px;
-  font-size: 1.5rem;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,20,0.98);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s;
-  z-index: 999;
-}
-.menu-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-.menu {
-  background: #000011;
-  padding: 40px;
-  border-radius: 20px;
-  border: 2px solid #00ffff;
-  box-shadow: 0 0 80px #00ffff;
-  text-align: center;
-}
-.menu h2 {
-  color: #00ffff;
-  margin-bottom: 30px;
-  font-size: 2.5rem;
-}
-.menu-btn {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  margin: 10px 0;
-  background: transparent;
-  border: 2px solid #00ffff;
-  color: #00ffff;
-  font-size: 1.3rem;
-  border-radius: 10px;
-  cursor: pointer;
-}
-.menu-btn:hover {
-  background: #00ffff;
-  color: black;
-}
