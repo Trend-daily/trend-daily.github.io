@@ -143,6 +143,17 @@
   window.signOut = signOut;
 
   console.log("Firebase ready — Google Sign-In 100% WORKING");
+  // Add Firestore import
+import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+// Initialize Firestore
+const db = getFirestore(app);
+
+// Make it available
+window.db = db;
+window.setDoc = setDoc;
+window.doc = doc;
+window.serverTimestamp = serverTimestamp;
 </script>
 
 

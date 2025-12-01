@@ -1,50 +1,134 @@
-
 document.addEventListener("DOMContentLoaded", () => {
 
   // =============================================
-  // 2048 EVOLVED — FINAL POLISHED ENGINE
+  // 2048 EVOLVED — LEVEL SYSTEM + HARD MODE (FIXED & FINAL)
+  // By Clinton Nwezeaku — Now with Super-Easy / Normal / Hard
   // =============================================
 
+// 1. Add this ONCE at the very top (outside any function)
+const sounds = {};
+
+// 2. Preload all sounds ONCE when page loads
+  const soundList = {
+    spawn: 'sounds/spawn.mp3',
+    swap: 'sounds/swap.wav',
+    bomb: 'sounds/bomb.mp3',
+    destroy: 'sounds/destroy.mp3',
+    penalty: 'sounds/penalty.mp3',
+    gem: 'sounds/gem.mp3',
+    'gem-activate': 'sounds/activate.mp3',
+    highscore: 'sounds/highscore.mp3',
+    win: 'sounds/win.mp3',
+    gameover: 'sounds/gameover.mp3',
+    select: 'sounds/select.mp3'
+  };
+
+  Object.entries(soundList).forEach(([name, src]) => {
+    const audio = new Audio(src);
+    audio.volume = 0.5;
+    sounds[name] = audio;
+  });
+
+  // Now replace your old playSound with this:
+  window.playSound = function(type) {
+    const audio = sounds[type];
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    }
+  };
   const GRID_SIZE = 4;
   const grid = document.getElementById('grid');
   const scoreEl = document.getElementById('score');
   const bestEl = document.getElementById('best');
 
-  // Gem DOM elements
   const gemSwitcher = document.getElementById('gem-switcher');
   const gemGrider = document.getElementById('gem-grider');
   const gemBomb = document.getElementById('gem-bomb');
 
-  // Activation status text
   const gemStatus = document.createElement('div');
   gemStatus.id = 'gem-status';
   gemStatus.style.cssText = 'color:#00ffff; margin:15px 0; font-size:1.1rem; min-height:24px; opacity:0; transition:opacity 0.3s; text-align:center;';
   document.querySelector('.gems-panel').after(gemStatus);
 
+  // ==================== LEVEL SYSTEM ====================
+  let gemCount = 0
+  const LEVELS = {
+    'super-easy': { name: 'Super-Easy', gems: gemCount, drops: true,  attacks: false },
+    'normal':     { name: 'Normal',     gems: 3,        drops: false, attacks: false },
+    'hard':       { name: 'Hard',       gems: 3,        drops: false, attacks: true,  chance: 0.15, time: 10000 }
+  };
+
+  let currentLevel = localStorage.getItem('2048-level') || 'super-easy';
+  let level = LEVELS[currentLevel];
+
+  // Level display
+  const levelDisplay = document.createElement('div');
+  levelDisplay.id = 'level-display';
+  levelDisplay.innerHTML = `Level: <span style="color:#00ffff;font-weight:bold;">${level.name}</span>`;
+  levelDisplay.style.cssText = 'margin:10px 0; font-size:1.3rem; color:#aaa;';
+  document.querySelector('.levelShow')?.appendChild(levelDisplay);
+
+  // Expose for menu later
+  window.setLevel = (lvl) => {
+    if (!LEVELS[lvl]) return;
+    currentLevel = lvl;
+    level = LEVELS[lvl];
+    localStorage.setItem('2048-level', lvl);
+    levelDisplay.innerHTML = `Level: <span style="color:#00ffff;font-weight:bold;">${level.name}</span>`;
+    
+    best = getBestForLevel();   
+bestEl.textContent = best;   
+    initGame();
+  };
+
+  // ==================== GAME STATE ====================
   let matrix = [];
   let score = 0;
-  let best = parseInt(localStorage.getItem('best2048') || '0');
-  bestEl.textContent = best;
+  // PER-LEVEL BEST SCORES — SAFE & WORKING
+function getBestForLevel() {
+  return parseInt(localStorage.getItem(`best-${currentLevel}`) || '0');
+}
+function saveBestForLevel(newScore) {
+  const key = `best-${currentLevel}`;
+  const current = getBestForLevel();
+  if (newScore > current) {
+    localStorage.setItem(key, newScore);
+    return true;
+  }
+  return false;
+}
+
+let best = getBestForLevel();
+bestEl.textContent = best;
 
   let gems = { switcher: 0, grider: 0, bomb: 0 };
   let activeGem = null;
   let selectedCell = null;
   let wrongMovePenalty = false;
-  let previousMatrix = []; // For animations
+  let previousMatrix = [];
+
+  // Hard mode attack
+  let doomedCell = null;
+  let attackTimer = null;
 
   initGame();
 
-  // =============================================
-  // INITIALIZATION
-  // =============================================
+  // ==================== CORE FUNCTIONS ====================
   function initGame() {
     matrix = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(0));
     score = 0;
     scoreEl.textContent = 0;
-    gems = { switcher: 0, grider: 0, bomb: 0 };
+    gems = {
+      switcher: level.gems === Infinity ? Infinity : level.gems,
+      grider:   level.gems === Infinity ? Infinity : level.gems,
+      bomb:     level.gems === Infinity ? Infinity : level.gems
+    };
     activeGem = null;
     selectedCell = null;
     wrongMovePenalty = false;
+    doomedCell = null;
+    clearAttack();
     gemStatus.textContent = '';
     gemStatus.style.opacity = '0';
     previousMatrix = [];
@@ -64,24 +148,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // =============================================
-  // SPAWN & RENDER (WITH ANIMATIONS!)
-  // =============================================
   function spawnTile() {
     const empty = getEmptyCells();
-    if (empty.length === 0) return false;
-    const {r, c} = empty[Math.floor(Math.random() * empty.length)];
-    matrix[r][c] = Math.random() < 0.9 ? 2 : 4;
+    if (!empty.length) return false;
+    const pos = empty[Math.floor(Math.random() * empty.length)];
+    matrix[pos.r][pos.c] = Math.random() < 0.9 ? 2 : 4;
     playSound('spawn');
     return true;
   }
 
   function getEmptyCells() {
-    const empty = [];
+    const list = [];
     for (let r = 0; r < GRID_SIZE; r++)
       for (let c = 0; c < GRID_SIZE; c++)
-        if (matrix[r][c] === 0) empty.push({r, c});
-    return empty;
+        if (matrix[r][c] === 0) list.push({r, c});
+    return list;
   }
 
   function render() {
@@ -89,67 +170,50 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < 16; i++) {
       const r = Math.floor(i / 4), c = i % 4;
       const val = matrix[r][c];
-      const prevVal = previousMatrix[r]?.[c] || 0;
+      const prev = previousMatrix[r]?.[c] || 0;
       const tile = tiles[i];
 
       tile.textContent = val || '';
-      tile.className = 'tile'; // Reset all classes
+      tile.className = 'tile';
 
       if (val) {
         if (val === 1) tile.classList.add('tile-1');
-        else if (val >= 2) tile.classList.add(`tile-${val}`);
-
-        // === ANIMATIONS ===
-        if (prevVal === 0 && val !== 0) {
-          tile.classList.add('new'); // Pop-in for new tiles
-        } else if (val === prevVal * 2 || (val === 2 && prevVal === 1)) {
-          tile.classList.add('merge'); // Big pop for merges
-        }
+        else tile.classList.add(`tile-${val}`);
+        if (prev === 0 && val !== 0) tile.classList.add('new');
+        if (val === prev * 2 || (val === 2 && prev === 1)) tile.classList.add('merge');
       }
 
-      if (selectedCell && selectedCell.r === r && selectedCell.c === c) {
-        tile.classList.add('selected');
-      }
+      if (selectedCell?.r === r && selectedCell?.c === c) tile.classList.add('selected');
+      if (doomedCell?.r === r && doomedCell?.c === c) tile.classList.add('doomed');
     }
     updateGemsUI();
-
-    // Reset previousMatrix after animation
-    setTimeout(() => {
-      previousMatrix = matrix.map(r => [...r]);
-    }, 300);
+    setTimeout(() => previousMatrix = matrix.map(r => [...r]), 300);
   }
 
   function updateGemsUI() {
-    document.querySelectorAll('.gem-count').forEach(el => {
-      const type = el.parentElement.id.split('-')[1];
-      el.textContent = gems[type];
-      el.parentElement.classList.toggle('has-count', gems[type] > 0);
-    });
-
-    [gemSwitcher, gemGrider, gemBomb].forEach(gem => {
-      const type = gem.id.split('-')[1];
-      gem.classList.toggle('dim', gems[type] === 0 && activeGem !== type);
-      gem.classList.toggle('active', activeGem === type);
+    ['switcher', 'grider', 'bomb'].forEach(type => {
+      const el = document.getElementById(`gem-${type}`);
+      const countEl = el.querySelector('.gem-count');
+      const count = gems[type] === Infinity ? '∞' : gems[type];
+      countEl.textContent = count;
+      el.classList.toggle('has-count', gems[type] > 0 || gems[type] === Infinity);
+      el.classList.toggle('dim', gems[type] === 0 && activeGem !== type);
+      el.classList.toggle('active', activeGem === type);
     });
   }
 
-  // =============================================
-  // GEM SYSTEM
-  // =============================================
-  [gemSwitcher, gemGrider, gemBomb].forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.classList.contains('dim') && !btn.classList.contains('active')) return;
-      const type = btn.id.split('-')[1];
-      if (activeGem === type) deactivateGem();
-      else activateGem(type);
+  // ==================== GEM SYSTEM ====================
+  ['switcher', 'grider', 'bomb'].forEach(type => {
+    document.getElementById(`gem-${type}`).addEventListener('click', () => {
+      if (gems[type] === 0 && activeGem !== type) return;
+      activeGem === type ? deactivateGem() : activateGem(type);
     });
   });
 
   function activateGem(type) {
-    if (gems[type] === 0 && activeGem !== type) return;
     activeGem = type;
     selectedCell = null;
-    gemStatus.textContent = `${type.toUpperCase()} ACTIVATED — Tap grid to use`;
+    gemStatus.textContent = `${type.toUpperCase()} ACTIVATED — Tap grid`;
     gemStatus.style.opacity = '1';
     render();
     playSound('gem-activate');
@@ -162,255 +226,448 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
   }
 
-  grid.addEventListener('click', (e) => {
+  // Effects
+  function triggerGriderEffect(el) {
+    const fx = document.createElement('div');
+    fx.className = 'grider-effect';
+    el.style.position = 'relative';
+    el.appendChild(fx);
+    setTimeout(() => fx.remove(), 600);
+  }
+
+  function triggerBombShockwave() {
+    const wave = document.createElement('div');
+    wave.className = 'bomb-shockwave';
+    document.body.appendChild(wave);
+    setTimeout(() => wave.remove(), 800);
+  }
+
+  grid.addEventListener('click', e => {
     if (!e.target.classList.contains('tile')) return;
-    const index = Array.from(grid.children).indexOf(e.target);
-    const r = Math.floor(index / 4), c = index % 4;
+    const i = Array.from(grid.children).indexOf(e.target);
+    const r = Math.floor(i / 4), c = i % 4;
 
     if (activeGem === 'switcher') {
-      if (!selectedCell) {
-        selectedCell = {r, c};
-        playSound('select');
-      } else if (selectedCell.r === r && selectedCell.c === c) {
-        selectedCell = null;
-      } else {
-        [matrix[selectedCell.r][selectedCell.c], matrix[r][c]] = 
-         [matrix[r][c], matrix[selectedCell.r][selectedCell.c]];
-        gems.switcher--;
+      if (!selectedCell) selectedCell = {r,c};
+      else if (selectedCell.r === r && selectedCell.c === c) selectedCell = null;
+      else {
+        [matrix[selectedCell.r][selectedCell.c], matrix[r][c]] = [matrix[r][c], matrix[selectedCell.r][selectedCell.c]];
+        if (gems.switcher !== Infinity) gems.switcher--;
+        cancelDoomed();
         deactivateGem();
         playSound('swap');
       }
     }
-    else if (activeGem === 'grider') {
-      if (matrix[r][c] !== 0) {
-        matrix[r][c] = 0;
-        gems.grider--;
-        deactivateGem();
-        playSound('destroy');
-      }
+    else if (activeGem === 'grider' && matrix[r][c] !== 0) {
+      matrix[r][c] = 0;
+      triggerGriderEffect(e.target);
+      if (gems.grider !== Infinity) gems.grider--;
+      cancelDoomed();
+      deactivateGem();
+      playSound('destroy');
     }
     else if (activeGem === 'bomb') {
-      for (let i = 0; i < GRID_SIZE; i++) matrix[r][i] = 0;
-      gems.bomb--;
+      for (let i = 0; i < 4; i++) matrix[r][i] = 0;
+      triggerBombShockwave();
+      if (gems.bomb !== Infinity) gems.bomb--;
+      cancelDoomed();
       deactivateGem();
       playSound('bomb');
     }
     render();
   });
 
-  // =============================================
-  // MOVEMENT & MERGE
-  // =============================================
-  function operateRow(row, reverse = false) {
-    let arr = reverse ? row.slice().reverse() : row.slice();
-    arr = arr.filter(x => x);
-    let gained = 0;
-    for (let i = 0; i < arr.length - 1; i++) {
-      if (arr[i] === arr[i+1] && arr[i] !== 1) {
-        arr[i] *= 2;
-        gained += arr[i];
-        arr[i+1] = 0;
-        i++;
+  // ==================== MOVEMENT ====================
+  function operateRow(row, rev = false) {
+    let a = rev ? row.slice().reverse() : row.slice();
+    a = a.filter(x => x);
+    let gain = 0;
+    for (let i = 0; i < a.length-1; i++) {
+      if (a[i] === a[i+1] && a[i] !== 1) {
+        a[i] *= 2; gain += a[i]; a[i+1] = 0; i++;
       }
     }
-    arr = arr.filter(x => x);
-    while (arr.length < 4) arr.push(0);
-    if (reverse) arr.reverse();
-    const changed = !row.every((v, i) => v === arr[i]);
-    return { newRow: arr, changed, gained };
+    a = a.filter(x => x);
+    while (a.length < 4) a.push(0);
+    if (rev) a.reverse();
+    const changed = !row.every((v,j) => v === a[j]);
+    return { newRow: a, changed, gain };
   }
+
+  function transpose(m) { return m[0].map((_,i) => m.map(r => r[i])); }
 
   function move(dir) {
     if (activeGem) return;
-
-    previousMatrix = matrix.map(r => [...r]); // Snapshot for animations
-    let moved = false;
-    let totalGain = 0;
-    const oldMatrix = matrix.map(r => [...r]);
+    previousMatrix = matrix.map(r => [...r]);
+    let moved = false, gain = 0;
+    const old = matrix.map(r => [...r]);
 
     if (dir === 'left' || dir === 'right') {
-      for (let r = 0; r < GRID_SIZE; r++) {
+      for (let r = 0; r < 4; r++) {
         const res = operateRow(matrix[r], dir === 'right');
         matrix[r] = res.newRow;
         if (res.changed) moved = true;
-        totalGain += res.gained;
+        gain += res.gain;
       }
     } else {
       matrix = transpose(matrix);
-      for (let r = 0; r < GRID_SIZE; r++) {
+      for (let r = 0; r < 4; r++) {
         const res = operateRow(matrix[r], dir === 'down');
         matrix[r] = res.newRow;
         if (res.changed) moved = true;
-        totalGain += res.gained;
+        gain += res.gain;
       }
       matrix = transpose(matrix);
     }
 
-    const actuallyMoved = !matrix.flat().every((v, i) => v === oldMatrix.flat()[i]);
+    const changed = !matrix.flat().every((v,i) => v === old.flat()[i]);
 
-    if (moved && actuallyMoved) {
-      score += totalGain;
-      scoreEl.textContent = score;
-      if (score > best) {
-        best = score;
-        bestEl.textContent = best;
-        localStorage.setItem('best2048', best);
-        playSound('highscore');
-      }
+    if (moved && changed) {
+      score += gain; scoreEl.textContent = score;
+     if (saveBestForLevel(score)) {
+  best = score;
+  bestEl.textContent = best;
+  playSound('highscore');
+  updateMenuDifficulty();
+
+  // === SAVE TO FIREBASE IF SIGNED IN ===
+  if (currentUser) {
+    const userRef = doc(db, "leaderboard", currentUser.uid);
+    setDoc(userRef, {
+      name: currentUser.displayName || currentUser.email.split('@')[0],
+      email: currentUser.email,
+      score: score,
+      level: currentLevel,
+      timestamp: serverTimestamp()
+    }, { merge: true })
+    .then(() => console.log("Score saved to Firebase!"))
+    .catch(err => console.log("Firebase save error:", err));
+  }
+}
+      
       spawnTile();
-      trySpawnGem();
+      if (level.drops) trySpawnGem();
+      if (level.attacks) setTimeout(maybeAttack, 600);
       checkWin();
-    } else if (actuallyMoved) {
-      if (!wrongMovePenalty) {
-        spawnPenaltyOne();
-        wrongMovePenalty = true;
-        playSound('penalty');
-      }
-    } else {
-      wrongMovePenalty = false;
-    }
+    } else if (changed && !wrongMovePenalty) {
+      spawnPenaltyOne(); wrongMovePenalty = true; playSound('penalty');
+    } else wrongMovePenalty = false;
+
     render();
     if (!moved && getEmptyCells().length === 0 && !canMerge()) gameOver();
   }
 
-  function transpose(m) {
-    return m[0].map((_, i) => m.map(row => row[i]));
+  // ==================== HARD MODE ATTACKS ====================
+  function maybeAttack() {
+    if (doomedCell || Math.random() > level.chance) return;
+    const high = [];
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 8) high.push({r,c});
+    if (!high.length) return;
+    doomedCell = high[Math.floor(Math.random()*high.length)];
+    render();
+    startAttackTimer();
   }
 
+  function startAttackTimer() {
+    const timer = document.createElement('div');
+    timer.className = 'attack-timer';
+    timer.innerHTML = '<div class="timer-ring"></div><div class="timer-text">10</div>';
+    document.body.appendChild(timer);
+    let sec = 10;
+    attackTimer = setInterval(() => {
+      sec--;
+      timer.querySelector('.timer-text').textContent = sec;
+      playSound('timer')
+      if (sec <= 0) { clearAttack(); executeAttack(); }
+    }, 1000);
+  }
+
+  function cancelDoomed() {
+    if (!doomedCell) return;
+    doomedCell = null;
+    clearAttack();
+    render();
+  }
+
+  function clearAttack() {
+    clearInterval(attackTimer);
+    document.querySelector('.attack-timer')?.remove();
+  }
+
+/* ===== This is to execute attack Punishment =====*/
+  
+function executeAttack() {
+  if (!doomedCell) return;
+
+  const r = doomedCell.r;
+  const c = doomedCell.c;
+  const tileValue = matrix[r][c];
+
+  // If player saved it OR it was already empty → no penalty!
+  if (tileValue === 0) {
+    doomedCell = null;
+    render();
+    playSound('win'); // Small victory sound
+    return;
+  }
+
+  // BRUTAL PUNISHMENT: Lose 10× the tile value
+  const penalty = tileValue * 10;
+  score = Math.max(0, score - penalty);
+  scoreEl.textContent = score;
+
+  // Remove the tile
+  matrix[r][c] = 0;
+
+  // DYNAMIC FLYING PENALTY TEXT
+  const penaltyText = document.createElement('div');
+  penaltyText.textContent = `-${penalty}`;
+  penaltyText.style.cssText = `
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 6rem;
+    font-weight: bold;
+    color: #ff0044;
+    text-shadow: 0 0 30px #ff0044;
+    z-index: 9999;
+    animation: flyUp 1.2s forwards;
+    pointer-events: none;
+  `;
+  document.body.appendChild(penaltyText);
+  setTimeout(() => penaltyText.remove(), 1200);
+
+  // Reset attack
+  doomedCell = null;
+  render();
+  playSound('penalty');
+}
+
+
+/* ===== Execute Attack End =====*/
   function spawnPenaltyOne() {
-    const empty = getEmptyCells();
-    if (empty.length === 0) return;
-    const pos = empty[Math.floor(Math.random() * empty.length)];
-    matrix[pos.r][pos.c] = 1;
+    const e = getEmptyCells();
+    if (!e.length) return;
+    const p = e[Math.floor(Math.random()*e.length)];
+    matrix[p.r][p.c] = 1;
   }
 
-  // =============================================
-  // GEM DROP ANIMATION
-  // =============================================
-  function animateGemDrop(type) {
-    const emoji = { switcher: 'Swap', grider: 'Destroy', bomb: 'Bomb' }[type];
-    const color = { switcher: '#00ffaa', grider: '#ff6600', bomb: '#ff2e63' }[type];
-
-    const drop = document.createElement('div');
-    drop.className = 'gem-drop';
-    drop.textContent = emoji;
-    drop.style.color = color;
-    drop.style.left = '50%';
-    drop.style.top = '50%';
-    drop.style.transform = 'translate(-50%, -50%)';
-
-    document.body.appendChild(drop);
-
-    setTimeout(() => {
-      const target = document.getElementById(`gem-${type}`);
-      const rect = target.getBoundingClientRect();
-      drop.style.left = rect.left + rect.width / 2 + 'px';
-      drop.style.top = rect.top + rect.height / 2 + 'px';
-      drop.style.fontSize = '2rem';
-    }, 50);
-
-    setTimeout(() => drop.remove(), 900);
-  }
-
+  // ==================== GEM DROP ====================
   function trySpawnGem() {
     if (Math.random() < 0.18) {
-      const rand = Math.random() * 100;
-      let type;
-      if (rand < 90) type = 'switcher';
-      else if (rand < 99) type = 'grider';
-      else type = 'bomb';
-      gems[type]++;
+      const r = Math.random()*100;
+      const type = r < 40 ? 'switcher' : r < 79 ? 'grider' : 'bomb';
+      gems[type] = gems[type] === Infinity ? Infinity : gems[type] + 1;
       animateGemDrop(type);
       playSound('gem');
       render();
     }
   }
 
-  // =============================================
-  // INPUT
-  // =============================================
-  document.addEventListener('keydown', e => {
-    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) {
-      e.preventDefault();
-      move(e.key.replace('Arrow', '').toLowerCase());
-    }
-  });
-
-  let touchStartX = 0, touchStartY = 0;
-  grid.addEventListener('touchstart', e => {
-    if (activeGem) return;
-    e.preventDefault();
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, { passive: false });
-
-  grid.addEventListener('touchend', e => {
-    if (activeGem || !touchStartX) return;
-    e.preventDefault();
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
-    const absX = Math.abs(dx), absY = Math.abs(dy);
-    if (Math.max(absX, absY) > 50) {
-      if (absX > absY) move(dx > 0 ? 'right' : 'left');
-      else move(dy > 0 ? 'down' : 'up');
-    }
-    touchStartX = touchStartY = 0;
-  });
-
-  // =============================================
-  // WIN / GAME OVER
-  // =============================================
-  function checkWin() {
-    if (matrix.flat().some(v => v >= 2048)) {
-      playSound('win');
-    }
+  function animateGemDrop(type) {
+    const emoji = { switcher:'Swap', grider:'Destroy', bomb:'Bomb' }[type];
+    const color = { switcher:'#00ffaa', grider:'#ff6600', bomb:'#ff2e63' }[type];
+    const drop = document.createElement('div');
+    drop.className = 'gem-drop';
+    drop.textContent = emoji;
+    drop.style.color = color;
+    drop.style.left = '50%'; drop.style.top = '50%';
+    drop.style.transform = 'translate(-50%,-50%)';
+    document.body.appendChild(drop);
+    setTimeout(() => {
+      const t = document.getElementById(`gem-${type}`).getBoundingClientRect();
+      drop.style.left = t.left + t.width/2 + 'px';
+      drop.style.top = t.top + t.height/2 + 'px';
+      drop.style.fontSize = '2rem';
+    }, 50);
+    setTimeout(() => drop.remove(), 900);
   }
 
+  // ==================== INPUT ====================
+  document.addEventListener('keydown', e => {
+    const map = { ArrowLeft:'left', ArrowRight:'right', ArrowUp:'up', ArrowDown:'down' };
+    if (map[e.key]) { e.preventDefault(); move(map[e.key]); }
+  });
+
+  let tx = 0, ty = 0;
+  grid.addEventListener('touchstart', e => { if(activeGem) return; e.preventDefault(); tx=e.touches[0].clientX; ty=e.touches[0].clientY; }, {passive:false});
+  grid.addEventListener('touchend', e => {
+    if(activeGem || !tx) return;
+    e.preventDefault();
+    const dx = e.changedTouches[0].clientX - tx;
+    const dy = e.changedTouches[0].clientY - ty;
+    if(Math.max(Math.abs(dx),Math.abs(dy))>50){
+      if(Math.abs(dx)>Math.abs(dy)) move(dx>0?'right':'left');
+      else move(dy>0?'down':'up');
+    }
+    tx=ty=0;
+  });
+
+  // ==================== WIN / LOSE ====================
+  function checkWin() { if(matrix.flat().some(v=>v>=2048)) playSound('win'); }
   function canMerge() {
-    for (let r = 0; r < GRID_SIZE; r++)
-      for (let c = 0; c < GRID_SIZE; c++) {
-        const v = matrix[r][c];
-        if ((c < 3 && v === matrix[r][c+1]) || (r < 3 && v === matrix[r+1][c])) return true;
-      }
+    for(let r=0;r<4;r++) for(let c=0;c<4;c++) {
+      const v = matrix[r][c];
+      if((c<3&&v===matrix[r][c+1])||(r<3&&v===matrix[r+1][c])) return true;
+    }
     return false;
   }
 
-  function gameOver() {
-    playSound('gameover');
-    const highest = Math.max(...matrix.flat().filter(v => v > 1));
-    setTimeout(() => {
-      const overlay = document.createElement('div');
-      overlay.className = 'overlay';
-      overlay.innerHTML = `
-        <h2>GAME OVER</h2>
-        <p>Score: ${score}</p>
-        <p>Highest Tile: ${highest || '—'}</p>
-        <button onclick="location.reload()">RESTART</button>
-      `;
-      document.body.appendChild(overlay);
-    }, 500);
-  }
+ function gameOver() {
+  playSound('gameover');
+  
+  setTimeout(() => {
+    const ov = document.createElement('div');
+    ov.className = 'overlay';
+    ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#00ffff;font-size:2rem;z-index:9999;';
+    ov.innerHTML = `
+      <h2 style="font-size:5rem; margin:20px;">GAME OVER</h2>
+      <p style="margin:10px;">Score: <span style="color:#39ff14; font-size:2.5rem;">${score}</span></p>
+      <p style="margin:20px 0; color:#aaa;">
+        ${currentLevel === 'super-easy' ? 'Super-Easy' : currentLevel === 'normal' ? 'Normal' : 'Hard'} Mode
+      </p>
+      <button id="restart-game-over" style="margin:30px;padding:18px 50px;background:#00ffff;color:#000;font-size:1.6rem;border:none;border-radius:50px;cursor:pointer; box-shadow:0 0 30px #00ffff;">
+        RESTART GRID
+      </button>
+    `;
 
-  // =============================================
-  // SOUND SYSTEM
-  // =============================================
-  function playSound(type) {
-    const sounds = {
-      spawn: 'sounds/spawn.mp3',
-      gem: 'sounds/gem.mp3',
-      'gem-activate': 'sounds/activate.mp3',
-      swap: 'sounds/swap.mp3',
-      destroy: 'sounds/destroy.mp3',
-      bomb: 'sounds/bomb.mp3',
-      penalty: 'sounds/penalty.mp3',
-      highscore: 'sounds/highscore.mp3',
-      win: 'sounds/win.mp3',
-      gameover: 'sounds/gameover.mp3',
-      select: 'sounds/select.mp3'
-    };
-    if (sounds[type]) {
-      new Audio(sounds[type]).play().catch(() => {});
-    }
+    document.body.appendChild(ov);
+
+    // ← THIS LINE WAS THE BUG
+    ov.querySelector('#restart-game-over').addEventListener('click', () => {
+      ov.remove();
+      initGame();
+    });
+  }, 500);
+}
+  // ==================== SOUND ====================
+  function playSound(t) {
+  const audio = new Audio({
+    spawn: 'sounds/spawn.mp3',
+    gem: 'sounds/gem.mp3',
+    'gem-activate': 'sounds/activate.mp3',
+    swap: 'sounds/swap.wav',
+    destroy: 'sounds/destroy.mp3',
+    bomb: 'sounds/bomb.mp3',
+    penalty: 'sounds/penalty.mp3',
+    highscore: 'sounds/highscore.mp3',
+    win: 'sounds/win.mp3',
+    gameover: 'sounds/gameover.mp3',
+    timer: 'sounds/timer.wav',
+    select: 'sounds/select.mp3'
+  }[t]);
+
+  if (audio) {
+    audio.volume = 0.5;
+    audio.currentTime = 0;  // This removes 99% of the delay
+    audio.play().catch(() => {});
   }
+}
+  
+// ——— DIFFICULTY MENU LOGIC ———
+document.querySelectorAll('.diff-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.diff-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const level = btn.dataset.level;
+    window.setLevel(level); // This calls the function from your game
+  });
+});
+
+// Auto-highlight current level on load
+document.querySelector(`.diff-item[data-level="${currentLevel}"]`)?.classList.add('active'); 
+
+// UPDATE MENU SCORES + ACTIVE STATE
+function updateMenuDifficulty() {
+  document.querySelectorAll('.diff-item').forEach(item => {
+    const lvl = item.dataset.level;
+    
+    // Update best score
+    const best = parseInt(localStorage.getItem(`best-${lvl}`) || '0');
+    const scoreSpan = item.querySelector('.best-score');
+    if (scoreSpan) scoreSpan.textContent = best.toLocaleString();
+    
+    // Highlight current level
+    if (lvl === currentLevel) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+}
+
+// Call it on load and after every high score
+updateMenuDifficulty();  
+
+// RESTART BUTTON — FINAL & FLAWLESS
+document.getElementById('restart-btn')?.addEventListener('click', () => {
+  document.getElementById('menu-overlay').classList.remove('active');
+  initGame();
+});
+
+// =========== GOOGLE SIGN IN ===========
+
+ document.getElementById('google-signin')?.addEventListener('click', () => {
+  const provider = new GoogleAuthProvider();
+  
+  // Mobile = redirect, Desktop = popup
+  if (navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
+    signInWithRedirect(auth, provider);
+  } else {
+    signInWithPopup(auth, provider);
+  }
+});
+
+// Handle redirect result (MUST HAVE)
+getRedirectResult(auth)
+  .then((result) => {
+    if (result?.user) {
+      console.log("Signed in (redirect):", result.user.displayName);
+    }
+  })
+  .catch((error) => {
+    console.log("Redirect error:", error);
+  });
+  
+  
+  
+  
+// ——— SHOW REAL USER NAME AFTER LOGIN ———
+let currentUser = null;
+
+function updateUserDisplay() {
+  const display = document.getElementById('user-display');
+  const signinBtn = document.getElementById('google-signin');
+  const signoutBtn = document.getElementById('signout-btn');
+
+  if (currentUser) {
+    // SHOW REAL NAME + PHOTO
+    display.innerHTML = `
+      <img src="${currentUser.photoURL || 'default-avatar.png'}" 
+           style="width:40px;height:40px;border-radius:50%;margin-right:10px;vertical-align:middle;">
+      <strong>Signed in as<br>@${currentUser.displayName || currentUser.email.split('@')[0]}</strong>
+    `;
+    signinBtn.style.display = 'none';
+    if (signoutBtn) signoutBtn.style.display = 'block';
+  } else {
+    // GUEST MODE
+    display.innerHTML = '<p>Guest Player</p>';
+    signinBtn.style.display = 'block';
+    if (signoutBtn) signoutBtn.style.display = 'none';
+  }
+}
+
+// LISTEN FOR LOGIN/LOGOUT
+onAuthStateChanged(auth, (user) => {
+  currentUser = user;
+  updateUserDisplay();
+  console.log(user ? "Logged in: " + user.displayName : "Guest mode");
+});
+
+// SIGN OUT BUTTON (optional)
+document.getElementById('signout-btn')?.addEventListener('click', () => {
+  signOut(auth);
+});
 
 });
