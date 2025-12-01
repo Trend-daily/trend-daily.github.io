@@ -579,15 +579,23 @@ document.querySelectorAll('.diff-item').forEach(btn => {
 document.querySelector(`.diff-item[data-level="${currentLevel}"]`)?.classList.add('active'); 
 
 // UPDATE MENU SCORES + ACTIVE STATE
+// UPDATE MENU — SHOWS REAL CLOUD SCORES WHEN SIGNED IN
 function updateMenuDifficulty() {
   document.querySelectorAll('.diff-item').forEach(item => {
     const lvl = item.dataset.level;
-    
-    // Update best score
-    const best = parseInt(localStorage.getItem(`best-${lvl}`) || '0');
     const scoreSpan = item.querySelector('.best-score');
-    if (scoreSpan) scoreSpan.textContent = best.toLocaleString();
-    
+
+    if (currentUser) {
+      // SIGNED IN → Show cloud best score (or 0)
+      const cloudKey = `cloud-best-${currentUser.uid}-${lvl}`;
+      const cloudScore = parseInt(localStorage.getItem(cloudKey) || '0');
+      scoreSpan.textContent = cloudScore.toLocaleString();
+    } else {
+      // GUEST → Show localStorage score
+      const localScore = parseInt(localStorage.getItem(`best-${lvl}`) || '0');
+      scoreSpan.textContent = localScore.toLocaleString();
+    }
+
     // Highlight current level
     if (lvl === currentLevel) {
       item.classList.add('active');
