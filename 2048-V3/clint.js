@@ -332,6 +332,7 @@ bestEl.textContent = best;
 
   // === SAVE TO FIREBASE IF SIGNED IN ===
   if (currentUser) {
+  localStorage.setItem(`cloud-best-${currentUser.uid}-${currentLevel}`, score);
     const userRef = doc(db, "leaderboard", currentUser.uid);
     setDoc(userRef, {
       name: currentUser.displayName || currentUser.email.split('@')[0],
@@ -586,6 +587,8 @@ function updateMenuDifficulty() {
     const scoreSpan = item.querySelector('.best-score');
 
     if (currentUser) {
+    
+    
       // SIGNED IN → Show cloud best score (or 0)
       const cloudKey = `cloud-best-${currentUser.uid}-${lvl}`;
       const cloudScore = parseInt(localStorage.getItem(cloudKey) || '0');
