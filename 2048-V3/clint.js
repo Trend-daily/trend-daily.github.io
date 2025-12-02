@@ -1,11 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =============================================
-  // 2048 EVOLVED — LEVEL SYSTEM + HARD MODE (FIXED & FINAL)
-  // By Clinton Nwezeaku — Now with Super-Easy / Normal / Hard
-  // =============================================
-
-// 1. Add this ONCE at the very top (outside any function)
 const sounds = {};
 
 // 2. Preload all sounds ONCE when page loads
@@ -28,8 +22,7 @@ const sounds = {};
     audio.volume = 0.5;
     sounds[name] = audio;
   });
-
-  // Now replace your old playSound with this:
+  
   window.playSound = function(type) {
     const audio = sounds[type];
     if (audio) {
@@ -608,7 +601,7 @@ function updateMenuDifficulty() {
   });
 }
 
-// Call it on load and after every high score
+// on load and after every high score
 updateMenuDifficulty();  
 
 // RESTART BUTTON — FINAL & FLAWLESS
