@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // =============================================
+  // 2048 EVOLVED — LEVEL SYSTEM + HARD MODE (FIXED & FINAL)
+  // By Clinton Nwezeaku — Now with Super-Easy / Normal / Hard
+  // =============================================
+
+// 1. Add this ONCE at the very top (outside any function)
 const sounds = {};
 
 // 2. Preload all sounds ONCE when page loads
@@ -22,7 +28,8 @@ const sounds = {};
     audio.volume = 0.5;
     sounds[name] = audio;
   });
-  
+
+  // Now replace your old playSound with this:
   window.playSound = function(type) {
     const audio = sounds[type];
     if (audio) {
@@ -325,7 +332,6 @@ bestEl.textContent = best;
 
   // === SAVE TO FIREBASE IF SIGNED IN ===
   if (currentUser) {
-  localStorage.setItem(`cloud-best-${currentUser.uid}-${currentLevel}`, score);
     const userRef = doc(db, "leaderboard", currentUser.uid);
     setDoc(userRef, {
       name: currentUser.displayName || currentUser.email.split('@')[0],
@@ -573,25 +579,15 @@ document.querySelectorAll('.diff-item').forEach(btn => {
 document.querySelector(`.diff-item[data-level="${currentLevel}"]`)?.classList.add('active'); 
 
 // UPDATE MENU SCORES + ACTIVE STATE
-// UPDATE MENU — SHOWS REAL CLOUD SCORES WHEN SIGNED IN
 function updateMenuDifficulty() {
   document.querySelectorAll('.diff-item').forEach(item => {
     const lvl = item.dataset.level;
+    
+    // Update best score
+    const best = parseInt(localStorage.getItem(`best-${lvl}`) || '0');
     const scoreSpan = item.querySelector('.best-score');
-
-    if (currentUser) {
+    if (scoreSpan) scoreSpan.textContent = best.toLocaleString();
     
-    
-      // SIGNED IN → Show cloud best score (or 0)
-      const cloudKey = `cloud-best-${currentUser.uid}-${lvl}`;
-      const cloudScore = parseInt(localStorage.getItem(cloudKey) || '0');
-      scoreSpan.textContent = cloudScore.toLocaleString();
-    } else {
-      // GUEST → Show localStorage score
-      const localScore = parseInt(localStorage.getItem(`best-${lvl}`) || '0');
-      scoreSpan.textContent = localScore.toLocaleString();
-    }
-
     // Highlight current level
     if (lvl === currentLevel) {
       item.classList.add('active');
@@ -601,7 +597,7 @@ function updateMenuDifficulty() {
   });
 }
 
-// on load and after every high score
+// Call it on load and after every high score
 updateMenuDifficulty();  
 
 // RESTART BUTTON — FINAL & FLAWLESS
