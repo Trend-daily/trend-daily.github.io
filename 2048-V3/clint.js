@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // =============================================
 
 // 1. Add this ONCE at the very top (outside any function)
+window.initGame = initGame;
 const sounds = {};
 
 // 2. Preload all sounds ONCE when page loads
@@ -606,68 +607,6 @@ document.getElementById('restart-btn')?.addEventListener('click', () => {
   initGame();
 });
 
-// =========== GOOGLE SIGN IN ===========
 
- document.getElementById('google-signin')?.addEventListener('click', () => {
-  const provider = new GoogleAuthProvider();
-  
-  // Mobile = redirect, Desktop = popup
-  if (navigator.userAgent.match(/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)) {
-    signInWithRedirect(auth, provider);
-  } else {
-    signInWithPopup(auth, provider);
-  }
-});
-
-// Handle redirect result (MUST HAVE)
-getRedirectResult(auth)
-  .then((result) => {
-    if (result?.user) {
-      console.log("Signed in (redirect):", result.user.displayName);
-    }
-  })
-  .catch((error) => {
-    console.log("Redirect error:", error);
-  });
-  
-  
-  
-  
-// ——— SHOW REAL USER NAME AFTER LOGIN ———
-let currentUser = null;
-
-function updateUserDisplay() {
-  const display = document.getElementById('user-display');
-  const signinBtn = document.getElementById('google-signin');
-  const signoutBtn = document.getElementById('signout-btn');
-
-  if (currentUser) {
-    // SHOW REAL NAME + PHOTO
-    display.innerHTML = `
-      <img src="${currentUser.photoURL || 'default-avatar.png'}" 
-           style="width:40px;height:40px;border-radius:50%;margin-right:10px;vertical-align:middle;">
-      <strong>Signed in as<br>@${currentUser.displayName || currentUser.email.split('@')[0]}</strong>
-    `;
-    signinBtn.style.display = 'none';
-    if (signoutBtn) signoutBtn.style.display = 'block';
-  } else {
-    // GUEST MODE
-    display.innerHTML = '<p>Guest Player</p>';
-    signinBtn.style.display = 'block';
-    if (signoutBtn) signoutBtn.style.display = 'none';
-  }
-}
-
-// LISTEN FOR LOGIN/LOGOUT
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
-  updateUserDisplay();
-  console.log(user ? "Logged in: " + user.displayName : "Guest mode");
-});
-
-// SIGN OUT BUTTON (optional)
-document.getElementById('signout-btn')?.addEventListener('click', () => {
-  signOut(auth);
-});
 
 });

@@ -110,15 +110,8 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  import { 
-    getAuth, 
-    GoogleAuthProvider, 
-    signInWithPopup, 
-    signInWithRedirect, 
-    getRedirectResult, 
-    onAuthStateChanged, 
-    signOut 
-  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyAjQJzabhJEBuOWl-EmZfn09kMa6FOIsUc",
@@ -134,22 +127,78 @@
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  // Expose to window
   window.auth = auth;
   window.db = db;
   window.GoogleAuthProvider = GoogleAuthProvider;
   window.signInWithPopup = signInWithPopup;
-  window.signInWithRedirect = signInWithRedirect;
-  window.getRedirectResult = getRedirectResult;
-  window.onAuthStateChanged = onAuthStateChanged;
   window.signOut = signOut;
+  window.onAuthStateChanged = onAuthStateChanged;
   window.doc = doc;
   window.setDoc = setDoc;
   window.serverTimestamp = serverTimestamp;
 
-  console.log("Firebase ready — Google Sign-In 100% WORKING");
-  // Add Firestore import
-import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+  let currentUser = null;
+
+  // UPDATE MENU DISPLAY
+  function updateUserDisplay() {
+    const display = document.getElementById('user-display');
+    const signinBtn = document.getElementById('google-signin');
+    const signoutBtn = document.getElementById('signout-btn');
+
+    if (currentUser) {
+      display.innerHTML = `
+        <img src="${currentUser.photoURL}" style="width:40px;height:40px;border-radius:50%;margin-right:10px;">
+        <strong>@${currentUser.displayName.split(' ')[0]}</strong>
+      `;
+      signinBtn.style.display = 'none';
+      signoutBtn.style.display = 'block';
+    } else {
+      display.innerHTML = '<p>Guest Player</p>';
+      signinBtn.style.display = 'block';
+      signoutBtn.style.display = 'none';
+    }
+    updateMenuScores(); // ← Update scores when login changes
+  }
+
+  // LOGIN
+  document.getElementById('google-signin')?.addEventListener('click', () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
+  });
+
+  // SIGN OUT
+  document.getElementById('signout-btn')?.addEventListener('click', () => {
+    signOut(auth);
+  });
+
+  // LISTEN FOR LOGIN
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+    updateUserDisplay();
+    initGame(); // ← RESTART GAME ON LOGIN
+  });
+
+  // UPDATE MENU SCORES (CLOUD WHEN SIGNED IN)
+  window.updateMenuScores = function() {
+    document.querySelectorAll('.diff-item').forEach(item => {
+      const lvl = item.dataset.level;
+      const span = item.querySelector('.best-score');
+
+      if (currentUser) {
+        // Show cloud score
+        const key = `cloud-best-\( {currentUser.uid}- \){lvl}`;
+        const score = localStorage.getItem(key) || 0;
+        span.textContent = parseInt(score).toLocaleString();
+      } else {
+        // Show local score
+        const score = localStorage.getItem(`best-${lvl}`) || 0;
+        span.textContent = parseInt(score).toLocaleString();
+      }
+    });
+  };
+
+  // CALL ON START
+  updateMenuScores();
 </script>
 
         
