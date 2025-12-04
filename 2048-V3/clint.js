@@ -60,7 +60,7 @@ const sounds = {};
     'normal':     { name: 'Normal',     gems: 3,        drops: false, attacks: false },
     'hard':       { name: 'Hard',       gems: 3,        drops: false, attacks: true,  chance: 0.15, time: 10000 }
   };
-
+window.currentLevel = window.currentLevel || 'normal';
   let level = LEVELS[window.currentLevel];
 
   // Level display
