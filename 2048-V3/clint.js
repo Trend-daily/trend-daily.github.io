@@ -61,8 +61,7 @@ const sounds = {};
     'hard':       { name: 'Hard',       gems: 3,        drops: false, attacks: true,  chance: 0.15, time: 10000 }
   };
 
-  let currentLevel = localStorage.getItem('2048-level') || 'super-easy';
-  let level = LEVELS[currentLevel];
+  let level = LEVELS[window.currentLevel];
 
   // Level display
   const levelDisplay = document.createElement('div');
@@ -74,14 +73,14 @@ const sounds = {};
   // Expose for menu later
   window.setLevel = (lvl) => {
     if (!LEVELS[lvl]) return;
-    currentLevel = lvl;
+    window.currentLevel = lvl;
     level = LEVELS[lvl];
     localStorage.setItem('2048-level', lvl);
     levelDisplay.innerHTML = `Level: <span style="color:#00ffff;font-weight:bold;">${level.name}</span>`;
     
     best = getBestForLevel();   
 bestEl.textContent = best;   
-    initGame();
+    window.initGame();
   };
 
   // ==================== GAME STATE ====================
@@ -89,10 +88,10 @@ bestEl.textContent = best;
   let score = 0;
   // PER-LEVEL BEST SCORES — SAFE & WORKING
 function getBestForLevel() {
-  return parseInt(localStorage.getItem(`best-${currentLevel}`) || '0');
+  return parseInt(localStorage.getItem(`best-${window.currentLevel}`) || '0');
 }
 function saveBestForLevel(newScore) {
-  const key = `best-${currentLevel}`;
+  const key = `best-${window.currentLevel}`;
   const current = getBestForLevel();
   if (newScore > current) {
     localStorage.setItem(key, newScore);
@@ -114,7 +113,7 @@ bestEl.textContent = best;
   let doomedCell = null;
   let attackTimer = null;
 
-  initGame();
+  window.initGame();
 
   // ==================== CORE FUNCTIONS ====================
   function initGame() {
@@ -333,8 +332,8 @@ bestEl.textContent = best;
   updateMenuDifficulty();
 
   // === SAVE TO FIREBASE IF SIGNED IN ===
-  if (currentUser) {
-   saveBestScoreToCloud(currentLevel, score);
+  if (window.currentUser) {
+   window.saveBestScoreToCloud(window.currentLevel, score);
   }
 }
       
@@ -518,7 +517,7 @@ function executeAttack() {
       <h2 style="font-size:5rem; margin:20px;">GAME OVER</h2>
       <p style="margin:10px;">Score: <span style="color:#39ff14; font-size:2.5rem;">${score}</span></p>
       <p style="margin:20px 0; color:#aaa;">
-        ${currentLevel === 'super-easy' ? 'Super-Easy' : currentLevel === 'normal' ? 'Normal' : 'Hard'} Mode
+        ${window.currentLevel === 'super-easy' ? 'Super-Easy' : window.currentLevel === 'normal' ? 'Normal' : 'Hard'} Mode
       </p>
       <button id="restart-game-over" style="margin:30px;padding:18px 50px;background:#00ffff;color:#000;font-size:1.6rem;border:none;border-radius:50px;cursor:pointer; box-shadow:0 0 30px #00ffff;">
         RESTART GRID
@@ -530,7 +529,7 @@ function executeAttack() {
     // ← THIS LINE WAS THE BUG
     ov.querySelector('#restart-game-over').addEventListener('click', () => {
       ov.remove();
-      initGame();
+      window.initGame();
     });
   }, 500);
 }
@@ -548,7 +547,7 @@ document.querySelectorAll('.diff-item').forEach(btn => {
 });
 
 // Auto-highlight current level on load
-document.querySelector(`.diff-item[data-level="${currentLevel}"]`)?.classList.add('active'); 
+document.querySelector(`.diff-item[data-level="${window.currentLevel}"]`)?.classList.add('active'); 
 
 // UPDATE MENU SCORES + ACTIVE STATE
 function updateMenuDifficulty() {
@@ -561,7 +560,7 @@ function updateMenuDifficulty() {
     if (scoreSpan) scoreSpan.textContent = best.toLocaleString();
     
     // Highlight current level
-    if (lvl === currentLevel) {
+    if (lvl === window.currentLevel) {
       item.classList.add('active');
     } else {
       item.classList.remove('active');
@@ -575,7 +574,7 @@ updateMenuDifficulty();
 // RESTART BUTTON — FINAL & FLAWLESS
 document.getElementById('restart-btn')?.addEventListener('click', () => {
   document.getElementById('menu-overlay').classList.remove('active');
-  initGame();
+  window.initGame();
 });
 
 

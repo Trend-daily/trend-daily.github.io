@@ -49,7 +49,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebas
     } catch (err) {
       console.error("❌ Failed to save cloud score:", err);
     }
+    
   }
+  
+  window.saveBestScoreToCloud = saveBestScoreToCloud;
 
   // ================== FETCH CLOUD SCORE ==================
   async function fetchCloudScores() {
@@ -103,6 +106,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebas
 
   onAuthStateChanged(auth, (user) => {
     currentUser = user;
+    window.currentUser = currentUser;
     updateUserDisplay();
     updateMenuScores();
     fetchCloudScores();
