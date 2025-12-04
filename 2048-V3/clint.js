@@ -333,7 +333,7 @@ bestEl.textContent = best;
 
   // === SAVE TO FIREBASE IF SIGNED IN ===
   if (currentUser) {
-    const userRef = doc(db, "leaderboard", currentUser.uid);
+    const userRef = doc(window.db, "leaderboard", currentUser.uid);
     setDoc(userRef, {
       name: currentUser.displayName || currentUser.email.split('@')[0],
       email: currentUser.email,
