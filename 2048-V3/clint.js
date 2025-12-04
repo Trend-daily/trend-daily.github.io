@@ -21,7 +21,8 @@ const sounds = {};
     highscore: 'sounds/highscore.mp3',
     win: 'sounds/win.mp3',
     gameover: 'sounds/gameover.mp3',
-    select: 'sounds/select.mp3'
+    select: 'sounds/select.mp3',
+    timer: 'sounds/timer.wav',
   };
 
   Object.entries(soundList).forEach(([name, src]) => {
@@ -333,16 +334,7 @@ bestEl.textContent = best;
 
   // === SAVE TO FIREBASE IF SIGNED IN ===
   if (currentUser) {
-    const userRef = doc(window.db, "leaderboard", currentUser.uid);
-    setDoc(userRef, {
-      name: currentUser.displayName || currentUser.email.split('@')[0],
-      email: currentUser.email,
-      score: score,
-      level: currentLevel,
-      timestamp: serverTimestamp()
-    }, { merge: true })
-    .then(() => console.log("Score saved to Firebase!"))
-    .catch(err => console.log("Firebase save error:", err));
+   saveBestScoreToCloud(currentLevel, score);
   }
 }
       
@@ -543,28 +535,7 @@ function executeAttack() {
   }, 500);
 }
   // ==================== SOUND ====================
-  function playSound(t) {
-  const audio = new Audio({
-    spawn: 'sounds/spawn.mp3',
-    gem: 'sounds/gem.mp3',
-    'gem-activate': 'sounds/activate.mp3',
-    swap: 'sounds/swap.wav',
-    destroy: 'sounds/destroy.mp3',
-    bomb: 'sounds/bomb.mp3',
-    penalty: 'sounds/penalty.mp3',
-    highscore: 'sounds/highscore.mp3',
-    win: 'sounds/win.mp3',
-    gameover: 'sounds/gameover.mp3',
-    timer: 'sounds/timer.wav',
-    select: 'sounds/select.mp3'
-  }[t]);
-
-  if (audio) {
-    audio.volume = 0.5;
-    audio.currentTime = 0;  // This removes 99% of the delay
-    audio.play().catch(() => {});
-  }
-}
+  
   
 // ——— DIFFICULTY MENU LOGIC ———
 document.querySelectorAll('.diff-item').forEach(btn => {

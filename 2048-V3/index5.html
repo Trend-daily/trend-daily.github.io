@@ -138,6 +138,46 @@
   window.serverTimestamp = serverTimestamp;
 
   let currentUser = null;
+  
+  // SAVE BEST SCORE TO FIRESTORE
+async function saveBestScoreToCloud(level, score) {
+  if (!currentUser) return; // only save if logged in
+
+  try {
+    await setDoc(
+      doc(db, "scores", `${currentUser.uid}-${level}`), // unique doc per user per level
+      {
+        uid: currentUser.uid,
+        level: level,
+        best: score,
+        updated: serverTimestamp()
+      },
+      { merge: true } // merge with existing data
+    );
+
+    console.log("🔥 Cloud score saved:", level, score);
+  } catch (err) {
+    console.error("❌ Failed to save cloud score:", err);
+  }
+}
+
+async function fetchCloudScores() {
+  if (!currentUser) return;
+
+  const userRef = doc(db, "leaderboard", currentUser.uid);
+  try {
+    const docSnap = await getDoc(userRef);
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      const score = data.score || 0;
+      localStorage.setItem(`cloud-best-${currentUser.uid}-${currentLevel}`, score);
+      updateMenuScores();
+      console.log("Cloud score loaded:", score);
+    }
+  } catch(err) {
+    console.log("Error fetching cloud score:", err);
+  }
+}
 
   // UPDATE MENU DISPLAY
   function updateUserDisplay() {
@@ -175,6 +215,8 @@
   onAuthStateChanged(auth, (user) => {
     currentUser = user;
     updateUserDisplay();
+    updateMenuScores();
+    fetchCloudScores();
     initGame(); // ← RESTART GAME ON LOGIN
   });
 
@@ -197,10 +239,7 @@
     });
   };
 
-  // CALL ON START
-  updateMenuScores();
 </script>
-
         
 </body>
 </html>

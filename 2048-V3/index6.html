@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="title" content="2048: Evolution By Clinton Nwezeaku">
+<meta name="description" content="Explore the latest variant of the 2048 game developed by Gabriel Cirulli and advanced by Clinton Nwezeaku">
+<title>2048 — The Evolved Grid By Clinton Nwezeaku</title>
+<link rel="stylesheet" href="style3.css">
+<script type="module" src="fire.js"></script>
+<script src="clint.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+     <div class="header">
+       <div class="logo">Grid Evolution</div>
+    <button id="hamburger">☰</button>
+  </div>
+  <!-- NEON HEADER WITH DIFFICULTY MENU -->
+   <!-- HEADER -->
+   
+ 
+
+  <!-- MENU OVERLAY -->
+  <div id="menu-overlay" class="menu-overlay">
+    <div class="menu">
+      <h2>GRID CONTROL</h2>
+
+      <!-- USER AUTH — FINAL & PERFECT -->
+<div class="user-info">
+  <!-- This will show "Guest Player" or real name/photo -->
+  <div id="user-display">
+    <p>Guest Player</p>
+  </div>
+
+  <!-- Google Sign-In button (shown when not logged in) -->
+  <button id="google-signin" class="signin-btn">SIGN IN WITH GOOGLE</button>
+
+  <!-- Sign Out button (shown only when logged in) -->
+  <button id="signout-btn" class="signin-btn" style="display:none;">SIGN OUT</button>
+</div>
+
+
+      <div class="difficulty-list">
+  <div class="diff-item active" data-level="super-easy">
+    <strong>SUPER-EASY</strong><br>
+    <small>Best: <span class="best-score">0</span></small>
+  </div>
+  <div class="diff-item" data-level="normal">
+    <strong>NORMAL</strong><br>
+    <small>Best: <span class="best-score">0</span></small>
+  </div>
+  <div class="diff-item" data-level="hard">
+    <strong>HARD</strong><br>
+    <small>Best: <span class="best-score">0</span></small>
+  </div>
+</div>
+
+      <button class="menu-btn">GLOBAL LEADERBOARD</button>
+      <button class="menu-btn">HOW TO PLAY</button>
+      <button class="menu-btn">ABOUT</button>
+      <button class="menu-btn">SOUND: ON</button>
+      <button class="menu-btn" id="restart-btn">RESTART GAME</button>
+      <button class="menu-btn" id="close-menu">CLOSE MENU</button>
+    </div>
+  </div>
+  </div>
+  <!-- ======= Scoreboard ========= -->
+<br><br><br><br><br><br>
+<span class="levelShow"></span>
+  <div class="scoreboard">
+    <div class="score-box">
+      <h3>SCORE</h3>
+      <div class="value" id="score">0</div>
+    </div>
+    <div class="score-box">
+      <h3>BEST</h3>
+      <div class="value" id="best">0</div>
+    </div>
+  </div>
+
+  <div class="gems-panel">
+    <div class="gem dim" id="gem-switcher">
+      <div class="gem-label">SWITCHER</div>
+      <div class="gem-count">0</div>
+    </div>
+    <div class="gem dim" id="gem-grider">
+     
+      <div class="gem-label">GRIDER</div>
+      <div class="gem-count">0</div>
+    </div>
+    <div class="gem dim" id="gem-bomb">
+      <div class="gem-label">BOMB</div>
+      <div class="gem-count">0</div>
+    </div>
+  </div>
+
+  <div id="gem-status"></div>
+
+  <div class="grid-container">
+    <div id="grid"></div>
+  </div>
+<script>
+  document.getElementById('hamburger').onclick = () => {
+    document.getElementById('menu-overlay').classList.add('active');
+  };
+  document.getElementById('close-menu').onclick = () => {
+    document.getElementById('menu-overlay').classList.remove('active');
+  };
+</script>
+
+
+        
+</body>
+</html>
