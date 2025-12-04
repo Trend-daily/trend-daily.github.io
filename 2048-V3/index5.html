@@ -186,7 +186,7 @@
 
       if (currentUser) {
         // Show cloud score
-        const key = `cloud-best-\( {currentUser.uid}- \){lvl}`;
+        const key = `cloud-best-${currentUser.uid}-${lvl}`
         const score = localStorage.getItem(key) || 0;
         span.textContent = parseInt(score).toLocaleString();
       } else {
