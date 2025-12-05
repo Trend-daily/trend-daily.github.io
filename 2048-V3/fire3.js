@@ -75,7 +75,11 @@ async function fetchCloudScores(level = window.currentLevel) {
 
     // Always set local mirror
     localStorage.setItem(cloudKey, score);
-
+    
+    if (window.bestEl) {
+        window.bestEl.textContent = score;
+      }
+      
     // Update menu UI
     if (typeof window.updateMenuScores === "function") window.updateMenuScores();
 

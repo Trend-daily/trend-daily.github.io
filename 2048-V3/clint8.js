@@ -43,6 +43,7 @@ const sounds = {};
   const grid = document.getElementById('grid');
   const scoreEl = document.getElementById('score');
   const bestEl = document.getElementById('best');
+  window.bestEl = bestEl;
 
   const gemSwitcher = document.getElementById('gem-switcher');
   const gemGrider = document.getElementById('gem-grider');
