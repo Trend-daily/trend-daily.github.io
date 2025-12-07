@@ -7,7 +7,7 @@
 <meta name="description" content="Explore the latest variant of the 2048 game developed by Gabriel Cirulli and advanced by Clinton Nwezeaku">
 <title>2048 — The Evolved Grid By Clinton Nwezeaku</title>
 <link rel="stylesheet" href="style3.css">
-<script type="module" src="fire4.js"></script>
+<script type="module" src="fire5.js"></script>
 <script src="clint8.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
@@ -100,6 +100,117 @@
   <div class="grid-container">
     <div id="grid"></div>
   </div>
+  
+  <!-- Username Modal -->
+<!-- USERNAME MODAL -->
+<div id="usernameModal" class="modal" style="display:none;">
+  <div class="modal-content" id="usernameModalContent">
+    <h2>Create your username</h2>
+    <p class="sub">Letters & numbers only.</p>
+
+    <input 
+      type="text" 
+      id="usernameInput" 
+      maxlength="20" 
+      placeholder="Enter username..."
+    />
+
+    <p id="usernameError" class="error-text"></p>
+
+    <button id="usernameSubmit">Save Username</button>
+  </div>
+</div>
+
+<style>
+ /* MODAL BACKDROP */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+/* MODAL BOX */
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  width: 90%;
+  max-width: 360px;
+  border-radius: 14px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content h2 {
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.sub {
+  margin-top: -5px;
+  font-size: 14px;
+  color: #777;
+}
+
+.modal-content input {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px;
+  background: #4a6cff;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal-content button:hover {
+  background: #3d56d6;
+}
+
+.error-text {
+  color: red;
+  font-size: 14px;
+  height: 18px;
+  margin-top: 8px;
+}
+
+/* SHAKE ANIMATION */
+.shake {
+  animation: shakeAnim 0.35s ease;
+}
+
+@keyframes shakeAnim {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+  100% { transform: translateX(0); }
+}
+
+/* Fade in modal */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+</style>
 <script>
   document.getElementById('hamburger').onclick = () => {
     document.getElementById('menu-overlay').classList.add('active');
