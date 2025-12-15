@@ -7,8 +7,8 @@
 <meta name="description" content="Explore the latest variant of the 2048 game developed by Gabriel Cirulli and advanced by Clinton Nwezeaku">
 <title>2048 — The Evolved Grid By Clinton Nwezeaku</title>
 <link rel="stylesheet" href="style3.css">
-<script type="module" src="fire5.js"></script>
-<script src="clint8.js"></script>
+<script type="module" src="fire6.js"></script>
+<script src="clint10.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,8 +18,8 @@
   </div>
   <!-- NEON HEADER WITH DIFFICULTY MENU -->
    <!-- HEADER -->
-   
- 
+
+
 
   <!-- MENU OVERLAY -->
   <div id="menu-overlay" class="menu-overlay">
@@ -78,14 +78,17 @@
       <div class="value" id="best">0</div>
     </div>
   </div>
-
+ <!--  <button onclick="pauseTimer()">Pause</button>
+  <button onclick="resumeTimer()">Res</button>-->
+  <div id="time"></div>
+  
   <div class="gems-panel">
     <div class="gem dim" id="gem-switcher">
       <div class="gem-label">SWITCHER</div>
       <div class="gem-count">0</div>
     </div>
     <div class="gem dim" id="gem-grider">
-     
+
       <div class="gem-label">GRIDER</div>
       <div class="gem-count">0</div>
     </div>
@@ -100,7 +103,7 @@
   <div class="grid-container">
     <div id="grid"></div>
   </div>
-  
+
   <!-- Username Modal -->
 <!-- USERNAME MODAL -->
 <div id="usernameModal" class="modal" style="display:none;">
@@ -186,7 +189,7 @@
 .modal-content button:hover {
   background: #3d56d6;
   color:#fff;
-  
+
 }
 
 .error-text {
@@ -218,14 +221,14 @@
 </style>
 <script>
   document.getElementById('hamburger').onclick = () => {
-    document.getElementById('menu-overlay').classList.add('active');
+   pauseTimer();  document.getElementById('menu-overlay').classList.add('active');
   };
   document.getElementById('close-menu').onclick = () => {
-    document.getElementById('menu-overlay').classList.remove('active');
+   resumeTimer(); document.getElementById('menu-overlay').classList.remove('active');
   };
 </script>
 
 
-        
+
 </body>
 </html>

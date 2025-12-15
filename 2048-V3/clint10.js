@@ -1,13 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =============================================
-  // 2048 EVOLVED — LEVEL SYSTEM + HARD MODE (FIXED & FINAL)
-  // By Clinton Nwezeaku — Now with Super-Easy / Normal / Hard
-  // =============================================
 window.initGame = initGame;
 const sounds = {};
-
-// 2. Preload all sounds ONCE when page loads
   const soundList = {
     spawn: 'sounds/spawn.mp3',
     swap: 'sounds/swap.wav',
@@ -22,14 +16,16 @@ const sounds = {};
     select: 'sounds/select.mp3',
     timer: 'sounds/timer.wav',
   };
+  
+  
+  
 
   Object.entries(soundList).forEach(([name, src]) => {
     const audio = new Audio(src);
     audio.volume = 0.5;
     sounds[name] = audio;
   });
-
-  // Now replace your old playSound with this:
+  
   window.playSound = function(type) {
     const audio = sounds[type];
     if (audio) {
@@ -37,6 +33,23 @@ const sounds = {};
       audio.play().catch(() => {});
     }
   };
+  
+   // ======================
+    // TIMER LOGIC (NO LOOPS)
+    // ======================
+
+    let startTime = 0;
+    let pausedAt = 0;
+    let pausedTime = 0;
+    let isRunning = false;
+    let isPaused = false;
+    let hasTimerStarted = false;
+    window.resumeTimer = resumeTimer;
+    window.pauseTimer = pauseTimer;
+    window.startTimer = startTimer;
+    window.getElapsedSeconds = getElapsedSeconds;
+    
+    
   const GRID_SIZE = 4;
   const grid = document.getElementById('grid');
   const scoreEl = document.getElementById('score');
@@ -57,8 +70,13 @@ const sounds = {};
   const LEVELS = {
     'super-easy': { name: 'Super-Easy', gems: gemCount, drops: true,  attacks: false },
     'normal':     { name: 'Normal',     gems: 3,        drops: false, attacks: false },
-    'hard':       { name: 'Hard',       gems: 3,        drops: false, attacks: true,  chance: 0.15, time: 10000 }
+    'hard':       { name: 'Hard',       gems: 3,        drops: false, attacks: true,  chance: 0.15, time: 5000 }
   };
+  
+  
+  /*=== Cut down the infinity trial ===*/
+  
+ 
 window.currentLevel = window.currentLevel || 'normal';
   let level = LEVELS[window.currentLevel];
 
@@ -76,7 +94,7 @@ window.currentLevel = window.currentLevel || 'normal';
     level = LEVELS[lvl];
     localStorage.setItem('2048-level', lvl);
     levelDisplay.innerHTML = `Level: <span style="color:#00ffff;font-weight:bold;">${level.name}</span>`;
-
+    
     best = getBestForLevel();   
 bestEl.textContent = best;   
     window.initGame();
@@ -84,24 +102,39 @@ bestEl.textContent = best;
 
   // ==================== GAME STATE ====================
   let matrix = [];
+  
   let score = 0;
   // PER-LEVEL BEST SCORES (Get best for level)
 function getBestForLevel() {
   if (window.currentUser) {
-    return parseInt(localStorage.getItem(`cloud-best-${window.currentUser.uid}-${window.currentLevel}`) || '0');
+    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
+    const cloudScore = parseInt(localStorage.getItem(cloudKey) || '0');
+    return cloudScore;
   }
   return parseInt(localStorage.getItem(`best-${window.currentLevel}`) || '0');
 }
 
-
 function saveBestForLevel(newScore) {
-  const key = `best-${window.currentLevel}`;
-  const current = getBestForLevel();
-  if (newScore > current) {
-    localStorage.setItem(key, newScore);
-    return true;
+  const localKey = `best-${window.currentLevel}`;
+  let updated = false;
+
+  if (window.currentUser) {
+    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
+    const cloudScore = parseInt(localStorage.getItem(cloudKey) || '0');
+    if (newScore > cloudScore) {
+      // Update local mirror
+      localStorage.setItem(cloudKey, newScore);
+      updated = true;
+    }
+  } else {
+    const localScore = parseInt(localStorage.getItem(localKey) || '0');
+    if (newScore > localScore) {
+      localStorage.setItem(localKey, newScore);
+      updated = true;
+    }
   }
-  return false;
+
+  return updated;
 }
 
 let best = getBestForLevel();
@@ -120,10 +153,65 @@ bestEl.textContent = best;
   window.initGame();
 
   // ==================== CORE FUNCTIONS ====================
+    
+    //====== Timer Function Start ========
+    
+    
+  function startTimer() {
+      startTime = performance.now();
+      pausedTime = 0;
+      isRunning = true;
+      isPaused = false;
+      updateUI("Game Started: ");
+    }
+
+    function pauseTimer() {
+      if (!isRunning || isPaused) return;
+      pausedAt = performance.now();
+      isPaused = true;
+      updateUI("Game Paused: ");
+    }
+
+    function resumeTimer() {
+      if (!isRunning || !isPaused) return;
+      pausedTime += performance.now() - pausedAt;
+      isPaused = false;
+      updateUI("Game Resumed at: ");
+    }
+
+    function resetTimer() {
+      startTime = 0;
+      pausedAt = 0;
+      pausedTime = 0;
+      isRunning = false;
+      isPaused = false;
+      
+    }
+
+    function getElapsedSeconds() {
+      if (!isRunning) return 0;
+      const now = isPaused ? pausedAt : performance.now();
+      return Math.floor((now - startTime - pausedTime) / 1000);
+    }
+    
+    function formatTime(seconds) {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
+}
+
+    function updateUI(msg = "") {
+  const time = formatTime(getElapsedSeconds());
+  document.getElementById("time").textContent =
+    msg ? `${msg} ${time}` : `Time: ${time}`;
+}
+    //====== Timer Function End ========
   function initGame() {
     matrix = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(0));
     score = 0;
     scoreEl.textContent = 0;
+    resetTimer();
+    hasTimerStarted = false;
     gems = {
       switcher: level.gems === Infinity ? Infinity : level.gems,
       grider:   level.gems === Infinity ? Infinity : level.gems,
@@ -157,7 +245,7 @@ bestEl.textContent = best;
     const empty = getEmptyCells();
     if (!empty.length) return false;
     const pos = empty[Math.floor(Math.random() * empty.length)];
-    matrix[pos.r][pos.c] = Math.random() < 0.9 ? 2 : 4;
+    matrix[pos.r][pos.c] = Math.random() < 0.5 ? 2 : 4;
     playSound('spawn');
     return true;
   }
@@ -306,6 +394,15 @@ bestEl.textContent = best;
     previousMatrix = matrix.map(r => [...r]);
     let moved = false, gain = 0;
     const old = matrix.map(r => [...r]);
+    
+    // === NEW: If the entire grid is empty, spawn tiles instead of game over ===
+if (matrix.flat().every(v => v === 0)) {
+  console.log("Grid empty — respawning tiles...");
+  spawnTile();
+  spawnTile(); 
+  render();
+  return;
+}
 
     if (dir === 'left' || dir === 'right') {
       for (let r = 0; r < 4; r++) {
@@ -328,36 +425,35 @@ bestEl.textContent = best;
     const changed = !matrix.flat().every((v,i) => v === old.flat()[i]);
 
     if (moved && changed) {
+    // ▶ Start timer ONLY on first valid move
+if (!hasTimerStarted) {
+  startTimer();
+  hasTimerStarted = true;
+}
+    
       score += gain; scoreEl.textContent = score;
     if (saveBestForLevel(score)) {
-  // 1) local update (keeps offline UX)
   best = score;
   bestEl.textContent = best;
   playSound('highscore');
   updateMenuDifficulty();
 
-  // 2) update cloud mirror + firestore (only for logged-in users)
+  // Cloud sync for logged-in users
   if (window.currentUser && typeof window.saveBestScoreToCloud === 'function') {
     const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
     const cloudBest = parseInt(localStorage.getItem(cloudKey) || '0', 10);
 
     if (score > cloudBest) {
-         window.saveBestScoreToCloud(window.currentLevel, score)
-        .then?.(() => {
+      window.saveBestScoreToCloud(window.currentLevel, score)
+        .then(() => {
           localStorage.setItem(cloudKey, String(score));
-          console.log("New cloud best score saved:", score);
+          console.log("Cloud best score updated:", score);
         })
-        .catch(err => {
-
-          console.warn("Cloud save failed (non-blocking):", err);
-        });
-    } else {
-
-      if (!localStorage.getItem(cloudKey)) localStorage.setItem(cloudKey, String(cloudBest));
+        .catch(err => console.warn("Cloud save failed:", err));
     }
   }
 }
-
+      
       spawnTile();
       if (level.drops) trySpawnGem();
       if (level.attacks) setTimeout(maybeAttack, 600);
@@ -374,7 +470,7 @@ bestEl.textContent = best;
   function maybeAttack() {
     if (doomedCell || Math.random() > level.chance) return;
     const high = [];
-    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 8) high.push({r,c});
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 2) high.push({r,c});
     if (!high.length) return;
     doomedCell = high[Math.floor(Math.random()*high.length)];
     render();
@@ -384,9 +480,9 @@ bestEl.textContent = best;
   function startAttackTimer() {
     const timer = document.createElement('div');
     timer.className = 'attack-timer';
-    timer.innerHTML = '<div class="timer-ring"></div><div class="timer-text">10</div>';
+    timer.innerHTML = '<div class="timer-ring"></div><div class="timer-text">5</div>';
     document.body.appendChild(timer);
-    let sec = 10;
+    let sec = 5;
     attackTimer = setInterval(() => {
       sec--;
       timer.querySelector('.timer-text').textContent = sec;
@@ -408,7 +504,7 @@ bestEl.textContent = best;
   }
 
 /* ===== This is to execute attack Punishment =====*/
-
+  
 function executeAttack() {
   if (!doomedCell) return;
 
@@ -429,8 +525,9 @@ function executeAttack() {
   score = Math.max(0, score - penalty);
   scoreEl.textContent = score;
 
-  // Remove the tile
-  matrix[r][c] = 0;
+  // Replace the tile with either 2 or 4
+  
+  matrix[r][c] = Math.random()*100 <= 50 ? 2:4;
 
   // DYNAMIC FLYING PENALTY TEXT
   const penaltyText = document.createElement('div');
@@ -471,7 +568,8 @@ function executeAttack() {
     if (Math.random() < 0.18) {
       const r = Math.random()*100;
       const type = r < 40 ? 'switcher' : r < 79 ? 'grider' : 'bomb';
-      gems[type] = gems[type] === Infinity ? Infinity : gems[type] + 1;
+      const MaxGems = 3;
+      gems[type] = gems[type] === MaxGems ? MaxGems : gems[type] + 1;
       animateGemDrop(type);
       playSound('gem');
       render();
@@ -528,15 +626,19 @@ function executeAttack() {
   }
 
  function gameOver() {
+  pauseTimer();
   playSound('gameover');
-
+  const time = formatTime(getElapsedSeconds());
   setTimeout(() => {
+  const highestTile = Math.max(...matrix.flat().filter(v => v > 1));
     const ov = document.createElement('div');
     ov.className = 'overlay';
     ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#00ffff;font-size:2rem;z-index:9999;';
     ov.innerHTML = `
       <h2 style="font-size:5rem; margin:20px;">GAME OVER</h2>
       <p style="margin:10px;">Score: <span style="color:#39ff14; font-size:2.5rem;">${score}</span></p>
+      <p style="margin:10px;">Time: <span style="color:#39ff14; font-size:2.5rem;">${time}s</span></p>
+       <p style="margin:10px;">Highest Tile:<span style="color:#39ff14; font-size:2.5rem;">${highestTile || '-'}</span></p>
       <p style="margin:20px 0; color:#aaa;">
         ${window.currentLevel === 'super-easy' ? 'Super-Easy' : window.currentLevel === 'normal' ? 'Normal' : 'Hard'} Mode
       </p>
@@ -544,10 +646,7 @@ function executeAttack() {
         RESTART GRID
       </button>
     `;
-
-    document.body.appendChild(ov);
-
-    // ← THIS LINE WAS THE BUG
+document.body.appendChild(ov);
     ov.querySelector('#restart-game-over').addEventListener('click', () => {
       ov.remove();
       window.initGame();
@@ -555,8 +654,8 @@ function executeAttack() {
   }, 500);
 }
   // ==================== SOUND ====================
-
-
+  
+  
 // ——— DIFFICULTY MENU LOGIC ———
 document.querySelectorAll('.diff-item').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -574,7 +673,7 @@ document.querySelector(`.diff-item[data-level="${window.currentLevel}"]`)?.class
 function updateMenuDifficulty() {
   document.querySelectorAll('.diff-item').forEach(item => {
     const lvl = item.dataset.level;
-
+    
     // Update best score
    const best = window.currentUser
   ? parseInt(localStorage.getItem(`cloud-best-${window.currentUser.uid}-${lvl}`) || '0')
@@ -582,7 +681,7 @@ function updateMenuDifficulty() {
 
 const scoreSpan = item.querySelector('.best-score');
 if (scoreSpan) scoreSpan.textContent = best.toLocaleString();
-
+    
     // Highlight current level
     if (lvl === window.currentLevel) {
       item.classList.add('active');
@@ -595,12 +694,10 @@ if (scoreSpan) scoreSpan.textContent = best.toLocaleString();
 // Call it on load and after every high score
 updateMenuDifficulty();  
 
-// RESTART BUTTON — FINAL & FLAWLESS
+// RESTART BUTTON
 document.getElementById('restart-btn')?.addEventListener('click', () => {
   document.getElementById('menu-overlay').classList.remove('active');
   window.initGame();
 });
-
-
 
 });

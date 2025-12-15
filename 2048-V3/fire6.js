@@ -7,6 +7,9 @@ import {
   getFirestore, doc, setDoc, getDoc, serverTimestamp 
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
+import { runTransaction } 
+from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
 // ---------------- FIREBASE CONFIG ----------------
 const firebaseConfig = {
   apiKey: "AIzaSyAjQJzabhJEBuOWl-EmZfn09kMa6FOIsUc",
@@ -93,100 +96,114 @@ async function ensureUsername(user) {
 
   return new Promise((resolve) => {
 
-    usernameSubmit.onclick = async () => {
-      const name = usernameInput.value.trim();
+  usernameSubmit.onclick = async () => {
+    const name = usernameInput.value.trim();
 
-      // Validation
-      if (!/^[a-zA-Z0-9]+$/.test(name)) {
-        usernameError.textContent = "Only letters & numbers allowed.";
-        shakeModal();
-        return;
-      }
+    // Basic validation
+    if (!/^[a-zA-Z0-9]{3,}$/.test(name)) {
+      usernameError.textContent = "Only letters & numbers (min 3 chars).";
+      shakeModal();
+      return;
+    }
 
-      if (name.length < 3) {
-        usernameError.textContent = "Username must be at least 3 characters.";
-        shakeModal();
-        return;
-      }
+    usernameSubmit.disabled = true;
+    usernameError.textContent = "";
 
-      // Check uniqueness
-      if (await usernameExists(name)) {
-        usernameError.textContent = "Username already taken. Try another.";
-        shakeModal();
-        return;
-      }
+    const userRef = doc(db, "users", user.uid);
+    const usernameRef = doc(db, "usernames", name.toLowerCase());
 
-      // Save username under user's document  
-      await setDoc(userRef, {
-        uid: user.uid,
-        username: name,
-        created: serverTimestamp()
-      }, { merge: true });
+    try {
+      await runTransaction(db, async (tx) => {
+        const snap = await tx.get(usernameRef);
 
-      // Also save reserved username list  
-      await setDoc(doc(db, "usernames", name.toLowerCase()), {
-        uid: user.uid
+        if (snap.exists()) {
+          throw new Error("USERNAME_TAKEN");
+        }
+
+        tx.set(usernameRef, {
+          uid: user.uid,
+          created: serverTimestamp()
+        });
+
+        tx.set(userRef, {
+          uid: user.uid,
+          username: name,
+          created: serverTimestamp()
+        }, { merge: true });
       });
 
       window.currentUsername = name;
-
       closeModal();
       resolve();
-    };
-  });
-}
 
+    } catch (err) {
+      if (err.message === "USERNAME_TAKEN") {
+        usernameError.textContent = "Username already taken. Try another.";
+      } else {
+        usernameError.textContent = "Something went wrong. Try again.";
+      }
+
+      shakeModal();
+      usernameSubmit.disabled = false;
+    }
+  };
+});
+
+}
 // ---------------- SAVE BEST SCORE ----------------
+
 async function saveBestScoreToCloud(level, score) {
   if (!window.currentUser) return;
 
+  const scoreRef = doc(db, "scores", `${window.currentUser.uid}-${level}`);
+
   try {
-    await setDoc(
-      doc(db, "scores", `${window.currentUser.uid}-${level}`),
-      {
-        uid: window.currentUser.uid,
-        username: window.currentUsername || null,
-        level,
-        best: score,
-        updated: serverTimestamp()
-      },
-      { merge: true }
-    );
+    await runTransaction(db, async (tx) => {
+      const snap = await tx.get(scoreRef);
+      const currentBest = snap.exists() ? snap.data().best || 0 : 0;
 
-    localStorage.setItem(
-      `cloud-best-${window.currentUser.uid}-${level}`, 
-      score
-    );
+      // Only update if new score is higher
+      if (score > currentBest) {
+        tx.set(scoreRef, {
+          uid: window.currentUser.uid,
+          username: window.currentUsername || null,
+          level,
+          best: score,
+          updated: serverTimestamp()
+        }, { merge: true });
 
-    console.log("🔥 Cloud score saved:", level, score);
-  } catch(err) {
+        // Update localStorage cache for UI
+        localStorage.setItem(`cloud-best-${window.currentUser.uid}-${level}`, score);
+        if (window.bestEl) window.bestEl.textContent = score;
+        if (window.updateMenuScores) window.updateMenuScores();
+        console.log("🔥 Cloud score saved:", level, score);
+      }
+    });
+  } catch (err) {
     console.error("❌ Failed to save cloud score:", err);
   }
 }
 window.saveBestScoreToCloud = saveBestScoreToCloud;
+
 
 // ---------------- FETCH CLOUD SCORES ----------------
 async function fetchCloudScores(level = window.currentLevel) {
   if (!window.currentUser) return 0;
 
   try {
-    const snap = await getDoc(
-      doc(db, "scores", `${window.currentUser.uid}-${level}`)
-    );
+    const snap = await getDoc(doc(db, "scores", `${window.currentUser.uid}-${level}`));
+    const score = snap.exists() ? (snap.data().best || 0) : 0;
 
-    let score = snap.exists() ? (snap.data().best || 0) : 0;
+    // Always mirror cloud → localStorage
+    localStorage.setItem(`cloud-best-${window.currentUser.uid}-${level}`, score);
 
-    localStorage.setItem(
-      `cloud-best-${window.currentUser.uid}-${level}`,
-      score
-    );
-
+    // Update UI
     if (window.bestEl) window.bestEl.textContent = score;
     if (window.updateMenuScores) window.updateMenuScores();
 
     return score;
 
-  } catch(err) {
+  } catch (err) {
     console.error("❌ Error fetching cloud score:", err);
     return 0;
   }
