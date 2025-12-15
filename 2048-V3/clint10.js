@@ -434,14 +434,23 @@ if (!hasTimerStarted) {
   updateMenuDifficulty();
 
   // Cloud sync for logged-in users
-  if (window.currentUser) {
-  window.saveBestScoreToCloud(window.currentLevel, score);
-}
-        .then(() => {
+  if (window.currentUser && typeof window.saveBestScoreToCloud === 'function') {
+    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
+    const cloudBest = parseInt(localStorage.getItem(cloudKey) || '0', 10);
+
+    if (score > cloudBest) {
+         window.saveBestScoreToCloud(window.currentLevel, score)
+        .then?.(() => {
           localStorage.setItem(cloudKey, String(score));
-          console.log("Cloud best score updated:", score);
+          console.log("New cloud best score saved:", score);
         })
-        .catch(err => console.warn("Cloud save failed:", err));
+        .catch(err => {
+         
+          console.warn("Cloud save failed (non-blocking):", err);
+        });
+    } else {
+      
+      if (!localStorage.getItem(cloudKey)) localStorage.setItem(cloudKey, String(cloudBest));
     }
   }
 }
