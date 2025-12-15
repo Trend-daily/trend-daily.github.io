@@ -119,14 +119,9 @@ function saveBestForLevel(newScore) {
   let updated = false;
 
   if (window.currentUser) {
-    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
-    const cloudScore = parseInt(localStorage.getItem(cloudKey) || '0');
-    if (newScore > cloudScore) {
-      // Update local mirror
-      localStorage.setItem(cloudKey, newScore);
-      updated = true;
-    }
-  } else {
+  // Cloud is final Truthy
+  window.saveBestScoreToCloud(window.currentLevel, newScore);
+} else {
     const localScore = parseInt(localStorage.getItem(localKey) || '0');
     if (newScore > localScore) {
       localStorage.setItem(localKey, newScore);
@@ -439,12 +434,9 @@ if (!hasTimerStarted) {
   updateMenuDifficulty();
 
   // Cloud sync for logged-in users
-  if (window.currentUser && typeof window.saveBestScoreToCloud === 'function') {
-    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
-    const cloudBest = parseInt(localStorage.getItem(cloudKey) || '0', 10);
-
-    if (score > cloudBest) {
-      window.saveBestScoreToCloud(window.currentLevel, score)
+  if (window.currentUser) {
+  window.saveBestScoreToCloud(window.currentLevel, score);
+}
         .then(() => {
           localStorage.setItem(cloudKey, String(score));
           console.log("Cloud best score updated:", score);
