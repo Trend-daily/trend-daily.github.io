@@ -196,7 +196,13 @@ async function saveBestForLevel(newScore) {
   window.initGame();
 
   // ==================== CORE FUNCTIONS ====================
-    document.getElementById('refresh-scores-btn')?.addEventListener('click', async () => {
+   
+   /* Refresh Scores on Sign Out */
+   
+   document.getElementById('signout-btn')?.addEventListener('click', async () => {
+  await signOut(auth);
+  location.reload(); // <-- reloads the page
+}); document.getElementById('refresh-scores-btn')?.addEventListener('click', async () => {
   if (!window.currentUser) return;
 
   // Fetch cloud score for current level
