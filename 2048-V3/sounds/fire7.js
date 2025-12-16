@@ -53,7 +53,7 @@ const usernameError = document.getElementById("usernameError");
 const usernameSubmit = document.getElementById("usernameSubmit");
 
 // Hide modal by default
-modal.style.display = "none";
+modal.style.display = "non";
 
 // ---------------- OPEN + CLOSE HELPERS ----------------
 function openModal() {
@@ -150,14 +150,7 @@ async function ensureUsername(user) {
     }
   };
   
-  // --- New cancel button ---
-    const cancelBtn = document.getElementById("usernameCancel");
-    cancelBtn.onclick = () => {
-      closeModal();              // hide modal
-      window.currentUsername = null; // no username assigned
-      resolve(null);             // resolve the promise
-      updateUserDisplay();       // update UI to reflect "guest" for now
-    };
+  
 });
 
 }
