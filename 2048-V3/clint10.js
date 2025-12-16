@@ -88,7 +88,7 @@ window.currentLevel = window.currentLevel || 'normal';
   document.querySelector('.levelShow')?.appendChild(levelDisplay);
 
   // Expose for menu later
-  window.setLevel = (lvl) => {
+  window.setLevel = async (lvl) => {
     if (!LEVELS[lvl]) return;
     window.currentLevel = lvl;
     level = LEVELS[lvl];
