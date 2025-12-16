@@ -151,13 +151,20 @@ async function ensureUsername(user) {
   };
   
   // --- New cancel button ---
-    const cancelBtn = document.getElementById("usernameCancel");
-    cancelBtn.onclick = () => {
-      closeModal();              // hide modal
-      window.currentUsername = null; // no username assigned
-      resolve(null);             // resolve the promise
-      updateUserDisplay();       // update UI to reflect "guest" for now
-    };
+const cancelBtn = document.getElementById("usernameCancel");
+
+cancelBtn.onclick = async () => {
+  closeModal();
+
+  // Abort login completely
+  await signOut(auth);
+
+  // Reset local state
+  window.currentUser = null;
+  window.currentUsername = null;
+
+  resolve(null); // unblock ensureUsername
+};
 });
 
 }
