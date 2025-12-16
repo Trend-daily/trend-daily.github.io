@@ -196,7 +196,24 @@ async function saveBestForLevel(newScore) {
   window.initGame();
 
   // ==================== CORE FUNCTIONS ====================
-    
+    document.getElementById('refresh-scores-btn')?.addEventListener('click', async () => {
+  if (!window.currentUser) return;
+
+  // Fetch cloud score for current level
+  const score = await window.fetchCloudScores(window.currentLevel);
+
+  // Update UI immediately
+  if (window.bestEl) {
+    window.bestEl.textContent = score.toLocaleString();
+  }
+
+  // Also update menu scores if needed
+  if (window.updateMenuScores) {
+    window.updateMenuScores();
+  }
+
+  console.log("Scores refreshed:", score);
+});
     //====== Timer Function Start ========
     
     
