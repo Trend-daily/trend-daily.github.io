@@ -95,8 +95,8 @@ window.currentLevel = window.currentLevel || 'normal';
     localStorage.setItem('2048-level', lvl);
     levelDisplay.innerHTML = `Level: <span style="color:#00ffff;font-weight:bold;">${level.name}</span>`;
     
-    best = getBestForLevel();   
-bestEl.textContent = best;   
+   const best = await getBestForLevel();   
+bestEl.textContent = best.toLocaleString();   
     window.initGame();
   };
 
