@@ -105,83 +105,35 @@ bestEl.textContent = best;
   
   let score = 0;
   // PER-LEVEL BEST SCORES (Get best for level)
-async function getBestForLevel() {
-  // Anonymous user → only localStorage
-  if (!window.currentUser) {
-    const localKey = `best-${window.currentLevel}`;
-    return parseInt(localStorage.getItem(localKey) || '0', 10);
+function getBestForLevel() {
+  if (window.currentUser) {
+    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
+    const cloudScore = parseInt(localStorage.getItem(cloudKey) || '0');
+    return cloudScore;
   }
-
-  // Logged-in user
-  const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
-  let cloudScore = localStorage.getItem(cloudKey);
-
-  
-  if (cloudScore !== null) {
-    cloudScore = parseInt(cloudScore, 10);
-  } else {
-    cloudScore = null; // null means "not loaded yet"
-  }
-
-  
-  if (cloudScore === null) {
-    try {
-     
-      const scoreFromCloud = await window.fetchCloudScores(level)
-      
-      cloudScore = scoreFromCloud !== undefined && scoreFromCloud !== null
-        ? scoreFromCloud
-        : 0;
-
-     
-      localStorage.setItem(cloudKey, cloudScore);
-    } catch (error) {
-      console.warn("Could not load best score from cloud:", error);
-      cloudScore = 0;
-    }
-  }
-
-  return cloudScore;
+  return parseInt(localStorage.getItem(`best-${window.currentLevel}`) || '0');
 }
-async function saveBestForLevel(newScore) {
+
+function saveBestForLevel(newScore) {
   const localKey = `best-${window.currentLevel}`;
   let updated = false;
 
   if (window.currentUser) {
-    // Save to Firestore
-    await window.saveBestScoreToCloud(window.currentLevel, newScore);
-
-    // Immediately update local cache so UI shows new best right away
-    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
-    localStorage.setItem(cloudKey, newScore);
-
-    // Optionally update display if bestEl exists
-    if (window.bestEl) {
-      window.bestEl.textContent = newScore.toLocaleString();
-    }
-
-    updated = true; 
-
-  } else {
-    // Anonymous user → only localStorage
-    const localScore = parseInt(localStorage.getItem(localKey) || '0', 10);
+  // Cloud is final Truthy
+  window.saveBestScoreToCloud(window.currentLevel, newScore);
+} else {
+    const localScore = parseInt(localStorage.getItem(localKey) || '0');
     if (newScore > localScore) {
       localStorage.setItem(localKey, newScore);
       updated = true;
     }
   }
 
-  // Update menu UI
-  if (window.updateMenuScores) {
-    window.updateMenuScores();
-  }
-
   return updated;
 }
-(async () => {
-  const best = await getBestForLevel();
-  bestEl.textContent = best;
-})();
+
+let best = getBestForLevel();
+bestEl.textContent = best;
 
   let gems = { switcher: 0, grider: 0, bomb: 0 };
   let activeGem = null;
