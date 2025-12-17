@@ -127,7 +127,7 @@ async function getBestForLevel() {
   if (cloudScore === null) {
     try {
      
-      const scoreFromCloud = await window.fetchCloudScores(level)
+      const scoreFromCloud = await window.fetchCloudScores(window.currentLevel)
       
       cloudScore = scoreFromCloud !== undefined && scoreFromCloud !== null
         ? scoreFromCloud
@@ -178,10 +178,9 @@ async function saveBestForLevel(newScore) {
 
   return updated;
 }
-(async () => {
-  const best = await getBestForLevel();
-  bestEl.textContent = best;
-})();  
+if (score > parseInt(bestEl.textContent.replace(/,/g, '') || '0', 10)) {
+  bestEl.textContent = score.toLocaleString();
+}
 
   let gems = { switcher: 0, grider: 0, bomb: 0 };
   let activeGem = null;
@@ -707,6 +706,10 @@ document.body.appendChild(ov);
       window.initGame();
     });
   }, 500);
+  (async () => {
+  const best = await getBestForLevel();
+  bestEl.textContent = best.toLocaleString();
+})();
 }
   // ==================== SOUND ====================
   
