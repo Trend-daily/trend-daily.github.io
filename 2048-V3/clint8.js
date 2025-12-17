@@ -328,6 +328,7 @@ bestEl.textContent = best;
     const changed = !matrix.flat().every((v,i) => v === old.flat()[i]);
 
     if (moved && changed) {
+    console.log('tf is happening!')
       score += gain; scoreEl.textContent = score;
     if (saveBestForLevel(score)) {
   // 1) local update (keeps offline UX)

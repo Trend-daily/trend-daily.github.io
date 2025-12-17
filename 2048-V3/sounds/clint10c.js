@@ -155,10 +155,10 @@ async function saveBestForLevel(newScore) {
     const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
     localStorage.setItem(cloudKey, newScore);
 
-    // Optionally update display if bestEl exists
+    /* Optionally update display if bestEl exists
     if (window.bestEl) {
       window.bestEl.textContent = newScore.toLocaleString();
-    }
+    }*/
 
     updated = true; 
 
@@ -492,10 +492,12 @@ if (matrix.flat().every(v => v === 0)) {
 
     if (moved && changed) {
     // ▶ Start timer ONLY on first valid move
+   
 if (!hasTimerStarted) {
   startTimer();
   hasTimerStarted = true;
 }
+
     
       score += gain; scoreEl.textContent = score;
     if (saveBestForLevel(score)) {

@@ -127,7 +127,7 @@ async function getBestForLevel() {
   if (cloudScore === null) {
     try {
      
-      const scoreFromCloud = await window.fetchCloudScores(window.currentLevel)
+      const scoreFromCloud = await window.fetchCloudScores(level)
       
       cloudScore = scoreFromCloud !== undefined && scoreFromCloud !== null
         ? scoreFromCloud
@@ -178,9 +178,10 @@ async function saveBestForLevel(newScore) {
 
   return updated;
 }
-if (score > parseInt(bestEl.textContent.replace(/,/g, '') || '0', 10)) {
-  bestEl.textContent = score.toLocaleString();
-}
+(async () => {
+  const best = await getBestForLevel();
+  bestEl.textContent = best;
+})();  
 
   let gems = { switcher: 0, grider: 0, bomb: 0 };
   let activeGem = null;
@@ -491,23 +492,41 @@ if (matrix.flat().every(v => v === 0)) {
 
     if (moved && changed) {
     // ▶ Start timer ONLY on first valid move
+    console.log('tf is happening!')
 if (!hasTimerStarted) {
   startTimer();
   hasTimerStarted = true;
 }
     
-      // After updating score
-score += gain;
-scoreEl.textContent = score;
+      score += gain; scoreEl.textContent = score;
+    if (saveBestForLevel(score)) {
+/* best = score;
+ bestEl.textContent = best;*/
+  playSound('highscore');
+  updateMenuDifficulty();
 
-// Save best asynchronously (fire-and-forget)
-saveBestForLevel(score);
+  // Cloud sync for logged-in users
+  if (window.currentUser && typeof window.saveBestScoreToCloud === 'function') {
+    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
+    const cloudBest = parseInt(localStorage.getItem(cloudKey) || '0', 10);
 
-// Refresh best score display from source of truth
-(async () => {
-  const best = await getBestForLevel();
-  bestEl.textContent = best.toLocaleString();
-})();
+    if (score > cloudBest) {
+         window.saveBestScoreToCloud(window.currentLevel, score)
+        .then?.(() => {
+          localStorage.setItem(cloudKey, String(score));
+          console.log("New cloud best score saved:", score);
+        })
+        .catch(err => {
+         
+          console.warn("Cloud save failed (non-blocking):", err);
+        });
+    } else {
+      
+      if (!localStorage.getItem(cloudKey)) localStorage.setItem(cloudKey, String(cloudBest));
+    }
+  }
+}
+      
       spawnTile();
       if (level.drops) trySpawnGem();
       if (level.attacks) setTimeout(maybeAttack, 600);
@@ -706,10 +725,6 @@ document.body.appendChild(ov);
       window.initGame();
     });
   }, 500);
-  (async () => {
-  const best = await getBestForLevel();
-  bestEl.textContent = best.toLocaleString();
-})();
 }
   // ==================== SOUND ====================
   
