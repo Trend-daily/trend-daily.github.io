@@ -88,15 +88,15 @@ window.currentLevel = window.currentLevel || 'normal';
   document.querySelector('.levelShow')?.appendChild(levelDisplay);
 
   // Expose for menu later
-  window.setLevel = (lvl) => {
+  window.setLevel = async (lvl) => {
     if (!LEVELS[lvl]) return;
     window.currentLevel = lvl;
     level = LEVELS[lvl];
     localStorage.setItem('2048-level', lvl);
     levelDisplay.innerHTML = `Level: <span style="color:#00ffff;font-weight:bold;">${level.name}</span>`;
     
-    best = getBestForLevel();   
-bestEl.textContent = best;   
+   const best = await getBestForLevel();   
+bestEl.textContent = best.toLocaleString();   
     window.initGame();
   };
 
@@ -105,35 +105,83 @@ bestEl.textContent = best;
   
   let score = 0;
   // PER-LEVEL BEST SCORES (Get best for level)
-function getBestForLevel() {
-  if (window.currentUser) {
-    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
-    const cloudScore = parseInt(localStorage.getItem(cloudKey) || '0');
-    return cloudScore;
+async function getBestForLevel() {
+  // Anonymous user → only localStorage
+  if (!window.currentUser) {
+    const localKey = `best-${window.currentLevel}`;
+    return parseInt(localStorage.getItem(localKey) || '0', 10);
   }
-  return parseInt(localStorage.getItem(`best-${window.currentLevel}`) || '0');
-}
 
-function saveBestForLevel(newScore) {
+  // Logged-in user
+  const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
+  let cloudScore = localStorage.getItem(cloudKey);
+
+  
+  if (cloudScore !== null) {
+    cloudScore = parseInt(cloudScore, 10);
+  } else {
+    cloudScore = null; // null means "not loaded yet"
+  }
+
+  
+  if (cloudScore === null) {
+    try {
+     
+      const scoreFromCloud = await window.fetchCloudScores(level)
+      
+      cloudScore = scoreFromCloud !== undefined && scoreFromCloud !== null
+        ? scoreFromCloud
+        : 0;
+
+     
+      localStorage.setItem(cloudKey, cloudScore);
+    } catch (error) {
+      console.warn("Could not load best score from cloud:", error);
+      cloudScore = 0;
+    }
+  }
+
+  return cloudScore;
+}
+async function saveBestForLevel(newScore) {
   const localKey = `best-${window.currentLevel}`;
   let updated = false;
 
   if (window.currentUser) {
-  // Cloud is final Truthy
-  window.saveBestScoreToCloud(window.currentLevel, newScore);
-} else {
-    const localScore = parseInt(localStorage.getItem(localKey) || '0');
+    // Save to Firestore
+    await window.saveBestScoreToCloud(window.currentLevel, newScore);
+
+    // Immediately update local cache so UI shows new best right away
+    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
+    localStorage.setItem(cloudKey, newScore);
+
+    // Optionally update display if bestEl exists
+    if (window.bestEl) {
+      window.bestEl.textContent = newScore.toLocaleString();
+    }
+
+    updated = true; 
+
+  } else {
+    // Anonymous user → only localStorage
+    const localScore = parseInt(localStorage.getItem(localKey) || '0', 10);
     if (newScore > localScore) {
       localStorage.setItem(localKey, newScore);
       updated = true;
     }
   }
 
+  // Update menu UI
+  if (window.updateMenuScores) {
+    window.updateMenuScores();
+  }
+
   return updated;
 }
-
-let best = getBestForLevel();
-bestEl.textContent = best;
+(async () => {
+  const best = await getBestForLevel();
+  bestEl.textContent = best;
+})();  
 
   let gems = { switcher: 0, grider: 0, bomb: 0 };
   let activeGem = null;
@@ -148,7 +196,30 @@ bestEl.textContent = best;
   window.initGame();
 
   // ==================== CORE FUNCTIONS ====================
-    
+   
+   /* Refresh Scores on Sign Out */
+   
+   document.getElementById('signout-btn')?.addEventListener('click', async () => {
+  await signOut(auth);
+  location.reload(); // <-- reloads the page
+}); document.getElementById('refresh-scores-btn')?.addEventListener('click', async () => {
+  if (!window.currentUser) return;
+
+  // Fetch cloud score for current level
+  const score = await window.fetchCloudScores(window.currentLevel);
+
+  // Update UI immediately
+  if (window.bestEl) {
+    window.bestEl.textContent = score.toLocaleString();
+  }
+
+  // Also update menu scores if needed
+  if (window.updateMenuScores) {
+    window.updateMenuScores();
+  }
+
+  console.log("Scores refreshed:", score);
+});
     //====== Timer Function Start ========
     
     

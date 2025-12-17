@@ -181,7 +181,7 @@ async function saveBestForLevel(newScore) {
 (async () => {
   const best = await getBestForLevel();
   bestEl.textContent = best;
-})();
+})();  
 
   let gems = { switcher: 0, grider: 0, bomb: 0 };
   let activeGem = null;
@@ -497,35 +497,18 @@ if (!hasTimerStarted) {
   hasTimerStarted = true;
 }
     
-      score += gain; scoreEl.textContent = score;
-    if (saveBestForLevel(score)) {
-  best = score;
-  bestEl.textContent = best;
-  playSound('highscore');
-  updateMenuDifficulty();
+      // After updating score
+score += gain;
+scoreEl.textContent = score;
 
-  // Cloud sync for logged-in users
-  if (window.currentUser && typeof window.saveBestScoreToCloud === 'function') {
-    const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
-    const cloudBest = parseInt(localStorage.getItem(cloudKey) || '0', 10);
+// Save best asynchronously (fire-and-forget)
+saveBestForLevel(score);
 
-    if (score > cloudBest) {
-         window.saveBestScoreToCloud(window.currentLevel, score)
-        .then?.(() => {
-          localStorage.setItem(cloudKey, String(score));
-          console.log("New cloud best score saved:", score);
-        })
-        .catch(err => {
-         
-          console.warn("Cloud save failed (non-blocking):", err);
-        });
-    } else {
-      
-      if (!localStorage.getItem(cloudKey)) localStorage.setItem(cloudKey, String(cloudBest));
-    }
-  }
-}
-      
+// Refresh best score display from source of truth
+(async () => {
+  const best = await getBestForLevel();
+  bestEl.textContent = best.toLocaleString();
+})();
       spawnTile();
       if (level.drops) trySpawnGem();
       if (level.attacks) setTimeout(maybeAttack, 600);
