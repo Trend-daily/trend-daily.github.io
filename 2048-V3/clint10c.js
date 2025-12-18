@@ -770,8 +770,9 @@ updateMenuDifficulty();
 
 // RESTART BUTTON
 document.getElementById('restart-btn')?.addEventListener('click', () => {
-  document.getElementById('menu-overlay').classList.remove('active');
-  location.reload()
+ location.reload();
+ document.getElementById('menu-overlay').classList.remove('active');
+  
   window.initGame();
 });
 
