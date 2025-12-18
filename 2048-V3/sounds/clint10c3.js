@@ -715,8 +715,20 @@ function executeAttack() {
   pauseTimer();
   playSound('gameover');
   const time = formatTime(getElapsedSeconds());
-  setTimeout(() => {
   const highestTile = Math.max(...matrix.flat().filter(v => v > 1));
+  // Save to cloud if logged in
+  if (window.currentUser) {
+    // Highest tile
+    if (typeof window.saveHighestTileToCloud === 'function') {
+      window.saveHighestTileToCloud(window.currentLevel, highestTile);
+    }
+
+    // Longest session time
+    if (typeof window.saveLongestTimeToCloud === 'function') {
+      window.saveLongestTimeToCloud(window.currentLevel, elapsedSeconds);
+    }
+  }
+  setTimeout(() => {
     const ov = document.createElement('div');
     ov.className = 'overlay';
     ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.95);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#00ffff;font-size:2rem;z-index:9999;';
