@@ -148,7 +148,7 @@ async function saveBestForLevel(newScore) {
   let updated = false;
 
   if (window.currentUser) {
-    // ✅ Correct template literal
+    
     const cloudKey = `cloud-best-${window.currentUser.uid}-${window.currentLevel}`;
     const currentBest = parseInt(localStorage.getItem(cloudKey) || '0', 10);
 
