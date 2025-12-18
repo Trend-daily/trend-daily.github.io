@@ -543,7 +543,7 @@ if (!hasTimerStarted) {
   function maybeAttack() {
     if (doomedCell || Math.random() > level.chance) return;
     const high = [];
-    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 2) high.push({r,c});
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 256) high.push({r,c});
     if (!high.length) return;
     doomedCell = high[Math.floor(Math.random()*high.length)];
     render();
@@ -722,6 +722,7 @@ function executeAttack() {
 document.body.appendChild(ov);
     ov.querySelector('#restart-game-over').addEventListener('click', () => {
       ov.remove();
+      location.reload();
       window.initGame();
     });
   }, 500);
@@ -770,6 +771,7 @@ updateMenuDifficulty();
 // RESTART BUTTON
 document.getElementById('restart-btn')?.addEventListener('click', () => {
   document.getElementById('menu-overlay').classList.remove('active');
+  location.reload()
   window.initGame();
 });
 
