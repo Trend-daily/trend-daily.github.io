@@ -63,7 +63,7 @@ const sounds = {};
   const gemStatus = document.createElement('div');
   gemStatus.id = 'gem-status';
   gemStatus.style.cssText = 'color:#00ffff; margin:15px 0; font-size:1.1rem; min-height:24px; opacity:0; transition:opacity 0.3s; text-align:center;';
-  document.querySelector('.gems-panel').after(gemStatus);
+ document.querySelector('.gems-panel').after(gemStatus);
 
   // ==================== LEVEL SYSTEM ====================
   let gemCount = 0
@@ -162,7 +162,7 @@ bestEl.textContent = best;
       if (!isRunning || !isPaused) return;
       pausedTime += performance.now() - pausedAt;
       isPaused = false;
-      updateUI("Game Resumed at: ");
+      updateUI("Game Started: ");
     }
 
     function resetTimer() {
@@ -463,7 +463,7 @@ if (!hasTimerStarted) {
   function maybeAttack() {
     if (doomedCell || Math.random() > level.chance) return;
     const high = [];
-    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 2) high.push({r,c});
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 512) high.push({r,c});
     if (!high.length) return;
     doomedCell = high[Math.floor(Math.random()*high.length)];
     render();
@@ -617,7 +617,11 @@ function executeAttack() {
     }
     return false;
   }
-
+  
+  //===== Game Over for Testing=======
+document.getElementById('tess').addEventListener('click',()=>{
+    gameOver();
+})
  function gameOver() {
   pauseTimer();
   playSound('gameover');
@@ -642,6 +646,7 @@ function executeAttack() {
 
     document.body.appendChild(ov);
     ov.querySelector('#restart-game-over').addEventListener('click', () => {
+      location.reload()
       ov.remove();
       window.initGame();
     });
@@ -691,6 +696,7 @@ updateMenuDifficulty();
 // RESTART BUTTON
 document.getElementById('restart-btn')?.addEventListener('click', () => {
   document.getElementById('menu-overlay').classList.remove('active');
+  location.reload()
   window.initGame();
 });
 
