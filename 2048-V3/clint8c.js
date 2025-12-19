@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =============================================
-  // 2048 EVOLVED — LEVEL SYSTEM + HARD MODE (FIXED & FINAL)
-  // By Clinton Nwezeaku — Now with Super-Easy / Normal / Hard
-  // =============================================
 window.initGame = initGame;
 const sounds = {};
 
@@ -413,7 +409,6 @@ if (matrix.flat().every(v => v === 0)) {
 }
       score += gain; scoreEl.textContent = score;
     if (saveBestForLevel(score)) {
-  // 1) local update (keeps offline UX)
   best = score;
   bestEl.textContent = best;
   playSound('highscore');

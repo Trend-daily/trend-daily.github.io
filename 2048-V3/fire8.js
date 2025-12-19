@@ -192,8 +192,8 @@ async function saveBestScoreToCloud(level, score) {
 
         // Update localStorage cache for UI
         localStorage.setItem(`cloud-best-${window.currentUser.uid}-${level}`, score);
-        if (window.bestEl) window.bestEl.textContent = score;
-        if (window.updateMenuScores) window.updateMenuScores();
+        /* if (window.bestEl) window.bestEl.textContent = score;
+        if (window.updateMenuScores) window.updateMenuScores(); */
         console.log("🔥 Cloud score saved:", level, score);
       }
     });
