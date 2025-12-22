@@ -527,8 +527,8 @@ if (!hasTimerStarted) {
     
       score += gain; scoreEl.textContent = score;
     if (saveBestForLevel(score)) {
-/* best = score;
- bestEl.textContent = best;*/
+ best = score;
+ bestEl.textContent = best;
   playSound('highscore');
   updateMenuDifficulty();
 
