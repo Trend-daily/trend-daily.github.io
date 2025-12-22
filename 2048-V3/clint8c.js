@@ -609,6 +609,10 @@ document.getElementById('tess').addEventListener('click',()=>{
     if (typeof window.saveLongestTimeToCloud === 'function') {
       window.saveLongestTimeToCloud(window.currentLevel, getElapsedSeconds());
     }
+    
+ if  ( typeof window.saveBestScoreToCloud === 'function') {
+    window.saveBestScoreToCloud(window.currentLevel, score).catch(() => {});
+  }
   }
   setTimeout(() => {
     const ov = document.createElement('div');
