@@ -413,11 +413,6 @@ if (matrix.flat().every(v => v === 0)) {
   bestEl.textContent = best;
   playSound('highscore');
   updateMenuDifficulty();
-
-  // 2) update cloud mirror + firestore (only for logged-in users)
-  if (window.currentUser && typeof window.saveBestScoreToCloud === 'function') {
-    window.saveBestScoreToCloud(window.currentLevel, score).catch(() => {});
-  }
 }
 
       spawnTile();
