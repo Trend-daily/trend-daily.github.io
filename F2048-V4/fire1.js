@@ -20,7 +20,14 @@
     serverTimestamp 
   } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
-  const firebaseConfig = { /* your config */ };
+  const firebaseConfig = {
+   apiKey: "AIzaSyDX4eERQZVQaU6ebTqbYCYPpE9auzJr7tk",
+    authDomain: "quantorv-games2048.firebaseapp.com",
+    projectId: "quantorv-games2048",
+    storageBucket: "quantorv-games2048.firebasestorage.app",
+    messagingSenderId: "352136613598",
+    appId: "1:352136613598:web:58d08f5db9518550c47c4f",
+    measurementId: "G-P7E5K3YC8Y" };
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
