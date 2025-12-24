@@ -177,9 +177,10 @@
   });
 
   // SIGN OUT
-  document.getElementById('signout-btn')?.addEventListener('click', () => {
-    signOut(auth);
-  });
+  document.getElementById('signout-btn')?.addEventListener('click', async () => {
+  await signOut(auth);
+  location.reload();
+});
 
   // LISTEN FOR LOGIN STATE
   onAuthStateChanged(auth, (user) => {
