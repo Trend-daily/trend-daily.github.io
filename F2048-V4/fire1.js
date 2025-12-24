@@ -1,18 +1,34 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+  import { 
+    getAuth, 
+    GoogleAuthProvider, 
+    signInWithPopup, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    onAuthStateChanged, 
+    signOut 
+  } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+  import { 
+    getFirestore, 
+    doc, 
+    setDoc, 
+    getDoc,  // ← ADDED: to read user document
+    getDocs, 
+    query, 
+    collection, 
+    where,
+    serverTimestamp 
+  } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
-  const firebaseConfig = { 
-  apiKey: "AIzaSyDX4eERQZVQaU6ebTqbYCYPpE9auzJr7tk",
-    authDomain: "quantorv-games2048.firebaseapp.com",
-    projectId: "quantorv-games2048",
-    storageBucket: "quantorv-games2048.firebasestorage.app",
-    messagingSenderId: "352136613598",
-    appId: "1:352136613598:web:58d08f5db9518550c47c4f",
-    measurementId: "G-P7E5K3YC8Y" };
+  const firebaseConfig = { /* your config */ };
+
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
+  const db = getFirestore(app);
 
+  // Expose globally
   window.auth = auth;
+  window.db = db;
   window.GoogleAuthProvider = GoogleAuthProvider;
   window.signInWithPopup = signInWithPopup;
   window.signInWithEmailAndPassword = signInWithEmailAndPassword;
@@ -21,6 +37,7 @@
 
   let currentUser = null;
 
+  // UPDATE USER DISPLAY (unchanged)
   function updateUserDisplay() {
     const display = document.getElementById('user-display');
     const signinButtons = document.getElementById('signin-buttons');
@@ -29,7 +46,7 @@
     if (currentUser) {
       display.innerHTML = `
         <img src="${currentUser.photoURL || 'default.png'}" style="width:60px;height:60px;border-radius:50%;border:3px solid #00ffff;">
-        <strong style="color:#39ff14;">@${currentUser.displayName || currentUser.email.split('@')[0]}</strong>
+        <strong style="color:#39ff14;">@${currentUser.username || currentUser.displayName || currentUser.email.split('@')[0]}</strong>
       `;
       signinButtons.style.display = 'none';
       signoutBtn.style.display = 'block';
@@ -40,27 +57,47 @@
     }
   }
 
-  // Show username modal after any login
+  // Show username modal (unchanged)
   function showUsernameModal() {
     document.getElementById('username-modal').style.display = 'flex';
+    document.getElementById('username-input').value = '';
+    document.getElementById('username-error').textContent = '';
   }
 
-  // GOOGLE LOGIN
+  // Check if username is taken (unchanged)
+  async function isUsernameTaken(username) {
+    const q = query(collection(db, "users"), where("username", "==", username));
+    const snapshot = await getDocs(q);
+    return !snapshot.empty;
+  }
+
+  // ← NEW FUNCTION: Handle login complete — checks if username exists
+  async function handleLoginComplete() {
+    const userRef = doc(db, "users", currentUser.uid);
+    const snap = await getDoc(userRef);
+
+    if (snap.exists() && snap.data().username) {
+      // Username already exists — skip modal
+      currentUser.username = snap.data().username;
+      updateUserDisplay();
+      initGame(); // Restart game immediately
+    } else {
+      // No username — show modal
+      showUsernameModal();
+    }
+  }
+
+  // GOOGLE LOGIN — changed to use handleLoginComplete()
   document.getElementById('google-signin')?.addEventListener('click', () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then(() => showUsernameModal())
+      .then(() => handleLoginComplete())  // ← changed
       .catch(err => alert("Google login failed: " + err.message));
   });
 
-  // EMAIL LOGIN
-  document.getElementById('email-signin')?.addEventListener('click', () => {
-    document.getElementById('email-modal').style.display = 'flex';
-  });
-
-  // EMAIL LOGIN BUTTON
+  // EMAIL LOGIN — changed to use handleLoginComplete()
   document.getElementById('email-login-btn')?.addEventListener('click', () => {
-    const email = document.getElementById('email-input').value;
+    const email = document.getElementById('email-input').value.trim();
     const password = document.getElementById('password-input').value;
     const error = document.getElementById('email-error');
 
@@ -72,7 +109,7 @@
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         document.getElementById('email-modal').style.display = 'none';
-        showUsernameModal();
+        handleLoginComplete();  // ← changed
       })
       .catch(err => {
         if (err.code === 'auth/user-not-found') {
@@ -80,7 +117,7 @@
             createUserWithEmailAndPassword(auth, email, password)
               .then(() => {
                 document.getElementById('email-modal').style.display = 'none';
-                showUsernameModal();
+                handleLoginComplete();  // ← changed
               })
               .catch(createErr => error.textContent = createErr.message);
           }
@@ -90,37 +127,77 @@
       });
   });
 
-  // CANCEL EMAIL
+  // CANCEL EMAIL (unchanged)
   document.getElementById('email-cancel-btn')?.addEventListener('click', () => {
     document.getElementById('email-modal').style.display = 'none';
   });
 
-  // USERNAME SAVE
-  document.getElementById('username-save-btn')?.addEventListener('click', () => {
+  // USERNAME SAVE (unchanged — saves to Firestore)
+  document.getElementById('username-save-btn')?.addEventListener('click', async () => {
     const username = document.getElementById('username-input').value.trim();
-    if (!username) {
-      document.getElementById('username-error').textContent = "Enter username";
+    const error = document.getElementById('username-error');
+    const modal = document.getElementById('username-modal');
+
+    error.textContent = '';
+
+    if (username.length < 5) {
+      error.textContent = "Username must be at least 5 characters";
+      modal.classList.add('shake');
+      setTimeout(() => modal.classList.remove('shake'), 500);
       return;
     }
-    // Save username to Firestore later
-    document.getElementById('username-modal').style.display = 'none';
-    initGame(); // Restart game after login complete
+
+    const taken = await isUsernameTaken(username);
+    if (taken) {
+      error.textContent = "Username already taken";
+      modal.classList.add('shake');
+      setTimeout(() => modal.classList.remove('shake'), 500);
+      return;
+    }
+
+    const userRef = doc(db, "users", currentUser.uid);
+    setDoc(userRef, {
+      username: username,
+      createdAt: serverTimestamp()
+    }, { merge: true })
+    .then(() => {
+      currentUser.username = username;
+      document.getElementById('username-modal').style.display = 'none';
+      updateUserDisplay();
+      initGame();
+    })
+    .catch(err => {
+      error.textContent = "Save failed: " + err.message;
+    });
   });
 
-  // CANCEL USERNAME → LOG OUT
+  // CANCEL USERNAME → LOG OUT (unchanged)
   document.getElementById('username-cancel-btn')?.addEventListener('click', () => {
     document.getElementById('username-modal').style.display = 'none';
-    signOut(auth); // Cancel login
-  });
-
-  // SIGN OUT
-  document.getElementById('signout-btn')?.addEventListener('click', () => {
     signOut(auth);
   });
 
-  // LISTEN FOR LOGIN
-  onAuthStateChanged(auth, (user) => {
+  // SIGN OUT (unchanged)
+  document.getElementById('signout-btn')?.addEventListener('click', async () => {
+    await signOut(auth);
+    location.reload();
+  });
+
+  // LISTEN FOR LOGIN STATE — added async + getDoc to load username on reload
+  onAuthStateChanged(auth, async (user) => {
     currentUser = user;
+
+    if (user) {
+      // Load saved username if exists
+      const userRef = doc(db, "users", user.uid);
+      const snap = await getDoc(userRef);
+      if (snap.exists() && snap.data().username) {
+        currentUser.username = snap.data().username;
+      }
+    }
+
     updateUserDisplay();
   });
 
+  // Initial display
+  updateUserDisplay();
