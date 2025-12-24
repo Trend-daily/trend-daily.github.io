@@ -19,6 +19,7 @@
     where,
     serverTimestamp 
   } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+  
 
   const firebaseConfig = {
    apiKey: "AIzaSyDX4eERQZVQaU6ebTqbYCYPpE9auzJr7tk",
@@ -44,6 +45,13 @@
 
   let currentUser = null;
 
+// Firebase ready promise
+window.firebaseReady = new Promise((resolve) => {
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+    resolve();
+  });
+});
   // UPDATE USER DISPLAY (unchanged)
   function updateUserDisplay() {
     const display = document.getElementById('user-display');

@@ -6,7 +6,11 @@ window.gameReady = new Promise((resolve) =>{
 window.gameResolve = resolve;
     //Resolve at initGame;
 });
-window.gameReady.then(() => {
+/*window.gameReady.then(() => {
+  document.getElementById('loading-screen').style.display = 'none';
+});*/
+
+Promise.all([window.gameReady, window.firebaseReady]).then(() => {
   document.getElementById('loading-screen').style.display = 'none';
 });
 
