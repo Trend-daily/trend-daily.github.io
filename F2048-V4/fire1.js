@@ -103,7 +103,12 @@
   });
 
   // EMAIL LOGIN — changed to use handleLoginComplete()
-  document.getElementById('email-login-btn')?.addEventListener('click', () => {
+ document.getElementById('email-signin')?.addEventListener('click', () => {
+    document.getElementById('email-modal').style.display = 'flex';
+    document.getElementById('email-error').textContent = '';
+  });
+  
+   document.getElementById('email-login-btn')?.addEventListener('click', () => {
     const email = document.getElementById('email-input').value.trim();
     const password = document.getElementById('password-input').value;
     const error = document.getElementById('email-error');
