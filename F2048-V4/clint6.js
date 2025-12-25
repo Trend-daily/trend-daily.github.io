@@ -1,3 +1,5 @@
+
+import { syncBestToCloud } from './fire2.js';
 document.addEventListener("DOMContentLoaded", () => {
 window.initGame = initGame;
 
@@ -45,7 +47,8 @@ const sounds = {};
       audio.play().catch(() => {});
     }
   };
-  
+  // ========= Cloud Saving =========
+  let cloudDirty = false;
    // ======================
     // TIMER LOGIC (NO LOOPS)
     // ======================
@@ -220,7 +223,7 @@ bestEl.textContent = best;
     render();
    setTimeout(()=>{
        window.gameResolve();
-   },5000) 
+   },500) 
   }
 
   function createTiles() {
@@ -426,6 +429,8 @@ if (matrix.flat().every(v => v === 0)) {
   bestEl.textContent = best;
   playSound('highscore');
   updateMenuDifficulty();  
+  
+  cloudDirty = true; // for cloud Saving
 }
       
       spawnTile();
@@ -598,7 +603,13 @@ function executeAttack() {
     return false;
   }
 
- function gameOver() {
+// ========= Game Over for Testing ========
+document.getElementById('test-gameover').addEventListener('click', () => {
+  gameOver(); // async is fine, no await needed for testing
+});
+
+
+async function gameOver() {
   playSound('gameover');
   
   setTimeout(() => {
@@ -624,6 +635,7 @@ function executeAttack() {
       initGame();
     });
   }, 500);
+  cloudDirty = await syncBestToCloud(window.currentUser, cloudDirty);
 }
   // ==================== SOUND ====================
   
