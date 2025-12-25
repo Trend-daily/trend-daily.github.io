@@ -675,6 +675,11 @@ function updateMenuDifficulty() {
 // Call it on load and after every high score
 updateMenuDifficulty();  
 
+if (localStorage.getItem('best-super-easy') !== null) {
+    console.log('Key exists!');
+} else {
+    console.log('Key does not exist');
+}
 // RESTART BUTTON — FINAL & FLAWLESS
 document.getElementById('restart-btn')?.addEventListener('click', () => {
   document.getElementById('menu-overlay').classList.remove('active');

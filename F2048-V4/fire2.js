@@ -268,9 +268,15 @@ export async function syncBestToCloud(currentUser, cloudDirty) {
   const userRef = doc(db, "users", currentUser.uid);
 
   const best = {};
+
   document.querySelectorAll('.diff-item').forEach(item => {
     const lvl = item.dataset.level;
-    best[lvl] = parseInt(localStorage.getItem(`best-${lvl}`) || '0');
+
+    best[lvl] = {
+      score: parseInt(localStorage.getItem(`best-${lvl}`) || 0),
+      highestTile: parseInt(localStorage.getItem(`tile-${lvl}`) || 0),
+      longestTime: parseInt(localStorage.getItem(`time-${lvl}`) || 0)
+    };
   });
 
   await setDoc(userRef, {
