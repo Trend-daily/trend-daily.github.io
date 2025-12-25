@@ -1219,7 +1219,7 @@ body {
 .modal-buttons button {
   flex: 1;
   padding: 15px;
-  background: #00ffff;
+  background: #00ffff; 
   color: #000;
   border: none;
   border-radius: 50px;

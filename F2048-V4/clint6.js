@@ -220,7 +220,7 @@ bestEl.textContent = best;
     render();
    setTimeout(()=>{
        window.gameResolve();
-   },500) 
+   },5000) 
   }
 
   function createTiles() {

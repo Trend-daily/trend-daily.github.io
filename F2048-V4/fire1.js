@@ -154,6 +154,12 @@ window.firebaseReady = new Promise((resolve) => {
 
   // USERNAME SAVE (unchanged — saves to Firestore)
   document.getElementById('username-save-btn')?.addEventListener('click', async () => {
+  const spinner =
+ document.getElementById('spinner');
+ const svTxt =
+ document.getElementById('svTxt');
+ spinner.style.display = 'block';
+ svTxt.style.display = 'none';
     const username = document.getElementById('username-input').value.trim();
     const error = document.getElementById('username-error');
     const modal = document.getElementById('username-modal');
@@ -162,6 +168,12 @@ window.firebaseReady = new Promise((resolve) => {
 
     if (username.length < 5) {
       error.textContent = "Username must be at least 5 characters";
+      if (spinner) {
+          spinner.style.display = 'none';
+      };
+      if (svTxt) {
+          svTxt.style.display = 'block';
+      };
       modal.classList.add('shake');
       setTimeout(() => modal.classList.remove('shake'), 500);
       return;
@@ -170,6 +182,12 @@ window.firebaseReady = new Promise((resolve) => {
     const taken = await isUsernameTaken(username);
     if (taken) {
       error.textContent = "Username already taken";
+       if (spinner) {
+          spinner.style.display = 'none';
+      };
+      if (svTxt) {
+          svTxt.style.display = 'block';
+      };
       modal.classList.add('shake');
       setTimeout(() => modal.classList.remove('shake'), 500);
       return;
