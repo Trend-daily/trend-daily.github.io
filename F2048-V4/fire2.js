@@ -33,7 +33,7 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
-
+  let currentUser = null;
   // Expose globally
   window.auth = auth;
   window.db = db;
@@ -44,7 +44,7 @@
   window.signOut = signOut;
   window.currentUser = currentUser;
 
-  let currentUser = null;
+  
 
 // Firebase ready promise
 window.firebaseReady = new Promise((resolve) => {
