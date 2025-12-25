@@ -42,6 +42,7 @@
   window.signInWithEmailAndPassword = signInWithEmailAndPassword;
   window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
   window.signOut = signOut;
+  window.currentUser = currentUser;
 
   let currentUser = null;
 
@@ -78,7 +79,15 @@ window.firebaseReady = new Promise((resolve) => {
 
   const userRef = doc(db, "users", window.currentUser.uid);
   const snap = await getDoc(userRef);
-  if (!snap.exists()) return;
+  if (!snap.exists()) {
+    // set default scores
+    document.querySelectorAll('.diff-item').forEach(item => {
+        const lvl = item.dataset.level;
+        localStorage.setItem(`best-${lvl}`, 0);
+        localStorage.setItem(`tile-${lvl}`, 0);
+        localStorage.setItem(`time-${lvl}`, 0);
+    });
+}
 
   const best = snap.data().best || {};
 
@@ -267,7 +276,7 @@ window.firebaseReady = new Promise((resolve) => {
 export async function syncBestToCloud(currentUser, cloudDirty) {
   if (!currentUser || !cloudDirty) return;
 
-  const userRef = doc(db, "users", currentUser.uid);
+  const userRef = doc(db, "users", window.currentUser.uid);
 
   const best = {};
 

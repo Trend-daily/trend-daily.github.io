@@ -611,7 +611,10 @@ document.getElementById('test-gameover').addEventListener('click', () => {
 
 async function gameOver() {
   playSound('gameover');
-
+// Update local storage first
+localStorage.setItem(`best-${currentLevel}`, Math.max(score, parseInt(localStorage.getItem(`best-${currentLevel}`) || 0)));
+localStorage.setItem(`tile-${currentLevel}`, Math.max(highestTile, parseInt(localStorage.getItem(`tile-${currentLevel}`) || 0)));
+localStorage.setItem(`time-${currentLevel}`, Math.max(elapsedTime, parseInt(localStorage.getItem(`time-${currentLevel}`) || 0)));
   // Sync high score to cloud first
   if (window.currentUser && cloudDirty) {
       cloudDirty = await syncBestToCloud(window.currentUser, cloudDirty);
