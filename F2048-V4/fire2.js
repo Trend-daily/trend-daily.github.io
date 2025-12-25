@@ -82,9 +82,11 @@ window.firebaseReady = new Promise((resolve) => {
 
   const best = snap.data().best || {};
 
-  Object.entries(best).forEach(([lvl, score]) => {
-    localStorage.setItem(`best-${lvl}`, score);
-  });
+  Object.entries(best).forEach(([lvl, data]) => {
+    localStorage.setItem(`best-${lvl}`, data.score || 0);
+    localStorage.setItem(`tile-${lvl}`, data.highestTile || 0);
+    localStorage.setItem(`time-${lvl}`, data.longestTime || 0);
+});
 
   // Update menu / UI
   updateMenuDifficulty();

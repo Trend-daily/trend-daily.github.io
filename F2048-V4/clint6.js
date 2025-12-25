@@ -611,7 +611,13 @@ document.getElementById('test-gameover').addEventListener('click', () => {
 
 async function gameOver() {
   playSound('gameover');
-  
+
+  // Sync high score to cloud first
+  if (window.currentUser && cloudDirty) {
+      cloudDirty = await syncBestToCloud(window.currentUser, cloudDirty);
+  }
+
+  // Show overlay after a small delay
   setTimeout(() => {
     const ov = document.createElement('div');
     ov.className = 'overlay';
@@ -629,13 +635,11 @@ async function gameOver() {
 
     document.body.appendChild(ov);
 
-    
     ov.querySelector('#restart-game-over').addEventListener('click', () => {
       ov.remove();
       initGame();
     });
   }, 500);
-  cloudDirty = await syncBestToCloud(window.currentUser, cloudDirty);
 }
   // ==================== SOUND ====================
   
