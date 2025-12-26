@@ -33,7 +33,7 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
-
+  let currentUser = null;
   // Expose globally
   window.auth = auth;
   window.db = db;
@@ -42,8 +42,9 @@
   window.signInWithEmailAndPassword = signInWithEmailAndPassword;
   window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
   window.signOut = signOut;
+  window.currentUser = currentUser;
 
-  let currentUser = null;
+  
 
 // Firebase ready promise
 window.firebaseReady = new Promise((resolve) => {
@@ -71,7 +72,74 @@ window.firebaseReady = new Promise((resolve) => {
       signoutBtn.style.display = 'none';
     }
   }
+  
+  // ====== Hydrate best scores on login =========
+ async function hydrateBestScores() {
+  // Helper to show error in UI
+  const showError = (message) => {
+    let el = document.getElementById('error-msg');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'error-msg';
+      el.style.color = 'red';
+      el.style.position = 'fixed';
+      el.style.top = '10px';
+      el.style.left = '50%';
+      el.style.transform = 'translateX(-50%)';
+      el.style.background = '#ffe6e6';
+      el.style.padding = '10px 20px';
+      el.style.border = '1px solid red';
+      el.style.borderRadius = '5px';
+      el.style.zIndex = '9999';
+      document.body.appendChild(el);
+    }
+    el.textContent = message;
+  };
 
+  if (!window.currentUser) {
+    showError("No current user logged in.");
+    return;
+  }
+
+  try {
+    const userRef = doc(db, "users", window.currentUser.uid);
+    const snap = await getDoc(userRef);
+
+    if (!snap.exists()) {
+      // No user data, initialize localStorage to zeros
+      document.querySelectorAll('.diff-item').forEach(item => {
+        const lvl = item.dataset.level;
+        if (!lvl) throw new Error("Missing level data attribute on .diff-item element.");
+        localStorage.setItem(`best-${lvl}`, 0);
+        localStorage.setItem(`tile-${lvl}`, 0);
+        localStorage.setItem(`time-${lvl}`, 0);
+      });
+    } else {
+      const best = snap.data().best || {};
+
+      Object.entries(best).forEach(([lvl, data]) => {
+        if (!lvl) throw new Error("Invalid level key in user best scores.");
+        localStorage.setItem(`best-${lvl}`, data.score ?? 0);
+        localStorage.setItem(`tile-${lvl}`, data.highestTile ?? 0);
+        localStorage.setItem(`time-${lvl}`, data.longestTime ?? 0);
+      });
+    }
+
+    // Update in-game best scoreboard
+    if (typeof window.getBestForLevel !== "function") throw new Error("getBestForLevel is not defined.");
+    window.best = window.getBestForLevel();
+
+    if (!window.bestEl) throw new Error("bestEl element not found.");
+    window.bestEl.textContent = window.best;
+
+    if (typeof window.updateMenuDifficulty !== "function") throw new Error("updateMenuDifficulty is not defined.");
+    window.updateMenuDifficulty();
+
+  } catch (err) {
+    console.error("Failed to hydrate best scores:", err);
+    showError(`Error: ${err.message}`);
+  }
+}
   // Show username modal (unchanged)
   function showUsernameModal() {
     document.getElementById('username-modal').style.display = 'flex';
@@ -231,7 +299,14 @@ window.firebaseReady = new Promise((resolve) => {
       const snap = await getDoc(userRef);
       if (snap.exists() && snap.data().username) {
         currentUser.username = snap.data().username;
+        
       }
+      await hydrateBestScores();
+  window.updateMenuDifficulty();  // refresh menu UI
+  window.best = window.getBestForLevel();
+  window.bestEl.textContent = window.best;
+
+  updateUserDisplay();
     }
 
     updateUserDisplay();
@@ -239,3 +314,27 @@ window.firebaseReady = new Promise((resolve) => {
 
   // Initial display
   updateUserDisplay();
+  
+  // ========= syncing best score to cloud ========
+   export async function syncBestToCloud() {
+  if (!window.currentUser) return;  // No user — do nothing
+
+  const userRef = doc(db, "users", window.currentUser.uid);
+
+  const best = {};
+  document.querySelectorAll('.diff-item').forEach(item => {
+    const lvl = item.dataset.level;
+    best[lvl] = {
+      score: parseInt(localStorage.getItem(`best-${lvl}`) || 0),
+      highestTile: parseInt(localStorage.getItem(`tile-${lvl}`) || 0),
+      longestTime: parseInt(localStorage.getItem(`time-${lvl}`) || 0)
+    };
+  });
+
+  await setDoc(userRef, {
+    best: best,
+    updatedAt: serverTimestamp()
+  }, { merge: true });
+
+  console.log("Cloud sync complete!");
+}
