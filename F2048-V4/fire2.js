@@ -79,28 +79,31 @@ window.firebaseReady = new Promise((resolve) => {
 
   const userRef = doc(db, "users", window.currentUser.uid);
   const snap = await getDoc(userRef);
+
   if (!snap.exists()) {
-    // set default scores
     document.querySelectorAll('.diff-item').forEach(item => {
-        const lvl = item.dataset.level;
-        localStorage.setItem(`best-${lvl}`, 0);
-        localStorage.setItem(`tile-${lvl}`, 0);
-        localStorage.setItem(`time-${lvl}`, 0);
+      const lvl = item.dataset.level;
+      localStorage.setItem(`best-${lvl}`, 0);
+      localStorage.setItem(`tile-${lvl}`, 0);
+      localStorage.setItem(`time-${lvl}`, 0);
     });
-}
+  } else {
+    const best = snap.data().best || {};
 
-  const best = snap.data().best || {};
+    Object.entries(best).forEach(([lvl, data]) => {
+      localStorage.setItem(`best-${lvl}`, data.score || 0);
+      localStorage.setItem(`tile-${lvl}`, data.highestTile || 0);
+      localStorage.setItem(`time-${lvl}`, data.longestTime || 0);
+    });
+  }
 
-  Object.entries(best).forEach(([lvl, data]) => {
-    localStorage.setItem(`best-${lvl}`, data.score || 0);
-    localStorage.setItem(`tile-${lvl}`, data.highestTile || 0);
-    localStorage.setItem(`time-${lvl}`, data.longestTime || 0);
-});
-
-  // Update menu / UI
+  // Update menu
   updateMenuDifficulty();
-}
 
+  // ← NEW: Update in-game BEST scoreboard for current level
+  best = getBestForLevel();
+  bestEl.textContent = best;
+}
 
   // Show username modal (unchanged)
   function showUsernameModal() {
