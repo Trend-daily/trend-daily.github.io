@@ -96,13 +96,14 @@ window.firebaseReady = new Promise((resolve) => {
       localStorage.setItem(`time-${lvl}`, data.longestTime || 0);
     });
   }
+     // ← NEW: Update in-game BEST scoreboard for current level
+  // After updating localStorage
+window.best = window.getBestForLevel();
+window.bestEl.textContent = window.best;
+window.updateMenuDifficulty(); 
+  
 
-  // Update menu
-  updateMenuDifficulty();
-
-  // ← NEW: Update in-game BEST scoreboard for current level
-  best = getBestForLevel();
-  bestEl.textContent = best;
+ 
 }
 
   // Show username modal (unchanged)
@@ -276,7 +277,7 @@ window.firebaseReady = new Promise((resolve) => {
   updateUserDisplay();
   
   // ========= syncing best score to cloud ========
-export async function syncBestToCloud() {
+   export async function syncBestToCloud() {
   if (!window.currentUser) return;  // No user — do nothing
 
   const userRef = doc(db, "users", window.currentUser.uid);

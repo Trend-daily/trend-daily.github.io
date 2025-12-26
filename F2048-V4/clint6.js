@@ -69,7 +69,10 @@ const sounds = {};
   const grid = document.getElementById('grid');
   const scoreEl = document.getElementById('score');
   const bestEl = document.getElementById('best');
-
+  window.bestEl = bestEl;
+  window.best = best;
+  window.getBestForLevel = getBestForLevel;
+  window.updateMenuDifficulty = updateMenuDifficulty;
   const gemSwitcher = document.getElementById('gem-switcher');
   const gemGrider = document.getElementById('gem-grider');
   const gemBomb = document.getElementById('gem-bomb');
@@ -696,4 +699,5 @@ document.getElementById('restart-btn')?.addEventListener('click', () => {
   location.reload()
   window.initGame();
 });
+console.log(syncBestToCloud)
 });
