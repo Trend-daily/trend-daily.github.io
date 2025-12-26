@@ -49,7 +49,7 @@
 // Firebase ready promise
 window.firebaseReady = new Promise((resolve) => {
   onAuthStateChanged(auth, (user) => {
-    currentUser = user;
+    window.currentUser = user;
     resolve();
   });
 });
@@ -174,7 +174,11 @@ window.firebaseReady = new Promise((resolve) => {
   document.getElementById('google-signin')?.addEventListener('click', () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
-      .then(() => handleLoginComplete())  // ← changed
+      .then((cred) => {
+    currentUser = auth.currentUser;
+    window.currentUser = currentUser;  
+    handleLoginComplete();
+});  
       .catch(err => alert("Google login failed: " + err.message));
   });
 
@@ -196,7 +200,8 @@ window.firebaseReady = new Promise((resolve) => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        document.getElementById('email-modal').style.display = 'none';
+       currentUser = auth.currentUser;
+    window.currentUser = currentUser; document.getElementById('email-modal').style.display = 'none';
         handleLoginComplete();  // ← changed
       })
       .catch(err => {
@@ -291,7 +296,7 @@ window.firebaseReady = new Promise((resolve) => {
 
   // LISTEN FOR LOGIN STATE — added async + getDoc to load username on reload
   onAuthStateChanged(auth, async (user) => {
-    currentUser = user;
+    window.currentUser = user;
 
     if (user) {
       // Load saved username if exists
