@@ -424,6 +424,7 @@ if (matrix.flat().every(v => v === 0)) {
   hasTimerStarted = true;
 }
       score += gain; scoreEl.textContent = score;
+      
       if (saveBestForLevel(score)) {
   best = score;
   bestEl.textContent = best;
@@ -618,8 +619,9 @@ localStorage.setItem(`tile-${currentLevel}`, Math.max(highestTile, parseInt(loca
 localStorage.setItem(`time-${currentLevel}`, Math.max(elapsedTime, parseInt(localStorage.getItem(`time-${currentLevel}`) || 0)));*/
   // Sync high score to cloud first
   if (window.currentUser && cloudDirty) {
-      cloudDirty = await syncBestToCloud(window.currentUser, cloudDirty);
-  }
+  await syncBestToCloud();  // No parameters
+  cloudDirty = false;
+}
 
   // Show overlay after a small delay
   setTimeout(() => {

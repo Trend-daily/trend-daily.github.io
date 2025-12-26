@@ -273,16 +273,14 @@ window.firebaseReady = new Promise((resolve) => {
   updateUserDisplay();
   
   // ========= syncing best score to cloud ========
-export async function syncBestToCloud(currentUser, cloudDirty) {
-  if (!currentUser || !cloudDirty) return;
+export async function syncBestToCloud() {
+  if (!window.currentUser) return;  // No user — do nothing
 
   const userRef = doc(db, "users", window.currentUser.uid);
 
   const best = {};
-
   document.querySelectorAll('.diff-item').forEach(item => {
     const lvl = item.dataset.level;
-
     best[lvl] = {
       score: parseInt(localStorage.getItem(`best-${lvl}`) || 0),
       highestTile: parseInt(localStorage.getItem(`tile-${lvl}`) || 0),
@@ -295,5 +293,5 @@ export async function syncBestToCloud(currentUser, cloudDirty) {
     updatedAt: serverTimestamp()
   }, { merge: true });
 
-  return false; // cloudDirty now false
+  console.log("Cloud sync complete!");
 }
