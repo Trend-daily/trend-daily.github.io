@@ -70,7 +70,7 @@ const sounds = {};
   const scoreEl = document.getElementById('score');
   const bestEl = document.getElementById('best');
   window.bestEl = bestEl;
-  window.best = best;
+  
   window.getBestForLevel = getBestForLevel;
   window.updateMenuDifficulty = updateMenuDifficulty;
   const gemSwitcher = document.getElementById('gem-switcher');
@@ -131,6 +131,7 @@ function saveBestForLevel(newScore) {
 }
 
 let best = getBestForLevel();
+window.best = best;
 bestEl.textContent = best;
 
   let gems = { switcher: 0, grider: 0, bomb: 0 };
