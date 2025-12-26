@@ -178,7 +178,7 @@ window.firebaseReady = new Promise((resolve) => {
     currentUser = auth.currentUser;
     window.currentUser = currentUser;  
     handleLoginComplete();
-});  
+}) 
       .catch(err => alert("Google login failed: " + err.message));
   });
 
