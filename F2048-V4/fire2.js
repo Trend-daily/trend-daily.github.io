@@ -268,6 +268,11 @@ window.updateMenuDifficulty();
         
       }
       await hydrateBestScores();
+  window.updateMenuDifficulty();  // refresh menu UI
+  window.best = window.getBestForLevel();
+  window.bestEl.textContent = window.best;
+
+  updateUserDisplay();
     }
 
     updateUserDisplay();

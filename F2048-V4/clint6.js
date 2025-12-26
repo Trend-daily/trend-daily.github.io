@@ -622,9 +622,9 @@ localStorage.setItem(`best-${currentLevel}`, Math.max(score, parseInt(localStora
 localStorage.setItem(`tile-${currentLevel}`, Math.max(highestTile, parseInt(localStorage.getItem(`tile-${currentLevel}`) || 0)));
 localStorage.setItem(`time-${currentLevel}`, Math.max(elapsedTime, parseInt(localStorage.getItem(`time-${currentLevel}`) || 0)));*/
   // Sync high score to cloud first
-  if (window.currentUser && cloudDirty) {
+  if (window.currentUser) {
   await syncBestToCloud();  // No parameters
-  cloudDirty = false;
+  //cloudDirty = false;
 }
 
   // Show overlay after a small delay
