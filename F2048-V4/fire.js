@@ -140,6 +140,9 @@ window.firebaseReady = new Promise((resolve) => {
     showError(`Error: ${err.message}`);
   }
 }
+
+// ======== hydrateBestScores function ends =========
+
   // Show username modal (unchanged)
   function showUsernameModal() {
     document.getElementById('username-modal').style.display = 'flex';
@@ -332,7 +335,8 @@ window.firebaseReady = new Promise((resolve) => {
     best[lvl] = {
       score: parseInt(localStorage.getItem(`best-${lvl}`) || 0),
       highestTile: parseInt(localStorage.getItem(`tile-${lvl}`) || 0),
-      longestTime: parseInt(localStorage.getItem(`time-${lvl}`) || 0)
+      longestTime: parseInt(localStorage.getItem(`time-${lvl}`) || 0),
+      fastest2048: Number(localStorage.getItem(`fastest2048-${lvl}`)) || null
     };
   });
 

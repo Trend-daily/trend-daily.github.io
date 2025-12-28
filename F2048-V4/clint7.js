@@ -49,6 +49,8 @@ const sounds = {};
   };
   // ========= Cloud Saving =========
   let cloudDirty = false;
+  // ======= TTR2048 =======
+  let hasRecorded2048 = false;
    // ======================
     // TIMER LOGIC (NO LOOPS)
     // ======================
@@ -125,6 +127,44 @@ function saveBestForLevel(newScore) {
   const current = getBestForLevel();
   if (newScore > current) {
     localStorage.setItem(key, newScore);
+    return true;
+  }
+  return false;
+}
+
+// ==================== TIME & TILE RECORDS ====================
+
+// Longest session (seconds)
+function saveLongestSession(seconds) {
+  const key = `time-${currentLevel}`;
+  const prev = Number(localStorage.getItem(key)) || 0;
+
+  if (seconds > prev) {
+    localStorage.setItem(key, seconds);
+    return true;
+  }
+  return false;
+}
+
+// Fastest time to reach 2048 (seconds)
+function saveFastest2048(seconds) {
+  const key = `fastest2048-${currentLevel}`;
+  const prev = Number(localStorage.getItem(key));
+
+  if (!prev || seconds < prev) {
+    localStorage.setItem(key, seconds);
+    return true;
+  }
+  return false;
+}
+
+// Highest tile achieved
+function saveHighestTile(tile) {
+  const key = `tile-${currentLevel}`;
+  const prev = Number(localStorage.getItem(key)) || 0;
+
+  if (tile > prev) {
+    localStorage.setItem(key, tile);
     return true;
   }
   return false;
@@ -225,6 +265,7 @@ bestEl.textContent = best;
     spawnTile();
     spawnTile();
     render();
+    hasRecorded2048 = false;
    setTimeout(()=>{
        window.gameResolve();
    },500) 
@@ -599,32 +640,53 @@ function executeAttack() {
   });
 
   // ==================== WIN / LOSE ====================
-  function checkWin() { if(matrix.flat().some(v=>v>=2048)) playSound('win'); }
-  function canMerge() {
-    for(let r=0;r<4;r++) for(let c=0;c<4;c++) {
-      const v = matrix[r][c];
-      if((c<3&&v===matrix[r][c+1])||(r<3&&v===matrix[r+1][c])) return true;
-    }
-    return false;
-  }
+  
 
+function checkWin() {
+  if (hasRecorded2048) return;
+
+  if (matrix.flat().some(v => v >= 2048)) {
+    hasRecorded2048 = true;
+
+    const seconds = getElapsedSeconds();
+    const improved = saveFastest2048(seconds);
+
+    if (improved) {
+      playSound('highscore'); // optional special sound
+      cloudDirty = true;
+    } else {
+      playSound('win');
+    }
+  }
+}
 // ========= Game Over for Testing ========
 document.getElementById('test-gameover').addEventListener('click', () => {
   gameOver(); // async is fine, no await needed for testing
 });
 
-
 async function gameOver() {
   playSound('gameover');
   const time = formatTime(getElapsedSeconds());
+const elapsedSeconds = getElapsedSeconds();
   const highestTile = Math.max(...matrix.flat().filter(v => v > 1));
 
-  // Sync high score to cloud first
-  if (window.currentUser) {
-  await syncBestToCloud();  // No parameters
-  //cloudDirty = false;
-}
+  // Save records
+  if (saveLongestSession(elapsedSeconds)) {
+    cloudDirty = true;
+  }
 
+  if (saveHighestTile(highestTile)) {
+    cloudDirty = true;
+  }
+
+  // Sync AFTER updating local storage
+  if (window.currentUser && cloudDirty) {
+    await syncBestToCloud();
+    cloudDirty = false;
+  }
+
+  const timeFormatted = formatTime(elapsedSeconds);
+  
   // Show overlay after a small delay
   setTimeout(() => {
     const ov = document.createElement('div');
@@ -700,5 +762,4 @@ document.getElementById('restart-btn')?.addEventListener('click', () => {
   location.reload()
   window.initGame();
 });
-console.log(syncBestToCloud)
 });
