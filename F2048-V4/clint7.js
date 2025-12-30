@@ -659,6 +659,17 @@ function checkWin() {
     }
   }
 }
+
+function canMerge() {
+    for(let r=0;r<4;r++) for(let c=0;c<4;c++) {
+      const v = matrix[r][c];
+      if((c<3&&v===matrix[r][c+1])||(r<3&&v===matrix[r+1][c])) return true;
+    }
+    return false;
+  }
+  
+  
+  // ====== check if there's no more moves =========
 // ========= Game Over for Testing ========
 document.getElementById('test-gameover').addEventListener('click', () => {
   gameOver(); // async is fine, no await needed for testing

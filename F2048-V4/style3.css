@@ -643,6 +643,9 @@ body {
     cursor: pointer;
     transition: all 0.3s;
   }
+  a.menu-btn{
+      text-decoration: none;
+  }
   .menu-btn:hover {
     background: var(--accent);
     color: black;

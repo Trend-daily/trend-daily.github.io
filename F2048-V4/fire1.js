@@ -49,7 +49,7 @@
 // Firebase ready promise
 window.firebaseReady = new Promise((resolve) => {
   onAuthStateChanged(auth, (user) => {
-    window.currentUser = user;
+    currentUser = window.currentUser = user;
     resolve();
   });
 });
@@ -140,6 +140,9 @@ window.firebaseReady = new Promise((resolve) => {
     showError(`Error: ${err.message}`);
   }
 }
+
+// ======== hydrateBestScores function ends =========
+
   // Show username modal (unchanged)
   function showUsernameModal() {
     document.getElementById('username-modal').style.display = 'flex';
@@ -296,7 +299,7 @@ window.firebaseReady = new Promise((resolve) => {
 
   // LISTEN FOR LOGIN STATE — added async + getDoc to load username on reload
   onAuthStateChanged(auth, async (user) => {
-    window.currentUser = user;
+    currentUser = window.currentUser = user;
 
     if (user) {
       // Load saved username if exists
@@ -320,6 +323,32 @@ window.firebaseReady = new Promise((resolve) => {
   // Initial display
   updateUserDisplay();
   
+  // ========= Leaderboard ==========
+  async function updateLeaderboardEntry({
+  uid,
+  username,
+  level,
+  metric,
+  value
+}) {
+  if (value === null || value === undefined) return;
+
+  const lbRef = doc(
+    db,
+    `leaderboards/${level}_${metric}`,
+    uid
+  );
+
+  await setDoc(lbRef, {
+    uid,
+    username,
+    level,
+    metric,
+    value,
+    updatedAt: serverTimestamp()
+  }, { merge: true });
+}
+  
   // ========= syncing best score to cloud ========
    export async function syncBestToCloud() {
   if (!window.currentUser) return;  // No user — do nothing
@@ -332,14 +361,25 @@ window.firebaseReady = new Promise((resolve) => {
     best[lvl] = {
       score: parseInt(localStorage.getItem(`best-${lvl}`) || 0),
       highestTile: parseInt(localStorage.getItem(`tile-${lvl}`) || 0),
-      longestTime: parseInt(localStorage.getItem(`time-${lvl}`) || 0)
+      longestTime: parseInt(localStorage.getItem(`time-${lvl}`) || 0),
+      fastest2048: Number(localStorage.getItem(`fastest2048-${lvl}`)) || null
     };
+      // 👇 NEW: leaderboard writes
+    updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score });
+    updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile });
+    updateLeaderboardEntry({ uid, username, level: lvl, metric: 'longestSession', value: longestTime });
+
+    if (fastest2048 !== null) {
+      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'fastest2048', value: fastest2048 });
+    }
   });
+  
+ 
 
   await setDoc(userRef, {
     best: best,
     updatedAt: serverTimestamp()
   }, { merge: true });
 
-  console.log("Cloud sync complete!");
+  console.log("Cloud + leaderboard sync complete");
 }
