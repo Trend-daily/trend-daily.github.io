@@ -75,6 +75,10 @@ window.firebaseReady = new Promise((resolve) => {
   
   // ====== Hydrate best scores on login =========
  async function hydrateBestScores() {
+ // === end function if it's not main game ====
+ if (document.body.dataset.page !== 'game') {
+  return;
+}
   // Helper to show error in UI
   const showError = (message) => {
     let el = document.getElementById('error-msg');
@@ -310,9 +314,17 @@ window.firebaseReady = new Promise((resolve) => {
         
       }
       await hydrateBestScores();
-  window.updateMenuDifficulty();  // refresh menu UI
+ if (typeof window.getBestForLevel === 'function') {
   window.best = window.getBestForLevel();
+}
+
+if (window.bestEl) {
   window.bestEl.textContent = window.best;
+}
+
+if (typeof window.updateMenuDifficulty === 'function') {
+  window.updateMenuDifficulty();
+}
 
   updateUserDisplay();
     }

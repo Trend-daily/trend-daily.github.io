@@ -75,6 +75,10 @@ window.firebaseReady = new Promise((resolve) => {
   
   // ====== Hydrate best scores on login =========
  async function hydrateBestScores() {
+ // === end function if it's not main game ====
+ if (document.body.dataset.page !== 'game') {
+  return;
+}
   // Helper to show error in UI
   const showError = (message) => {
     let el = document.getElementById('error-msg');
@@ -374,6 +378,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
   const cloudBest = snap.exists() ? snap.data().best || {} : {};
 
   const best = {};
+  const leaderboardWrites = []; // 👈 HERE
 
   document.querySelectorAll('.diff-item').forEach(item => {
     const lvl = item.dataset.level;
@@ -392,35 +397,48 @@ if (typeof window.updateMenuDifficulty === 'function') {
       fastest2048
     };
 
-    // SCORE (higher is better)
+    // 👇 leaderboard promises are COLLECTED
     if (score > (prev.score ?? 0)) {
-      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score });
+      leaderboardWrites.push(
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score })
+      );
     }
 
-    // HIGHEST TILE (higher is better)
     if (highestTile > (prev.highestTile ?? 0)) {
-      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile });
+      leaderboardWrites.push(
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile })
+      );
     }
 
-    // LONGEST SESSION (higher is better)
     if (longestTime > (prev.longestTime ?? 0)) {
-      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'longestSession', value: longestTime });
+      leaderboardWrites.push(
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'longestSession', value: longestTime })
+      );
     }
 
-    // FASTEST 2048 (lower is better)
     if (
       fastest2048 !== null &&
       (prev.fastest2048 === undefined || fastest2048 < prev.fastest2048)
     ) {
-      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'fastest2048', value: fastest2048 });
+      leaderboardWrites.push(
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'fastest2048', value: fastest2048 })
+      );
     }
   });
+// Avoiding unnecessary writes 
+if (leaderboardWrites.length === 0) {
+  console.log("No leaderboard improvements — skipping cloud writes");
+  return;
+}
 
-  // 🔹 Persist updated bests to user profile
+  // WAIT FOR LEADERBOARD WRITES
+  await Promise.all(leaderboardWrites);
+
+  // THEN persist user bests
   await setDoc(userRef, {
     best,
     updatedAt: serverTimestamp()
   }, { merge: true });
 
-  console.log("Cloud + leaderboard sync complete (guarded)");
+  console.log("Cloud + leaderboard sync complete");
 }
