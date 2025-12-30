@@ -4,6 +4,7 @@
   Firebase-ready (reads later)
   ==========================
 */
+import { syncBestToCloud } from './fire1.js';
 document.addEventListener('DOMContentLoaded',()=>{
     
 

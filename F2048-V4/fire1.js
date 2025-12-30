@@ -310,9 +310,17 @@ window.firebaseReady = new Promise((resolve) => {
         
       }
       await hydrateBestScores();
-  window.updateMenuDifficulty();  // refresh menu UI
+ if (typeof window.getBestForLevel === 'function') {
   window.best = window.getBestForLevel();
+}
+
+if (window.bestEl) {
   window.bestEl.textContent = window.best;
+}
+
+if (typeof window.updateMenuDifficulty === 'function') {
+  window.updateMenuDifficulty();
+}
 
   updateUserDisplay();
     }
@@ -384,22 +392,22 @@ window.firebaseReady = new Promise((resolve) => {
       fastest2048
     };
 
-    // 🔥 SCORE (higher is better)
+    // SCORE (higher is better)
     if (score > (prev.score ?? 0)) {
       updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score });
     }
 
-    // 🔥 HIGHEST TILE (higher is better)
+    // HIGHEST TILE (higher is better)
     if (highestTile > (prev.highestTile ?? 0)) {
       updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile });
     }
 
-    // 🔥 LONGEST SESSION (higher is better)
+    // LONGEST SESSION (higher is better)
     if (longestTime > (prev.longestTime ?? 0)) {
       updateLeaderboardEntry({ uid, username, level: lvl, metric: 'longestSession', value: longestTime });
     }
 
-    // 🔥 FASTEST 2048 (lower is better)
+    // FASTEST 2048 (lower is better)
     if (
       fastest2048 !== null &&
       (prev.fastest2048 === undefined || fastest2048 < prev.fastest2048)
