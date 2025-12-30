@@ -4,7 +4,16 @@
   Firebase-ready (reads later)
   ==========================
 */
-import { syncBestToCloud } from './fire1.js';
+import {
+  collection,
+  query,
+  orderBy,
+  limit,
+  getDocs,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+//import { syncBestToCloud } from './fire1.js';
 document.addEventListener('DOMContentLoaded',()=>{
     
 
@@ -115,7 +124,12 @@ function showEmpty() {
 }
 // ===== Fetch Leaderboard From Firestore =======
 async function fetchLeaderboard(level, metric, limitCount = 50) {
-  const col = collection(db, `leaderboards/${level}_${metric}`);
+  const col = collection(
+  db,
+  'leaderboards',
+  `${level}_${metric}`,
+  'entries'
+);
 
   const q = query(
     col,
@@ -194,6 +208,25 @@ async function reloadLeaderboard() {
     `;
     tbody.appendChild(tr);
   }
+}
+
+
+// ====== Fetch My Rank ========
+async function fetchMyRank(level, metric) {
+  if (!window.currentUser) return null;
+
+  const ref = doc(
+    db,
+    'leaderboards',
+    `${level}_${metric}`,
+    'entries',
+    window.currentUser.uid
+  );
+
+  const snap = await getDoc(ref);
+  if (!snap.exists()) return null;
+
+  return snap.data();
 }
 
 })

@@ -346,11 +346,12 @@ if (typeof window.updateMenuDifficulty === 'function') {
   if (value === null || value === undefined) return;
 
   const lbRef = doc(
-    db,
-    `leaderboards/${level}_${metric}`,
-    uid
-  );
-
+  db,
+  'leaderboards',
+  `${level}_${metric}`,
+  'entries',
+  uid
+);
   await setDoc(lbRef, {
     uid,
     username,
@@ -426,14 +427,9 @@ if (typeof window.updateMenuDifficulty === 'function') {
     }
   });
 // Avoiding unnecessary writes 
-if (leaderboardWrites.length === 0) {
-  console.log("No leaderboard improvements — skipping cloud writes");
-  return;
-}
-
-  // WAIT FOR LEADERBOARD WRITES
-  await Promise.all(leaderboardWrites);
-
+if (leaderboardWrites.length > 0) {
+    await Promise.all(leaderboardWrites);
+  }
   // THEN persist user bests
   await setDoc(userRef, {
     best,
