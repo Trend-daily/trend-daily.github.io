@@ -351,35 +351,68 @@ window.firebaseReady = new Promise((resolve) => {
   
   // ========= syncing best score to cloud ========
    export async function syncBestToCloud() {
-  if (!window.currentUser) return;  // No user — do nothing
+  if (!window.currentUser) return;
 
-  const userRef = doc(db, "users", window.currentUser.uid);
+  const uid = window.currentUser.uid;
+  const username =
+    window.currentUser.username ||
+    window.currentUser.displayName ||
+    window.currentUser.email.split('@')[0];
+
+  const userRef = doc(db, "users", uid);
+
+  // 🔹 Read previous cloud values ONCE
+  const snap = await getDoc(userRef);
+  const cloudBest = snap.exists() ? snap.data().best || {} : {};
 
   const best = {};
+
   document.querySelectorAll('.diff-item').forEach(item => {
     const lvl = item.dataset.level;
-    best[lvl] = {
-      score: parseInt(localStorage.getItem(`best-${lvl}`) || 0),
-      highestTile: parseInt(localStorage.getItem(`tile-${lvl}`) || 0),
-      longestTime: parseInt(localStorage.getItem(`time-${lvl}`) || 0),
-      fastest2048: Number(localStorage.getItem(`fastest2048-${lvl}`)) || null
-    };
-      // 👇 NEW: leaderboard writes
-    updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score });
-    updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile });
-    updateLeaderboardEntry({ uid, username, level: lvl, metric: 'longestSession', value: longestTime });
 
-    if (fastest2048 !== null) {
+    const score = Number(localStorage.getItem(`best-${lvl}`)) || 0;
+    const highestTile = Number(localStorage.getItem(`tile-${lvl}`)) || 0;
+    const longestTime = Number(localStorage.getItem(`time-${lvl}`)) || 0;
+    const fastest2048 = Number(localStorage.getItem(`fastest2048-${lvl}`)) || null;
+
+    const prev = cloudBest[lvl] || {};
+
+    best[lvl] = {
+      score,
+      highestTile,
+      longestTime,
+      fastest2048
+    };
+
+    // 🔥 SCORE (higher is better)
+    if (score > (prev.score ?? 0)) {
+      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score });
+    }
+
+    // 🔥 HIGHEST TILE (higher is better)
+    if (highestTile > (prev.highestTile ?? 0)) {
+      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile });
+    }
+
+    // 🔥 LONGEST SESSION (higher is better)
+    if (longestTime > (prev.longestTime ?? 0)) {
+      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'longestSession', value: longestTime });
+    }
+
+    // 🔥 FASTEST 2048 (lower is better)
+    if (
+      fastest2048 !== null &&
+      (prev.fastest2048 === undefined || fastest2048 < prev.fastest2048)
+    ) {
       updateLeaderboardEntry({ uid, username, level: lvl, metric: 'fastest2048', value: fastest2048 });
     }
   });
-  
- 
 
+  // 🔹 Persist updated bests to user profile
   await setDoc(userRef, {
-    best: best,
+    best,
     updatedAt: serverTimestamp()
   }, { merge: true });
 
-  console.log("Cloud + leaderboard sync complete");
+  console.log("Cloud + leaderboard sync complete (guarded)");
 }

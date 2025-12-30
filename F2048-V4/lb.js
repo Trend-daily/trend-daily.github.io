@@ -112,26 +112,87 @@ function showEmpty() {
     </tr>
   `;
 }
+// ===== Fetch Leaderboard From Firestore =======
+async function fetchLeaderboard(level, metric, limitCount = 50) {
+  const col = collection(db, `leaderboards/${level}_${metric}`);
 
+  const q = query(
+    col,
+    orderBy(
+      'value',
+      metric === 'fastest2048' ? 'asc' : 'desc'
+    ),
+    limit(limitCount)
+  );
+
+  const snap = await getDocs(q);
+
+  return snap.docs.map((doc, index) => ({
+    rank: index + 1,
+    ...doc.data()
+  }));
+}
+
+// ===== Metric formatting for Time ==========
+
+function formatMetric(value, metric) {
+  if (metric === 'fastest2048' || metric === 'longestSession') {
+    const m = Math.floor(value / 60);
+    const s = value % 60;
+    return `${m}:${String(s).padStart(2, '0')}`;
+  }
+  return value.toLocaleString();
+}
 // ---------- MAIN RELOAD ----------
 async function reloadLeaderboard() {
   const id = ++state.requestId;
   showLoading();
 
-  // 🔜 Firebase query will replace this
-  // const data = await fetchLeaderboard(state.level, state.metric);
+  const [top, mine] = await Promise.all([
+    fetchLeaderboard(state.level, state.metric),
+    fetchMyRank(state.level, state.metric)
+  ]);
 
-  // TEMP: simulate network delay
-  await new Promise(r => setTimeout(r, 400));
-
-  // Ignore stale responses
   if (id !== state.requestId) return;
 
-  // No data yet
-  showEmpty();
-}
+  tbody.innerHTML = '';
 
-// ---------- INIT ----------
-reloadLeaderboard();
+  if (!top.length) {
+    showEmpty();
+    return;
+  }
+
+  let isMeInTop = false;
+
+  top.forEach(row => {
+    const tr = document.createElement('tr');
+
+    if (window.currentUser && row.uid === window.currentUser.uid) {
+      tr.classList.add('me');
+      isMeInTop = true;
+    }
+
+    tr.innerHTML = `
+      <td>${row.username}</td>
+      <td>${formatMetric(row.value, state.metric)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // 👇 User not in top 50
+  if (!isMeInTop && mine) {
+    const sep = document.createElement('tr');
+    sep.innerHTML = `<td colspan="2" style="height:14px"></td>`;
+    tbody.appendChild(sep);
+
+    const tr = document.createElement('tr');
+    tr.classList.add('me');
+    tr.innerHTML = `
+      <td>— You (${mine.username})</td>
+      <td>${formatMetric(mine.value, state.metric)}</td>
+    `;
+    tbody.appendChild(tr);
+  }
+}
 
 })
