@@ -680,6 +680,7 @@ async function gameOver() {
   const time = formatTime(getElapsedSeconds());
 const elapsedSeconds = getElapsedSeconds();
   const highestTile = Math.max(...matrix.flat().filter(v => v > 1));
+ 
 
   // Save records
   if (saveLongestSession(elapsedSeconds)) {
@@ -689,8 +690,15 @@ const elapsedSeconds = getElapsedSeconds();
   if (saveHighestTile(highestTile)) {
     cloudDirty = true;
   }
+  
+if (saveBestForLevel(score)) {
+  cloudDirty = true;
+}
 
-  // Sync AFTER updating local storage
+if (highestTile >= 2048 && saveFastest2048(elapsedSeconds)) {
+  cloudDirty = true;
+}
+
   if (window.currentUser && cloudDirty) {
     await syncBestToCloud();
     cloudDirty = false;
