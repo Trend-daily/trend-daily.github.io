@@ -488,11 +488,14 @@ if (typeof window.updateMenuDifficulty === 'function') {
     };
 
     // Collect leaderboard writes
-    if (score > (prev.score ?? 0)) {
+   /* if (score > (prev.score ?? 0)) {
       leaderboardWrites.push(
         updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score })
       );
-    }
+    }*/
+    leaderboardWrites.push(
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score })
+      );
     if (highestTile > (prev.highestTile ?? 0)) {
       leaderboardWrites.push(
         updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile })
@@ -521,19 +524,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
     updatedAt: serverTimestamp()
   }, { merge: true });
   
-  await setDoc(
-      lbRef,
-      {
-        uid,
-        username,
-        level,
-        metric,
-        value,
-        updatedAt: serverTimestamp()
-      },
-      { merge: true }
-    );
-
+  
 
   console.log("Cloud + leaderboard sync complete");
 }
