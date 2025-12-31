@@ -463,15 +463,20 @@ if (typeof window.updateMenuDifficulty === 'function') {
   const cloudBest = snap.exists() ? snap.data().best || {} : {};
 
   const best = {};
-  const leaderboardWrites = []; // 👈 HERE
+  const leaderboardWrites = [];
 
-  document.querySelectorAll('.diff-item').forEach(item => {
-    const lvl = item.dataset.level;
+  // 🔹 Iterate over localStorage keys for scores
+  Object.keys(localStorage).forEach(key => {
+    // Match keys like 'best-<level>'
+    const match = key.match(/^best-(.+)$/);
+    if (!match) return;
 
+    const lvl = match[1];
     const score = Number(localStorage.getItem(`best-${lvl}`)) || 0;
     const highestTile = Number(localStorage.getItem(`tile-${lvl}`)) || 0;
     const longestTime = Number(localStorage.getItem(`time-${lvl}`)) || 0;
-    const fastest2048 = Number(localStorage.getItem(`fastest2048-${lvl}`)) || null;
+    const fastest2048 = localStorage.getItem(`fastest2048-${lvl}`);
+    const fastest = fastest2048 !== null ? Number(fastest2048) : null;
 
     const prev = cloudBest[lvl] || {};
 
@@ -479,42 +484,38 @@ if (typeof window.updateMenuDifficulty === 'function') {
       score,
       highestTile,
       longestTime,
-      fastest2048
+      fastest2048: fastest
     };
 
-    // 👇 leaderboard promises are COLLECTED
+    // Collect leaderboard writes
     if (score > (prev.score ?? 0)) {
       leaderboardWrites.push(
         updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score })
       );
     }
-
     if (highestTile > (prev.highestTile ?? 0)) {
       leaderboardWrites.push(
         updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile })
       );
     }
-
     if (longestTime > (prev.longestTime ?? 0)) {
       leaderboardWrites.push(
         updateLeaderboardEntry({ uid, username, level: lvl, metric: 'longestSession', value: longestTime })
       );
     }
-
-    if (
-      fastest2048 !== null &&
-      (prev.fastest2048 === undefined || fastest2048 < prev.fastest2048)
-    ) {
+    if (fastest !== null && (prev.fastest2048 === undefined || fastest < prev.fastest2048)) {
       leaderboardWrites.push(
-        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'fastest2048', value: fastest2048 })
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'fastest2048', value: fastest })
       );
     }
   });
-// Avoiding unnecessary writes 
-if (leaderboardWrites.length > 0) {
+
+  // Avoid unnecessary writes
+  if (leaderboardWrites.length > 0) {
     await Promise.all(leaderboardWrites);
   }
-  // THEN persist user bests
+
+  // Persist user bests
   await setDoc(userRef, {
     best,
     updatedAt: serverTimestamp()

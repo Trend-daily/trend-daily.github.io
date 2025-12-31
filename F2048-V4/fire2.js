@@ -336,21 +336,23 @@ if (typeof window.updateMenuDifficulty === 'function') {
   updateUserDisplay();
   
   // ========= Leaderboard ==========
-  async function updateLeaderboardEntry({
+  /*async function updateLeaderboardEntry({
   uid,
   username,
   level,
   metric,
   value
-}) {
+}) 
+{
   if (value === null || value === undefined) return;
 
   const lbRef = doc(
-    db,
-    `leaderboards/${level}_${metric}`,
-    uid
-  );
-
+  db,
+  'leaderboards',
+  `${level}_${metric}`,
+  'entries',
+  uid
+);
   await setDoc(lbRef, {
     uid,
     username,
@@ -359,8 +361,91 @@ if (typeof window.updateMenuDifficulty === 'function') {
     value,
     updatedAt: serverTimestamp()
   }, { merge: true });
-}
+}*/
   
+  
+  // ======== Testing UI Errors ==========
+  async function updateLeaderboardEntry({
+  uid,
+  username,
+  level,
+  metric,
+  value
+}) {
+  // ---------- UI LOGGER ----------
+  const logUI = (msg, type = 'info') => {
+    let el = document.getElementById('lb-debug');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'lb-debug';
+      el.style.position = 'fixed';
+      el.style.bottom = '10px';
+      el.style.left = '50%';
+      el.style.transform = 'translateX(-50%)';
+      el.style.background = '#111';
+      el.style.color = '#0f0';
+      el.style.padding = '8px 12px';
+      el.style.fontSize = '12px';
+      el.style.borderRadius = '6px';
+      el.style.zIndex = '99999';
+      el.style.maxWidth = '90%';
+      document.body.appendChild(el);
+    }
+
+    const line = document.createElement('div');
+    line.textContent = `[${type.toUpperCase()}] ${msg}`;
+    line.style.color =
+      type === 'error' ? '#ff5555' :
+      type === 'warn'  ? '#ffaa00' :
+                         '#00ff99';
+
+    el.appendChild(line);
+  };
+  // --------------------------------
+
+  // Sanity checks
+  if (!uid || !level || !metric) {
+    logUI('Missing uid / level / metric → write aborted', 'error');
+    return;
+  }
+
+  if (value === null || value === undefined) {
+    logUI(`Skipped ${level}:${metric} (value is null/undefined)`, 'warn');
+    return;
+  }
+
+  logUI(`Attempting leaderboard write → ${level} | ${metric} | ${value}`);
+
+  try {
+    const lbRef = doc(
+      db,
+      'leaderboards',
+      `${level}_${metric}`,
+      'entries',
+      uid
+    );
+
+    await setDoc(
+      lbRef,
+      {
+        uid,
+        username,
+        level,
+        metric,
+        value,
+        updatedAt: serverTimestamp()
+      },
+      { merge: true }
+    );
+
+    logUI(`✔ Leaderboard updated (${level} / ${metric})`, 'success');
+  } catch (err) {
+    console.error('Leaderboard write failed:', err);
+    logUI(`✖ Leaderboard write FAILED: ${err.message}`, 'error');
+  }
+}
+
+// ======= Testing UI ERROR ENDS ========
   // ========= syncing best score to cloud ========
    export async function syncBestToCloud() {
   if (!window.currentUser) return;
@@ -378,6 +463,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
   const cloudBest = snap.exists() ? snap.data().best || {} : {};
 
   const best = {};
+  const leaderboardWrites = []; // 👈 HERE
 
   document.querySelectorAll('.diff-item').forEach(item => {
     const lvl = item.dataset.level;
@@ -396,35 +482,43 @@ if (typeof window.updateMenuDifficulty === 'function') {
       fastest2048
     };
 
-    // SCORE (higher is better)
+    // 👇 leaderboard promises are COLLECTED
     if (score > (prev.score ?? 0)) {
-      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score });
+      leaderboardWrites.push(
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score })
+      );
     }
 
-    // HIGHEST TILE (higher is better)
     if (highestTile > (prev.highestTile ?? 0)) {
-      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile });
+      leaderboardWrites.push(
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile })
+      );
     }
 
-    // LONGEST SESSION (higher is better)
     if (longestTime > (prev.longestTime ?? 0)) {
-      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'longestSession', value: longestTime });
+      leaderboardWrites.push(
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'longestSession', value: longestTime })
+      );
     }
 
-    // FASTEST 2048 (lower is better)
     if (
       fastest2048 !== null &&
       (prev.fastest2048 === undefined || fastest2048 < prev.fastest2048)
     ) {
-      updateLeaderboardEntry({ uid, username, level: lvl, metric: 'fastest2048', value: fastest2048 });
+      leaderboardWrites.push(
+        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'fastest2048', value: fastest2048 })
+      );
     }
   });
-
-  // 🔹 Persist updated bests to user profile
+// Avoiding unnecessary writes 
+if (leaderboardWrites.length > 0) {
+    await Promise.all(leaderboardWrites);
+  }
+  // THEN persist user bests
   await setDoc(userRef, {
     best,
     updatedAt: serverTimestamp()
   }, { merge: true });
 
-  console.log("Cloud + leaderboard sync complete (guarded)");
+  console.log("Cloud + leaderboard sync complete");
 }
