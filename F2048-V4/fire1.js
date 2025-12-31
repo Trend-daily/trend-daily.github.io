@@ -465,7 +465,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
   const best = {};
   const leaderboardWrites = [];
 
-  // 🔹 Iterate over localStorage keys for scores
+ 
   Object.keys(localStorage).forEach(key => {
     // Match keys like 'best-<level>'
     const match = key.match(/^best-(.+)$/);
@@ -520,6 +520,20 @@ if (typeof window.updateMenuDifficulty === 'function') {
     best,
     updatedAt: serverTimestamp()
   }, { merge: true });
+  
+  await setDoc(
+      lbRef,
+      {
+        uid,
+        username,
+        level,
+        metric,
+        value,
+        updatedAt: serverTimestamp()
+      },
+      { merge: true }
+    );
+
 
   console.log("Cloud + leaderboard sync complete");
 }
