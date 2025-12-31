@@ -488,14 +488,11 @@ if (typeof window.updateMenuDifficulty === 'function') {
     };
 
     // Collect leaderboard writes
-   /* if (score > (prev.score ?? 0)) {
+     if (score > (prev.score ?? 0)) {
       leaderboardWrites.push(
         updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score })
       );
-    }*/
-    leaderboardWrites.push(
-        updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score })
-      );
+    }
     if (highestTile > (prev.highestTile ?? 0)) {
       leaderboardWrites.push(
         updateLeaderboardEntry({ uid, username, level: lvl, metric: 'highestTile', value: highestTile })
