@@ -448,6 +448,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
 // ======= Testing UI ERROR ENDS ========
   // ========= syncing best score to cloud ========
    export async function syncBestToCloud() {
+   console.log('[SYNC] diff-item count:', document.querySelectorAll('.diff-item').length);
   if (!window.currentUser) return;
 
   const uid = window.currentUser.uid;
@@ -467,6 +468,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
 
  
   Object.keys(localStorage).forEach(key => {
+  
     // Match keys like 'best-<level>'
     const match = key.match(/^best-(.+)$/);
     if (!match) return;
