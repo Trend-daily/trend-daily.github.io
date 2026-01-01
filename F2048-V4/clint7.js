@@ -770,7 +770,7 @@ function updateMenuDifficulty() {
 // Call it on load and after every high score
 updateMenuDifficulty();  
 
-if (localStorage.getItem('tile-super-easy') !== null) {
+if (localStorage.getItem('fastest2048-super-easy') !== null) {
     console.log('Key exists!');
 } else {
     console.log('Key does not exist');
