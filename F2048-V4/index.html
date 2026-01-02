@@ -118,9 +118,11 @@
   </div>
 <script>
   document.getElementById('hamburger').onclick = () => {
-   pauseTimer();  document.getElementById('menu-overlay').classList.add('active');
+   pauseTimer(); 
+   pauseMusic('bgm'); document.getElementById('menu-overlay').classList.add('active');
   };
   document.getElementById('close-menu').onclick = () => {
+  resumeMusic('bgm')
    resumeTimer(); document.getElementById('menu-overlay').classList.remove('active');
   };
 </script>

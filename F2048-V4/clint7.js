@@ -31,8 +31,10 @@ const sounds = {};
     highscore: 'sounds/highscore.mp3',
     win: 'sounds/win.mp3',
     gameover: 'sounds/gameover.mp3',
-    select: 'sounds/select.mp3'
+    select: 'sounds/select.mp3',
+    timer: 'sounds/timer.wav',
   };
+
 
   Object.entries(soundList).forEach(([name, src]) => {
     const audio = new Audio(src);
@@ -47,6 +49,57 @@ const sounds = {};
       audio.play().catch(() => {});
     }
   };
+  
+  // ========= Background Music =======
+  const music = {};
+  const musicList = {
+  bgm: 'sounds/background.mp3',
+};
+
+
+Object.entries(musicList).forEach(([name, src]) => {
+  const audio = new Audio(src);
+  audio.volume = 0.3;   // usually lower than SFX
+  audio.loop = true;    // background music loops
+  music[name] = audio;
+});
+
+window.playMusic = function (name) {
+  const audio = music[name];
+  if (!audio) return;
+
+  // Prevent restarting if already playing
+  if (!audio.paused) return;
+
+  audio.play().catch(() => {});
+};
+
+window.stopMusic = function (name) {
+  const audio = music[name];
+  if (!audio) return;
+
+  audio.pause();
+  audio.currentTime = 0;
+};
+
+window.pauseMusic = function (name) {
+  const audio = music[name];
+  if (!audio) return;
+
+  audio.pause();
+};
+
+window.resumeMusic = function (name) {
+  const audio = music[name];
+  if (!audio) return;
+
+  // Only resume if paused AND not at the beginning reset
+  if (audio.paused) {
+    audio.play().catch(() => {});
+  }
+};
+
+// ===== background Music ends =======
   // ========= Cloud Saving =========
   let cloudDirty = false;
   // ======= TTR2048 =======
@@ -350,6 +403,7 @@ bestEl.textContent = best;
     gemStatus.style.opacity = '1';
     render();
     playSound('gem-activate');
+    
   }
 
   function deactivateGem() {
@@ -466,6 +520,7 @@ if (matrix.flat().every(v => v === 0)) {
     if (moved && changed) {
     if (!hasTimerStarted) {
   startTimer();
+  playMusic('bgm');
   hasTimerStarted = true;
 }
       score += gain; scoreEl.textContent = score;
@@ -676,6 +731,7 @@ document.getElementById('test-gameover').addEventListener('click', () => {
 });
 
 async function gameOver() {
+  stopMusic('bgm');
   playSound('gameover');
   const time = formatTime(getElapsedSeconds());
 const elapsedSeconds = getElapsedSeconds();
