@@ -16,7 +16,6 @@ import {
 //import { syncBestToCloud } from './fire1.js';
 document.addEventListener('DOMContentLoaded',()=>{
     
-
 const preloader = document.getElementById('loading-screen');
     setTimeout(() => {
       preloader.style.display = 'none';
@@ -122,6 +121,7 @@ function showEmpty() {
     </tr>
   `;
 }
+showEmpty()
 // ===== Fetch Leaderboard From Firestore =======
 async function fetchLeaderboard(level, metric, limitCount = 50) {
   const col = collection(
@@ -210,6 +210,7 @@ async function reloadLeaderboard() {
   }
 }
 
+reloadLeaderboard();
 
 // ====== Fetch My Rank ========
 async function fetchMyRank(level, metric) {

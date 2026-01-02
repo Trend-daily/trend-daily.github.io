@@ -336,7 +336,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
   updateUserDisplay();
   
   // ========= Leaderboard ==========
-  /*async function updateLeaderboardEntry({
+  async function updateLeaderboardEntry({
   uid,
   username,
   level,
@@ -361,91 +361,8 @@ if (typeof window.updateMenuDifficulty === 'function') {
     value,
     updatedAt: serverTimestamp()
   }, { merge: true });
-}*/
-  
-  
-  // ======== Testing UI Errors ==========
-  async function updateLeaderboardEntry({
-  uid,
-  username,
-  level,
-  metric,
-  value
-}) {
-  // ---------- UI LOGGER ----------
-  const logUI = (msg, type = 'info') => {
-    let el = document.getElementById('lb-debug');
-    if (!el) {
-      el = document.createElement('div');
-      el.id = 'lb-debug';
-      el.style.position = 'fixed';
-      el.style.bottom = '10px';
-      el.style.left = '50%';
-      el.style.transform = 'translateX(-50%)';
-      el.style.background = '#111';
-      el.style.color = '#0f0';
-      el.style.padding = '8px 12px';
-      el.style.fontSize = '12px';
-      el.style.borderRadius = '6px';
-      el.style.zIndex = '99999';
-      el.style.maxWidth = '90%';
-      document.body.appendChild(el);
-    }
-
-    const line = document.createElement('div');
-    line.textContent = `[${type.toUpperCase()}] ${msg}`;
-    line.style.color =
-      type === 'error' ? '#ff5555' :
-      type === 'warn'  ? '#ffaa00' :
-                         '#00ff99';
-
-    el.appendChild(line);
-  };
-  // --------------------------------
-
-  // Sanity checks
-  if (!uid || !level || !metric) {
-    logUI('Missing uid / level / metric → write aborted', 'error');
-    return;
-  }
-
-  if (value === null || value === undefined) {
-    logUI(`Skipped ${level}:${metric} (value is null/undefined)`, 'warn');
-    return;
-  }
-
-  logUI(`Attempting leaderboard write → ${level} | ${metric} | ${value}`);
-
-  try {
-    const lbRef = doc(
-      db,
-      'leaderboards',
-      `${level}_${metric}`,
-      'entries',
-      uid
-    );
-
-    await setDoc(
-      lbRef,
-      {
-        uid,
-        username,
-        level,
-        metric,
-        value,
-        updatedAt: serverTimestamp()
-      },
-      { merge: true }
-    );
-
-    logUI(`✔ Leaderboard updated (${level} / ${metric})`, 'success');
-  } catch (err) {
-    console.error('Leaderboard write failed:', err);
-    logUI(`✖ Leaderboard write FAILED: ${err.message}`, 'error');
-  }
 }
-
-// ======= Testing UI ERROR ENDS ========
+  
  // ========= syncing best score to cloud ========
    export async function syncBestToCloud() {
   if (!window.currentUser) return;

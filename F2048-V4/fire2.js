@@ -373,7 +373,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
   value
 }) {
   // ---------- UI LOGGER ----------
-  const logUI = (msg, type = 'info') => {
+ const logUI = (msg, type = 'info') => {
     let el = document.getElementById('lb-debug');
     if (!el) {
       el = document.createElement('div');
@@ -446,7 +446,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
 }
 
 // ======= Testing UI ERROR ENDS ========
-  // ========= syncing best score to cloud ========
+ // ========= syncing best score to cloud ========
    export async function syncBestToCloud() {
   if (!window.currentUser) return;
 
