@@ -105,6 +105,7 @@ function showLoading() {
     tr.className = 'loading-row';
     tr.innerHTML = `
       <td><div class="skeleton" style="width:60%"></div></td>
+      <td><div class="skeleton" style="width:60%"></div></td>
       <td><div class="skeleton" style="width:40%"></div></td>
     `;
     tbody.appendChild(tr);

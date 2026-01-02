@@ -194,7 +194,7 @@ async function reloadLeaderboard() {
     tbody.appendChild(tr);
   });
 
-  // 👇 User not in top 50
+  //  User not in top 50
   if (!isMeInTop && mine) {
     const sep = document.createElement('tr');
     sep.innerHTML = `<td colspan="2" style="height:14px"></td>`;

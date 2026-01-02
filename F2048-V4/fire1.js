@@ -246,8 +246,8 @@ window.firebaseReady = new Promise((resolve) => {
 
     error.textContent = '';
 
-    if (username.length < 5) {
-      error.textContent = "Username must be at least 5 characters";
+    if (username.length <= 15 || username.length > 15) {
+      error.textContent = "Username must be from 5-15 characters";
       if (spinner) {
           spinner.style.display = 'none';
       };
@@ -399,7 +399,7 @@ if (typeof window.updateMenuDifficulty === 'function') {
       fastest2048
     };
 
-    // 👇 leaderboard promises are COLLECTED
+    //  leaderboard promises are COLLECTED
     if (score > (prev.score ?? 0)) {
       leaderboardWrites.push(
         updateLeaderboardEntry({ uid, username, level: lvl, metric: 'score', value: score })
