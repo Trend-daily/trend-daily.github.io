@@ -179,7 +179,7 @@ async function reloadLeaderboard() {
 
   let isMeInTop = false;
 
-  top.forEach((row, index) => {
+  top.forEach(row => {
     const tr = document.createElement('tr');
 
     if (window.currentUser && row.uid === window.currentUser.uid) {
@@ -188,7 +188,6 @@ async function reloadLeaderboard() {
     }
 
     tr.innerHTML = `
-       <td>${index + 1}</td>
       <td>${row.username}</td>
       <td>${formatMetric(row.value, state.metric)}</td>
     `;
