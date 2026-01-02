@@ -246,7 +246,7 @@ window.firebaseReady = new Promise((resolve) => {
 
     error.textContent = '';
 
-    if (username.length <= 15 || username.length > 15) {
+    if (username.length < 5 || username.length > 15) {
       error.textContent = "Username must be from 5-15 characters";
       if (spinner) {
           spinner.style.display = 'none';
