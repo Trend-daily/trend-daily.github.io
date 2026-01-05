@@ -8,9 +8,6 @@ window.gameReady = new Promise((resolve) =>{
 window.gameResolve = resolve;
     //Resolve at initGame;
 });
-/*window.gameReady.then(() => {
-  document.getElementById('loading-screen').style.display = 'none';
-});*/
 
 Promise.all([window.gameReady, window.firebaseReady]).then(() => {
   document.getElementById('loading-screen').style.display = 'none';
@@ -19,57 +16,56 @@ Promise.all([window.gameReady, window.firebaseReady]).then(() => {
 // ====== Sounds =======
 const sounds = {};
 
-// 2. Preload all sounds ONCE when page loads
-  const soundList = {
-    spawn: 'sounds/spawn.mp3',
-    swap: 'sounds/swap.wav',
-    bomb: 'sounds/bomb.mp3',
-    destroy: 'sounds/destroy.mp3',
-    penalty: 'sounds/penalty.mp3',
-    gem: 'sounds/gem.mp3',
-    'gem-activate': 'sounds/activate.mp3',
-    highscore: 'sounds/highscore.mp3',
-    win: 'sounds/win.mp3',
-    gameover: 'sounds/gameover.mp3',
-    select: 'sounds/select.mp3',
-    timer: 'sounds/timer.wav',
-  };
+const soundList = {
+  spawn: 'sounds/spawn.mp3',
+  swap: 'sounds/swap.wav',
+  bomb: 'sounds/bomb.mp3',
+  destroy: 'sounds/destroy.mp3',
+  penalty: 'sounds/penalty.mp3',
+  gem: 'sounds/gem.mp3',
+  'gem-activate': 'sounds/activate.mp3',
+  highscore: 'sounds/highscore.mp3',
+  win: 'sounds/win.mp3',
+  gameover: 'sounds/gameover.mp3',
+  select: 'sounds/select.mp3',
+  timer: 'sounds/timer.wav',
+};
 
+Object.entries(soundList).forEach(([name, src]) => {
+  const audio = new Audio(src);
+  audio.volume = 0.5;
+  sounds[name] = audio;
+});
 
-  Object.entries(soundList).forEach(([name, src]) => {
-    const audio = new Audio(src);
-    audio.volume = 0.5;
-    sounds[name] = audio;
-  });
+window.playSound = function (type) {
+  if (!soundEnabled || !sfxEnabled) return;
+
+  const audio = sounds[type];
+  if (!audio) return;
+
+  audio.currentTime = 0;
+  audio.play().catch(() => {});
+};
   
-  window.playSound = function(type) {
-    const audio = sounds[type];
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
-    }
-  };
-  
-  // ========= Background Music =======
-  const music = {};
-  const musicList = {
+ // ========= Background Music =======
+const music = {};
+
+const musicList = {
   bgm: 'sounds/background.mp3',
 };
 
-
 Object.entries(musicList).forEach(([name, src]) => {
   const audio = new Audio(src);
-  audio.volume = 0.3;   // usually lower than SFX
-  audio.loop = true;    // background music loops
+  audio.volume = 0.3;
+  audio.loop = true;
   music[name] = audio;
 });
 
 window.playMusic = function (name) {
-  const audio = music[name];
-  if (!audio) return;
+  if (!soundEnabled || !musicEnabled) return;
 
-  // Prevent restarting if already playing
-  if (!audio.paused) return;
+  const audio = music[name];
+  if (!audio || !audio.paused) return;
 
   audio.play().catch(() => {});
 };
@@ -84,22 +80,81 @@ window.stopMusic = function (name) {
 
 window.pauseMusic = function (name) {
   const audio = music[name];
-  if (!audio) return;
-
-  audio.pause();
+  if (audio) audio.pause();
 };
 
 window.resumeMusic = function (name) {
-  const audio = music[name];
-  if (!audio) return;
+  if (!soundEnabled || !musicEnabled) return;
 
-  // Only resume if paused AND not at the beginning reset
-  if (audio.paused) {
+  const audio = music[name];
+  if (audio && audio.paused) {
     audio.play().catch(() => {});
   }
 };
-
 // ===== background Music ends =======
+
+// ====== sound enabled ========
+let soundEnabled = localStorage.getItem('sound-enabled') !== 'false';
+let musicEnabled = localStorage.getItem('music-enabled') !== 'false';
+let sfxEnabled   = localStorage.getItem('sfx-enabled') !== 'false';
+
+window.setSoundEnabled = function (enabled) {
+  soundEnabled = enabled;
+  localStorage.setItem('sound-enabled', enabled);
+
+  if (!enabled) {
+    stopAllSounds();
+    stopAllMusic();
+  }
+};
+
+function stopAllSounds() {
+  Object.values(sounds).forEach(a => {
+    a.pause();
+    a.currentTime = 0;
+  });
+}
+
+function stopAllMusic() {
+  Object.values(music).forEach(a => {
+    a.pause();
+    a.currentTime = 0;
+  });
+}
+
+// ======wiring music and sounds======
+const musicBtn = document.getElementById('toggle-music');
+const sfxBtn   = document.getElementById('toggle-sfx');
+
+function syncSoundMenuUI() {
+  musicBtn.textContent = `MUSIC: ${musicEnabled ? 'ON' : 'OFF'}`;
+  sfxBtn.textContent   = `SFX: ${sfxEnabled ? 'ON' : 'OFF'}`;
+
+  musicBtn.classList.toggle('active', musicEnabled);
+  sfxBtn.classList.toggle('active', sfxEnabled);
+}
+
+musicBtn.addEventListener('click', () => {
+  musicEnabled = !musicEnabled;
+  localStorage.setItem('music-enabled', musicEnabled);
+
+  musicEnabled ? playMusic('bgm') : stopMusic('bgm');
+  syncSoundMenuUI();
+});
+
+sfxBtn.addEventListener('click', () => {
+  sfxEnabled = !sfxEnabled;
+  localStorage.setItem('sfx-enabled', sfxEnabled);
+
+  if (!sfxEnabled) stopAllSounds();
+  syncSoundMenuUI();
+});
+
+syncSoundMenuUI();
+
+if (musicEnabled && soundEnabled) {
+  playMusic('bgm');
+}
   // ========= Cloud Saving =========
   let cloudDirty = false;
   // ======= TTR2048 =======
@@ -537,7 +592,7 @@ if (matrix.flat().every(v => v === 0)) {
       spawnTile();
       if (level.drops) trySpawnGem();
       if (level.attacks) setTimeout(maybeAttack, 600);
-      checkWin();
+      //checkWin();
     } else if (changed && !wrongMovePenalty) {
       spawnPenaltyOne(); wrongMovePenalty = true; playSound('penalty');
     } else wrongMovePenalty = false;
@@ -550,7 +605,7 @@ if (matrix.flat().every(v => v === 0)) {
   function maybeAttack() {
     if (doomedCell || Math.random() > level.chance) return;
     const high = [];
-    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 8) high.push({r,c});
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) if (matrix[r][c] >= 512) high.push({r,c});
     if (!high.length) return;
     doomedCell = high[Math.floor(Math.random()*high.length)];
     render();
@@ -562,7 +617,7 @@ if (matrix.flat().every(v => v === 0)) {
     timer.className = 'attack-timer';
     timer.innerHTML = '<div class="timer-ring"></div><div class="timer-text">10</div>';
     document.body.appendChild(timer);
-    let sec = 10;
+    let sec = 5;
     attackTimer = setInterval(() => {
       sec--;
       timer.querySelector('.timer-text').textContent = sec;
@@ -697,6 +752,7 @@ function executeAttack() {
   // ==================== WIN / LOSE ====================
   
 
+/*
 function checkWin() {
   if (hasRecorded2048) return;
 
@@ -714,6 +770,8 @@ function checkWin() {
     }
   }
 }
+*/
+// ========== Win / Lose End ===========
 
 function canMerge() {
     for(let r=0;r<4;r++) for(let c=0;c<4;c++) {

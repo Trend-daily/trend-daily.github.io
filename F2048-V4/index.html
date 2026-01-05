@@ -72,7 +72,20 @@
       <a href="leaderboard.html" class="menu-btn">GLOBAL LEADERBOARD</a>
       <button class="menu-btn">HOW TO PLAY</button>
       <button class="menu-btn">ABOUT</button>
-      <button class="menu-btn">SOUND: ON</button>
+      <!-- <button class="menu-btn">SOUND: ON</button> -->
+      <details class="sound-menu" id="sound-menu">
+  <summary class="menu-btn">SOUND</summary>
+
+  <div class="sound-options">
+    <button id="toggle-music" class="sound-option active">
+      MUSIC: ON
+    </button>
+
+    <button id="toggle-sfx" class="sound-option active">
+      SFX: ON
+    </button>
+  </div>
+</details>
       <button class="menu-btn" id="restart-btn">RESTART GAME</button>
       <button class="menu-btn" id="close-menu">CLOSE MENU</button>
     </div>
@@ -186,101 +199,93 @@
     <p id="username-error" style="color:#ff0044;margin-top:10px;"></p>
   </div>
 </div>
+</body>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-brand">
+      © 2026 <span class="brand-name">Quantorv Games</span>
+    </div>
+
+    <div class="footer-tagline">
+      The Grid Evolution
+    </div>
+
+    <div class="footer-socials">
+      <a href="https://x.com/yourhandle" target="_blank" aria-label="X (Twitter)">
+        X
+      </a>
+      <a href="https://reddit.com/r/yourcommunity" target="_blank" aria-label="Reddit">
+        Reddit
+      </a>
+      <a href="https://yourname.substack.com" target="_blank" aria-label="Substack">
+        Substack
+      </a>
+    </div>
+
+    <div class="footer-credit">
+      Crafted with passion by <span>Clinton Nwezeaku</span>
+    </div>
+
+  </div>
+</footer>
+
 <style>
-    
-     /* Spinner styling */
-/* From Uiverse.io by david-mohseni */ 
-.spinner {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
+   
+
+.sound-menu summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 34px;
+  border-radius: 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #00ffff;
+  color: #00ffff;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-align: center;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.4);
+}
+
+.sound-menu summary::-webkit-details-marker {
   display: none;
 }
 
-.spinner div {
-  width: 8%;
-  height: 24%;
-  background: rgb(128, 128, 128);
-  position: absolute;
-  left: 50%;
-  top: 30%;
-  opacity: 0;
-  border-radius: 50px;
-  box-shadow: 0 0 3px rgba(0,0,0,0.2);
-  animation: fade458 1s linear infinite;
+.sound-options {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
 }
 
-@keyframes fade458 {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0.25;
-  }
+.sound-option {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px 18px;
+  background: transparent;
+  border: 1px solid rgba(0, 255, 255, 0.35);
+  border-radius: 30px;
+  color: #00ffff;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.spinner .bar1 {
-  transform: rotate(0deg) translate(0, -130%);
-  animation-delay: 0s;
+.sound-option:hover {
+  background: #00ffff;
+  color: #000;
+  box-shadow: 0 0 18px #00ffff;
 }
 
-.spinner .bar2 {
-  transform: rotate(30deg) translate(0, -130%);
-  animation-delay: -1.1s;
+.sound-option.active {
+  border-color: #39ff14;
+  color: #39ff14;
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.6);
 }
-
-.spinner .bar3 {
-  transform: rotate(60deg) translate(0, -130%);
-  animation-delay: -1s;
-}
-
-.spinner .bar4 {
-  transform: rotate(90deg) translate(0, -130%);
-  animation-delay: -0.9s;
-}
-
-.spinner .bar5 {
-  transform: rotate(120deg) translate(0, -130%);
-  animation-delay: -0.8s;
-}
-
-.spinner .bar6 {
-  transform: rotate(150deg) translate(0, -130%);
-  animation-delay: -0.7s;
-}
-
-.spinner .bar7 {
-  transform: rotate(180deg) translate(0, -130%);
-  animation-delay: -0.6s;
-}
-
-.spinner .bar8 {
-  transform: rotate(210deg) translate(0, -130%);
-  animation-delay: -0.5s;
-}
-
-.spinner .bar9 {
-  transform: rotate(240deg) translate(0, -130%);
-  animation-delay: -0.4s;
-}
-
-.spinner .bar10 {
-  transform: rotate(270deg) translate(0, -130%);
-  animation-delay: -0.3s;
-}
-
-.spinner .bar11 {
-  transform: rotate(300deg) translate(0, -130%);
-  animation-delay: -0.2s;
-}
-
-.spinner .bar12 {
-  transform: rotate(330deg) translate(0, -130%);
-  animation-delay: -0.1s;
-}
-
 </style>
-</body>
 </html>
